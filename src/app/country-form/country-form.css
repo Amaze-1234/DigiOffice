@@ -1,0 +1,11 @@
+.required{
+    color: red;
+}
+
+.cancel-btn, .submit-btn{
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -10,5 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './login.css'
 })
 export class Login {
+imagePath:'..assets'
 
 }
+
+

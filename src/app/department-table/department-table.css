@@ -1,0 +1,26 @@
+th{
+    color:Blue;
+
+}
+tr{
+    border:1px solid rgb(205, 93, 93);
+    
+}
+td{
+color:gray;
+background-color: beige;
+}
+.header
+{
+    display:flex;
+    justify-content: space-between;
+    padding:5px;
+    background-color: white;
+}
+.intial
+{
+    display:flex;
+    gap:10px;
+
+
+}

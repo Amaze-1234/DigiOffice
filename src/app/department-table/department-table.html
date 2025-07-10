@@ -1,8 +1,15 @@
-<div class="col fs-2 m-3 text-center ">Department Details
-      </div>
+<div class="header">
+    <div class="intial">
+        <img src="" alt="icon">
+        <p>Filter By:</p>
+        <input type="text" placeholder="search">
+    </div>
+    <div class="addDetails">
+        <button>Add Button</button>
+    </div>
+</div>
     
-
-        <<button id="add" value="submit" (click)="getDepartmentdetails()"><h2>Add Students</h2> </button> -->
+<p>Showing {{deptid}}Results</p>
     
 
 
@@ -14,8 +21,8 @@
               <th>Action</th>
             </tr>
           <tr *ngFor="let data of DepartmentData">
-            <td>{{data.deptName}}</td>
-            <td>{{data.deptHead}}</td>
+            <td>{{data.departmentName}}</td>
+            <td>{{data.departmentDescription}}</td>
           
            <td>
             <button value="submit">Update</button>
@@ -25,17 +32,17 @@
          </tr>
       </table>
     
-<!-- 
+
     <ng-template #popupmodel1>
       <div class="modal-header justify-content-between fw-bold">
       <h1>Department Form</h1>
       <span (click)="modalService.dismissAll()">X</span>
       </div>
       <div class="modal-body">
-        <app-departme [deptID]="deptid" (closemodal)="close($event)"></app-department-form>
+        <app-department-form ></app-department-form>
       </div>
       <div class="modal-footer">
         <button type="submit"(click)="modalService.dismissAll()">close</button>
       </div>
 
-    </ng-template> -->
+    </ng-template>

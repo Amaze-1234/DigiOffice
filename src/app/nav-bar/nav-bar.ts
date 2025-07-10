@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class NavBar {
 
-   constructor(public router:Router){}
+   constructor(public router:Router,public loderService:Loader){}
 
   logout() {
   Swal.fire({
@@ -25,6 +26,7 @@ export class NavBar {
   }).then((result) => {
     if (result.isConfirmed) {
       sessionStorage.clear();
+      this.loderService.isLogin = 'No';
       this.router.navigate(['/login']);
       Swal.fire("Logout!", "You have been successfully logged out", "success");
     }

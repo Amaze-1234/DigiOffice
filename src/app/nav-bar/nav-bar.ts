@@ -18,6 +18,7 @@ export class NavBar {
     text: "You want to be logout!",
     icon: "warning",
     showCancelButton: true,
+    
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, logout!"

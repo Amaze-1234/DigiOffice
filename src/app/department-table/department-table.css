@@ -3,12 +3,11 @@ th{
 
 }
 tr{
-    border:1px solid rgb(205, 93, 93);
+    border:1px solid rgb(186, 151, 238);
     
 }
 td{
 color:gray;
-background-color: beige;
 }
 .header
 {
@@ -21,6 +20,13 @@ background-color: beige;
 {
     display:flex;
     gap:10px;
-
-
+}
+#addButton{
+      background-color: blue;
+   color: white;
+   padding:3px;
+}
+.modify{
+    height:15%;
+    width:15%;
 }

@@ -5,18 +5,14 @@
         <input type="text" placeholder="search">
     </div>
     <div class="addDetails">
-        <button>Add Button</button>
+        <button id="addButton"> <img src="images/plus.svg" alt=""> Add Job level</button>
     </div>
 </div>
     
-<p>Showing {{deptid}}Results</p>
-    
-
-
+<p class="">Showing {{deptLength}} Results</p>
   <table class="table ">
              <tr>
-            
-              <th>department Name</th>
+              <th>Department Name</th>
               <th>Department Description</th>
               <th>Action</th>
             </tr>
@@ -25,8 +21,9 @@
             <td>{{data.departmentDescription}}</td>
           
            <td>
-            <button value="submit">Update</button>
-           <button value="submit">Delete</button>
+           <img  class="modify"src="images/Edit 1.svg" alt="Edit" >
+        <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
+    
            </td>
 
          </tr>

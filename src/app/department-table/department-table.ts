@@ -14,6 +14,7 @@ export class DepartmentTable {
 
 DepartmentData:any;
 deptid:any=7;
+deptLength:any;
 constructor(public api:Api,public modalService:NgbModal){}
 ngOnInit()
 {
@@ -24,8 +25,16 @@ async getDepartmentdetails()
 {
   const result= await this.api.getMethod("DigiOffice/GetDepartment");
   this.DepartmentData=result.data;
-
+  this.deptLength=this.DepartmentData.length
+  console.log(this.DepartmentData)
 }
+async deleteDepartment(id:any)
+{
+  const result= await this.api.getMethod(`DigiOffice/DeleteDepartment?id=${id}`);
+  
+  this.getDepartmentdetails();
+}
+
 close(data:any){
 
 }

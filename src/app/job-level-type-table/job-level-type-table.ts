@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-level-type-table',
@@ -11,7 +12,7 @@ import { Api } from '../../Services/api';
 export class JobLevelTypeTable {
 jobLevelShift:any;
 
-constructor(public apiService: Api){
+constructor(public apiService: Api, public router: Router){
   
 }
 ngOnInit(){
@@ -21,5 +22,10 @@ ngOnInit(){
   let result = await this.apiService.getMethod('DigiOffice/GetJoblevelTypeJoinDesignation');
   console.log(result.data);
   this.jobLevelShift = result.data;
+}
+
+addDetails(){
+  console.log(1)
+  this.router.navigate(['/jobleveltypeform'])
 }
 }

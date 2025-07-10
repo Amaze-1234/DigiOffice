@@ -10,3 +10,6 @@ button{
    background-color: blue;
    color: white;
 }
+tr{
+   border: 1px solid lightblue;
+}

@@ -1,0 +1,21 @@
+.main{
+  background-color: #dcdada;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.logout-btn {
+  background-color: #de5511;
+  font-size: 16px;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+p{
+    font-size: 18px;
+}

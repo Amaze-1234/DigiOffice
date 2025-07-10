@@ -1,0 +1,12 @@
+img{
+   width:25px;
+   height:25px;
+}
+th,td,tr{
+   text-align: center;
+}
+button{
+   float: right;
+   background-color: blue;
+   color: white;
+}

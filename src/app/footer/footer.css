@@ -1,5 +1,6 @@
 .row
 {
+    background-color:rgb(188, 239, 255);
     width: 100%;
     display: flex;
     position:fixed;

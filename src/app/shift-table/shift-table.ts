@@ -56,7 +56,7 @@ export class ShiftTable implements OnInit{
     debugger;
     this.editid = null;
     this.modalService.dismissAll();
-    if (data == 'update' || data == 'save') {
+    if (data == 'update' || data == 'submit') {
       this.getData();
     }
   }

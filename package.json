@@ -16,11 +16,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-<<<<<<< HEAD
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
-=======
-    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
->>>>>>> 99aa1edb0ed46043a4c50650c977be04e1c36654
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "rxjs": "~7.8.0",

@@ -1,7 +1,40 @@
 import { Routes } from '@angular/router';
 import { Login } from './login/login';
+import { CountryForm } from './country-form/country-form';
+import { CountryTable } from './country-table/country-table';
+import { DepartmentForm } from './department-form/department-form';
+import { DepartmentTable } from './department-table/department-table';
+import { UnitForm } from './unit-form/unit-form';
+import { UnitTable } from './unit-table/unit-table';
+import { ShiftForm } from './shift-form/shift-form';
+import { ShiftTable } from './shift-table/shift-table';
+import { JobLevelTypeForm } from './job-level-type-form/job-level-type-form';
+import { JobLevelTypeTable } from './job-level-type-table/job-level-type-table';
+import { LoanTypeForm } from './loan-type-form/loan-type-form';
+import { LoanTypeTable } from './loan-type-table/loan-type-table';
+import { ProvinceForm } from './province-form/province-form';
+import { ProvinceTable } from './province-table/province-table';
+import { CityForm } from './city-form/city-form';
+import { CityTable } from './city-table/city-table';
 
 export const routes: Routes = [
-      // { path: 'login', component: Login, pathMatch:"full"}
+  {path:"login",component:Login,pathMatch:"full"},
+  {path:"countryform",component:CountryForm,pathMatch:"full"},
+  {path:"countrytable",component:CountryTable,pathMatch:"full"},
+  {path:"departmentform",component:DepartmentForm,pathMatch:"full"},
+  {path:"department-table",component:DepartmentTable,pathMatch:"full"},
+  {path:"unitform",component:UnitForm,pathMatch:"full"},
+  {path:"unit-table",component:UnitTable,pathMatch:"full"},
+  {path:"shiftform",component:ShiftForm,pathMatch:"full"},
+  {path:"shift-table",component:ShiftTable,pathMatch:"full"},
+  {path:"jobleveltypeform",component:JobLevelTypeForm,pathMatch:"full"},
+  {path:"jobleveltypetable",component:JobLevelTypeTable,pathMatch:"full"},
+  {path:"loantypeform",component:LoanTypeForm,pathMatch:"full"},
+  {path:"loantypetable",component:LoanTypeTable,pathMatch:"full"},
+  {path:"provinceform",component:ProvinceForm,pathMatch:"full"},
+  {path:"provincetable",component:ProvinceTable,pathMatch:"full"},
+  {path:"cityform",component:CityForm,pathMatch:"full"},
+  {path:"citytable",component:CityTable,pathMatch:"full"}
+ 
 
 ];

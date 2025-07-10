@@ -28,7 +28,7 @@ export const routes: Routes = [
   {path:"shiftform",component:ShiftForm,pathMatch:"full"},
   {path:"shift-table",component:ShiftTable,pathMatch:"full"},
   {path:"jobleveltypeform",component:JobLevelTypeForm,pathMatch:"full"},
-  {path:"jobleveltyoetable",component:JobLevelTypeTable,pathMatch:"full"},
+  {path:"jobleveltypetable",component:JobLevelTypeTable,pathMatch:"full"},
   {path:"loantypeform",component:LoanTypeForm,pathMatch:"full"},
   {path:"loantypetable",component:LoanTypeTable,pathMatch:"full"},
   {path:"provinceform",component:ProvinceForm,pathMatch:"full"},

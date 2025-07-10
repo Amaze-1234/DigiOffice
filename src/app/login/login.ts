@@ -5,12 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
-  imports: [BrowserModule,FormsModule,ReactiveFormsModule ],
+  imports: [ ],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
-imagePath:'..assets'
 
 }
 

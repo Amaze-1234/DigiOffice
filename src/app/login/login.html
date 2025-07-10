@@ -1,30 +1,28 @@
-<!-- <div class=" bg-info">
-<div class=" p-4 bg-white rounded-pill">
+ <div class="container-fluid  d-flex align-items-center justify-content-center background" style="height: 100dvh;"  *ngIf="loaderService.isLogin != 'Yes' ">
+<div class=" p-4 bg-white mt-5 mb-5 rounded border ">
     <div class="row">
-<<<<<<< HEAD
         <div class="col-6">
-
+<div class="text-center">
+<img src="images/digi_office_logoLong.svg" class="img-fluid rounded " style="width: 200px; height: auto;" alt="digioffice">
+</div>
          <div>
-=======
-        <div class="col-6"> -->
-        <!-- <img src="imagePath" alt="digilo"> -->
-         <!-- <div>
->>>>>>> e27dabc7d7b6d7216e97ff398b9bdf07903fd47c
-<label for="username">Username:</label>
-<input type="text" class="form-control" placeholder="Enter Username">
+<label for="username" class="fw-bold">Username:</label>
+<input type="text" class="form-control" placeholder="Enter Username" [(ngModel)]="userName">
 </div>
 <div>
-<label for="password">Password:</label>
-<input type="password" class="form-control" placeholder="Enter password">
+<label for="password" class="fw-bold mt-2">Password:</label>
+<input type="password" class="form-control " placeholder="Enter password" [(ngModel)]="password">
 </div>
-<div>
-<button type="submit">Sign in</button>
+<div class="mt-3 mb-3 text-center">
+<button type="submit" class="btn bg-primary text-white px-3 fw-bold" (click)="Login()">Sign In</button>
 </div>
         </div>
   <div class="col-6">
-        
+  <img src="images/LoginPic.svg" alt="LoginPic" class="img-fluid ">
+     
         </div>
     </div>
 
 </div>
-</div> -->
+</div> 
+

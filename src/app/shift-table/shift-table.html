@@ -37,7 +37,7 @@
         <span style="font-size: 25px;" (click)="modal.dismiss()">X</span>
     </div>
     <div class="modal-body">
-        <app-dashboard-details [editid]="editid" (closemodal)="close($event)"></app-dashboard-details>
+        <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>
     </div>
     <div class="modal-footer">
         <button (click)="close()" class="btn btn-danger fw-bold px-2">Cancel</button>

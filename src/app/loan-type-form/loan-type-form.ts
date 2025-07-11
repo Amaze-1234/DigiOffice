@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Api } from '../../Services/api';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-loan-type-form',
@@ -18,7 +19,7 @@ export class LoanTypeForm implements OnInit{
   loanDescription:any;
 
 
-   constructor(public router: Router, public apiservice: Api, public activeroute: ActivatedRoute) { }
+   constructor(public router: Router, public apiservice: Api, public activeroute: ActivatedRoute,public modalservice:NgbModal) { }
   
    @Input() editid: any;
    @Output() closemodal = new EventEmitter<any>();
@@ -33,7 +34,10 @@ export class LoanTypeForm implements OnInit{
   }
 }
  
- 
+  
+   
+   
+   
  
    buildForm() {
      this.loanForm = new FormGroup({
@@ -78,7 +82,12 @@ export class LoanTypeForm implements OnInit{
  
 
      })
+
+   
  
    }
+
+ 
+
 
 }

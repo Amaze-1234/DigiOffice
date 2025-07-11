@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } 
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Api } from '../../Services/api';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-shift-form',
@@ -19,7 +20,7 @@ export class ShiftForm implements OnInit{
   shiftCode:any;
   gracePeriod:any;
 
-   constructor(public router: Router, public apiservice: Api, public activeroute: ActivatedRoute) { }
+   constructor(public router: Router, public apiservice: Api, public modalservice:NgbModal) { }
   
    @Input() editid: any;
    @Output() closemodal = new EventEmitter<any>();

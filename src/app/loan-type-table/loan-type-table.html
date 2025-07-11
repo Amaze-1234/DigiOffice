@@ -1,8 +1,10 @@
 
 
 <div class="container  mt-3">
+  <div>
 <button (click)="openModal(popupmodal)" class="shifting btn  px-5 text-white mb-4 ">
-  <img src="images/plus.svg" alt="+logo">Add Loan Type</button>
+  <img src="images/plus.svg" alt="+logo" class="text-center me-1">Add Loan Type</button>
+  </div>
 <table>
   <tr class="border-bottom">
 
@@ -29,12 +31,11 @@
 <ng-template #popupmodal let-modal>
     <div class="modal-header justify-content-between">
         <h5>Loan Master Form</h5>
-        <span style="font-size: 25px;" (click)="modal.dismiss()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
+        <span style="font-size: 25px;" (click)="close()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
     </div>
     <div class="modal-body">
         <app-loan-type-form [editid]="editid" (closemodal)="close($event)"></app-loan-type-form>
     </div>
     <div class="modal-footer">
-
     </div>
 </ng-template>

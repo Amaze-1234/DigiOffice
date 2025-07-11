@@ -1,8 +1,8 @@
 
 
-<div class="container  mt-3">
+<div class="container text-center mt-3">
 <button (click)="openModal(popupmodal)" class="shifting btn   px-3 text-white mb-4">
-  <img src="images/plus.svg" alt="+logo">Add Shift</button>
+  <img src="images/plus.svg" alt="+logo" class=" text-center me-1">Add Shift</button>
 
 <table >
   <tr class="border-bottom">
@@ -33,7 +33,7 @@
 <ng-template #popupmodal let-modal>
     <div class="modal-header justify-content-between">
         <h5>Shift Master</h5>
-        <span style="font-size: 25px;" (click)="modal.dismiss()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
+        <span style="font-size: 25px;" (click)="close()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
     </div>
     <div class="modal-body">
         <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>

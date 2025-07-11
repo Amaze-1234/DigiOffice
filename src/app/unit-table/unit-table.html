@@ -5,7 +5,7 @@
         <input type="text" placeholder="search">
     </div>
     <div class="addDetails">
-        <button id="addButton"> <img src="images/plus.svg" alt=""> Add Job level</button>
+        <button id="addButton" (click)="navigate()"> <img src="images/plus.svg" alt=""> Add Job level</button>
     </div>
 </div>
     
@@ -13,17 +13,19 @@
   <table class="table ">
              <tr>
               <th>Department Name</th>
-              <th>Department Description</th>
+              <th>Unit Name</th>
+              <th>Unit Description</th>
               <th>Action</th>
             </tr>
           <tr *ngFor="let data of DepartmentData">
             <td>{{data.departmentName}}</td>
-            <td>{{data.departmentDescription}}</td>
+            <td>{{data.unitName}}</td>
+            <td>{{data.unitDescription}}</td>
           
            <td>
            <img  class="modify"src="images/Edit 1.svg" alt="Edit" >
         <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
-    
+         {{data.id}}
            </td>
 
          </tr>

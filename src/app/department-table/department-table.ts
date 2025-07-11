@@ -34,6 +34,15 @@ async deleteDepartment(id:any)
   
   this.getDepartmentdetails();
 }
+openModal(modal:any,id:any=null)
+{
+    if (id) {
+      this.deptid = id;
+    }
+    this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
+
+}
+
 
 close(data:any){
 

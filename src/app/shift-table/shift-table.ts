@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Api } from '../../Services/api';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ShiftForm } from '../shift-form/shift-form';
 
 
 @Component({
   selector: 'app-shift-table',
-  imports: [ FormsModule, CommonModule,ReactiveFormsModule],
+  imports: [ FormsModule, CommonModule,ReactiveFormsModule,ShiftForm],
   templateUrl: './shift-table.html',
   styleUrl: './shift-table.css'
 })

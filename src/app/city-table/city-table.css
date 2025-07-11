@@ -1,0 +1,15 @@
+.shifting {
+    float: right;
+    background-color: blue;
+}
+
+table {
+    width: 100%;
+    /* border-collapse: collapse; */
+
+}
+
+th {
+    color: blue;
+
+}

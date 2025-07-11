@@ -1,1 +1,28 @@
-<p>unit-form works!</p>
+
+<div class="c1">
+    <div class="row">
+        <div class="col-lg-4">
+            <label> Department Namet</label>
+        </div>
+        <div class="col-lg-4">
+            <label>	Unit Name</label>
+        </div>
+        <div class="col-lg-4">
+            <label>Unit Description</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <select class="form-control">
+                <option>Select Designation</option>
+                <option *ngFor = "let data of designation" [value] = "data.id">{{data.departmentName}}</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <input type="text"  placeholder="Level Type">
+        </div>
+        <div class="col-lg-4">
+            <textarea placeholder="Level Description" cols="30" rows="4"></textarea>
+        </div>
+    </div>
+    </div>

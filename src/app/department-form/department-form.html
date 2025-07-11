@@ -1,21 +1,21 @@
  <form [formGroup]="departmentInfo">
 <div class="c1">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
             <label> DepartmentName<span id="mark">*</span></label>
         </div>
        
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <label>Description<span id="mark">*</span></label>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
         
             <input type="text" placeholder="Department Name" formControlName="departmentName">
         </div>
-        <div class="col-lg-5">
-            <textarea placeholder="Level Description" rows="4" formControlName="departmentDescription"></textarea>
+        <div class="col-lg-7">
+            <textarea placeholder="Level Description" rows="3" cols="20" formControlName="departmentDescription"></textarea>
         </div>
     </div>
     <div class="row">
@@ -23,11 +23,10 @@
             
         </div>
        
-        <div class="col-lg-2">
-            <button id="click-cancel">Cancel</button>
-        </div>
-        <div class="col-lg-2">
-             <button id="click-submit"(click)="addDepartment()" >Submit</button>
+        <div class="col-lg-4" id="action-buttons">
+            <button id="click-submit"(click)="navigate()"style="background-color:white,color:blue">Cancel</button>
+    
+             <button id="click-submit"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
         </div>
     </div>
 

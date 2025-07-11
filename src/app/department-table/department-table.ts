@@ -45,7 +45,7 @@ openModal(modal:any,id:any=null)
 
 
  close(data: any = null) {
-    debugger;
+  
     this.deptID = null;
     this.modalService.dismissAll();
     if (data == 'update' || data == 'save') {

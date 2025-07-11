@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-unit-form',
@@ -9,15 +10,61 @@ import { Api } from '../../Services/api';
   styleUrl: './unit-form.css'
 })
 export class UnitForm {
-    designation: any =[];
+    department: any =[];
+    unitDetails:any;
+    @Input() deptID:any;
+    @Output()  closeModal=new EventEmitter<any>();
     constructor(public apiService: Api){}
   
     ngOnInit(){
       this.getDepartment();
+      if(this.deptID)
+      {
+       this.updateunitForm();
+      }
+      this.unitForm();
     }
+
+
     async getDepartment(){
       let result = await this.apiService.getMethod('DigiOffice/GetDepartment');
-      this.designation = result.data
+      this.department= result.data
     }
+async addDepartment(type:any)
+{
+  if(type=='save')
+  {
+    const result =await this.apiService.postMethod('DigiOffice/InsertUnit',this.unitDetails.value)
+   this.closeModal.emit('save');
+  }
+  else{
+   
+    const result =await this.apiService.postMethod(`DigiOffice/UpdateUnit`,this.unitDetails.value)
+   this.closeModal.emit('save');
+
+  }
+
+}
+unitForm()
+{
+this.unitDetails=new FormGroup({
+  departmentID:new FormControl('',Validators.required),
+  unitName:new FormControl('',Validators.required),
+   unitDescription:new FormControl('',Validators.required)
+})
+}
+ async updateunitForm()
+{
+const result=await this.apiService.getMethod(`DigiOffice/GetUnitByID?ID=${this.deptID}`)
+console.log(result.data)
+this.unitDetails=new FormGroup({
+   ID:new FormControl(this.deptID,Validators.required),
+  departmentID:new FormControl(result.data[0].departmentID,Validators.required),
+  unitName:new FormControl(result.data[0].unitName,Validators.required),
+   unitDescription:new FormControl(result.data[0].unitDescription,Validators.required)
+})
+
+}
+
 
 }

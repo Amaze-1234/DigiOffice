@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class CountryTable {
   editid: any;
   countryData: any;
-  contactForm: any;
+
   data: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
@@ -26,7 +26,7 @@ export class CountryTable {
 
   async getData() {
     const result = await this.api.getMethod("Master/GetCountryTable");
-    console.log("Country data:", result.data);
+    console.log( result.data);
     this.countryData = result.data;
   }
 

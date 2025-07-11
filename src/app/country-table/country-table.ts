@@ -40,28 +40,28 @@ export class CountryTable {
     this.editid = null;
     this.modalservice.dismissAll();
   }
-
-  async delete(id:any){
-    const result = await this.api.getMethod(`Master/DeleteCountryTable?ID=${id}`);
-    if (result.data > 0) {
-      Swal.fire({
-        title: "Are you sure want to delete?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
-        }
-      });
-      this.getData();
+  async delete(id: any) {
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    });
+    if (confirmation.isConfirmed) {
+      const result = await this.api.getMethod(`Master/DeleteCountryTable?ID=${id}`);
+      
+      if (result.data > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        this.getData();
+      }
     }
   }
+
 
 }

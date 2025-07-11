@@ -5,7 +5,7 @@
                 <label for="">Contry Name</label>
                 <select name="" id="" class="form-control" formControlName="CountryID">
                     <option value="" disabled>Select Country</option>
-                    <option *ngFor="let data of countryData" [value]="data.id">{{data.CountryName}}</option>
+                    <option *ngFor="let data of countryData" [value]="data.id">{{data.countryName}}</option>
                 </select>
             </div>
 
@@ -14,7 +14,7 @@
 
                 <select name="" id="" class="form-control" formControlName="ProvinceID">
                     <option value="" disabled>Select Province</option>
-                    <option *ngFor="let data of provinceData" [value]="data.id">{{data.ProvinceName}}</option>
+                    <option *ngFor="let data of provinceData" [value]="data.id">{{data.provinceName}}</option>
                 </select>
             </div>
 
@@ -36,7 +36,7 @@
         <div class="row c1">
         
                 <div>
-                    <button type="submit" class="btn">Cancel</button>
+                    <button type="submit" class="btn" (click)="this.modelService.dismissAll()">Cancel</button>
                     <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid"
                         (click)="submit(editid?'update':'save')">
                         {{editid?'update':'Submit'}}

@@ -23,9 +23,9 @@
     <td>{{s.shiftCode}}</td>
      <td>{{s.gracePeriod}}</td>
 
-  <td class=""><button (click)="openModal(popupmodal,s.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edit"></button>
+  <td><button (click)="openModal(popupmodal,s.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
 
-    <button (click)="delete(s.id)" class="btn "><img src="images/Delete.svg" alt="delte" class="img-fluid" style="width: 25px; height: auto;"></button></td>
+    <button (click)="delete(s.id)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  
   </tr>
 
@@ -41,8 +41,7 @@
         <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>
     </div>
     <div class="modal-footer">
-        <button (click)="close()" class="btn px-5 text-primary btn-outline-primary fw-bold">Cancel</button>
-                <button (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
+    
 
     </div>
 </ng-template>

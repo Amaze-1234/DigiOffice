@@ -35,8 +35,6 @@
         <app-loan-type-form [editid]="editid" (closemodal)="close($event)"></app-loan-type-form>
     </div>
     <div class="modal-footer">
-        <button (click)="close()" class="btn px-5 text-primary btn-outline-primary fw-bold">Cancel</button>
-        <button (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
 
     </div>
 </ng-template>

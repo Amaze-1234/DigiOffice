@@ -60,28 +60,30 @@ export class ShiftTable implements OnInit{
      }
    }
     
-      async delete(id: any) {
-    const confirmation = await Swal.fire({
-      title: "Are you sure you want to delete?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes"
-    });
-    if (confirmation.isConfirmed) {
-      const result = await this.apiservice.getMethod(`Master/DeleteCountryTable?ID=${id}`);
-     
-      if (result.data > 0) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-        this.getData();
-      }
-    }
-  }
+        async delete(id: any) {
+           debugger
+       const confirmation = await Swal.fire({
+         title: "Are you sure you want to delete?",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes"
+       });
+       if (confirmation.isConfirmed) {
+         const result = await this.apiservice.getMethod(`Master/DeleteShift?ID=${id}`);
+        
+         if (result.data > 0) {
+           Swal.fire({
+             title: "Deleted!",
+             text: "Your file has been deleted.",
+             icon: "success"
+           });
+           this.getData();
+         }
+       }
+     }
+      
    
    
     openModal(modal: any, id: any = null) {

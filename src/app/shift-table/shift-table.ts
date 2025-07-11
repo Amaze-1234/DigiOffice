@@ -1,16 +1,17 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Api } from '../../Services/api';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ShiftForm } from '../shift-form/shift-form';
+import { ShiftForm } from "../shift-form/shift-form";
+import { SharedModule } from '../../Shared/shared.module';
 
 
 @Component({
   selector: 'app-shift-table',
-  imports: [ FormsModule, CommonModule,ReactiveFormsModule,ShiftForm],
+  imports: [SharedModule, ShiftForm],
   templateUrl: './shift-table.html',
   styleUrl: './shift-table.css'
 })

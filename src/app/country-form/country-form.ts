@@ -54,7 +54,7 @@ export class CountryForm {
       
       
       if (result.data > 0) {
-        this.closeModal.emit("save")
+        this.closeModal.emit("save");
         Swal.fire({
           icon: 'success',
           title: 'Saved Successfully',

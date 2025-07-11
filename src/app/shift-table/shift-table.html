@@ -1,30 +1,29 @@
 
 
-<div class="container  mt-5">
-<button (click)="openModal(popupmodal)" class="btn bg-success fw-bold px-2 text-white mb-4">Add Shift</button>
+<div class="container  mt-3">
+<button (click)="openModal(popupmodal)" class="shifting btn   px-3 text-white mb-4">
+  <img src="images/plus.svg" alt="+logo">Add Shift</button>
 
-<table class="text-center">
-  <tr>
-    <th>Shift ID</th>
+<table >
+  <tr class="border-bottom">
     <th>Shift Type</th>
     <th>Start Time</th>
     <th>End Time</th>
     <th>Shift Code</th>
     <th>Grace Period</th>
-    <th>Actions</th>
+    <th >Actions</th>
    
   </tr>
-  <tr *ngFor = "let s of shiftData">
-    <td>{{s.ID}}</td>
+  <tr *ngFor = "let s of shiftData" class="border-bottom">
     <td>{{s.shiftType}}</td>
     <td>{{s.startTime}}</td>
     <td>{{s.endTime}}</td>
     <td>{{s.shiftCode}}</td>
      <td>{{s.gracePeriod}}</td>
 
-  <td><button (click)="openModal(popupmodal,s.ID)" class="btn bg-warning text-dark fw-bold pt-1 pb-1 me-2 my-1">Update</button>
+  <td><button (click)="openModal(popupmodal,s.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
 
-    <button (click)="delete(s.ID)" class="btn bg-dark text-white fw-bold pt-1 pb-1">Delete</button></td>
+    <button (click)="delete(s.id)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  
   </tr>
 
@@ -33,13 +32,14 @@
 
 <ng-template #popupmodal let-modal>
     <div class="modal-header justify-content-between">
-        <h1>Shift Master</h1>
-        <span style="font-size: 25px;" (click)="modal.dismiss()">X</span>
+        <h5>Shift Master</h5>
+        <span style="font-size: 25px;" (click)="modal.dismiss()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
     </div>
     <div class="modal-body">
         <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>
     </div>
     <div class="modal-footer">
-        <button (click)="close()" class="btn btn-danger fw-bold px-2">Cancel</button>
+    
+
     </div>
 </ng-template>

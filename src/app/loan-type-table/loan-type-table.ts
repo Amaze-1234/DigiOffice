@@ -17,6 +17,8 @@ export class LoanTypeTable implements OnInit{
 
    loanData:any;
    editid:any;
+  loanForm: any;
+  closemodal: any;
    constructor(public apiservice:Api, public router:Router,public modalService: NgbModal){}
  
 
@@ -28,31 +30,50 @@ export class LoanTypeTable implements OnInit{
        async getData(){
        const result =await this.apiservice.getMethod("Master/GetLoan");
        this. loanData = result.data;
-    
-       
+  
     
      }
     
+     
     
-       async delete(id:any){
-       const result = await this.apiservice.getMethod(`Master/DeleteLoan?ID=${id}`);
-       if (result.data > 0) {
-         this.getData();
-       
-         Swal.fire("Data deleted Successfully");
-   
-       }
-       }
-   
-   
-    openModal(modal: any, id: any = null) {
-    debugger
-    if (id) {
-      this.editid = id;
+    
+      async delete(id: any) {
+        debugger
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    });
+    if (confirmation.isConfirmed) {
+      const result = await this.apiservice.getMethod(`Master/DeleteLoan?ID=${id}`);
+     
+      if (result.data > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        this.getData();
+      }
     }
-
-    this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
   }
+   
+   
+
+  openModal(modal: any, id: any = null) {
+  debugger;
+  this.editid = id; 
+  this.modalService.open(modal, {
+    centered: true,
+    size: "lg",
+    backdrop: "static",
+    scrollable: true
+  });
+}
+
   close(data:any = null) {
     debugger;
     this.editid = null;

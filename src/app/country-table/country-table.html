@@ -8,12 +8,12 @@
             <th>CountryDescription</th>
             <th>Actions</th>
         </tr>
-        <tr>
-            <td>details</td>
-            <td>details</td>
+        <tr *ngFor="let data of countryData">
+            <td>{{data.countryName}}</td>
+            <td>{{data.countryDescription}}</td>
             <td style="font-size: large;color: blue;">
-                <i class="fa-solid fa-pen-to-square" ></i>
-                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-pen-to-square" (click)="openModal(popupModal,data.id)"></i>
+                <i class="fa-solid fa-trash" (click)="delete(data.id)"></i>
             </td>
         </tr>
     </table>
@@ -23,9 +23,13 @@
 <ng-template #popupModal let-Modal>
     <div class="modal-header">
         <h3>Country Details</h3>
+<<<<<<< HEAD
         <button (click)="modalservice.dismissAll()">X</button>
+=======
+        <button (click)="Modal.dismiss();">X</button>
+>>>>>>> d3e2a4a0554103f88b8e30b0665322d76e81e1ab
     </div>
-    <div>
-        <app-country-form></app-country-form>
+    <div class="modal-body">
+        <app-country-form  [editid] = 'editid' (closeModal)="close($event)"></app-country-form>
     </div>
 </ng-template>

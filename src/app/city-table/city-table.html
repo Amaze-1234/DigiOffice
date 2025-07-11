@@ -1,1 +1,52 @@
-<p>city-table works!</p>
+
+<div >
+    <br>
+    <div class="row">
+
+        
+        <div class="col">
+            <button type="submit" (click)="openModel(popup)"  class="shifting btn   px-3 text-white mb-4" ><img src="images/plus.svg" alt="+logo">Add City</button>
+        </div>
+
+    </div><br>
+  <div class="row">
+        <div class="col-lg-12">
+            <table>
+                <tr>
+    
+                    <th>Country</th>
+                    <th>Province</th>
+                    <th>City Name</th>
+                    <th>City Description</th>
+                    <th>Actions</th>
+                    
+                </tr>
+                <tr *ngFor="let data of CityData">
+               
+                    <td>{{data.countryName}}</td>
+                    <td>{{data.provinceName}}</td>
+                    <td>{{data.city}}</td>
+                    <td>{{data.cityDescription}}</td>
+                    
+
+                    <td ><button class="btn btn-success" (click)="openModel(popup,data.id)"><img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edit"></button><br><br>
+                       <button class="btn btn-danger" (click)="deleteCity(data.id)" ><img src="images/Delete.svg" alt="delte" class="img-fluid" style="width: 25px; height: auto;"></button>
+                    
+                    </td>
+                   
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #popup let-Model>
+    <div class="modal-header d-flex justify-content-between ">
+        <h3>City Masters</h3> 
+        <span (click)="Model.dismiss()" ><img src="images/close.png" alt="close.png"></span>
+    
+    </div>
+    <div class="modal-body">
+       <app-city-form  (closemodal)="close($event)"> </app-city-form>
+    </div>
+</ng-template>

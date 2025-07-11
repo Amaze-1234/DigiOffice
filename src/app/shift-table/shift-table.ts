@@ -17,6 +17,8 @@ import { ShiftForm } from '../shift-form/shift-form';
 export class ShiftTable implements OnInit{
    shiftData:any;
    editid:any;
+  shiftForm: any;
+  closemodal: any;
    constructor(public apiservice:Api, public router:Router,public modalService: NgbModal){}
  
 
@@ -33,16 +35,52 @@ export class ShiftTable implements OnInit{
     
      }
     
-    
-       async delete(id:any){
-       const result = await this.apiservice.getMethod(`Master/DeleteShift?ID=${id}`);
+        async onSubmit(type: any) {
+     debugger;
+     if (type == 'submit') {
+       let result = await this.apiservice.postMethod('Master/InsertShift', this.shiftForm.value);
        if (result.data > 0) {
-         this.getData();
-       
-         Swal.fire("Data deleted Successfully");
-   
+         Swal.fire("Data Saved Successfully");
+         this.closemodal.emit('submit');
+ 
        }
+ 
+     }
+     else {
+       let result = await this.apiservice.postMethod('Master/UpdateShift', this.shiftForm.value);
+       if (result.data > 0) {
+  
+         
+         Swal.fire("Data Updated Successfully");
+         this.closemodal.emit('update');
+      
+ 
        }
+     }
+   }
+    
+      async delete(id: any) {
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    });
+    if (confirmation.isConfirmed) {
+      const result = await this.apiservice.getMethod(`Master/DeleteCountryTable?ID=${id}`);
+     
+      if (result.data > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        this.getData();
+      }
+    }
+  }
    
    
     openModal(modal: any, id: any = null) {

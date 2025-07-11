@@ -12,33 +12,33 @@ import Swal from 'sweetalert2';
 })
 export class JobLevelTypeForm {
 
-  @Input() editID :any;
+  @Input() editID: any;
   @Output() closemodal = new EventEmitter<any>();
-  designationDetails: any =[];
-  jobLevelForm : any;
-  constructor(public apiService: Api){}
+  designationDetails: any = [];
+  jobLevelForm: any;
+  constructor(public apiService: Api) { }
 
-  ngOnInit(){
-    if(this.editID){
+  ngOnInit() {
+    if (this.editID) {
       this.getjoblevelTypeFormByID();
     }
     this.getjoblevelTypeForm();
     this.getDesignation();
   }
-  async getDesignation(){
+  async getDesignation() {
     let result = await this.apiService.getMethod('DigiOffice/GetDesignation');
     console.log(result.data);
-    
+
     this.designationDetails = result.data;
   }
 
-   getjoblevelTypeForm() {
+  getjoblevelTypeForm() {
     this.jobLevelForm = new FormGroup({
       ID: new FormControl(''),
       Designation: new FormControl('', Validators.required),
       LevelType: new FormControl('', Validators.required),
       LevelDescription: new FormControl('', Validators.required),
-      
+
     })
   }
 
@@ -46,13 +46,13 @@ export class JobLevelTypeForm {
     debugger;
     let result = await this.apiService.getMethod(`DigiOffice/GetJobLevelTypeByID?ID=${this.editID}`);
     console.log(result.data);
-    
+
     this.jobLevelForm = new FormGroup({
       ID: new FormControl(this.editID),
       Designation: new FormControl(result.data[0].designation, Validators.required),
       LevelType: new FormControl(result.data[0].levelType, Validators.required),
       LevelDescription: new FormControl(result.data[0].levelDescription, Validators.required),
-      
+
     })
   }
 
@@ -69,7 +69,7 @@ export class JobLevelTypeForm {
     else {
       let result = await this.apiService.postMethod('DigiOffice/UpdateJobLevelType', this.jobLevelForm.value);
       if (result.data > 0) {
-         Swal.fire("Data Updated Successfully");
+        Swal.fire("Data Updated Successfully");
         this.closemodal.emit('update');
       }
     }

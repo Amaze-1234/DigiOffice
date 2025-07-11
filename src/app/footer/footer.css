@@ -1,10 +1,16 @@
-.row
+
+#footer-content
 {
-    background-color:rgb(188, 239, 255);
-    width: 100%;
-    display: flex;
-    position:fixed;
-    text-align: center;
-    justify-content: center;
-    bottom:0;
+
+text-align: center;
+ position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background:#f1f1f1;;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 2;
+  margin-bottom:-3px;
+  color:green;
 }

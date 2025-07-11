@@ -1,1 +1,46 @@
-<p>department-table works!</p>
+<div class="header">
+    <div class="intial">
+        <img src="images/filter.png" alt="icon">
+    
+        <p>Filter By:</p>
+        <input type="text" placeholder="search">
+    </div>
+    <div class="addDetails">
+        <button id="addButton" (click)="openModal(popupmodel1)"> <img src="images/plus.svg" alt=""> Add Department </button>
+    </div>
+</div>
+    
+<p class="">Showing {{deptLength}} Results</p>
+  <table class="table ">
+             <tr>
+              <th>Department Name</th>
+              <th>Department Description</th>
+              <th>Action</th>
+            </tr>
+          <tr *ngFor="let data of DepartmentData">
+            <td>{{data.departmentName}}</td>
+            <td>{{data.departmentDescription}}</td>
+          
+           <td>
+           <img  class="modify"src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupmodel1,data.id)">
+        <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
+    
+           </td>
+
+         </tr>
+      </table>
+    
+
+    <ng-template #popupmodel1>
+      <div class="modal-header justify-content-between fw-bold">
+      <h3>Department Master</h3>
+      <span (click)="modalService.dismissAll()">X</span>
+      </div>
+      <div class="modal-body">
+        <app-department-form ></app-department-form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit"(click)="modalService.dismissAll()">close</button>
+      </div>
+
+    </ng-template>

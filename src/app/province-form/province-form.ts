@@ -26,10 +26,11 @@ export class ProvinceForm {
         this.getByID()
       }
       this.buildForm();
+      this.getProvince();
   }
  
    async getProvince(){
-    let result=await this.api.getMethod("Master/GetProvince");
+    let result=await this.api.getMethod("Master/GetCountryTable");
     this.countryList=result.data;
   }
    buildForm(){

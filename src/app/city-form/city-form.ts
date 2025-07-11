@@ -30,6 +30,8 @@ export class CityForm {
         this.getByID()
       }
     this.buildForm();
+    this.getProvince();
+    this.getCountry();
  
  
   }

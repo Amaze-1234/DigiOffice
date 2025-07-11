@@ -1,35 +1,47 @@
-<div class="c1">
+<div class="jobLevel">
+    <div class="header">
+        <div class="intial">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+
+            <p>Filter By:</p>
+            <input type="text" placeholder="search">
+        </div>
+        <div class="addDetails">
+            <button id="addButton" (click)="openModal(popupModal)"> <img src="images/plus.svg" alt="filter"
+                    class="filterImage"> Add Job Level
+            </button>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-12">
-            <button (click) = "openModal(popupModal)"> <img src="images/plus.svg" alt=""> Add Job level</button>
+        <p class="para">Showing </p>
+    </div>
+    <div class="c2">
+        <div class="row">
+            <table>
+                <tr>
+                    <th>Designation</th>
+                    <th>Level Type</th>
+                    <th>Level Description</th>
+                    <th>Actions</th>
+                </tr>
+                <tr *ngFor="let data of jobLevelShift">
+                    <td>{{data.title}}</td>
+                    <td>{{data.levelType}}</td>
+                    <td>{{data.levelDescription}}</td>
+                    <td><img src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupModal,data.id)">
+                        <img src="images/Delete.svg" alt="Delete" (click)="delete(data.id)">
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-<div class="c2">
-    <div class="row">
-        <table>
-            <th>Designation</th>
-            <th>Level Type</th>
-            <th>Level Description</th>
-            <th>Actions</th>
-            <tr *ngFor="let data of jobLevelShift">
-                <td>{{data.title}}</td>
-                <td>{{data.levelType}}</td>
-                <td>{{data.levelDescription}}</td>
-                <td><img src="images/Edit 1.svg" alt="Edit">
-                    <img src="images/Delete.svg" alt="Delete">
-                </td>
-            </tr>
-        </table>
+<ng-template #popupModal>
+    <div class="modal-header d-flex justify-content-between">
+        <p>Job Level Master</p>
+        <img src="images/close.png" alt="close" (click)="close()">
     </div>
-
-    <ng-template #popupModal>
-        <div class="modal-header" display-flex>
-            <p>Job Level Master</p>
-            <span><img src="images/close" alt="close.png"></span>
-        </div>
-        <div class="modal-body">
-            <app-job-level-type-form></app-job-level-type-form>
-        </div>
-    </ng-template>
-    
+    <div class="modal-body">
+        <app-job-level-type-form [editID]="editID" (closemodal)="close($event)"></app-job-level-type-form>
+    </div>
+</ng-template>

@@ -1,26 +1,22 @@
-<div class="container fw-bold bg-info ps-4 pt-2 pb-2 mt-5 text-white">
-  <h3 class="text-white">Loan Master Form</h3>
+<div class="container">
   <form [formGroup]="loanForm">
  
 <div class="row">
-    <div class="col-3">
-    <label>Loan Type*</label>
-<input type="text" name="loan type"  formControlName="loanType">
+    <div class="col-4">
+    <label>LoanType<span class="text-danger fw-bold">*</span></label>
+<input type="text" name="loan type"  formControlName="loanType" placeholder="LoanType" class="form-control mt-1">
     </div>
-    <div class="col-3">
-        <label>Description **</label>
-        <textarea row="3" cols="30" formControlName="loanDescription"></textarea>
+    <div class="col-6">
+        <label>Description<span class="text-danger fw-bold">*</span></label>
+        <textarea rows="4" cols="50" formControlName="loanDescription" placeholder="Description" class="form-control mt-1"></textarea>
     </div>
 </div>
 
+<div class="footing mt-3">
+          <button  class="btn px-5 text-primary btn-outline-primary fw-bold me-4">Cancel</button>
 
+    <button (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
 
-
-  
-
-      <div class="">
-        <button (click)="onSubmit(editid?'Update':'Submit')" class="btn btn-success px-2 fw-bold">{{editid?'Update':'Submit'}}</button>
-      </div>
-  
+</div>
   </form>
 </div>

@@ -4,6 +4,7 @@ import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-city-form',
@@ -18,8 +19,9 @@ export class CityForm {
   contactForm: any;
   provinceData: any;
   countryData: any;
+  allProvinceData: any;
 
-   constructor(public apiService: Api,public router:Router,public activateRoute:ActivatedRoute) {
+   constructor(public apiService: Api,public router:Router,public activateRoute:ActivatedRoute,public modelService:NgbModal) {
    
   
     }
@@ -30,6 +32,9 @@ export class CityForm {
     this.buildForm();
  
  
+  }
+  getProvinceData(){
+    this.provinceData=this.allProvinceData.filter((x: any)=>x.CountryID=this.provinceData.countryID)
   }
 
    buildForm(){
@@ -59,7 +64,7 @@ export class CityForm {
 
     async getProvince() {
     let result = await this.apiService.getMethod('Master/GetProvince');
-    this.provinceData = result.data;
+    this.allProvinceData = result.data;
 
   }
 

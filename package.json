@@ -15,9 +15,10 @@
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
-    "@angular/platform-browser-dynamic": "^20.1.0",
+
     "@angular/router": "^20.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^19.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.0",
+
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "rxjs": "~7.8.0",
@@ -27,8 +28,8 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.3",
-    "@angular/cli": "^20.0.3",
+    "@angular/build": "^20.1.0",
+    "@angular/cli": "^20.1.0",
     "@angular/compiler-cli": "^20.0.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.7.0",

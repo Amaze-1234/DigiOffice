@@ -1,15 +1,15 @@
 <div class="header">
     <div class="intial">
-        <img src="" alt="icon">
+        <img src="images/filter.png" alt="icon" width="20px">
         <p>Filter By:</p>
         <input type="text" placeholder="search">
     </div>
     <div class="addDetails">
-        <button id="addButton" (click)="navigate()"> <img src="images/plus.svg" alt=""> Add Job level</button>
+        <button id="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="20px"> Add Unit</button>
     </div>
 </div>
     
-<p class="">Showing {{deptLength}} Results</p>
+<p class="records">Showing {{deptLength}} Results</p>
   <table class="table ">
              <tr>
               <th>Department Name</th>
@@ -23,10 +23,24 @@
             <td>{{data.unitDescription}}</td>
           
            <td>
-           <img  class="modify"src="images/Edit 1.svg" alt="Edit" >
+           <img  class="modify"src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupmodelunit,data.id)">
         <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
-         {{data.id}}
+        
            </td>
 
          </tr>
       </table>
+
+       <ng-template #popupmodelunit>
+      <div class="modal-header justify-content-between fw-bold">
+      <h3>Unit Master</h3>
+      <span (click)="close()">X</span>
+      </div>
+      <div class="modal-body">
+        <app-unit-form [deptID]="deptID" (closeModal)="close($event)"></app-unit-form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit"(click)="close()">close</button>
+      </div>
+
+    </ng-template>

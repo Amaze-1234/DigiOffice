@@ -1,0 +1,18 @@
+#mark
+{
+    color:red;
+}
+#click-submit
+{
+     padding:5px 20px;
+    background-color:blue ;
+    color:white;
+    border-radius:5px ;
+     padding-left:20px;
+}
+#action-buttons
+{
+    display: flex;
+    gap:15px;
+    
+}

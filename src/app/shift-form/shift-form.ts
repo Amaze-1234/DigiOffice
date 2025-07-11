@@ -26,20 +26,18 @@ export class ShiftForm implements OnInit{
  
  
  
-   ngOnInit() {
-      if (this.editid) {
-         console.log(this.editid)
-         this.getByID();
-       }
-     this.buildForm();
- 
-   }
+  ngOnInit() {
+  this.buildForm(); 
+  if (this.editid) {
+    this.getByID(); 
+  }
+}
  
  
  
    buildForm() {
      this.shiftForm = new FormGroup({
-      ID: new FormControl(''),
+      id: new FormControl(''),
        shiftType: new FormControl('', Validators.pattern('^[A-Z a-z]+$')),
        startTime: new FormControl('', Validators.required),
        endTime: new FormControl('', Validators.required),
@@ -49,30 +47,29 @@ export class ShiftForm implements OnInit{
      })
    }
  
- 
-   async onSubmit(type: any) {
-     debugger;
-     if (type == 'submit') {
-       let result = await this.apiservice.postMethod('Master/InsertShift', this.shiftForm.value);
-       if (result.data > 0) {
-         Swal.fire("Data Saved Successfully");
-         this.closemodal.emit('submit');
- 
-       }
- 
-     }
-     else {
-       let result = await this.apiservice.postMethod('Master/UpdateShift', this.shiftForm.value);
-       if (result.data > 0) {
-  
-         
-         Swal.fire("Data Updated Successfully");
-         this.closemodal.emit('update');
-      
- 
-       }
-     }
-   }
+  async onSubmit(type: any) {
+           debugger;
+           
+           if (type == 'submit') {
+             let result = await this.apiservice.postMethod("Master/InsertShift", this.shiftForm.value);
+             if (result.data > 0) {
+               Swal.fire("Data Saved Successfully");
+               this.closemodal.emit('submit');
+       
+             }
+       
+           }
+           else {
+             let result = await this.apiservice.postMethod("Master/UpdateShift", this.shiftForm.value);
+             if (result.data > 0) {
+               Swal.fire("Data Updated Successfully");
+               this.closemodal.emit('update');
+            
+       
+             }
+           }
+         }
+
  
    async getByID() {
      debugger;
@@ -80,11 +77,11 @@ export class ShiftForm implements OnInit{
      console.log(response);
      this.shiftForm = new FormGroup({
  
-       ID: new FormControl(this.editid),
+       id: new FormControl(this.editid),
        shiftType: new FormControl(response.data[0]?. shiftType, Validators.required),
       startTime: new FormControl(response.data[0]?.startTime, Validators.required),
             endTime: new FormControl(response.data[0]?.endTime, Validators.required),
-            shiftCode: new FormControl(response.data[0]?.endTime, Validators.required),
+            shiftCode: new FormControl(response.data[0]?.shiftCode, Validators.required),
 
        gracePeriod: new FormControl(response.data[0]?.gracePeriod, Validators.required),
  

@@ -7,7 +7,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-level-type-table',
+<<<<<<< HEAD
   imports: [SharedModule, JobLevelTypeForm],
+=======
+  imports: [SharedModule,JobLevelTypeForm],
+>>>>>>> 2bf1f77c051a28fcca82f9bb7e5abe3f47884c4d
   templateUrl: './job-level-type-table.html',
   styleUrl: './job-level-type-table.css'
 })

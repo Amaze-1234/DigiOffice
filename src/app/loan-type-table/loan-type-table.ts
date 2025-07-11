@@ -35,27 +35,7 @@ export class LoanTypeTable implements OnInit{
      }
     
      
-        async onSubmit(type: any) {
-          debugger;
-          if (type == 'submit') {
-            let result = await this.apiservice.postMethod("Master/InsertLoan", this.loanForm.value);
-            if (result.data > 0) {
-              Swal.fire("Data Saved Successfully");
-              this.closemodal.emit('submit');
-      
-            }
-      
-          }
-          else {
-            let result = await this.apiservice.postMethod("Master/UpdateLoan", this.loanForm.value);
-            if (result.data > 0) {
-              Swal.fire("Data Updated Successfully");
-              this.closemodal.emit('update');
-           
-      
-            }
-          }
-        }
+    
     
       async delete(id: any) {
         debugger

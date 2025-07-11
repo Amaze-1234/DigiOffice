@@ -49,7 +49,27 @@ export class ShiftForm implements OnInit{
      })
    }
  
- 
+  async onSubmit(type: any) {
+           debugger;
+           if (type == 'submit') {
+             let result = await this.apiservice.postMethod("Master/InsertShift", this.shiftForm.value);
+             if (result.data > 0) {
+               Swal.fire("Data Saved Successfully");
+               this.closemodal.emit('submit');
+       
+             }
+       
+           }
+           else {
+             let result = await this.apiservice.postMethod("Master/UpdateShift", this.shiftForm.value);
+             if (result.data > 0) {
+               Swal.fire("Data Updated Successfully");
+               this.closemodal.emit('update');
+            
+       
+             }
+           }
+         }
 
  
    async getByID() {

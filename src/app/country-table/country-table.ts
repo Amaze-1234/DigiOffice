@@ -36,9 +36,13 @@ export class CountryTable {
     }   
       this.modalservice.open(Modal,{centered: true, size:"lg", backdrop:'static'});
   }
-  close(data:any=null){
+  close(type:any=null){
     this.editid = null;
     this.modalservice.dismissAll();
+    if (type == 'save' || type == 'update') {
+      this.getData();
+    }
+
   }
   async delete(id: any) {
     const confirmation = await Swal.fire({

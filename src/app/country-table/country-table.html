@@ -23,7 +23,9 @@
 <ng-template #popupModal let-Modal>
     <div class="modal-header">
         <h3>Country Details</h3>
+
         <button (click)="Modal.dismiss();">X</button>
+
     </div>
     <div class="modal-body">
         <app-country-form  [editid] = 'editid' (closeModal)="close($event)"></app-country-form>

@@ -1,28 +1,43 @@
-
+<form [formGroup]="unitDetails">
 <div class="c1">
     <div class="row">
         <div class="col-lg-4">
-            <label> Department Namet</label>
+            <label> Department Name</label>
+            <span id="mark">*</span>
         </div>
         <div class="col-lg-4">
             <label>	Unit Name</label>
+            <span id="mark">*</span>
         </div>
         <div class="col-lg-4">
             <label>Unit Description</label>
+            <span id="mark">*</span>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <select class="form-control">
-                <option>Select Designation</option>
-                <option *ngFor = "let data of designation" [value] = "data.id">{{data.departmentName}}</option>
+            <select class="form-control" formControlName="departmentID">
+                <option value="">Select Department Name</option>
+                <option *ngFor = "let data of department" [value] = "data.id">{{data.departmentName}}</option>
             </select>
         </div>
         <div class="col-lg-4">
-            <input type="text"  placeholder="Level Type">
+            <input type="text"  placeholder="Level Type" formControlName="unitName">
         </div>
         <div class="col-lg-4">
-            <textarea placeholder="Level Description" cols="30" rows="4"></textarea>
+            <textarea placeholder="Level Description" cols="30" rows="4" formControlName="unitDescription"></textarea>
+        </div>
+    </div>
+<div class="row">
+        <div class="col-lg-8">
+            
+        </div>
+       
+        <div class="col-lg-4 "id="action-buttons">
+            <button id="click-submit">Cancel</button>
+
+             <button id="click-submit"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
         </div>
     </div>
     </div>
+</form>

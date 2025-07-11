@@ -1,16 +1,15 @@
 <div class="header">
-    <div class="intial">
-        <img src="images/filter.png" alt="icon">
-    
+  <div class="intial">
+        <img src="images/filter.png" alt="icon" width="20px">
         <p>Filter By:</p>
         <input type="text" placeholder="search">
     </div>
     <div class="addDetails">
-        <button id="addButton" (click)="openModal(popupmodel1)"> <img src="images/plus.svg" alt=""> Add Department </button>
+        <button id="addButton" (click)="openModal(popupmodel1)"> <img src="images/plus.svg" width="15px"> Add Department </button>
     </div>
 </div>
     
-<p class="">Showing {{deptLength}} Results</p>
+<p class="rec">Showing {{deptLength}} Results</p>
   <table class="table ">
              <tr>
               <th>Department Name</th>
@@ -34,13 +33,13 @@
     <ng-template #popupmodel1>
       <div class="modal-header justify-content-between fw-bold">
       <h3>Department Master</h3>
-      <span (click)="modalService.dismissAll()">X</span>
+      <span (click)="close()">X</span>
       </div>
       <div class="modal-body">
-        <app-department-form ></app-department-form>
+        <app-department-form [deptID]="deptID" (closeModal)="close($event)"></app-department-form>
       </div>
       <div class="modal-footer">
-        <button type="submit"(click)="modalService.dismissAll()">close</button>
+        <button type="submit"(click)="close()">close</button>
       </div>
 
     </ng-template>

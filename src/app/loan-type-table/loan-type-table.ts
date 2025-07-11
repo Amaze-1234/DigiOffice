@@ -17,6 +17,8 @@ export class LoanTypeTable implements OnInit{
 
    loanData:any;
    editid:any;
+  loanForm: any;
+  closemodal: any;
    constructor(public apiservice:Api, public router:Router,public modalService: NgbModal){}
  
 
@@ -28,21 +30,56 @@ export class LoanTypeTable implements OnInit{
        async getData(){
        const result =await this.apiservice.getMethod("Master/GetLoan");
        this. loanData = result.data;
-    
-       
+  
     
      }
     
+     
+        async onSubmit(type: any) {
+          debugger;
+          if (type == 'submit') {
+            let result = await this.apiservice.postMethod("Master/InsertLoan", this.loanForm.value);
+            if (result.data > 0) {
+              Swal.fire("Data Saved Successfully");
+              this.closemodal.emit('submit');
+      
+            }
+      
+          }
+          else {
+            let result = await this.apiservice.postMethod("Master/UpdateLoan", this.loanForm.value);
+            if (result.data > 0) {
+              Swal.fire("Data Updated Successfully");
+              this.closemodal.emit('update');
+           
+      
+            }
+          }
+        }
     
-       async delete(id:any){
-       const result = await this.apiservice.getMethod(`Master/DeleteLoan?ID=${id}`);
-       if (result.data > 0) {
-         this.getData();
-       
-         Swal.fire("Data deleted Successfully");
-   
-       }
-       }
+      async delete(id: any) {
+        debugger
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to delete?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    });
+    if (confirmation.isConfirmed) {
+      const result = await this.apiservice.getMethod(`Master/DeleteLoan?ID=${id}`);
+     
+      if (result.data > 0) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        this.getData();
+      }
+    }
+  }
    
    
     openModal(modal: any, id: any = null) {
@@ -53,6 +90,7 @@ export class LoanTypeTable implements OnInit{
 
     this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
   }
+
   close(data:any = null) {
     debugger;
     this.editid = null;

@@ -1,20 +1,21 @@
 
 
-<div class="container  mt-5">
-<button (click)="openModal(popupmodal)" class="btn bg-success fw-bold px-2 text-white mb-4">Add Shift</button>
+<div class="container  mt-3">
+<button (click)="openModal(popupmodal)" class="shifting btn   px-3 text-white mb-4">
+  <img src="images/plus.svg" alt="+logo">Add Shift</button>
 
-<table class="text-center">
-  <tr>
+<table >
+  <tr class="border-bottom">
     <th>Shift ID</th>
     <th>Shift Type</th>
     <th>Start Time</th>
     <th>End Time</th>
     <th>Shift Code</th>
     <th>Grace Period</th>
-    <th>Actions</th>
+    <th >Actions</th>
    
   </tr>
-  <tr *ngFor = "let s of shiftData">
+  <tr *ngFor = "let s of shiftData" class="border-bottom">
     <td>{{s.ID}}</td>
     <td>{{s.shiftType}}</td>
     <td>{{s.startTime}}</td>
@@ -22,9 +23,9 @@
     <td>{{s.shiftCode}}</td>
      <td>{{s.gracePeriod}}</td>
 
-  <td><button (click)="openModal(popupmodal,s.ID)" class="btn bg-warning text-dark fw-bold pt-1 pb-1 me-2 my-1">Update</button>
+  <td class=""><button (click)="openModal(popupmodal,s.ID)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edit"></button>
 
-    <button (click)="delete(s.ID)" class="btn bg-dark text-white fw-bold pt-1 pb-1">Delete</button></td>
+    <button (click)="delete(s.ID)" class="btn "><img src="images/Delete.svg" alt="delte" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  
   </tr>
 
@@ -33,13 +34,15 @@
 
 <ng-template #popupmodal let-modal>
     <div class="modal-header justify-content-between">
-        <h1>Shift Master</h1>
-        <span style="font-size: 25px;" (click)="modal.dismiss()">X</span>
+        <h5>Shift Master</h5>
+        <span style="font-size: 25px;" (click)="modal.dismiss()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
     </div>
     <div class="modal-body">
         <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>
     </div>
     <div class="modal-footer">
-        <button (click)="close()" class="btn btn-danger fw-bold px-2">Cancel</button>
+        <button (click)="close()" class="btn px-5 text-primary btn-outline-primary fw-bold">Cancel</button>
+                <button (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
+
     </div>
 </ng-template>

@@ -12,26 +12,42 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './job-level-type-table.css'
 })
 export class JobLevelTypeTable {
-jobLevelShift:any;
+  jobLevelShift: any;
+  editID: any;
+  constructor(public apiService: Api, public router: Router, public modalService: NgbModal) {
 
-constructor(public apiService: Api, public router: Router,public modelService:NgbModal  ){
-  
-}
-ngOnInit(){
-  this.jobLevelShiftdata();
-}
- async jobLevelShiftdata(){
-  let result = await this.apiService.getMethod('DigiOffice/GetJoblevelTypeJoinDesignation');
-  console.log(result.data);
-  this.jobLevelShift = result.data;
-}
+  }
+  ngOnInit() {
+    this.jobLevelShiftdata();
+  }
+  async jobLevelShiftdata() {
+    let result = await this.apiService.getMethod('DigiOffice/GetJoblevelTypeJoinDesignation');
+    console.log(result.data);
+    console.log(1);
 
-addDetails(){
-  console.log(1);
-  this.router.navigate(['/jobleveltypeform'])
-}
+    this.jobLevelShift = result.data;
+  }
 
-openModal(modal: any){
-  this.modelService.open(modal,{centered: true, size: "lg", scrollable: true})
-}
+  openModal(modal: any, id: any = null) {
+    if (id) {
+      this.editID = id;
+    }
+    this.modalService.open(modal, { centered: true, size: "lg", scrollable: true, backdrop: 'static' })
+  }
+
+  close(data: any = null) {
+    debugger;
+    this.editID = null;
+    this.modalService.dismissAll();
+    if (data == 'save' || data == 'update') {
+      this.jobLevelShiftdata();
+    }
+  }
+
+  async delete(id: any) {
+    let result = await this.apiService.getMethod(`DigiOffice/DeleteJoblevelType?ID=${id}`);
+    if (result.data > 0) {
+      this.jobLevelShiftdata();
+    }
+  }
 }

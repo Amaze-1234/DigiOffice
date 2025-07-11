@@ -1,0 +1,12 @@
+.btn{
+    border: 1px solid blue;
+    padding: 10px ;
+    margin-right: 20px;
+    width: 150px;
+}
+
+.c2{
+    display: inline;
+    float: right;
+    padding: 10px;
+}

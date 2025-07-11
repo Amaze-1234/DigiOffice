@@ -1,15 +1,57 @@
-img{
-   width:25px;
-   height:25px;
+.jobLevel{
+   margin: 0 10px;
+   background-color: rgb(231, 227, 227);
 }
-th,td,tr{
-   text-align: center;
+img {
+   width: 25px;
+   height: 25px;
+   margin-right: 5px;
 }
-button{
+.filterImage{
+    width: 20px;
+   height: 20px;
+}
+
+button {
    float: right;
    background-color: blue;
    color: white;
 }
-tr{
+table{
+   padding: 10px;
+}
+tr {
    border: 1px solid lightblue;
+   padding: 5px;
+}
+
+th {
+   color: rgb(48, 48, 244);
+
+}
+
+td {
+   color: gray;
+}
+.para{
+   font-weight: bold;
+   background-color: rgb(231, 227, 227);
+   padding: 10px;
+}
+.header {
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   background-color: white;
+}
+
+.intial {
+   display: flex;
+   gap: 10px;
+}
+
+#addButton {
+   background-color: rgb(48, 48, 244);
+   color: white;
+   padding: 5px;
 }

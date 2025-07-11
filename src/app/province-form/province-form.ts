@@ -16,23 +16,9 @@ export class ProvinceForm {
   @Input() editid: any;
   @Output() closeModal= new EventEmitter<any>();
   contactForm: any;
-   countryList:any=[
-    {
-      ID:1,
-      value:"India"
-    },
-    {
-      ID:2,
-      value:"Africa"
-    },
-    {
-      ID:3,
-      value:"Srilanka"
-    },
-    {
-      ID:4,
-      value:"France"
-    }]
+  countryList: any;
+
+ 
 
   constructor(public api: Api,public router:Router,public activateRoute:ActivatedRoute ,public modalservice:NgbModal) {}
   ngOnInit() {
@@ -42,9 +28,14 @@ export class ProvinceForm {
       this.buildForm();
   }
  
+   async getProvince(){
+    let result=await this.api.getMethod("Master/GetProvince");
+    this.countryList=result.data;
+  }
    buildForm(){
     this.contactForm = new FormGroup({
       id: new FormControl(''),
+      CountryID : new FormControl('',Validators.required),
       provinceName: new FormControl('', Validators.required),
       provinceDescription: new FormControl('', Validators.required),
     });
@@ -53,6 +44,7 @@ export class ProvinceForm {
     let response=await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
     this.contactForm=new FormGroup({
       id :new FormControl(this.editid),
+      CountryID : new FormControl(response.data[0] .countryID,Validators.required),
       provinceName: new FormControl(response.data[0].provinceName,Validators.required),
       provinceDescription:new FormControl(response.data[0].provinceDescription,Validators.required),
     })

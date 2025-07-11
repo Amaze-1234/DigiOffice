@@ -86,14 +86,17 @@ export class ShiftTable implements OnInit{
       
    
    
-    openModal(modal: any, id: any = null) {
-    debugger
-    if (id) {
-      this.editid = id;
-    }
-
-    this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
-  }
+  
+  openModal(modal: any, id: any = null) {
+  debugger;
+  this.editid = id; 
+  this.modalService.open(modal, {
+    centered: true,
+    size: "lg",
+    backdrop: "static",
+    scrollable: true
+  });
+}
   close(data:any = null) {
     debugger;
     this.editid = null;

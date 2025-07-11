@@ -32,7 +32,9 @@ export class ProvinceTable {
   openModal(Modal: any,id:any =null ){
     if(id){
       this.editid=id;
-    }   
+    }  
+    console.log(1);
+     
       this.modalservice.open(Modal,{centered: true, size:"lg", backdrop:'static'});
   }
   close(data:any=null){

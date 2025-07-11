@@ -5,11 +5,13 @@
     </div>
     <table>
         <tr>
+            <th>Country Name</th>
             <th>Province Name</th>
             <th>Province Description</th>
             <th>Actions</th>
         </tr>
         <tr *ngFor="let data of provinceData">
+            <td>{{data.countryName}}</td>
             <td>{{data.provinceName}}</td>
             <td>{{data.provinceDescription}}</td>
             <td style="font-size: large;color: blue;">

@@ -10,3 +10,10 @@ table{
     float:right;
     /* margin-right: 25px; */
 }
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+

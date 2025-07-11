@@ -3,16 +3,20 @@ import { CountryForm } from '../country-form/country-form';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Api } from '../../Services/api';
+import { SharedModule } from '../../Shared/shared.module';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-country-table',
-  imports: [CountryForm],
+  imports: [CountryForm, SharedModule],
   templateUrl: './country-table.html',
   styleUrl: './country-table.css'
 })
 export class CountryTable {
   editid: any;
   countryData: any;
+  contactForm: any;
+  data: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
 
@@ -31,5 +35,33 @@ export class CountryTable {
       this.editid=id;
     }   
       this.modalservice.open(Modal,{centered: true, size:"lg", backdrop:'static'});
+  }
+  close(data:any=null){
+    this.editid = null;
+    this.modalservice.dismissAll();
+  }
+
+  async delete(id:any){
+    const result = await this.api.getMethod(`Master/DeleteCountryTable?ID=${id}`);
+    if (result.data > 0) {
+      Swal.fire({
+        title: "Are you sure want to delete?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
+      this.getData();
     }
+  }
+
 }

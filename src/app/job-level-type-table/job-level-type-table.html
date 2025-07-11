@@ -1,7 +1,15 @@
-<div class="c1">
-    <div class="row">
-        <div class="col-lg-12">
-            <button (click) = "openModal(popupModal)"> <img src="images/plus.svg" alt=""> Add Job level</button>
+<div class="jobLevel">
+    <div class="header">
+        <div class="intial">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+
+            <p>Filter By:</p>
+            <input type="text" placeholder="search">
+        </div>
+        <div class="addDetails">
+            <button id="addButton" (click)="openModal(popupModal)"> <img src="images/plus.svg" alt="filter"
+                    class="filterImage"> Add Job Level
+            </button>
         </div>
     </div>
 </div>

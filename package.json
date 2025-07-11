@@ -15,14 +15,10 @@
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
-<<<<<<< HEAD
+
     "@angular/router": "^20.1.0",
     "@ng-bootstrap/ng-bootstrap": "^17.0.0",
-=======
-    "@angular/platform-browser-dynamic": "^20.1.0",
-    "@angular/router": "^20.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^19.0.0",
->>>>>>> 61ea7844bbe75dc3f9bd8a90521160433be074dd
+
     "axios": "^1.10.0",
     "bootstrap": "^5.3.7",
     "rxjs": "~7.8.0",

@@ -14,7 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class JobLevelTypeTable {
 jobLevelShift:any;
 
-constructor(public apiService: Api, public router: Router, public modalService:NgbModal ){
+constructor(public apiService: Api, public router: Router,public modelService:NgbModal  ){
   
 }
 ngOnInit(){
@@ -32,6 +32,6 @@ addDetails(){
 }
 
 openModal(modal: any){
-  this.modalService.open(modal,{centered: true, size: "lg", scrollable: true})
+  this.modelService.open(modal,{centered: true, size: "lg", scrollable: true})
 }
 }

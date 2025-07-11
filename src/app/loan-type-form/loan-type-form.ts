@@ -25,14 +25,13 @@ export class LoanTypeForm implements OnInit{
  
  
  
-   ngOnInit() {
-      if (this.editid) {
-         console.log(this.editid)
-         this.getByID();
-       }
-     this.buildForm();
  
-   }
+  ngOnInit() {
+  this.buildForm(); 
+  if (this.editid) {
+    this.getByID(); 
+  }
+}
  
  
  
@@ -81,4 +80,5 @@ export class LoanTypeForm implements OnInit{
      })
  
    }
+
 }

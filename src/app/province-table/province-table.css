@@ -10,3 +10,8 @@ table{
     float:right;
     margin: 20px;
 }
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}

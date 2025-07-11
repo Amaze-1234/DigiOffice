@@ -1,0 +1,38 @@
+
+.label1{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.required{
+    color: red;
+}
+
+.cancel-btn, .submit-btn{
+  padding: 8px 50px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-btn{
+  background-color: rgb(11, 11, 174);
+  color: white;
+}
+
+.cancel-btn{
+  color:  rgb(11, 11, 174);
+  margin-left: 50%;
+  margin-right: 20px;
+}
+
+.form-group{
+  display: flex;
+}
+
+.button-grp{
+  margin-top: 30px;
+}
+

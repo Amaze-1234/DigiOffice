@@ -1,6 +1,6 @@
 <div class="row" style="margin: 10px;">
     <div style="margin: 5px;" >
-        <button class="btn btn-primary b1"><i class="fa-solid fa-circle-plus"></i> Add country</button>
+        <button class="btn btn-primary b1" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add country</button>
     </div>
     <table>
         <tr>
@@ -18,3 +18,14 @@
         </tr>
     </table>
 </div>
+
+
+<ng-template #popupModal let-Modal>
+    <div class="modal-header">
+        <h3>Country Details</h3>
+        <button>X</button>
+    </div>
+    <div>
+        <app-country-form></app-country-form>
+    </div>
+</ng-template>

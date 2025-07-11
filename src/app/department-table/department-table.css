@@ -1,0 +1,32 @@
+th{
+    color:Blue;
+
+}
+tr{
+    border:1px solid rgb(186, 151, 238);
+    
+}
+td{
+color:gray;
+}
+.header
+{
+    display:flex;
+    justify-content: space-between;
+    padding:5px;
+    background-color: white;
+}
+.intial
+{
+    display:flex;
+    gap:10px;
+}
+#addButton{
+      background-color: blue;
+   color: white;
+   padding:3px;
+}
+.modify{
+    height:15%;
+    width:15%;
+}

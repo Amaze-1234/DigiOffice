@@ -1,11 +1,52 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { Api } from '../../Services/api';
+import axios from 'axios';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DepartmentForm } from "../department-form/department-form";
 @Component({
   selector: 'app-department-table',
-  imports: [],
+  imports: [CommonModule, DepartmentForm],
   templateUrl: './department-table.html',
   styleUrl: './department-table.css'
 })
 export class DepartmentTable {
+
+DepartmentData:any;
+deptid:any=7;
+deptLength:any;
+constructor(public api:Api,public modalService:NgbModal){}
+ngOnInit()
+{
+this.getDepartmentdetails();
+}
+
+async getDepartmentdetails()
+{
+  const result= await this.api.getMethod("DigiOffice/GetDepartment");
+  this.DepartmentData=result.data;
+  this.deptLength=this.DepartmentData.length
+  console.log(this.DepartmentData)
+}
+async deleteDepartment(id:any)
+{
+  const result= await this.api.getMethod(`DigiOffice/DeleteDepartment?id=${id}`);
+  
+  this.getDepartmentdetails();
+}
+openModal(modal:any,id:any=null)
+{
+    if (id) {
+      this.deptid = id;
+    }
+    this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
+
+}
+
+
+close(data:any){
+
+}
+
 
 }

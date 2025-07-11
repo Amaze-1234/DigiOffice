@@ -1,7 +1,7 @@
 <div>
     <h2>Country Details</h2>
     <button class="close-btn">X</button>
-    <form>
+    <form [formGroup]="contactForm">
         <div class="form-group">
           <label>Country Name <span class="required">*</span></label>
           <input type="text" placeholder="Country Name" formControlName="countryName" required />

@@ -13,7 +13,7 @@ import { DepartmentForm } from "../department-form/department-form";
 export class DepartmentTable {
 
 DepartmentData:any;
-deptid:any=7;
+deptID:any;
 deptLength:any;
 constructor(public api:Api,public modalService:NgbModal){}
 ngOnInit()
@@ -37,16 +37,21 @@ async deleteDepartment(id:any)
 openModal(modal:any,id:any=null)
 {
     if (id) {
-      this.deptid = id;
+      this.deptID = id;
     }
     this.modalService.open(modal, { centered: true, size: "lg", backdrop: "static", scrollable: true });
 
 }
 
 
-close(data:any){
+ close(data: any = null) {
+    debugger;
+    this.deptID = null;
+    this.modalService.dismissAll();
+    if (data == 'update' || data == 'save') {
+      this.getDepartmentdetails();
+    }
+
 
 }
-
-
 }

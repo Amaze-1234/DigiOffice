@@ -37,7 +37,7 @@
       <span (click)="modalService.dismissAll()">X</span>
       </div>
       <div class="modal-body">
-        <app-department-form ></app-department-form>
+        <app-department-form [deptID]="deptID" (closeModal)="close($event)"></app-department-form>
       </div>
       <div class="modal-footer">
         <button type="submit"(click)="modalService.dismissAll()">close</button>

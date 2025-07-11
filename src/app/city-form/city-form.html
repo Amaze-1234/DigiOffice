@@ -1,1 +1,48 @@
-<p>city-form works!</p>
+<div>
+    <form action="" [formGroup]="contactForm">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="">Contry Name</label>
+                <select name="" id="" class="form-control" formControlName="CountryID">
+                    <option value="" disabled>Select Country</option>
+                    <option *ngFor="let data of countryData" [value]="data.id">{{data.CountryName}}</option>
+                </select>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="">Province Name</label>
+
+                <select name="" id="" class="form-control" formControlName="ProvinceID">
+                    <option value="" disabled>Select Province</option>
+                    <option *ngFor="let data of provinceData" [value]="data.id">{{data.ProvinceName}}</option>
+                </select>
+            </div>
+
+            <div class="col-lg-4">
+                <label for="">City Name</label>
+
+                <input type="text" class="form-control" placeholder="Enter City Name" formControlName="City" />
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="">City Description</label>
+
+                <textarea name="" id="" class="form-control" placeholder="Description"
+                    formControlName="Description"></textarea>
+            </div>
+        </div>
+        <div class="row c1">
+        
+                <div>
+                    <button type="submit" class="btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid"
+                        (click)="submit(editid?'update':'save')">
+                        {{editid?'update':'Submit'}}
+                    </button>
+                </div>
+            
+        </div>
+    </form>
+</div>

@@ -16,16 +16,16 @@
    
   </tr>
   <tr *ngFor = "let s of shiftData" class="border-bottom">
-    <td>{{s.ID}}</td>
+    <td>{{s.id}}</td>
     <td>{{s.shiftType}}</td>
     <td>{{s.startTime}}</td>
     <td>{{s.endTime}}</td>
     <td>{{s.shiftCode}}</td>
      <td>{{s.gracePeriod}}</td>
 
-  <td class=""><button (click)="openModal(popupmodal,s.ID)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edit"></button>
+  <td ><button (click)="openModal(popupmodal,s.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edit"></button>
 
-    <button (click)="delete(s.ID)" class="btn "><img src="images/Delete.svg" alt="delte" class="img-fluid" style="width: 25px; height: auto;"></button></td>
+    <button (click)="delete(s.id)" class="btn "><img src="images/Delete.svg" alt="delte" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  
   </tr>
 

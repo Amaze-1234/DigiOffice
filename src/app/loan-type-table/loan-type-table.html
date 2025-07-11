@@ -12,14 +12,14 @@
    
   </tr>
   <tr *ngFor = "let l of loanData" class="border-bottom">
-    <td>{{l.ID}}</td>
+    <td>{{l.id}}</td>
     <td>{{l.loanType}}</td>
     <td>{{l.loanDescription}}</td>
   
 
-  <td><button (click)="openModal(popupmodal,l.ID)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
+  <td><button (click)="openModal(popupmodal,l.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
 
-    <button (click)="delete(l.ID)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
+    <button (click)="delete(l.id)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  
   </tr>
 

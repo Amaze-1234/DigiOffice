@@ -12,31 +12,32 @@
             </button>
         </div>
     </div>
-</div>
-<div class="c2">
-    <div class="row">
-        <table>
-            <th>Designation</th>
-            <th>Level Type</th>
-            <th>Level Description</th>
-            <th>Actions</th>
-            <tr *ngFor="let data of jobLevelShift">
-                <td>{{data.title}}</td>
-                <td>{{data.levelType}}</td>
-                <td>{{data.levelDescription}}</td>
-                <td><img src="images/Edit 1.svg" alt="Edit">
-                    <img src="images/Delete.svg" alt="Delete">
-                </td>
-            </tr>
-        </table>
+    <div class="c2">
+        <div class="row">
+            <table>
+                <th>Designation</th>
+                <th>Level Type</th>
+                <th>Level Description</th>
+                <th>Actions</th>
+                <tr *ngFor="let data of jobLevelShift">
+                    <td>{{data.title}}</td>
+                    <td>{{data.levelType}}</td>
+                    <td>{{data.levelDescription}}</td>
+                    <td><img src="images/Edit 1.svg" alt="Edit">
+                        <img src="images/Delete.svg" alt="Delete">
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <ng-template #popupModal>
-        <div class="modal-header" display-flex>
-            <p>Job Level Master</p>
-            <span><img src="images/close" alt="close.png"></span>
-        </div>
-        <div class="modal-body">
-            <app-job-level-type-form></app-job-level-type-form>
-        </div>
-    </ng-template>
-    
+</div>
+
+<ng-template #popupModal>
+    <div class="modal-header" display-flex>
+        <p>Job Level Master</p>
+        <span><img src="images/close" alt="close.png"></span>
+    </div>
+    <div class="modal-body">
+        <app-job-level-type-form></app-job-level-type-form>
+    </div>
+</ng-template>

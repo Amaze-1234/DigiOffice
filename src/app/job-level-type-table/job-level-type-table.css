@@ -1,5 +1,5 @@
 .jobLevel{
-   margin: 0 10px;
+   margin: 0 0px;
    background-color: rgb(231, 227, 227);
 }
 img {
@@ -18,11 +18,10 @@ button {
    color: white;
 }
 table{
-   padding: 10px;
+margin:0px 5px;
 }
 tr {
    border: 1px solid lightblue;
-   padding: 5px;
 }
 
 th {
@@ -42,7 +41,7 @@ td {
    display: flex;
    justify-content: space-between;
    padding: 10px;
-   background-color: white;
+   /* background-color: white; */
 }
 
 .intial {

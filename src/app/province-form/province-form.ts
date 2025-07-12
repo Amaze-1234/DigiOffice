@@ -62,6 +62,7 @@ export class ProvinceForm {
       if (type == 'save') {
         let result = await this.api.postMethod('Master/InsertProvince', this.contactForm.value);
         if (result.data > 0) {
+          this.closeModal.emit("save")
           Swal.fire({
             icon: 'success',
             title: 'Saved Successfully',
@@ -70,6 +71,7 @@ export class ProvinceForm {
       } else {
         let result = await this.api.postMethod('Master/UpdateProvince', this.contactForm.value);
         if (result.data > 0) {
+          this.closeModal.emit("update")
           Swal.fire({
             icon: 'success',
             title: 'Updated Successfully',

@@ -1,31 +1,43 @@
 
-<div class="row" style="margin: 10px;">
-    <div style="margin: 5px;" >
-        <button class="btn btn-primary b1" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Province</button>
+<div class="provincetable">
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+
+            <p style="margin-top: 10px;">Filter By:</p>
+            <input type="text" placeholder="Search..." class=" form-control searchBar">
+        </div>
+
+        <div style="margin: 5px;" >
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add country</button>
+        </div>
     </div>
-    <table>
-        <tr>
-            <th>Country Name</th>
-            <th>Province Name</th>
-            <th>Province Description</th>
-            <th>Actions</th>
-        </tr>
-        <tr *ngFor="let data of provinceData">
-            <td>{{data.countryName}}</td>
-            <td>{{data.provinceName}}</td>
-            <td>{{data.provinceDescription}}</td>
-            <td style="font-size: large;color: blue;">
-                <i class="fa-solid fa-pen-to-square" (click)="openModal(popupModal,data.id)"></i>
-                <i class="fa-solid fa-trash" (click)="delete(data.id)"></i>
-            </td>
-        </tr>
-    </table>
+    <p class="result">Showing</p>
+    <div class="row tableData">
+        <table>
+            <tr>
+                <th>Country Name</th>
+                <th>Province Name</th>
+                <th>Province Description</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let data of provinceData">
+                <td>{{data.countryName}}</td>
+                <td>{{data.provinceName}}</td>
+                <td>{{data.provinceDescription}}</td>
+                <td style="font-size: large;color: blue;">
+                    <i class="fa-solid fa-pen-to-square" (click)="openModal(popupModal,data.id)"></i>
+                    <i class="fa-solid fa-trash" (click)="delete(data.id)"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <ng-template #popupModal let-Modal>
     <div class="modal-header">
         <h3>Province Master Form</h3>
-        <button (click)="Modal.dismiss();">X</button>
+        <img src="images/close.png" alt="close" (click)="Modal.dismiss();">
     </div>
     <div class="modal-body">
         <app-province-form [editid] = 'editid' (closeModal)="close($event)"></app-province-form>

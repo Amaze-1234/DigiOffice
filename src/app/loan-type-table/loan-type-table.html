@@ -1,8 +1,20 @@
 
 
-<div class="container  mt-3">
-<button (click)="openModal(popupmodal)" class="shifting btn  px-5 text-white mb-4 ">
-  <img src="images/plus.svg" alt="+logo">Add Loan Type</button>
+  <div class="container  mt-3">
+  <div class="mb-2 pt-1 pb-1  bg-white ps-1 h-cover d-flex align-items-start justify-content-between">
+  <div class="d-inline-flex align-items-center mt-1">
+    <img src="images/filter.png" alt="filter" class="img-fluid me-1" width="20px">
+    <span class="fw-bold me-4">Filter By:</span>
+    <input type="search" placeholder="Search...">
+  </div>
+  <button (click)="openModal(popupmodal)" class="shifting btn px-5 text-white me-2 mt-1 mb-1">
+    <img src="images/plus.svg" alt="+logo" class="text-center me-1 mt-0">Add Loan Type
+  </button>
+</div>
+ <div>
+  <h5 class="text-start" style="color:blue;">Showing {{loanLength}} Results</h5>
+  </div>
+  <div class="bg-white ps-1 pe-1">
 <table>
   <tr class="border-bottom">
 
@@ -29,12 +41,11 @@
 <ng-template #popupmodal let-modal>
     <div class="modal-header justify-content-between">
         <h5>Loan Master Form</h5>
-        <span style="font-size: 25px;" (click)="modal.dismiss()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
+        <span style="font-size: 25px;" (click)="close()"><img src="images/close.png"  class="img-fluid" style="width: 25px; height: auto;" alt="close"></span>
     </div>
     <div class="modal-body">
         <app-loan-type-form [editid]="editid" (closemodal)="close($event)"></app-loan-type-form>
     </div>
     <div class="modal-footer">
-
     </div>
 </ng-template>

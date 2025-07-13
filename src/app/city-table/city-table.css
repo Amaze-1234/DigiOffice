@@ -1,6 +1,7 @@
 .shifting {
     float: right;
     background-color: blue;
+    margin-top: 20px;
 }
 
 table {

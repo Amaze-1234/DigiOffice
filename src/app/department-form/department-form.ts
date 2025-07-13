@@ -62,7 +62,6 @@ export class DepartmentForm {
 navigate()
 {
   this.route.navigate(['department-table']);
-  
 }
 
 }

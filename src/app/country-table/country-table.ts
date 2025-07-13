@@ -15,8 +15,8 @@ import Swal from 'sweetalert2';
 export class CountryTable {
   editid: any;
   countryData: any;
-
   data: any;
+  countryLength: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
 
@@ -28,6 +28,7 @@ export class CountryTable {
     const result = await this.api.getMethod("Master/GetCountryTable");
     console.log( result.data);
     this.countryData = result.data;
+    this.countryLength = this.countryData.length;
   }
 
   openModal(Modal: any,id:any =null ){

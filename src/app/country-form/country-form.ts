@@ -42,12 +42,12 @@ export class CountryForm {
   }
 
   async submit( type:any){
-  //   if (this.contactForm.invalid) {
-  //   Swal.fire({
-  //     text: 'Please fill all the details'
-  //   });
-  //   return;
-  // }
+    if (this.contactForm.invalid) {
+      Swal.fire({
+        text: 'Please fill all the details'
+      });
+      return;
+    }
 
     if (type == 'save') {
       let result = await this.api.postMethod('Master/InsertCountryTable', this.contactForm.value);

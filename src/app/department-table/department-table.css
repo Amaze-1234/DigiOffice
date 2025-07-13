@@ -1,5 +1,5 @@
 table{
-     background-color: #f1f1f1;
+    border-collapse: none;
 }
 th{
     color:Blue;
@@ -7,10 +7,10 @@ th{
 
 }
 tr{
-    border:1px solid rgb(186, 151, 238);
-    
-    
+    border:1px solid rgb(210, 210, 241);
+    margin-left: -2px;
 }
+
 td{
 color:gray;
 }
@@ -18,9 +18,7 @@ color:gray;
 {
     display:flex;
     justify-content: space-between;
-    padding:5px;
-    background-color: #f1f1f1;
-    padding:15px;
+    padding:8px;
 }
 .intial
 {
@@ -32,7 +30,8 @@ color:gray;
 #addButton{
       background-color: blue;
    color: white;
-   padding:5px 18px;
+   padding:8px 25px;
+   border:none;
 }
 .modify{
     height:15%;

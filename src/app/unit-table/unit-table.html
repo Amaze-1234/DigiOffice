@@ -1,3 +1,5 @@
+
+<div class="card"><div class="card-body">   
 <div class="header">
     <div class="intial">
         <img src="images/filter.png" alt="icon" width="20px">
@@ -8,14 +10,18 @@
         <button id="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="20px"> Add Unit</button>
     </div>
 </div>
+</div>
+</div>
     
 <p class="records">Showing {{deptLength}} Results</p>
+
+<div class="card"><div class="card-body">   
   <table class="table ">
              <tr>
               <th>Department Name</th>
               <th>Unit Name</th>
               <th>Unit Description</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           <tr *ngFor="let data of DepartmentData">
             <td>{{data.departmentName}}</td>
@@ -31,16 +37,16 @@
          </tr>
       </table>
 
+
+  </div>
+</div>
        <ng-template #popupmodelunit>
       <div class="modal-header justify-content-between fw-bold">
       <h3>Unit Master</h3>
-      <span (click)="close()">X</span>
+      <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
       </div>
       <div class="modal-body">
         <app-unit-form [deptID]="deptID" (closeModal)="close($event)"></app-unit-form>
       </div>
-      <div class="modal-footer">
-        <button type="submit"(click)="close()">close</button>
-      </div>
-
+     
     </ng-template>

@@ -29,13 +29,8 @@
    font-size: 20px;
 }
 table{
-   margin-left:  10px;
-   width: 98%;
+   width: 100%;
    font-size: 18px;
-}
-.tableData{
-   border: 2px solid white;
-   border-radius: 5px;
 }
 
 tr {

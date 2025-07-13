@@ -9,11 +9,10 @@
         </div>
 
         <div style="margin: 5px;" >
-            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add country</button>
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Province</button>
         </div>
     </div>
-    <p class="result">Showing</p>
-    <div class="row tableData">
+    <p class="result">Showing {{provinceLength}} Results</p>
         <table>
             <tr>
                 <th>Country Name</th>
@@ -31,7 +30,6 @@
                 </td>
             </tr>
         </table>
-    </div>
 </div>
 
 <ng-template #popupModal let-Modal>

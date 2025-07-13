@@ -9,20 +9,9 @@
     width: 17px;
     height: 17px;
 }
-
-/* table,th,td{
-    border: 2px solid black;
-    padding: 5px;
-} */
 table{
-   margin-left:  10px;
-   width: 98%;
+   width: 100%;
    font-size: 18px;
-}
-
-.tableData{
-   border: 2px solid white;
-   border-radius: 5px;
 }
 tr {
    border: 1px solid rgb(232, 245, 249);
@@ -42,7 +31,6 @@ td {
 }
 .b1{
     float:right;
-    /* margin-right: 25px; */
 }
 
 .modal-header{

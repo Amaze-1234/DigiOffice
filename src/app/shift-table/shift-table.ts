@@ -19,6 +19,7 @@ export class ShiftTable implements OnInit{
    shiftData:any;
    editid:any;
   shiftForm: any;
+  shiftLength:any;
   closemodal: any;
    constructor(public apiservice:Api, public router:Router,public modalService: NgbModal){}
  
@@ -31,7 +32,7 @@ export class ShiftTable implements OnInit{
        async getData(){
        const result =await this.apiservice.getMethod("Master/GetShift");
        this. shiftData = result.data;
-    
+  this.shiftLength=this.shiftData.length
        
     
      }

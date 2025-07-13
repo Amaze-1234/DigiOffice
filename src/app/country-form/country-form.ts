@@ -43,15 +43,18 @@ export class CountryForm {
 
   async submit( type:any){
     if (this.contactForm.invalid) {
-    Swal.fire({
-      text: 'Please fill all the details'
-    });
-    return;
-  }
+      Swal.fire({
+        text: 'Please fill all the details'
+      });
+      return;
+    }
 
     if (type == 'save') {
       let result = await this.api.postMethod('Master/InsertCountryTable', this.contactForm.value);
+      
+      
       if (result.data > 0) {
+        this.closeModal.emit("save");
         Swal.fire({
           icon: 'success',
           title: 'Saved Successfully',
@@ -60,6 +63,7 @@ export class CountryForm {
     } else {
       let result = await this.api.postMethod('Master/UpdateCountryTable', this.contactForm.value);
       if (result.data > 0) {
+         this.closeModal.emit("update")
         Swal.fire({
           icon: 'success',
           title: 'Updated Successfully',

@@ -14,12 +14,12 @@
         <div class="row">
             <div class="col-lg-4">
                 <select class="form-control" formControlName="Designation">
-                    <option>Select Designation</option>
+                    <option value="">Select Designation</option>
                     <option *ngFor="let data of designationDetails" [value]="data.id">{{data.title}}</option>
                 </select>
             </div>
             <div class="col-lg-4">
-                <input type="text" placeholder="Level Type" formControlName="LevelType">
+                <input type="text" placeholder="Level Type" formControlName="LevelType" class="levelType">
             </div>
             <div class="col-lg-4">
                 <textarea placeholder="Level Description" cols="30" rows="4"
@@ -27,10 +27,9 @@
             </div>
         </div>
         <div class="row c2">
-
             <div>
-                <button class="btn">Cancel</button>
-                <button class="btn btn-primary" [disabled]="jobLevelForm.invalid"
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn" [disabled]="jobLevelForm.invalid"
                     (click)="submit(editID?'update':'save')">
                     {{editID?'update':'Submit'}}
                 </button>

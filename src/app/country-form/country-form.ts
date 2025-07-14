@@ -18,7 +18,7 @@ export class CountryForm {
   @Output() closeModal= new EventEmitter<any>();
   constructor(public api: Api,public router:Router,public activateRoute:ActivatedRoute ,public modalservice:NgbModal) {}
   ngOnInit() {
-    
+  
        if (this.editid) {
         this.getByID()
       }

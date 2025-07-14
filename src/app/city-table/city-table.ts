@@ -19,13 +19,17 @@ resultLength: any;
   constructor(public modelService:NgbModal,public apiService:Api){
 
   }
+  ngOnInit(){
+    this.getCity();
+  }
 
 
   openModel(Modal:any,id:any=null){
+    
      if (id) {
       this.editid = id;
     }
-    this.modelService.open(Modal, { centered: true, size: 'lg', backdrop: "static", scrollable: true });
+      this.modelService.open(Modal,{centered: true, size:"lg", backdrop:'static'});
 
   }
   close(type:any){

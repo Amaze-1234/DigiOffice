@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
   outputs: ['closemodal']
 })
 export class JobLevelTypeForm {
-
   editID: any;
   closemodal = new EventEmitter<any>();
   designationDetails: any = [];

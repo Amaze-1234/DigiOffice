@@ -10,4 +10,10 @@ export class Loader {
   isLogin:any=sessionStorage.getItem("isLogin")||'no';
 
   isTitle:any=sessionStorage.getItem("Department Master")||'';
+
+  check(data:any){
+    
+
+  }
+
 }

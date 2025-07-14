@@ -10,11 +10,13 @@ import { SharedModule } from '../../Shared/shared.module';
   selector: 'app-province-form',
   imports: [SharedModule],
   templateUrl: './province-form.html',
-  styleUrl: './province-form.css'
+  styleUrl: './province-form.css',
+  inputs:['editid'],
+  outputs: ['closemodal']
 })
 export class ProvinceForm {
-  @Input() editid: any;
-  @Output() closeModal = new EventEmitter<any>();
+   editid: any;
+  closeModal = new EventEmitter<any>();
   contactForm: any;
   countryList: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public modalservice: NgbModal) { }

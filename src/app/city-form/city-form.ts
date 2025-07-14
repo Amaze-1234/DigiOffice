@@ -10,12 +10,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-city-form',
   imports: [SharedModule],
   templateUrl: './city-form.html',
-  styleUrl: './city-form.css'
+  styleUrl: './city-form.css',
+  inputs:['editid'],
+  outputs: ['closemodal']
 })
 export class CityForm {
 
-  @Input() editid: any;
-  @Output() closemodal = new EventEmitter<any>();
+  editid: any;
+  closemodal = new EventEmitter<any>();
   contactForm: any;
   provinceData: any;
   countryData: any;

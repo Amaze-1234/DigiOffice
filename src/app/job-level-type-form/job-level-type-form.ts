@@ -14,7 +14,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   outputs: ['closemodal']
 })
 export class JobLevelTypeForm {
-
   editID: any;
   closemodal = new EventEmitter<any>();
   designationDetails: any = [];

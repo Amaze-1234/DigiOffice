@@ -76,5 +76,8 @@ export class JobLevelTypeForm {
     }
 
   }
-
+  cancel(){
+    console.log("child");
+    this.closemodal.emit('close');
+  }
 }

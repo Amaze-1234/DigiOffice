@@ -3,3 +3,6 @@
     
     
 }
+button:disabled{
+    cursor: no-drop;
+}

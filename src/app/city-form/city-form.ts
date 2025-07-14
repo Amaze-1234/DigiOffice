@@ -10,25 +10,31 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-city-form',
   imports: [SharedModule],
   templateUrl: './city-form.html',
-  styleUrl: './city-form.css'
+  styleUrl: './city-form.css',
+  inputs:['editid'],
+  outputs: ['closemodal']
 })
 export class CityForm {
 
-  @Input() editid: any;
-  @Output() closemodal = new EventEmitter<any>();
+  editid: any;
+  closemodal = new EventEmitter<any>();
   contactForm: any;
   provinceData: any;
   countryData: any;
-  
+  countryID: any;
+  ID: any;
+  newone: any;
+
 
 
 
 
   constructor(public apiService: Api, public router: Router, public activateRoute: ActivatedRoute, public modelService: NgbModal) {
 
-   
+
   }
   ngOnInit() {
+
     if (this.editid) {
 
       this.getByID()
@@ -36,14 +42,16 @@ export class CityForm {
 
     }
     this.buildForm();
-    this.getProvince();
+
     this.getCountry();
-    console.log(this.contactForm.get('CountryID').value);
+
     
+    
+
 
 
   }
-    
+
 
   buildForm() {
 
@@ -54,7 +62,14 @@ export class CityForm {
       City: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required)
 
-    })
+    });
+  
+  }
+
+  async onChange(even:any){
+    debugger;
+    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${even.target.value}`);
+    this.provinceData = result.data;
   }
 
   async getByID() {
@@ -62,22 +77,17 @@ export class CityForm {
     let response = await this.apiService.getMethod(`Master/GetCityByID?ID=${this.editid}`);
     console.log(response)
 
-    this.contactForm = new FormGroup({
-
-      ID: new FormControl(this.editid),
-      CountryID: new FormControl(response.data[0].countryID, Validators.required),
-      ProvinceID: new FormControl(response.data[0].provinceID, Validators.required),
-      City: new FormControl(response.data[0].city, Validators.required),
-      Description: new FormControl(response.data[0].description, Validators.required)
-    })
+    this.contactForm.patchValue({
+      ID: this.editid,
+      CountryID: response.data[0].countryID,
+      ProvinceID: response.data[0].provinceID,
+      City: response.data[0].city,
+      Description: response.data[0].description
+    });
+    
   }
 
-  async getProvince() {
-    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${this.contactForm.CountryID}`);
-    this.provinceData = result.data;
-   
-
-  }
+  
 
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');

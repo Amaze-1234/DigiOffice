@@ -20,7 +20,7 @@ export class Login {
 
   }
 
-    Login(){
+    login(){
       if(this.userName == "Amaze-1234" && this.password == "Amaze-1234"){
          sessionStorage.setItem("isLogin",'Yes');
       this.loaderService.isLogin='Yes';
@@ -31,5 +31,4 @@ export class Login {
     }
    
 }
-
 }

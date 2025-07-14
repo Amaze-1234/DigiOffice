@@ -3,18 +3,18 @@ import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-level-type-form',
   imports: [SharedModule],
   templateUrl: './job-level-type-form.html',
-  styleUrl: './job-level-type-form.css'
+  styleUrl: './job-level-type-form.css',
+  inputs:['editID'],
+  outputs: ['closemodal']
 })
 export class JobLevelTypeForm {
-
-  @Input() editID: any;
-  @Output() closemodal = new EventEmitter<any>();
+  editID: any;
+  closemodal = new EventEmitter<any>();
   designationDetails: any = [];
   jobLevelForm: any;
   constructor(public apiService: Api) { }
@@ -41,6 +41,8 @@ export class JobLevelTypeForm {
       LevelDescription: new FormControl('', Validators.required),
 
     })
+    console.log(this.jobLevelForm.value);
+    
   }
 
   async getjoblevelTypeFormByID() {

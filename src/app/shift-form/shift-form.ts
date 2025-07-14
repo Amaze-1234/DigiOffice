@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './shift-form.html',
   styleUrl: './shift-form.css',
-  inputs:['editid'],
+  inputs: ['editid'],
   outputs: ['closemodal']
 
 
@@ -26,9 +26,9 @@ export class ShiftForm implements OnInit {
   editid: any;
 
 
-constructor(public router: Router, public apiservice: Api, public modalservice: NgbModal) { }
+  constructor(public router: Router, public apiservice: Api, public modalservice: NgbModal) { }
 
-closemodal = new EventEmitter<any>();
+  closemodal = new EventEmitter<any>();
 
 
 

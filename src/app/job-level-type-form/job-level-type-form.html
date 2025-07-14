@@ -1,19 +1,8 @@
 <div class="c1">
     <form [formGroup]="jobLevelForm">
-        <!-- <div class="row">
-            <div class="col-lg-4">
-                <label> Designation</label>
-            </div>
-            <div class="col-lg-4">
-                <label>Level Type</label>
-            </div>
-            <div class="col-lg-4">
-                <label>Description</label>
-            </div>
-        </div> -->
         <div class="row">
             <div class="col-lg-4">
-                  <label> Designation</label>
+                <label> Designation</label>
                 <select class="form-control" formControlName="Designation">
                     <option value="">Select Designation</option>
                     <option *ngFor="let data of designationDetails" [value]="data.id">{{data.title}}</option>
@@ -24,16 +13,15 @@
                 <input type="text" placeholder="Level Type" formControlName="LevelType" class="levelType">
             </div>
             <div class="col-lg-4">
-                 <label>Description</label>
+                <label>Description</label>
                 <textarea placeholder="Level Description" cols="30" rows="4"
                     formControlName="LevelDescription"></textarea>
             </div>
         </div>
         <div class="row c2">
             <div>
-                <button class="btn-cancel" (click) = "cancel()">Cancel</button>
-                <button class="btn" 
-                    (click)="submit(editID?'update':'save')">
+                <button class="btn-cancel" (click)="cancel()">Cancel</button>
+                <button class="btn" (click)="submit(editID?'update':'save')">
                     {{editID?'update':'Submit'}}
                 </button>
             </div>

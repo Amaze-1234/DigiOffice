@@ -3,7 +3,6 @@ import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-level-type-form',

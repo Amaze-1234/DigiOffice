@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-unit-form',
   imports: [SharedModule],
@@ -32,11 +32,39 @@ export class UnitForm {
     }
 async addDepartment(type:any)
 {
-  if(type=='save')
-  {
-    const result =await this.apiService.postMethod('DigiOffice/InsertUnit',this.unitDetails.value)
+    if (this.unitDetails.invalid) {
+           Swal.fire({
+             text: 'Please fill all the details'
+           });
+           return;
+         }
+     if(type=='save')
+     {
+       Swal.fire({
+   title: "Are you sure?",
+   text: "You want to add Data!",
+   icon: "warning",
+   showCancelButton: true,
+   confirmButtonColor: "#3085d6",
+   cancelButtonColor: "#d33",
+   confirmButtonText: "Yes, Add it!"
+ }).then(async (result) => {
+   if (result.isConfirmed) {
+     
+     const result =await this.apiService.postMethod('DigiOffice/InsertUnit',this.unitDetails.value)
    this.closeModal.emit('save');
-  }
+   
+     this.closeModal.emit("save")
+     Swal.fire({
+       title: "Added!",
+       text: "Your data is added successfully.",
+       icon: "success"
+     });
+   }
+ });
+}
+   
+  
   else{
    
     const result =await this.apiService.postMethod(`DigiOffice/UpdateUnit`,this.unitDetails.value)
@@ -64,6 +92,10 @@ this.unitDetails=new FormGroup({
    unitDescription:new FormControl(result.data[0].unitDescription,Validators.required)
 })
 
+}
+cancel()
+{
+  this.closeModal.emit("cancel")
 }
 
 

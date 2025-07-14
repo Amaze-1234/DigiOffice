@@ -16,7 +16,7 @@ export class SideBar {
   }
   ngOnInit(){
     
-    this.navigateDepartment();
+   
   }
   navigateDashboard(){
     sessionStorage.setItem("isTitle","Dashboard Master")

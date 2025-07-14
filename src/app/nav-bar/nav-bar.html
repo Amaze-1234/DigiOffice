@@ -1,12 +1,18 @@
- <div class="main1">
-    <div>
-       <p>{{this.loderService.isTitle}}<br>
-       Welcome back, <span style="font-weight: bold;"> Company</span>
-      <img src="images/wave.png"> </p>
-    </div>
-    <div class="button-grp">
-      <img src="images/profile.svg" (click)="display()" >
-      <button class="btn" (click)="logout()" [ngClass]="this.isdisplay==true?'show':'b1'" ><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
-    </div>
+<div class="main1">
+  <div>
+    <p>{{this.loderService.isTitle}}<br>
+      Welcome back, <span style="font-weight: bold;"> Company</span>
+      <img src="images/wave.png">
+    </p>
+  </div>
+  <div class="button-grp">
+    <img src="images/profile.svg" placement="bottom" #imgPop="ngbPopover"
+  [ngbPopover]="popever" style="margin-right: 10px;">
+
+  </div>
+
 </div>
- 
+
+<ng-template #popever>
+  <button class="btn" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
+</ng-template>

@@ -39,7 +39,7 @@ export class ShiftForm implements OnInit{
    buildForm() {
      this.shiftForm = new FormGroup({
       id: new FormControl(''),
-       shiftType: new FormControl('', Validators.pattern('^[A-Z a-z]+$')),
+       shiftType: new FormControl('', Validators.required),
        startTime: new FormControl('', Validators.required),
        endTime: new FormControl('', Validators.required),
        shiftCode: new FormControl('', Validators.required),

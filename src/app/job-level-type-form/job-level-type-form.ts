@@ -59,6 +59,10 @@ export class JobLevelTypeForm {
 
   async submit(type: any) {
     debugger;
+     if(this.jobLevelForm.invalid){
+      Swal.fire("Please fill all the details");
+      return;
+     }
     console.log(this.jobLevelForm.value);
     if (type == 'save') {
       let result = await this.apiService.postMethod('DigiOffice/InsertJobLevelType', this.jobLevelForm.value);
@@ -76,5 +80,8 @@ export class JobLevelTypeForm {
     }
 
   }
-
+  cancel(){
+    console.log("child");
+    this.closemodal.emit('close');
+  }
 }

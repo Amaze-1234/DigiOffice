@@ -4,6 +4,7 @@ import { Api } from '../../Services/api';
 import axios from 'axios';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DepartmentForm } from "../department-form/department-form";
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-department-table',
   imports: [CommonModule, DepartmentForm],
@@ -30,9 +31,28 @@ async getDepartmentdetails()
 }
 async deleteDepartment(id:any)
 {
+Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then(async (result) => {
+  if (result.isConfirmed) {
+    
   const result= await this.api.getMethod(`DigiOffice/DeleteDepartment?id=${id}`);
-  
+    
   this.getDepartmentdetails();
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+  }
+});
+
 }
 openModal(modal:any,id:any=null)
 {

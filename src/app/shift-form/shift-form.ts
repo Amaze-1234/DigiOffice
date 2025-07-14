@@ -50,6 +50,7 @@ export class ShiftForm implements OnInit{
  
   async onSubmit(type: any) {
            debugger;
+   
            
            if (type == 'submit') {
              let result = await this.apiservice.postMethod("Master/InsertShift", this.shiftForm.value);

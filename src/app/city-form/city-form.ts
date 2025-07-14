@@ -21,16 +21,19 @@ export class CityForm {
   contactForm: any;
   provinceData: any;
   countryData: any;
-  
+  countryID: any;
+  ID: any;
+
 
 
 
 
   constructor(public apiService: Api, public router: Router, public activateRoute: ActivatedRoute, public modelService: NgbModal) {
 
-   
+
   }
   ngOnInit() {
+
     if (this.editid) {
 
       this.getByID()
@@ -38,14 +41,14 @@ export class CityForm {
 
     }
     this.buildForm();
-    this.getProvince();
+    // this.getProvince();
     this.getCountry();
-    console.log(this.contactForm.get('CountryID').value);
-    
+    console.log(this.countryID);
+
 
 
   }
-    
+
 
   buildForm() {
 
@@ -57,6 +60,11 @@ export class CityForm {
       Description: new FormControl('', Validators.required)
 
     })
+    this.contactForm.get('CountryID')?.valueChanges.subscribe((countryId: any) => {
+      this.ID = countryId;
+      this.getProvince(countryId); // Load provinces for this country
+      this.contactForm.get('ProvinceID')?.setValue(''); // Reset province selection
+    });
   }
 
   async getByID() {
@@ -64,20 +72,21 @@ export class CityForm {
     let response = await this.apiService.getMethod(`Master/GetCityByID?ID=${this.editid}`);
     console.log(response)
 
-    this.contactForm = new FormGroup({
-
-      ID: new FormControl(this.editid),
-      CountryID: new FormControl(response.data[0].countryID, Validators.required),
-      ProvinceID: new FormControl(response.data[0].provinceID, Validators.required),
-      City: new FormControl(response.data[0].city, Validators.required),
-      Description: new FormControl(response.data[0].description, Validators.required)
-    })
+    this.contactForm.patchValue({
+      ID: this.editid,
+      CountryID: response.data[0].countryID,
+      ProvinceID: response.data[0].provinceID,
+      City: response.data[0].city,
+      Description: response.data[0].description
+    });
+    this.getProvince(response.data[0].countryID);
   }
 
-  async getProvince() {
-    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${this.contactForm.CountryID}`);
+  async getProvince(countryId: any) {
+    if (!countryId) return;
+    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${countryId}`);
     this.provinceData = result.data;
-   
+
 
   }
 

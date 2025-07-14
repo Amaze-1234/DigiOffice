@@ -43,6 +43,8 @@ export class JobLevelTypeForm {
       LevelDescription: new FormControl('', Validators.required),
 
     })
+    console.log(this.jobLevelForm.value);
+    
   }
 
   async getjoblevelTypeFormByID() {

@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [SharedModule],
   templateUrl: './job-level-type-form.html',
   styleUrl: './job-level-type-form.css',
-  inputs:['editid'],
+  inputs:['editID'],
   outputs: ['closemodal']
 })
 export class JobLevelTypeForm {

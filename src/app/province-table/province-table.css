@@ -25,7 +25,7 @@
    font-weight: bold;
    background-color: rgb(231, 227, 227);
    padding: 5px;
-   color: rgb(48, 48, 244);
+   color:  rgb(73, 73, 227);
    font-size: 20px;
 }
 table{
@@ -38,8 +38,8 @@ tr {
 }
 
 th {
-   color: rgb(48, 48, 244);
-   background-color: #f0f2f5;
+   color: rgb(73, 73, 227);
+   background-color: white;
    padding: 12px;
 }
 
@@ -47,10 +47,16 @@ td {
    color: black;
    padding: 10px;
    background-color: white;
-   border-bottom: 1px solid #3f27c8;
+   border-bottom: 1px solid #dfdee4;
 }
 .b1{
  float:right;
+}
+
+.edit-btn, .delete-btn{
+   width: 22px;
+   height: 22px;
+   margin-right: 6px;
 }
 
 .modal-header{

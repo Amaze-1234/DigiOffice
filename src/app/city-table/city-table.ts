@@ -14,6 +14,7 @@ export class CityTable {
 
   editid:any;
   CityData: any;
+resultLength: any;
 
   constructor(public modelService:NgbModal,public apiService:Api){
 
@@ -44,6 +45,7 @@ export class CityTable {
    async getCity() {
     let result = await this.apiService.getMethod('Master/GetCity');
     this.CityData = result.data;
+    this.resultLength = this.CityData.lenght
 
   }
 }

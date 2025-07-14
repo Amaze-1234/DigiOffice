@@ -2,7 +2,7 @@
     <form action="" [formGroup]="contactForm">
         <div class="row">
             <div class="col-lg-4">
-                <label for="">Contry Name</label>
+                <label for="">Contry Name<span class="required">*</span></label>
                 <select name="" id="" class="form-control" formControlName="CountryID">
                     <option value="" disabled>Select Country</option>
                     <option *ngFor="let data of countryData" [value]="data.id">{{data.countryName}}</option>
@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-lg-4">
-                <label for="">Province Name</label>
+                <label for="">Province Name<span class="required">*</span></label>
 
                 <select name="" id="" class="form-control" formControlName="ProvinceID">
                     <option value="" disabled>Select Province</option>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-lg-4">
-                <label for="">City Name</label>
+                <label for="">City Name<span class="required">*</span></label>
 
                 <input type="text" class="form-control" placeholder="Enter City Name" formControlName="City" />
             </div>
@@ -27,7 +27,7 @@
         <br>
         <div class="row">
             <div class="col-lg-4">
-                <label for="">City Description</label>
+                <label for="">City Description<span class="required">*</span></label>
 
                 <textarea name="" id="" class="form-control" placeholder="Description"
                     formControlName="Description"></textarea>

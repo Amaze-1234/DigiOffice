@@ -4,4 +4,28 @@ li{
 }
 *{
     font-size: medium;
+    color: blue;
+}
+#sidebar{
+    background-color: white;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+    height: 800px;
+    
+}
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background: gray;
+}
+::-webkit-scrollbar-thumb{
+    background: blue;
+}
+.highlight{
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    
 }

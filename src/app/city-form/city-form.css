@@ -9,3 +9,6 @@
     float: right;
     padding: 10px;
 }
+.required{
+    color: red;
+}

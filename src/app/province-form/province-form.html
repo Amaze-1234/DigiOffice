@@ -1,35 +1,33 @@
-<div>
-    <form [formGroup]="contactForm">
-        <div class="row">
-            <div class="col-lg-4">
-                <label class="label1">Country Name<span class="required">*</span></label>
-            </div>
-          <div class="col-lg-4">
-            <label class="label1">Province Name <span class="required">*</span></label>
-          </div>
-          <div class="col-lg-4">
-            <label class="label1">Description <span class="required">*</span></label>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4">
-                <select formControlName="CountryID" class="form-control">
-                <option value="" disabled>Select Country</option>
-                <option *ngFor="let data of countryList" value="data.id">{{data.countryName}}</option>
-            </select>
-            </div>
-          <div class="col-lg-4">
-             <input type="text" placeholder="Province Name" formControlName="provinceName" required />
-          </div>
-          <div class="col-lg-4">
-              <textarea rows="5"  cols="30" placeholder="Description" formControlName="provinceDescription" required></textarea>
-          </div>
-        </div>
-    </form>
-
-    <div class="button-grp">
-      <button class="cancel-btn" (click)="modalservice.dismissAll()">CANCEL</button>
-      <button class="submit-btn" (click)="submit(editid? 'save' : 'update')">SUBMIT</button>
+<form [formGroup]="contactForm">
+  <div class="row">
+    <div class="col-lg-4">
+      <label class="label1">Country Name<span class="required">*</span></label>
     </div>
+    <div class="col-lg-4">
+      <label class="label1">Province Name <span class="required">*</span></label>
+    </div>
+    <div class="col-lg-4">
+      <label class="label1">Description <span class="required">*</span></label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <select formControlName="countryID" class="form-control">
+        <option value="" disabled>Select Country</option>
+        <option *ngFor="let data of countryList" [value]="data.id">{{data.countryName}}</option>
+      </select>
+    </div>
+    <div class="col-lg-4">
+      <input type="text" placeholder="Province Name" formControlName="provinceName" required />
+    </div>
+    <div class="col-lg-4">
+      <textarea rows="5" cols="30" placeholder="Description" formControlName="provinceDescription" required></textarea>
+    </div>
+  </div>
+</form>
+
+<div class="button-grp">
+  <button class="cancel-btn" (click)="modalservice.dismissAll()">CANCEL</button>
+  <button class="submit-btn"  (click)="submit(editid? 'update' : 'save')">SUBMIT</button>
 </div>

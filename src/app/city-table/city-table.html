@@ -1,15 +1,20 @@
 
 <div >
     <br>
-    <div class="row">
+    <div class="row first" >
+        <div class="col-3">
+            <img src="images/filter.png" alt="icon"  style="width:25px;height:25px;">
 
-        
+            <p>Filter By:</p>
+            <input type="text" placeholder="Search..." class=" form-control searchBar" >
+        </div>
         <div class="col">
             <button type="submit" (click)="openModel(popup)"  class="shifting btn   px-3 text-white mb-4" ><img src="images/plus.svg" alt="+logo">   Add City</button>
         </div>
 
     </div><br>
-  <div class="row">
+    <h5>showing {{resultLength}}result</h5>
+  <div class="row " style="background-color: white;margin: 2px;">
         <div class="col-lg-12">
             <table>
                 <tr>

@@ -19,7 +19,7 @@ export class CityForm {
   contactForm: any;
   provinceData: any;
   countryData: any;
-  allProvinceData: any;
+
 
    constructor(public apiService: Api,public router:Router,public activateRoute:ActivatedRoute,public modelService:NgbModal) {
    
@@ -30,12 +30,12 @@ export class CityForm {
         this.getByID()
       }
     this.buildForm();
+    this.getProvince();
+    this.getCountry();
  
  
   }
-  getProvinceData(){
-    this.provinceData=this.allProvinceData.filter((x: any)=>x.CountryID=this.provinceData.countryID)
-  }
+ 
 
    buildForm(){
 
@@ -64,7 +64,7 @@ export class CityForm {
 
     async getProvince() {
     let result = await this.apiService.getMethod('Master/GetProvince');
-    this.allProvinceData = result.data;
+    this.provinceData = result.data;
 
   }
 

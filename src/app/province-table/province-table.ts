@@ -16,6 +16,7 @@ export class ProvinceTable {
   editid: any;
   data: any;
   provinceData: any;
+  provinceLength: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
 
@@ -27,6 +28,7 @@ export class ProvinceTable {
     const result = await this.api.getMethod("Master/GetProvince");
     console.log( result.data);
     this.provinceData = result.data;
+    this.provinceLength = this.provinceData.length;
   }
 
   openModal(Modal: any,id:any =null ){
@@ -37,9 +39,13 @@ export class ProvinceTable {
      
       this.modalservice.open(Modal,{centered: true, size:"lg", backdrop:'static'});
   }
-  close(data:any=null){
+  close(type:any=null){
     this.editid = null;
     this.modalservice.dismissAll();
+    if (type == 'save' || type == 'update') {
+      this.getData();
+    }
+    
   }
   async delete(id: any) {
     const confirmation = await Swal.fire({

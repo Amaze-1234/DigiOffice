@@ -15,18 +15,18 @@
             <input type="text" placeholder="Department Name" formControlName="departmentName">
         </div>
         <div class="col-lg-7">
-            <textarea placeholder="Level Description" rows="3" cols="20" formControlName="departmentDescription"></textarea>
+            <textarea placeholder="Level Description" rows="4" cols="25" formControlName="departmentDescription"></textarea>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             
         </div>
        
         <div class="col-lg-4" id="action-buttons">
-            <button id="click-submit"(click)="navigate()"style="background-color:white,color:blue">Cancel</button>
+            <button id="click-cancel">Cancel</button>
     
-             <button id="click-submit"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
+             <button id="click-submit" [disabled]="!this.departmentInfo.valid"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
         </div>
     </div>
 

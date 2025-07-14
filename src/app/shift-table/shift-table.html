@@ -5,7 +5,7 @@
   <div class="d-inline-flex align-items-center mt-1">
     <img src="images/filter.png" alt="filter" class="img-fluid me-1" width="20px">
     <span class="fw-bold me-4" style="color:darkolivegreen">Filter by:</span>
-    <input type="search" class="" placeholder="Search...">
+    <input type="search" class="" placeholder="Search..." class="">
   </div>
   <button (click)="openModal(popupmodal)" class="shifting btn px-4 text-white me-2 mt-1 mb-1">
     <img src="images/plus.svg" alt="+logo" class="text-center me-1 mt-0">Add Shift
@@ -51,9 +51,5 @@
     </div>
     <div class="modal-body">
         <app-shift-form [editid]="editid" (closemodal)="close($event)"></app-shift-form>
-    </div>
-    <div class="modal-footer">
-    
-
-    </div>
+    </div>    
 </ng-template>

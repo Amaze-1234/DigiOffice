@@ -22,13 +22,14 @@ export class ProvinceTable {
 
   ngOnInit() {
     this.getData();
+
   }
 
   async getData() {
     const result = await this.api.getMethod("Master/GetProvince");
     console.log( result.data);
     this.provinceData = result.data;
-    this.provinceLength = this.provinceData.length;
+    //this.provinceLength = this.provinceData.length;
   }
 
   openModal(Modal: any,id:any =null ){

@@ -10,7 +10,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-loan-type-form',
   imports: [FormsModule, CommonModule,ReactiveFormsModule],
   templateUrl: './loan-type-form.html',
-  styleUrl: './loan-type-form.css'
+  styleUrl: './loan-type-form.css',
+  inputs:['editid'],
+   outputs: ['closemodal']
+
 })
 export class LoanTypeForm implements OnInit{
 
@@ -21,8 +24,8 @@ export class LoanTypeForm implements OnInit{
 
    constructor(public router: Router, public apiservice: Api, public activeroute: ActivatedRoute,public modalservice:NgbModal) { }
   
-   @Input() editid: any;
-   @Output() closemodal = new EventEmitter<any>();
+   editid: any;
+  closemodal = new EventEmitter<any>();
  
  
  

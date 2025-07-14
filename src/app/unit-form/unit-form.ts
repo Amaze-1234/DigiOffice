@@ -8,14 +8,13 @@ import Swal from 'sweetalert2';
   imports: [SharedModule],
   templateUrl: './unit-form.html',
   styleUrl: './unit-form.css',
-  inputs:['deptID'],
-  outputs: ['closemodal']
+
 })
 export class UnitForm {
     department: any =[];
     unitDetails:any;
-  deptID:any;
-    closeModal=new EventEmitter<any>();
+  @Input() deptID:any;
+  @Output()  closeModal=new EventEmitter<any>();
     constructor(public apiService: Api){}
   
     ngOnInit(){

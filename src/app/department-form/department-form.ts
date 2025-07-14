@@ -8,12 +8,11 @@ import Swal from 'sweetalert2';
   imports: [ReactiveFormsModule],
   templateUrl: './department-form.html',
   styleUrl: './department-form.css',
-  inputs:['deptID'],
-  outputs: ['closemodal']
+  
 })
 export class DepartmentForm {
-   deptID:any
- closeModal=new EventEmitter<any>();;
+  @Input() deptID:any
+ @Output() closeModal=new EventEmitter<any>();;
   departmentInfo:any;
   constructor(public api:Api,public route:Router){}
   ngOnInit()

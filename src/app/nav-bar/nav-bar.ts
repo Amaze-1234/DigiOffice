@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Loader } from '../../Services/loader';
+import { SharedModule } from '../../Shared/shared.module';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css'
 })
 export class NavBar {
 
    constructor(public router:Router,public loderService:Loader){}
+
+   isdisplay:any =false;
 
   logout() {
   Swal.fire({
@@ -34,5 +37,8 @@ export class NavBar {
 }
 
 
+  display(){
+    this.isdisplay = !this.isdisplay;
+  }
 
 }

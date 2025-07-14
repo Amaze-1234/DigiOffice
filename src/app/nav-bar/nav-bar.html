@@ -5,7 +5,8 @@
       <img src="images/wave.png"> </p>
     </div>
     <div class="button-grp">
-      <img src="images/profile.svg" (click)="logout()">
+      <img src="images/profile.svg" (click)="display()" >
+      <button class="btn" (click)="logout()" [ngClass]="this.isdisplay==true?'show':'b1'" ><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
     </div>
 </div>
  

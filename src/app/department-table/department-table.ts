@@ -43,14 +43,26 @@ Swal.fire({
   if (result.isConfirmed) {
     
   const result= await this.api.getMethod(`DigiOffice/DeleteDepartment?id=${id}`);
-    
   this.getDepartmentdetails();
+    if(result.data)
+    {
+  
     Swal.fire({
       title: "Deleted!",
-      text: "Your file has been deleted.",
+      text: "Your data has been deleted.",
       icon: "success"
     });
   }
+  else{
+     Swal.fire({
+      title: " Not Deleted!",
+      text: "This is can't Delete Due to Unit consists this Department",
+      icon: "error"
+    });
+
+  }
+}
+
 });
 
 }

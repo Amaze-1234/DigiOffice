@@ -1,21 +1,21 @@
  <form [formGroup]="departmentInfo">
 <div class="c1">
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
             <label> DepartmentName<span id="mark">*</span></label>
         </div>
        
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <label>Description<span id="mark">*</span></label>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
         
-            <input type="text" placeholder="Department Name" formControlName="departmentName">
+            <input type="text" placeholder="Department Name"  class=" form-control"formControlName="departmentName">
         </div>
-        <div class="col-lg-7">
-            <textarea placeholder="Level Description" rows="4" cols="25" formControlName="departmentDescription"></textarea>
+        <div class="col-lg-5" id="Description">
+            <textarea placeholder="Level Description" rows="4" cols="25" class="form-control" formControlName="departmentDescription"></textarea>
         </div>
     </div>
     <div class="row">
@@ -24,9 +24,9 @@
         </div>
        
         <div class="col-lg-4" id="action-buttons">
-            <button id="click-cancel">Cancel</button>
+            <button id="click-cancel" (click)="cancel()">Cancel</button>
     
-             <button id="click-submit" [disabled]="!this.departmentInfo.valid"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
+             <button id="click-submit" (click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
         </div>
     </div>
 

@@ -27,3 +27,6 @@ display: flex;
    gap: 10px;
    height: 50px;
 }
+tr {
+   border: 1px solid lightblue;
+}

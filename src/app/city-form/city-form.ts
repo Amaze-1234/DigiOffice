@@ -26,7 +26,7 @@ export class CityForm {
   
     }
      ngOnInit() {
-      if (this.editid) {
+      if(this.editid) {
         this.getByID()
       }
     this.buildForm();

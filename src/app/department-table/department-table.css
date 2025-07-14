@@ -1,36 +1,46 @@
 table{
     border-collapse: none;
+    margin-bottom: 4%;
+    background-color: white;
+    border-radius: 2%;
 }
 th{
     color:Blue;
     padding:10px;
-
 }
 tr{
     border:1px solid rgb(210, 210, 241);
     margin-left: -2px;
 }
+#filter-text{
+    color:green;
+    margin-top: 10px;
+    width:100px;
+    font-weight: 400;
 
+}
 td{
 color:gray;
+padding-left:15px;
 }
-.header
+.card-body
 {
     display:flex;
     justify-content: space-between;
-    padding:8px;
+    padding:4px;
 }
 .intial
 {
     display:inline-flex;
-    gap:10px;
+    gap:6px;
     align-items: center;
 }
 
 #addButton{
-      background-color: blue;
+   background-color: blue;
    color: white;
-   padding:8px 25px;
+   padding:8px 30px;
+   margin-top:3px;
    border:none;
 }
 .modify{
@@ -42,5 +52,5 @@ color:gray;
     margin-top: 5px;
     color:blue;
     font-size:18px ;
-    font-weight:650;
+    font-weight:500;
 }

@@ -10,7 +10,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-country-form',
   imports: [SharedModule],
   templateUrl: './country-form.html',
-  styleUrl: './country-form.css'
+  styleUrl: './country-form.css',
+  inputs:['editid'],
+  outputs: ['closemodal']
 })
 export class CountryForm {
   @Input() editid: any;

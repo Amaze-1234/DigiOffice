@@ -31,7 +31,6 @@ export class LoanTypeTable implements OnInit{
        async getData(){
        const result =await this.apiservice.getMethod("Master/GetLoan");
        this. loanData = result.data;
-       this.loanLength=this.loanData.length;
   
     
      }

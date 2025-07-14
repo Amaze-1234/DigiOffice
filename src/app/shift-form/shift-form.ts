@@ -10,86 +10,91 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-shift-form',
   imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './shift-form.html',
-  styleUrl: './shift-form.css'
+  styleUrl: './shift-form.css',
+  inputs:['editid'],
+  outputs: ['closemodal']
+
+
 })
-export class ShiftForm implements OnInit{
-   shiftForm:any;
-  shiftType:any;
-  startTime:any;
-  endTime:any;
-  shiftCode:any;
-  gracePeriod:any;
+export class ShiftForm implements OnInit {
+  shiftForm: any;
+  shiftType: any;
+  startTime: any;
+  endTime: any;
+  shiftCode: any;
+  gracePeriod: any;
+  editid: any;
 
-   constructor(public router: Router, public apiservice: Api, public modalservice:NgbModal) { }
-  
-   @Input() editid: any;
-   @Output() closemodal = new EventEmitter<any>();
- 
- 
- 
+
+constructor(public router: Router, public apiservice: Api, public modalservice: NgbModal) { }
+
+closemodal = new EventEmitter<any>();
+
+
+
   ngOnInit() {
-  this.buildForm(); 
-  if (this.editid) {
-    this.getByID(); 
+    this.buildForm();
+    if (this.editid) {
+      this.getByID();
+    }
   }
-}
- 
- 
- 
-   buildForm() {
-     this.shiftForm = new FormGroup({
+
+
+
+  buildForm() {
+    this.shiftForm = new FormGroup({
       id: new FormControl(''),
-       shiftType: new FormControl('', Validators.required),
-       startTime: new FormControl('', Validators.required),
-       endTime: new FormControl('', Validators.required),
-       shiftCode: new FormControl('', Validators.required),
-       gracePeriod: new FormControl('', Validators.required)
- 
-     })
-   }
- 
+      shiftType: new FormControl('', Validators.required),
+      startTime: new FormControl('', Validators.required),
+      endTime: new FormControl('', Validators.required),
+      shiftCode: new FormControl('', Validators.required),
+      gracePeriod: new FormControl('', Validators.required)
+
+    })
+  }
+
   async onSubmit(type: any) {
-           debugger;
-   
-           
-           if (type == 'submit') {
-             let result = await this.apiservice.postMethod("Master/InsertShift", this.shiftForm.value);
-             if (result.data > 0) {
-               Swal.fire("Data Saved Successfully");
-               this.closemodal.emit('submit');
-       
-             }
-       
-           }
-           else {
-             let result = await this.apiservice.postMethod("Master/UpdateShift", this.shiftForm.value);
-             if (result.data > 0) {
-               Swal.fire("Data Updated Successfully");
-               this.closemodal.emit('update');
-            
-       
-             }
-           }
-         }
+    debugger;
 
- 
-   async getByID() {
-     debugger;
-     const response = await this.apiservice.getMethod(`Master/GetShiftByID?ID=${this.editid}`);
-     console.log(response);
-     this.shiftForm = new FormGroup({
- 
-       id: new FormControl(this.editid),
-       shiftType: new FormControl(response.data[0]?. shiftType, Validators.required),
+
+    if (type == 'submit') {
+      let result = await this.apiservice.postMethod("Master/InsertShift", this.shiftForm.value);
+      if (result.data > 0) {
+        Swal.fire("Data Saved Successfully");
+        this.closemodal.emit('submit');
+
+      }
+
+    }
+    else {
+      let result = await this.apiservice.postMethod("Master/UpdateShift", this.shiftForm.value);
+      if (result.data > 0) {
+        Swal.fire("Data Updated Successfully");
+        this.closemodal.emit('update');
+
+
+      }
+    }
+  }
+
+
+  async getByID() {
+    debugger;
+    const response = await this.apiservice.getMethod(`Master/GetShiftByID?ID=${this.editid}`);
+    console.log(response);
+    this.shiftForm = new FormGroup({
+
+      id: new FormControl(this.editid),
+      shiftType: new FormControl(response.data[0]?.shiftType, Validators.required),
       startTime: new FormControl(response.data[0]?.startTime, Validators.required),
-            endTime: new FormControl(response.data[0]?.endTime, Validators.required),
-            shiftCode: new FormControl(response.data[0]?.shiftCode, Validators.required),
+      endTime: new FormControl(response.data[0]?.endTime, Validators.required),
+      shiftCode: new FormControl(response.data[0]?.shiftCode, Validators.required),
 
-       gracePeriod: new FormControl(response.data[0]?.gracePeriod, Validators.required),
- 
- 
-     })
- 
-   }
+      gracePeriod: new FormControl(response.data[0]?.gracePeriod, Validators.required),
+
+
+    })
+
+  }
 
 }

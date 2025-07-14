@@ -1,31 +1,62 @@
-li{
+li {
     list-style: none;
     cursor: pointer;
+    padding: 2% 10%;
 }
-*{
+
+* {
     font-size: medium;
     color: blue;
 }
-#sidebar{
+
+#sidebar {
     background-color: white;
-    width: 100%;
+    width: 110%;
     align-items: center;
-    overflow: auto;
+    overflow-y: auto;
     height: 800px;
-    
+    margin-left: -13%;
+
+
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 5px;
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
     background: gray;
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     background: blue;
+    height: 10px;
 }
-.highlight{
+
+.highlight {
     background-color: blue;
     color: white;
-    padding: 5px;
-    
+    padding: 2% 10%;
+
+}
+
+.subnav-content {
+
+    left: 0;
+    background-color: white;
+    z-index: 1;
+    padding-left: 10%;
+
+    background-color: rgb(229, 239, 243);
+}
+
+.subnav-content li {
+    padding: 5% 10%;
+}
+
+.eye-icon {
+    margin-top: -28%;
+    float: right;
+    width: 10%;
+    color: white;
 }

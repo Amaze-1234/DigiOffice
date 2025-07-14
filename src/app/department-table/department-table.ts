@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class DepartmentTable {
 
-DepartmentData:any;
+departmentData:any;
 deptID:any;
 deptLength:any;
 constructor(public api:Api,public modalService:NgbModal){}
@@ -25,9 +25,9 @@ this.getDepartmentdetails();
 async getDepartmentdetails()
 {
   const result= await this.api.getMethod("DigiOffice/GetDepartment");
-  this.DepartmentData=result.data;
-  this.deptLength=this.DepartmentData.length
-  console.log(this.DepartmentData)
+  this.departmentData=result.data;
+  this.deptLength=this.departmentData.length
+  console.log(this.departmentData)
 }
 async deleteDepartment(id:any)
 {

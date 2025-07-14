@@ -14,6 +14,10 @@ export class SideBar {
   constructor(public router:Router,public loaderService:Loader){
 
   }
+  ngOnInit(){
+    
+    this.navigateDepartment();
+  }
   navigateDashboard(){
     sessionStorage.setItem("isTitle","Dashboard Master")
     this.loaderService.isTitle = 'Dashboard Master';
@@ -30,13 +34,12 @@ export class SideBar {
     sessionStorage.setItem("isTitle","EmployeeField Master")
     this.loaderService.isTitle = 'EmployeeField Master';
   }
-  
-
-  navigateDepartment(){
+    navigateDepartment(){
     this.router.navigate(['/department-table']);
     sessionStorage.setItem("isTitle","Department Master");
     this.loaderService.isTitle = 'Department Master';
   }
+
   navigateUnit(){
      this.router.navigate(['/unit-table']);
      sessionStorage.setItem("isTitle","Unit Master")

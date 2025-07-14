@@ -39,7 +39,7 @@
   <div class="footing mt-3">
           <button  (click)="modalservice.dismissAll()" class="btn px-5 text-primary btn-outline-primary fw-bold me-4">Cancel</button>
 
-    <button (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
+    <button  [disabled]="shiftForm.invalid"  (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
 
 </div>
 

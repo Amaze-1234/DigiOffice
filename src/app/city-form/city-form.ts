@@ -23,6 +23,7 @@ export class CityForm {
   countryData: any;
   countryID: any;
   ID: any;
+  newone: any;
 
 
 
@@ -41,9 +42,11 @@ export class CityForm {
 
     }
     this.buildForm();
-    // this.getProvince();
+
     this.getCountry();
-    console.log(this.countryID);
+
+    
+    
 
 
 
@@ -59,12 +62,14 @@ export class CityForm {
       City: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required)
 
-    })
-    this.contactForm.get('CountryID')?.valueChanges.subscribe((countryId: any) => {
-      this.ID = countryId;
-      this.getProvince(countryId); // Load provinces for this country
-      this.contactForm.get('ProvinceID')?.setValue(''); // Reset province selection
     });
+  
+  }
+
+  async onChange(even:any){
+    debugger;
+    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${even.target.value}`);
+    this.provinceData = result.data;
   }
 
   async getByID() {
@@ -79,16 +84,10 @@ export class CityForm {
       City: response.data[0].city,
       Description: response.data[0].description
     });
-    this.getProvince(response.data[0].countryID);
+    
   }
 
-  async getProvince(countryId: any) {
-    if (!countryId) return;
-    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${countryId}`);
-    this.provinceData = result.data;
-
-
-  }
+  
 
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');

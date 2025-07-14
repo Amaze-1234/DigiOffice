@@ -9,37 +9,37 @@ import { LoanTypeForm } from '../loan-type-form/loan-type-form';
 
 @Component({
   selector: 'app-loan-type-table',
-  imports: [FormsModule, CommonModule,ReactiveFormsModule,LoanTypeForm],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, LoanTypeForm],
   templateUrl: './loan-type-table.html',
   styleUrl: './loan-type-table.css'
 })
-export class LoanTypeTable implements OnInit{
+export class LoanTypeTable implements OnInit {
 
-   loanData:any;
-   editid:any;
+  loanData: any;
+  editid: any;
   loanForm: any;
   closemodal: any;
-  loanLength:any;
-   constructor(public apiservice:Api, public router:Router,public modalService: NgbModal){}
- 
+  loanLength: any;
+  constructor(public apiservice: Api, public router: Router, public modalService: NgbModal) { }
 
-     ngOnInit(){
-       this.getData();
-     }
-   
-   
-       async getData(){
-       const result =await this.apiservice.getMethod("Master/GetLoan");
-       this. loanData = result.data;
-  
-    
-     }
-    
-     
-    
-    
-      async delete(id: any) {
-        debugger
+
+  ngOnInit() {
+    this.getData();
+  }
+
+
+  async getData() {
+    const result = await this.apiservice.getMethod("Master/GetLoan");
+    this.loanData = result.data;
+
+
+  }
+
+
+
+
+  async delete(id: any) {
+    debugger
     const confirmation = await Swal.fire({
       title: "Are you sure you want to delete?",
       icon: "warning",
@@ -50,7 +50,7 @@ export class LoanTypeTable implements OnInit{
     });
     if (confirmation.isConfirmed) {
       const result = await this.apiservice.getMethod(`Master/DeleteLoan?ID=${id}`);
-     
+
       if (result.data > 0) {
         Swal.fire({
           title: "Deleted!",
@@ -61,21 +61,21 @@ export class LoanTypeTable implements OnInit{
       }
     }
   }
-   
-   
+
+
 
   openModal(modal: any, id: any = null) {
-  debugger;
-  this.editid = id; 
-  this.modalService.open(modal, {
-    centered: true,
-    size: "lg",
-    backdrop: "static",
-    scrollable: true
-  });
-}
+    debugger;
+    this.editid = id;
+    this.modalService.open(modal, {
+      centered: true,
+      size: "lg",
+      backdrop: "static",
+      scrollable: true
+    });
+  }
 
-  close(data:any = null) {
+  close(data: any = null) {
     debugger;
     this.editid = null;
     this.modalService.dismissAll();

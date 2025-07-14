@@ -14,3 +14,16 @@ th {
     color: blue;
 
 }
+.first{
+    background-color: white;
+     margin: 2px;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     padding: 0;
+}
+.col-5{
+display: flex;
+   gap: 10px;
+   height: 50px;
+}

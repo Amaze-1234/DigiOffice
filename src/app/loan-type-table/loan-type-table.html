@@ -14,13 +14,13 @@
  <div>
   <h5 class="text-start" style="color:blue;">Showing {{loanLength}} Results</h5>
   </div>
-  <div class="bg-white ps-1 pe-1">
-<table>
+  <div class="bg-white ps-1 pe-1 rounded">
+<table class="table w-100" style="table-layout: fixed;">
   <tr class="border-bottom">
 
     <th>Loan Type</th>
-    <th>Loan Description</th>
-    <th>Actions</th>
+    <th >Loan Description</th>
+    <th class="text-center">Actions</th>
    
   </tr>
   <tr *ngFor = "let l of loanData" class="border-bottom">
@@ -29,7 +29,7 @@
     <td>{{l.loanDescription}}</td>
   
 
-  <td><button (click)="openModal(popupmodal,l.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
+  <td class="text-center"><button (click)="openModal(popupmodal,l.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
 
     <button (click)="delete(l.id)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  

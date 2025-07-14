@@ -4,7 +4,7 @@
   <div class="mb-2 pt-1 pb-1  bg-white ps-1 h-cover d-flex align-items-start justify-content-between">
   <div class="d-inline-flex align-items-center mt-1">
     <img src="images/filter.png" alt="filter" class="img-fluid me-1" width="20px">
-    <span class="fw-bold me-4">Filter By:</span>
+    <span class="fw-bold me-4" style="color:darkolivegreen">Filter By:</span>
     <input type="search" placeholder="Search...">
   </div>
   <button (click)="openModal(popupmodal)" class="shifting btn px-5 text-white me-2 mt-1 mb-1">
@@ -14,13 +14,13 @@
  <div>
   <h5 class="text-start" style="color:blue;">Showing {{loanLength}} Results</h5>
   </div>
-  <div class="bg-white ps-1 pe-1">
-<table>
+  <div class="bg-white ps-1 pe-1 rounded">
+<table class="table w-100" style="table-layout: fixed;">
   <tr class="border-bottom">
 
     <th>Loan Type</th>
-    <th>Loan Description</th>
-    <th>Actions</th>
+    <th >Loan Description</th>
+    <th class="text-center">Actions</th>
    
   </tr>
   <tr *ngFor = "let l of loanData" class="border-bottom">
@@ -29,7 +29,7 @@
     <td>{{l.loanDescription}}</td>
   
 
-  <td><button (click)="openModal(popupmodal,l.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
+  <td class="text-center"><button (click)="openModal(popupmodal,l.id)" class="btn  me-1 "> <img src="images/Edit 1.svg"  class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>
 
     <button (click)="delete(l.id)" class="btn "><img src="images/Delete.svg" alt="deleted image" class="img-fluid" style="width: 25px; height: auto;"></button></td>
  

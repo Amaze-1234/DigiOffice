@@ -4,6 +4,7 @@ import { Api } from '../../Services/api';
 import { Router } from '@angular/router';
 import { JobLevelTypeForm } from '../job-level-type-form/job-level-type-form';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-job-level-type-table',
@@ -14,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class JobLevelTypeTable {
   jobLevelShift: any;
   editID: any;
+  jobLength: any;
   constructor(public apiService: Api, public router: Router, public modalService: NgbModal) {
 
   }
@@ -23,6 +25,7 @@ export class JobLevelTypeTable {
   async jobLevelShiftdata() {
     let result = await this.apiService.getMethod('DigiOffice/GetJoblevelTypeJoinDesignation');
     console.log(result.data);
+    this.jobLength = result.data.length;
     console.log(1);
 
     this.jobLevelShift = result.data;
@@ -38,6 +41,7 @@ export class JobLevelTypeTable {
   close(data: any = null) {
     debugger;
     this.editID = null;
+    console.log("parent");
     this.modalService.dismissAll();
     if (data == 'save' || data == 'update') {
       this.jobLevelShiftdata();
@@ -45,9 +49,26 @@ export class JobLevelTypeTable {
   }
 
   async delete(id: any) {
-    let result = await this.apiService.getMethod(`DigiOffice/DeleteJoblevelType?ID=${id}`);
-    if (result.data > 0) {
+   Swal.fire({
+  title: "Are you sure want to delete?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then(async (result) => {
+  if (result.isConfirmed) {
+      let response = await this.apiService.getMethod(`DigiOffice/DeleteJobLevelType?ID=${id}`);
+    if (response.data > 0) {
       this.jobLevelShiftdata();
     }
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your data has been deleted.",
+      icon: "success"
+    });
+  }
+});
   }
 }

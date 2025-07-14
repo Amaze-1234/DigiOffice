@@ -28,13 +28,12 @@
         </div>
         <div class="row c2">
             <div>
-                <button class="btn-cancel">Cancel</button>
+                <button class="btn-cancel" (click) = "cancel()">Cancel</button>
                 <button class="btn" [disabled]="jobLevelForm.invalid"
                     (click)="submit(editID?'update':'save')">
                     {{editID?'update':'Submit'}}
                 </button>
             </div>
-
         </div>
     </form>
 </div>

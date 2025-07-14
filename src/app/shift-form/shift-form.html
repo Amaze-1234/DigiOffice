@@ -1,49 +1,51 @@
 <div class="container">
   <form [formGroup]="shiftForm">
- 
-<div class="row">
-    <div class="col-4">
-    <label>Shift Type<span class="text-danger fw-bold ">*</span></label>
-  <select class="form-control mt-1" formControlName="shiftType">
-  <option value="" disabled selected>Select Shift</option>
-  <option value="Morning Shift">Morning Shift</option>
-  <option value="Afternoon Shift">Afternoon Shift</option>
-  <option value="Evening Shift">Evening Shift</option>     
-  <option value="Midnight Shift">Midnight Shift</option>   
-</select>
-    </div>
-    <div class="col-4">
-    <label>Start Time<span class="text-danger fw-bold">*</span></label>
-    <div>
-<input type="time" name="starttime"  formControlName="startTime"  class="form-control mt-1">
-</div>
-    </div>
-    <div class="col-4">
+
+    <div class="row">
+      <div class="col-4">
+        <label>Shift Type<span class="text-danger fw-bold ">*</span></label>
+        <select class="form-control mt-1" formControlName="shiftType">
+          <option value="" disabled selected>Select Shift</option>
+          <option value="Morning Shift">Morning Shift</option>
+          <option value="Afternoon Shift">Afternoon Shift</option>
+          <option value="Evening Shift">Evening Shift</option>
+          <option value="Midnight Shift">Midnight Shift</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <label>Start Time<span class="text-danger fw-bold">*</span></label>
+        <div>
+          <input type="time" name="starttime" formControlName="startTime" class="form-control mt-1">
+        </div>
+      </div>
+      <div class="col-4">
         <label>End Time<span class="text-danger fw-bold">*</span></label>
-<input type="time" name="endtime"  formControlName="endTime"  class="form-control mt-1">
+        <input type="time" name="endtime" formControlName="endTime" class="form-control mt-1">
+      </div>
     </div>
-</div>
 
-<div class="row mt-4">
-<div class="col-4">
-     <label>Shift Code<span class="text-danger fw-bold pb-1">*</span></label>
-<input type="text" name="shiftcode"  formControlName="shiftCode" class="form-control mt-1">
-</div>
-<div class="col-4">
-     <label>Grace Period<span class="text-danger fw-bold">*</span></label>
-<input type="number" name="graceperiod"  formControlName="gracePeriod" class="form-control mt-1">
-</div>
-</div>
+    <div class="row mt-4">
+      <div class="col-4">
+        <label>Shift Code<span class="text-danger fw-bold pb-1">*</span></label>
+        <input type="text" name="shiftcode" formControlName="shiftCode" class="form-control mt-1">
+      </div>
+      <div class="col-4">
+        <label>Grace Period<span class="text-danger fw-bold">*</span></label>
+        <input type="number" name="graceperiod" formControlName="gracePeriod" class="form-control mt-1">
+      </div>
+    </div>
 
 
-  <div class="footing mt-3">
-          <button  (click)="modalservice.dismissAll()" class="btn px-5 text-primary btn-outline-primary fw-bold me-4">Cancel</button>
+    <div class="footing mt-3">
+      <button (click)="modalservice.dismissAll()"
+        class="btn px-5 text-primary btn-outline-primary fw-bold me-4">Cancel</button>
 
-    <button  [disabled]="shiftForm.invalid"  (click)="onSubmit(editid?'update':'submit')" class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
+      <button [disabled]="shiftForm.invalid" (click)="onSubmit(editid?'update':'submit')"
+        class="btn px-5 text-white bg-primary fw-bold">{{editid?'Update':'Submit'}}</button>
 
-</div>
+    </div>
 
-   
-  
+
+
   </form>
 </div>

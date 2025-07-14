@@ -13,7 +13,7 @@ import { SharedModule } from '../../Shared/shared.module';
   selector: 'app-shift-table',
   imports: [SharedModule, ShiftForm],
   templateUrl: './shift-table.html',
-  styleUrl: './shift-table.css', 
+  styleUrl: './shift-table.css',
 })
 export class ShiftTable implements OnInit {
   shiftData: any;

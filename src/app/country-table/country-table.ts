@@ -51,7 +51,7 @@ export class CountryTable {
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#808080",
       confirmButtonText: "Yes"
     });
     if (confirmation.isConfirmed) {

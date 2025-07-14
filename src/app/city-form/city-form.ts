@@ -19,11 +19,14 @@ export class CityForm {
   contactForm: any;
   provinceData: any;
   countryData: any;
+  
+
+
 
 
   constructor(public apiService: Api, public router: Router, public activateRoute: ActivatedRoute, public modelService: NgbModal) {
 
-
+   
   }
   ngOnInit() {
     if (this.editid) {
@@ -35,10 +38,12 @@ export class CityForm {
     this.buildForm();
     this.getProvince();
     this.getCountry();
+    console.log(this.contactForm.get('CountryID').value);
+    
 
 
   }
-
+    
 
   buildForm() {
 
@@ -68,8 +73,9 @@ export class CityForm {
   }
 
   async getProvince() {
-    let result = await this.apiService.getMethod('Master/GetProvince');
+    let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${this.contactForm.CountryID}`);
     this.provinceData = result.data;
+   
 
   }
 

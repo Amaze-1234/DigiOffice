@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <label for="">Contry Name<span class="required">*</span></label>
-                <select name="" id="" class="form-control" formControlName="CountryID">
+                <select name="" id="" class="form-control" formControlName="CountryID" >
                     <option value="" disabled>Select Country</option>
                     <option *ngFor="let data of countryData" [value]="data.id">{{data.countryName}}</option>
                 </select>
@@ -12,7 +12,7 @@
             <div class="col-lg-4">
                 <label for="">Province Name<span class="required">*</span></label>
 
-                <select name="" id="" class="form-control" formControlName="ProvinceID">
+                <select name="" id="" class="form-control" formControlName="ProvinceID" >
                     <option value="" disabled>Select Province</option>
                     <option *ngFor="let data of provinceData" [value]="data.id">{{data.provinceName}}</option>
                 </select>

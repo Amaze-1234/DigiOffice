@@ -22,7 +22,7 @@ resultLength: any;
   ngOnInit(){
     this.getCity();
   }
-
+ 
 
   openModel(Modal:any,id:any=null){
     

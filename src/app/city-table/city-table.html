@@ -52,6 +52,6 @@
     
     </div>
     <div class="modal-body">
-       <app-city-form  (closemodal)="close($event)"> </app-city-form>
+       <app-city-form [editid]="editid" (closemodal)="close($event)"> </app-city-form>
     </div>
 </ng-template>

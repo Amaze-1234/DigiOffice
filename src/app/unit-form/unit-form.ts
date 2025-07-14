@@ -8,13 +8,14 @@ import Swal from 'sweetalert2';
   imports: [SharedModule],
   templateUrl: './unit-form.html',
   styleUrl: './unit-form.css',
-
+   inputs: ['deptID'],
+  outputs: ['closeModal']
 })
 export class UnitForm {
     department: any =[];
     unitDetails:any;
-  @Input() deptID:any;
-  @Output()  closeModal=new EventEmitter<any>();
+   deptID:any;
+  closeModal=new EventEmitter<any>();
     constructor(public apiService: Api){}
   
     ngOnInit(){
@@ -41,33 +42,14 @@ async addDepartment(type:any)
          }
      if(type=='save')
      {
-       Swal.fire({
-   title: "Are you sure?",
-   text: "You want to add Data!",
-   icon: "warning",
-   showCancelButton: true,
-   confirmButtonColor: "#3085d6",
-   cancelButtonColor: "#d33",
-   confirmButtonText: "Yes, Add it!"
- }).then(async (result) => {
-   if (result.isConfirmed) {
-     
+       
      const result =await this.apiService.postMethod('DigiOffice/InsertUnit',this.unitDetails.value)
    this.closeModal.emit('save');
    
      this.closeModal.emit("save")
-     Swal.fire({
-       title: "Added!",
-       text: "Your data is added successfully.",
-       icon: "success"
-     });
-   }
- });
+    
 }
-   
-  
   else{
-   
     const result =await this.apiService.postMethod(`DigiOffice/UpdateUnit`,this.unitDetails.value)
    this.closeModal.emit('save');
 

@@ -8,23 +8,22 @@ import Swal from 'sweetalert2';
   imports: [ReactiveFormsModule],
   templateUrl: './department-form.html',
   styleUrl: './department-form.css',
-  
+  inputs: ['deptID'],
+  outputs: ['closeModal']
 })
 export class DepartmentForm {
-  @Input() deptID:any
- @Output() closeModal=new EventEmitter<any>();;
-  departmentInfo:any;
-  constructor(public api:Api,public route:Router){}
-  ngOnInit()
-  {
-   
-    if(this.deptID)
-    {
+  deptID: any
+  closeModal = new EventEmitter<any>();;
+  departmentInfo: any;
+  constructor(public api: Api, public route: Router) { }
+  ngOnInit() {
+
+    if (this.deptID) {
       this.updateDepartmentForm();
     }
-    this.DepartmentFormDetails();
+    this.departmentFormDetails();
   }
-  DepartmentFormDetails() {
+  departmentFormDetails() {
     this.departmentInfo = new FormGroup({
       ID: new FormControl(''),
       departmentName: new FormControl('', Validators.required),
@@ -39,52 +38,12 @@ export class DepartmentForm {
       return;
     }
     if (type == 'save') {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You want to add Data!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Add it!"
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-
-          const result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
-
-          this.closeModal.emit("save")
-          Swal.fire({
-            title: "Added!",
-            text: "Your data is added successfully.",
-            icon: "success"
-          });
-        }
-      });
+      const result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
+      this.closeModal.emit("save")
     }
     else {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You want to Update Data!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Update it!"
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
-
-          this.deptID = null
-
-          this.closeModal.emit("update")
-          Swal.fire({
-            title: "Updated!",
-            text: "Your data is updated successfully.",
-            icon: "success"
-          });
-        }
-      });
-
+      const result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
+      this.closeModal.emit("update")
     }
   }
   async updateDepartmentForm() {

@@ -5,15 +5,27 @@
 }
 
 table {
+    
     width: 100%;
     /* border-collapse: collapse; */
+      border-collapse: none;
+   
+    background-color: white;
+    border-radius: 2%;
 
 }
 
 th {
     color: blue;
-
+    padding:10px;
 }
+td{
+    padding: 10px;
+}
+tr{
+    border-bottom: 1px solid gray;
+}
+
 .first{
     background-color: white;
      margin: 2px;
@@ -26,7 +38,4 @@ th {
 display: flex;
    gap: 10px;
    height: 50px;
-}
-tr {
-   border: 1px solid lightblue;
 }

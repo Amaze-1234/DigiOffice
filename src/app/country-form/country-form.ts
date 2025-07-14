@@ -14,34 +14,36 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CountryForm {
   @Input() editid: any;
-  contactForm:any;
-  @Output() closeModal= new EventEmitter<any>();
-  constructor(public api: Api,public router:Router,public activateRoute:ActivatedRoute ,public modalservice:NgbModal) {}
+  contactForm: any;
+  testvaraible:any;
+  @Output() closeModal = new EventEmitter<any>();
+  constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public modalservice: NgbModal) { }
   ngOnInit() {
-  
-       if (this.editid) {
-        this.getByID()
-      }
-      this.buildForm();
+
+    if (this.editid) {
+      this.getByID();
+    }
+    this.buildForm();
   }
- 
-   buildForm(){
+
+  buildForm() {
     this.contactForm = new FormGroup({
       id: new FormControl(''),
       countryName: new FormControl('', Validators.required),
       countryDescription: new FormControl('', Validators.required),
     });
   }
-  async getByID(){
-    let response=await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
-    this.contactForm=new FormGroup({
-      id :new FormControl(this.editid),
-      countryName: new FormControl(response.data[0].countryName,Validators.required),
-      countryDescription:new FormControl(response.data[0].countryDescription,Validators.required),
+  async getByID() {
+    let response = await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
+    this.contactForm = new FormGroup({
+      id: new FormControl(this.editid),
+      countryName: new FormControl(response.data[0].countryName, Validators.required),
+      countryDescription: new FormControl(response.data[0].countryDescription, Validators.required),
     })
   }
 
-  async submit( type:any){
+  async submit(type: any) {
+    debugger
     if (this.contactForm.invalid) {
       Swal.fire({
         text: 'Please fill all the details'
@@ -51,8 +53,8 @@ export class CountryForm {
 
     if (type == 'save') {
       let result = await this.api.postMethod('Master/InsertCountryTable', this.contactForm.value);
-      
-      
+
+
       if (result.data > 0) {
         this.closeModal.emit("save");
         Swal.fire({
@@ -63,7 +65,7 @@ export class CountryForm {
     } else {
       let result = await this.api.postMethod('Master/UpdateCountryTable', this.contactForm.value);
       if (result.data > 0) {
-         this.closeModal.emit("update")
+        this.closeModal.emit("update")
         Swal.fire({
           icon: 'success',
           title: 'Updated Successfully',

@@ -35,20 +35,20 @@ export class ProvinceForm {
 
   buildForm() {
     this.contactForm = new FormGroup({
-      id: new FormControl(''),
-      countryID: new FormControl('', Validators.required),
-      provinceName: new FormControl('', Validators.required),
-      provinceDescription: new FormControl('', Validators.required)
+      ID: new FormControl(''),
+      CountryID: new FormControl('', Validators.required),
+      ProvinceName: new FormControl('', Validators.required),
+      ProvinceDescription: new FormControl('', Validators.required)
     });
   }
   async getByID() {
     let response = await this.api.getMethod(`Master/GetProvinceByID?ID=${this.editid}`);
     console.log(response.data);
     this.contactForm = new FormGroup({
-      id: new FormControl(this.editid),
-      countryID: new FormControl(response.data[0].countryID, Validators.required),
-      provinceName: new FormControl(response.data[0].provinceName, Validators.required),
-      provinceDescription: new FormControl(response.data[0].provinceDescription, Validators.required)
+      ID: new FormControl(this.editid),
+      CountryID: new FormControl(response.data[0].countryID, Validators.required),
+      ProvinceName: new FormControl(response.data[0].provinceName, Validators.required),
+      ProvinceDescription: new FormControl(response.data[0].provinceDescription, Validators.required)
     })
   }
 

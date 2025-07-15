@@ -14,18 +14,26 @@
 
 }
 
-.col-10{
+/* .col-10{
     overflow: auto;
   max-height: 700px;
 
-}
-.main-content {
-    /* overflow-y: scroll; */
-    flex: 1;
-    overflow-y: scroll;
-    /* margin-bottom: 100%; */
-}
+} */ 
 
+#contain
+{
+  display: flex;
+  height: 100vh;
+}
+ 
+.main-content{
+     flex-grow: 1;
+  overflow-y: auto;
+  height: 100vh;
+  padding: 20px;
+  padding-bottom: 13%;
+}
+ 
 ::-webkit-scrollbar {
     width: 5px;
     height: auto

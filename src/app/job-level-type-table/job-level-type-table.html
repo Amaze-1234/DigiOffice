@@ -1,44 +1,36 @@
 <div class="jobLevel">
-    <div class="card">
-        <div class="card-body">
-            <div class="header">
-                <div class="intial">
-                    <img src="images/filter.png" alt="icon" class="filterImage">
+    <div class="header">
+        <div class="intial">
+            <img src="images/filter.png" alt="icon" class="filterImage">
 
-                    <p style="color: green; font-weight: bold;">Filter By:</p>
-                    <input type="search" placeholder="Search..." class=" form-control searchBar">
-                </div>
-                <div class="addDetails">
-                    <button id="addButton" class="addBtn" (click)="openModal(popupModal)"> <img src="images/plus.svg"
-                            alt="filter" class="filterImage "> Add Job Level
-                    </button>
-                </div>
-            </div>
+            <p style="color: green; font-weight: bold;">Filter By:</p>
+            <input type="search" placeholder="Search..." class=" form-control searchBar">
+        </div>
+        <div class="addDetails">
+            <button id="addButton" class="addBtn" (click)="openModal(popupModal)"> <img src="images/plus.svg"
+                    alt="filter" class="filterImage "> Add Job Level
+            </button>
         </div>
     </div>
 
     <p class="para">Showing {{jobLength}} Results</p>
-    <div class="card">
-        <div class="card-body">
-            <div class="row tableData">
-                <table id="tableData">
-                    <tr>
-                        <th>Designation</th>
-                        <th>Level Type</th>
-                        <th>Level Description</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr *ngFor="let data of jobLevelShift">
-                        <td>{{data.title}}</td>
-                        <td>{{data.levelType}}</td>
-                        <td>{{data.levelDescription}}</td>
-                        <td><img src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupModal,data.id)">
-                            <img src="images/Delete.svg" alt="Delete" (click)="delete(data.id)">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    <div class="row tableData">
+        <table id="tableData">
+            <tr>
+                <th>Designation</th>
+                <th>Level Type</th>
+                <th>Level Description</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let data of jobLevelShift">
+                <td>{{data.title}}</td>
+                <td>{{data.levelType}}</td>
+                <td>{{data.levelDescription}}</td>
+                <td><img src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupModal,data.id)">
+                    <img src="images/Delete.svg" alt="Delete" (click)="delete(data.id)">
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 

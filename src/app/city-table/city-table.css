@@ -17,11 +17,13 @@ table {
 
 th {
     color: blue;
-    padding:10px;
+    padding: 0 2px;
+   
 }
 td{
-    padding: 10px;
+        padding: 0 2px;
 }
+
 tr{
     border-bottom: 1px solid gray;
 }

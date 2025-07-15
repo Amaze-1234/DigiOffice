@@ -11,7 +11,7 @@ import { Loader } from '../../Services/loader';
 })
 export class SideBar {
 
-      hide = true;
+      hide:any = true;
      downArrow = '\u2304';
   constructor(public router:Router,public loaderService:Loader){
 

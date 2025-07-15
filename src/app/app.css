@@ -10,11 +10,13 @@
 
 .col-2{
     overflow: auto;
-  max-height: 100vh;
+  max-height: 700px;
+
 }
 .col-10{
     overflow: auto;
-  max-height: 100vh;
+  max-height: 700px;
+
 }
  
 ::-webkit-scrollbar {

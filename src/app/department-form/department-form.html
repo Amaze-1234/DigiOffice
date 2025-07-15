@@ -1,20 +1,13 @@
 <form [formGroup]="departmentInfo">
     <div class="c1">
+    
         <div class="row">
             <div class="col-lg-4">
-                <label> DepartmentName<span id="mark">*</span></label>
-            </div>
-
-            <div class="col-lg-5">
-                <label>Description<span id="mark">*</span></label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-
+                 <label> DepartmentName<span id="mark">*</span></label>
                 <input type="text" placeholder="Department Name" class=" form-control" formControlName="departmentName">
             </div>
             <div class="col-lg-5" id="Description">
+                 <label>Description<span id="mark">*</span></label>
                 <textarea placeholder="Level Description" rows="4" cols="25" class="form-control"
                     formControlName="departmentDescription"></textarea>
             </div>

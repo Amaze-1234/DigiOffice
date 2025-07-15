@@ -1,17 +1,30 @@
 * {
     margin: 0;
-
-
 }
 .navabar
 {
     margin-bottom: 10%;
 }
+
+
 .col-2{
     overflow: auto;
   max-height: 700px;
+  margin-bottom: 10%;
 
 } 
+#contain
+{
+  display: flex;
+  height: 100vh;
+}
+
+.main-content{
+     flex-grow: 1;
+  overflow-y: auto;
+  height: 100vh;
+  padding-bottom:15%;
+}
 
 
 ::-webkit-scrollbar {

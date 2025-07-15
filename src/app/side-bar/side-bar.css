@@ -13,10 +13,12 @@ li {
     background-color: white;
     width: 110%;
     align-items: center;
-   
-    height: 800px;
     margin-left: -13%;
+
 }
+
+
+
 .highlight {
     background-color: blue;
     color: white;
@@ -40,6 +42,6 @@ li {
     margin-top: -28%;
     float: right;
     width: 10%;
-    color: white;
+    color: rgb(215, 19, 19);
     font-weight: bold;
 }

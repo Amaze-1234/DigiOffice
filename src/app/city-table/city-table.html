@@ -48,7 +48,7 @@
 <ng-template #popup let-Model>
     <div class="modal-header d-flex justify-content-between ">
         <h3>City Masters</h3> 
-        <span (click)="Model.dismiss()" ><img src="images/close.png" alt="close.png"></span>
+        <span (click)="Model.dismiss();editid=null" ><img src="images/close.png" alt="close.png"></span>
     
     </div>
     <div class="modal-body">

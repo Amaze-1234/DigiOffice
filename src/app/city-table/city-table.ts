@@ -33,6 +33,7 @@ deptLength: any;
 
   }
   close(type:any){
+    debugger
     this.editid = null;
     this.modelService.dismissAll();
     if (type == 'save' || type == 'update') {

@@ -25,6 +25,7 @@ export class JobLevelTypeForm {
     }
     this.getjoblevelTypeForm();
     this.getDesignation();
+     const payLoad = this.jobLevelForm.value;
   }
   async getDesignation() {
     let result = await this.apiService.getMethod('DigiOffice/GetDesignation');
@@ -58,7 +59,6 @@ export class JobLevelTypeForm {
 
     })
   }
-
   async submit(type: any) {
     debugger;
      if(this.jobLevelForm.invalid){
@@ -86,4 +86,5 @@ export class JobLevelTypeForm {
     console.log("child");
     this.closemodal.emit('close');
   }
+
 }

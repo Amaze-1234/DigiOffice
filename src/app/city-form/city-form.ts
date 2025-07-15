@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [SharedModule],
   templateUrl: './city-form.html',
   styleUrl: './city-form.css',
-  inputs:['editid'],
+  inputs: ['editid'],
   outputs: ['closemodal']
 })
 export class CityForm {
@@ -34,22 +34,14 @@ export class CityForm {
 
   }
   ngOnInit() {
-     this.buildForm();
+    this.buildForm();
     if (this.editid) {
 
       this.getByID()
       console.log(this.editid);
 
     }
-   
-
     this.getCountry();
-
-    
-    
-
-
-
   }
 
 
@@ -63,10 +55,10 @@ export class CityForm {
       Description: new FormControl('', Validators.required)
 
     });
-  
+
   }
 
-  async onChange(even:any){
+  async onChange(even: any) {
     debugger;
     let result = await this.apiService.getMethod(`Master/GetProvinceByCountryID?ID=${even.target.value}`);
     this.provinceData = result.data;
@@ -85,10 +77,10 @@ export class CityForm {
       Description: new FormControl(response.data[0]?.description, Validators.required)
 
     });
-    
+
   }
 
-  
+
 
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');

@@ -39,7 +39,7 @@ export class DepartmentForm {
     }
     if (type == 'save') {
       let result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
-       this.closeModal.emit("save");
+      this.closeModal.emit("save");
       if (result.data > 0) {
         Swal.fire("Data saved Successfully");
       }
@@ -47,7 +47,7 @@ export class DepartmentForm {
     else {
       let result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
       this.closeModal.emit("update");
-        Swal.fire("Data Updated Successfully");
+      Swal.fire("Data Updated Successfully");
     }
   }
   async updateDepartmentForm() {

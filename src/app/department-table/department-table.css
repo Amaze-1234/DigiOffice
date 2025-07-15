@@ -1,59 +1,64 @@
-table{
+table {
     border-collapse: none;
     margin-bottom: 4%;
     background-color: white;
     border-radius: 2%;
 
 }
-th{
-    color:Blue;
-    padding:10px;
+
+th {
+    color: Blue;
+    padding: 10px;
 }
-tr{
-    border:1px solid rgb(210, 210, 241);
+
+tr {
+    border: 1px solid rgb(210, 210, 241);
     margin-left: -2px;
 }
-#filter-text{
-    color:green;
+
+#filter-text {
+    color: green;
     margin-top: 10px;
-    width:100px;
+    width: 100px;
     font-weight: 600;
 
 }
-td{
-color:gray;
-padding-left:15px;
+
+td {
+    color: gray;
+    padding-left: 15px;
 }
-.card-body
-{
-    display:flex;
+
+.card-body {
+    display: flex;
     justify-content: space-between;
-    padding:4px;
+    padding: 4px;
 }
-.intial
-{
-    display:inline-flex;
-    gap:6px;
+
+.intial {
+    display: inline-flex;
+    gap: 6px;
     align-items: center;
 }
 
-#addButton{
-   background-color: blue;
-   color: white;
-   padding:8px 30px;
-   margin-top:3px;
-   border:none;
-   border-radius:5px;
-   margin-right: 5px;
+#addButton {
+    background-color: blue;
+    color: white;
+    padding: 8px 30px;
+    margin-top: 3px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
 }
-.modify{
-    height:15%;
-    width:15%;
+
+.modify {
+    height: 15%;
+    width: 15%;
 }
-.records
-{
+
+.records {
     margin-top: 5px;
-    color:blue;
-    font-size:18px ;
-    font-weight:500;
+    color: blue;
+    font-size: 18px;
+    font-weight: 500;
 }

@@ -1,43 +1,45 @@
 <form [formGroup]="unitDetails">
-<div class="c1">
-    <div class="row">
-        <div class="col-lg-4">
-            <label> Department Name</label>
-            <span id="mark">*</span>
+    <div class="c1">
+        <div class="row">
+            <div class="col-lg-4">
+                <label> Department Name</label>
+                <span id="mark">*</span>
+            </div>
+            <div class="col-lg-4">
+                <label> Unit Name</label>
+                <span id="mark">*</span>
+            </div>
+            <div class="col-lg-4">
+                <label>Unit Description</label>
+                <span id="mark">*</span>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <label>	Unit Name</label>
-            <span id="mark">*</span>
+        <div class="row">
+            <div class="col-lg-4">
+                <select class="form-control" formControlName="departmentID">
+                    <option value="">Select Department Name</option>
+                    <option *ngFor="let data of department" [value]="data.id">{{data.departmentName}}</option>
+                </select>
+            </div>
+            <div class="col-lg-4">
+                <input type="text" placeholder="Level Type" class="form-control" formControlName="unitName">
+            </div>
+            <div class="col-lg-4" id="Description">
+                <textarea placeholder="Level Description" class="form-control" cols="30" rows="4"
+                    formControlName="unitDescription"></textarea>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <label>Unit Description</label>
-            <span id="mark">*</span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4">
-            <select class="form-control" formControlName="departmentID">
-                <option value="">Select Department Name</option>
-                <option *ngFor = "let data of department" [value] = "data.id">{{data.departmentName}}</option>
-            </select>
-        </div>
-        <div class="col-lg-4">
-            <input type="text"  placeholder="Level Type" class="form-control" formControlName="unitName">
-        </div>
-        <div class="col-lg-4" id="Description">
-            <textarea placeholder="Level Description" class="form-control" cols="30" rows="4" formControlName="unitDescription"></textarea>
-        </div>
-    </div>
-<div class="row">
-        <div class="col-lg-6">
-            
-        </div>
-       
-        <div class="col-lg-4 "id="action-buttons">
-            <button id="click-cancel" (click)="cancel()">Cancel</button>
+        <div class="row">
+            <div class="col-lg-6">
 
-             <button id="click-submit"(click)="addDepartment(deptID?'update':'save')" >{{deptID?'Update':'Submit'}}</button>
+            </div>
+
+            <div class="col-lg-4 " id="action-buttons">
+                <button id="click-cancel" (click)="cancel()">Cancel</button>
+
+                <button id="click-submit"
+                    (click)="addDepartment(deptID?'update':'save')">{{deptID?'Update':'Submit'}}</button>
+            </div>
         </div>
-    </div>
     </div>
 </form>

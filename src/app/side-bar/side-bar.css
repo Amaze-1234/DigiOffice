@@ -13,6 +13,9 @@ li {
     background-color: white;
     width: 110%;
     align-items: center;
+
+    height: auto;
+
     margin-left: -13%;
 
 }
@@ -42,6 +45,6 @@ li {
     margin-top: -28%;
     float: right;
     width: 10%;
-    color: rgb(215, 19, 19);
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }

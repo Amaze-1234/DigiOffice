@@ -18,8 +18,6 @@ export class CountryTable {
   data: any;
   countryLength: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
-
-
   ngOnInit() {
     this.getData();
   }
@@ -28,7 +26,7 @@ export class CountryTable {
     const result = await this.api.getMethod("Master/GetCountryTable");
     console.log( result.data);
     this.countryData = result.data;
-    this.countryLength = this.countryData.length;
+    // this.countryLength = this.countryData.length;
   }
 
   openModal(Modal: any,id:any =null ){
@@ -43,9 +41,8 @@ export class CountryTable {
     if (type == 'save' || type == 'update') {
       this.getData();
     }
-
   }
-  async delete(id: any) {
+  async deleteCountry(id: any) {
     const confirmation = await Swal.fire({
       title: "Are you sure you want to delete?",
       icon: "warning",
@@ -55,8 +52,7 @@ export class CountryTable {
       confirmButtonText: "Yes"
     });
     if (confirmation.isConfirmed) {
-      const result = await this.api.getMethod(`Master/DeleteCountryTable?ID=${id}`);
-      
+      const result = await this.api.getMethod(`Master/DeleteCountryTable?ID=${id}`);     
       if (result.data > 0) {
         Swal.fire({
           title: "Deleted!",
@@ -67,6 +63,4 @@ export class CountryTable {
       }
     }
   }
-
-
 }

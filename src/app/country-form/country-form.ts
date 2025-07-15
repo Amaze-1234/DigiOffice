@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [SharedModule],
   templateUrl: './country-form.html',
   styleUrl: './country-form.css',
-  inputs:['editid'],
+  inputs: ['editid'],
   outputs: ['closemodal']
 })
 export class CountryForm {
@@ -24,17 +24,16 @@ export class CountryForm {
     if (this.editid) {
       this.getByID();
     }
-
   }
 
   buildForm() {
     this.contactForm = new FormGroup({
-      id: new FormControl(''),
-      countryName: new FormControl('', Validators.required),
-      countryDescription: new FormControl('', Validators.required),
+      ID: new FormControl(''),
+      CountryName: new FormControl('', Validators.required),
+      CountryDescription: new FormControl('', Validators.required),
     });
   }
-   async submit(type: any) {
+  async submit(type: any) {
     debugger
     if (this.contactForm.invalid) {
       Swal.fire({
@@ -42,11 +41,8 @@ export class CountryForm {
       });
       return;
     }
-
     if (type == 'save') {
       let result = await this.api.postMethod('Master/InsertCountryTable', this.contactForm.value);
-
-
       if (result.data > 0) {
         this.closeModal.emit("save");
         Swal.fire({
@@ -69,12 +65,9 @@ export class CountryForm {
   async getByID() {
     let response = await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
     this.contactForm = new FormGroup({
-      id: new FormControl(this.editid),
-      countryName: new FormControl(response.data[0].countryName, Validators.required),
-      countryDescription: new FormControl(response.data[0].countryDescription, Validators.required),
+      ID: new FormControl(this.editid),
+      CountryName: new FormControl(response.data[0].countryName, Validators.required),
+      CountryDescription: new FormControl(response.data[0].countryDescription, Validators.required),
     })
   }
-
- 
-
 }

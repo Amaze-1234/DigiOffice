@@ -13,16 +13,16 @@
 
   <div class="row">
     <div class="col-lg-4">
-      <select formControlName="countryID" class="form-control">
+      <select formControlName="CountryID" class="form-control">
         <option value="" disabled>Select Country</option>
         <option *ngFor="let data of countryList" [value]="data.id">{{data.countryName}}</option>
       </select>
     </div>
     <div class="col-lg-4">
-      <input type="text" placeholder="Province Name" formControlName="provinceName" required />
+      <input type="text" placeholder="Province Name" formControlName="ProvinceName" required />
     </div>
     <div class="col-lg-4">
-      <textarea rows="5" cols="30" placeholder="Description" formControlName="provinceDescription" required></textarea>
+      <textarea rows="5" cols="30" placeholder="Description" formControlName="ProvinceDescription" required></textarea>
     </div>
   </div>
 </form>

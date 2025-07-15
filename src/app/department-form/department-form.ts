@@ -38,21 +38,16 @@ export class DepartmentForm {
       return;
     }
     if (type == 'save') {
-      const result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
+      let result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
+       this.closeModal.emit("save");
       if (result.data > 0) {
         Swal.fire("Data saved Successfully");
-        this.closeModal.emit("save")
-
       }
     }
     else {
-      const result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
-      if (result.data > 0) {
+      let result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
+      this.closeModal.emit("update");
         Swal.fire("Data Updated Successfully");
-        this.closeModal.emit("update")
-      }
-
-
     }
   }
   async updateDepartmentForm() {

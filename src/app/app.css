@@ -1,8 +1,32 @@
 *{
     margin: 0;
   
+
 }
 .navabar
 {
     margin-bottom: 10%;
+}
+
+.col-2{
+    overflow: auto;
+  max-height: 100vh;
+}
+.col-10{
+    overflow: auto;
+  max-height: 100vh;
+}
+ 
+::-webkit-scrollbar {
+    width: 5px;
+    height:auto
+}
+
+::-webkit-scrollbar-track {
+    background: gray;
+}
+
+::-webkit-scrollbar-thumb {
+    background: blue;
+    height: 10px;
 }

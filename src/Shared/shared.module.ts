@@ -11,8 +11,8 @@ import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
-        NgbPopover,
-        SearchPipe
+        SearchPipe,
+        NgbPopover
     ],
 
     exports : [
@@ -20,8 +20,10 @@ import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
         FormsModule,
         CommonModule,
         ReactiveFormsModule,
-        NgbPopover,
-        SearchPipe
+
+        SearchPipe,
+        NgbPopover
+        
     ]
 })
 

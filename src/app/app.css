@@ -1,27 +1,34 @@
-*{
+* {
     margin: 0;
-  
+
 
 }
-.navabar
-{
-    margin-bottom: 7.5%;
+
+.navabar {
+    margin-bottom: 8%;
 }
 
-.col-2{
+.col-2 {
+    overflow: auto;
+    max-height: 700px;
+
+}
+
+/* .col-10{
     overflow: auto;
   max-height: 700px;
 
+} */
+.main-content {
+    /* overflow-y: scroll; */
+    flex: 1;
+    overflow-y: scroll;
+    /* margin-bottom: 100%; */
 }
-.col-10{
-    overflow: auto;
-  max-height: 700px;
 
-}
- 
 ::-webkit-scrollbar {
     width: 5px;
-    height:auto
+    height: auto
 }
 
 ::-webkit-scrollbar-track {

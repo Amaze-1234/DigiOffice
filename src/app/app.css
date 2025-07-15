@@ -20,12 +20,7 @@
   max-height: 700px;
 
 } */
-.main-content {
-    /* overflow-y: scroll; */
-    flex: 1;
-    overflow-y: scroll;
-    /* margin-bottom: 100%; */
-}
+
 
 ::-webkit-scrollbar {
     width: 5px;

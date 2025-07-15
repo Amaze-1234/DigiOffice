@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Loader } from '../../Services/loader';
 import { SharedModule } from '../../Shared/shared.module';
-import { NgbModal, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [SharedModule,NgbPopoverModule],
+  imports: [SharedModule],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css'
 })

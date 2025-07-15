@@ -16,12 +16,14 @@ li {
     overflow-y: auto;
     height: 800px;
     margin-left: -13%;
+    
 
 
 }
 
 ::-webkit-scrollbar {
     width: 5px;
+    height:auto
 }
 
 ::-webkit-scrollbar-track {
@@ -46,7 +48,6 @@ li {
     background-color: white;
     z-index: 1;
     padding-left: 10%;
-
     background-color: rgb(229, 239, 243);
 }
 
@@ -59,4 +60,5 @@ li {
     float: right;
     width: 10%;
     color: white;
+    font-weight: bold;
 }

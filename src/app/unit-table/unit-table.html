@@ -4,7 +4,7 @@
     <div class="intial">
       <img src="images/filter.png" alt="icon" width="18px" height="18px">
       <p id="filter-text">Filter By:</p>
-      <input type="search" placeholder="Search.." style="padding:2px;" class="form-control">
+      <input type="search" placeholder="Search.." style="padding:2px;" class="form-control"[(ngModel)]="searchItem">
     </div>
     <div class="addDetails">
       <button id="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="20px"> Add
@@ -23,7 +23,7 @@
     <th>Unit Description</th>
     <th>Actions</th>
   </tr>
-  <tr *ngFor="let data of DepartmentData">
+  <tr *ngFor="let data of DepartmentData|search:searchItem">
     <td>{{data.departmentName}}</td>
     <td>{{data.unitName}}</td>
     <td>{{data.unitDescription}}</td>

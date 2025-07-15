@@ -5,9 +5,11 @@ import axios from 'axios';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DepartmentForm } from "../department-form/department-form";
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../Shared/shared.module';
 @Component({
   selector: 'app-department-table',
-  imports: [CommonModule, DepartmentForm],
+  imports: [DepartmentForm,SharedModule],
   templateUrl: './department-table.html',
   styleUrl: './department-table.css'
 })
@@ -16,6 +18,7 @@ export class DepartmentTable {
   departmentData: any;
   deptID: any;
   deptLength: any;
+  searchItem:any
   constructor(public api: Api, public modalService: NgbModal) { }
   ngOnInit() {
     this.getDepartmentdetails();

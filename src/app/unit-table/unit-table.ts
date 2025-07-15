@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class UnitTable {
 
   DepartmentData: any;
+  searchItem:any;
   deptID: any;
   deptLength: any;
   constructor(public api: Api, public modalService: NgbModal, public route: Router) { }

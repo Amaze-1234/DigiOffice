@@ -13,24 +13,12 @@ li {
     background-color: white;
     width: 110%;
     align-items: center;
-    overflow-y: auto;
-    max-height: 800px;
+   
+    height: 800px;
     margin-left: -13%;
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-    height: auto;
-}
 
-::-webkit-scrollbar-track {
-    background: gray;
-}
-
-::-webkit-scrollbar-thumb {
-    background: blue;
-    height: 10%;
-}
 
 .highlight {
     background-color: blue;

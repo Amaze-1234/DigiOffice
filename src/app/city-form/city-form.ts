@@ -34,14 +34,14 @@ export class CityForm {
 
   }
   ngOnInit() {
-
+     this.buildForm();
     if (this.editid) {
 
       this.getByID()
       console.log(this.editid);
 
     }
-    this.buildForm();
+   
 
     this.getCountry();
 
@@ -77,12 +77,13 @@ export class CityForm {
     let response = await this.apiService.getMethod(`Master/GetCityByID?ID=${this.editid}`);
     console.log(response)
 
-    this.contactForm.patchValue({
-      ID: this.editid,
-      CountryID: response.data[0].countryID,
-      ProvinceID: response.data[0].provinceID,
-      City: response.data[0].city,
-      Description: response.data[0].description
+    this.contactForm = new FormGroup({
+      ID: new FormControl(this.editid),
+      CountryID: new FormControl(response.data[0]?.countryID, Validators.required),
+      ProvinceID: new FormControl(response.data[0]?.provinceID, Validators.required),
+      City: new FormControl(response.data[0]?.city, Validators.required),
+      Description: new FormControl(response.data[0]?.description, Validators.required)
+
     });
     
   }

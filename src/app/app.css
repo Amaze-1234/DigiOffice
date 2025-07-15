@@ -1,13 +1,21 @@
 * {
     margin: 0;
-}
-.navabar
-{
-    margin-bottom: 10%;
-}
 
 
-.col-2{
+}
+
+.navabar {
+    margin-bottom: 8%;
+
+}
+
+.col-2 {
+    overflow: auto;
+    max-height: 700px;
+
+}
+
+/* .col-10{
     overflow: auto;
   max-height: 700px;
   margin-bottom: 10%;

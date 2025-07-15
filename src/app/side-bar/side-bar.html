@@ -1,30 +1,64 @@
 <div id="sidebar">
     <div class="icon" style="padding: 10px 30px;">
-        <img src="images/digi_office_logo2.svg" alt="" >
+        <img src="images/digi_office_logo2.svg" alt="">
     </div>
 
     <div>
-       
-        <li (click)="navigateDashboard()" [ngClass]="this.loaderService.isTitle == 'Dashboard Master' ?'highlight':'' " ><img src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;">  DashBoard</li>
+
+        <li (click)="navigateDashboard()" [ngClass]="this.loaderService.isTitle == 'Dashboard Master' ?'highlight':'' ">
+            <img src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;"> DashBoard</li>
         <hr>
-        <li (click)="navigateEmployeeManager()" [ngClass]="this.loaderService.isTitle == 'EmployeeManager Master' ?'highlight':'' "><img src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Employee Management</li>
+        <li (click)="navigateEmployeeManager()"
+            [ngClass]="this.loaderService.isTitle == 'EmployeeManager Master' ?'highlight':'' "><img
+                src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee
+            Management</li>
         <hr>
-        <li (click)="navigateConfiguration()" [ngClass]="this.loaderService.isTitle == 'Configuration Master' ?'highlight':'' "><img src="images/Configgrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Configuration</li>
+        <li (click)="navigateConfiguration()"
+            [ngClass]="this.loaderService.isTitle == 'Configuration Master' ?'highlight':'' "><img
+                src="images/Configgrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Configuration</li>
         <hr>
-        <li (click)="navigateEmoloyeeMaster()" [ngClass]="this.loaderService.isTitle == 'EmployeeField Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Employee Field Masters</li>
-        <li (click)="navigateDepartment()" [ngClass]="this.loaderService.isTitle == 'Department Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Department</li>
-        <li (click)="navigateUnit()" [ngClass]="this.loaderService.isTitle == 'Unit Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Unit</li>
-        <li (click)="navigateJobLevelType()" [ngClass]="this.loaderService.isTitle == 'JobLevelType Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Job Level type</li>
-        <li (click)="navigateShift()" [ngClass]="this.loaderService.isTitle == 'Shift Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Shift</li>
-        <li (click)="navigateOvertime()" [ngClass]="this.loaderService.isTitle == 'Overtime Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Overtime</li>
-        <li (click)="navigateLoanType()" [ngClass]="this.loaderService.isTitle == 'Loantype Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  LoanType</li>
-        <li (click)="navigateCountry()" [ngClass]="this.loaderService.isTitle == 'Country Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Country</li>
-        <li (click)="navigateProvince()" [ngClass]="this.loaderService.isTitle == 'Province Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Province</li>
-        <li (click)="navigateCity()" [ngClass]="this.loaderService.isTitle == 'City Master' ?'highlight':'' "><img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">  City</li>
+        <div class="subnav">
+            <li (click)="navigateEmoloyeeMaster()"
+                [ngClass]="this.loaderService.isTitle == 'EmployeeField Master' ?'highlight':'' "><img
+                    src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee Field
+                Masters</li>
+            <span class="eye-icon">
+                {{ hide ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!hide">
+                <li (click)="navigateDepartment()"
+                    [ngClass]="this.loaderService.isTitle == 'Department Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Department</li>
+                <li (click)="navigateUnit()" [ngClass]="this.loaderService.isTitle == 'Unit Master' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Unit</li>
+                <li (click)="navigateJobLevelType()"
+                    [ngClass]="this.loaderService.isTitle == 'JobLevelType Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Job Level type
+                </li>
+                <li (click)="navigateShift()" [ngClass]="this.loaderService.isTitle == 'Shift Master' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Shift</li>
+                <li (click)="navigateOvertime()"
+                    [ngClass]="this.loaderService.isTitle == 'Overtime Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Overtime</li>
+                <li (click)="navigateLoanType()"
+                    [ngClass]="this.loaderService.isTitle == 'Loantype Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> LoanType</li>
+                <li (click)="navigateCountry()"
+                    [ngClass]="this.loaderService.isTitle == 'Country Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Country</li>
+                <li (click)="navigateProvince()"
+                    [ngClass]="this.loaderService.isTitle == 'Province Master' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Province</li>
+                <li (click)="navigateCity()" [ngClass]="this.loaderService.isTitle == 'City Master' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> City</li>
+            </div>
+        </div>
         <hr>
-        <li (click)="navigateAuditTrail()" [ngClass]="this.loaderService.isTitle == 'AuditTrail Master' ?'highlight':'' "><img src="images/auditTrailgrey.svg" alt="" class="icon" style="width:25px;height:25px;">  Audit Trail</li>
+        <li (click)="navigateAuditTrail()"
+            [ngClass]="this.loaderService.isTitle == 'AuditTrail Master' ?'highlight':'' "><img
+                src="images/auditTrailgrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Audit Trail</li>
         <hr>
-       
+
     </div>
 
 </div>

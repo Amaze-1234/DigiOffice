@@ -11,6 +11,8 @@ import { Loader } from '../../Services/loader';
 })
 export class SideBar {
 
+      hide = true;
+     downArrow = '\u2304';
   constructor(public router:Router,public loaderService:Loader){
 
   }
@@ -33,6 +35,7 @@ export class SideBar {
   navigateEmoloyeeMaster(){
     sessionStorage.setItem("isTitle","EmployeeField Master")
     this.loaderService.isTitle = 'EmployeeField Master';
+    this.hide = !this.hide;
   }
     navigateDepartment(){
     this.router.navigate(['/department-table']);

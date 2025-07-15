@@ -48,7 +48,7 @@ export class ProvinceTable {
     }
     
   }
-  async delete(id: any) {
+  async deleteProvince(id: any) {
     const confirmation = await Swal.fire({
       title: "Are you sure you want to delete?",
       icon: "warning",

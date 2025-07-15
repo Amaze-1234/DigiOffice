@@ -2,43 +2,39 @@
     <div class="header">
         <div class="content">
             <img src="images/filter.png" alt="icon" class="filterImage">
-
             <p style="margin-top: 10px;">Filter By:</p>
             <input type="text" placeholder="Search..." class=" form-control searchBar">
         </div>
-
-        <div style="margin: 5px;" >
-            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add country</button>
+        <div style="margin: 5px;">
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add
+                country</button>
         </div>
     </div>
-    <p class="result">Showing {{countryLength}} Results</p>
-        <table>    
-            <tr>
-                <th>Country</th>
-                <th>CountryDescription</th>
-                <th>Actions</th>
-            </tr>
-            <tr *ngFor="let data of countryData">
-                <td>{{data.countryName}}</td>
-                <td>{{data.countryDescription}}</td>
-                <td style="font-size: large;color: blue;">
-                    <img src="images/Edit 1.svg" alt="edit-image" class="edit-btn" (click)="openModal(popupModal,data.id)">
-                    <img src="images/Delete.svg" alt="delete-image"  class="delete-btn" (click)="delete(data.id)">
-                </td>
-            </tr>
-        </table>
-    
+    <p class="result">Showing {{countryData.length}} Results</p>
+    <table>
+        <tr>
+            <th>Country</th>
+            <th>CountryDescription</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let data of countryData">
+            <td>{{data.countryName}}</td>
+            <td>{{data.countryDescription}}</td>
+            <td style="font-size: large;color: blue;">
+                <img src="images/Edit 1.svg" alt="edit-image" class="edit-btn" (click)="openModal(popupModal,data.id)">
+                <img src="images/Delete.svg" alt="delete-image" class="delete-btn" (click)="deleteCountry(data.id)">
+            </td>
+        </tr>
+    </table>
 </div>
 
 
 <ng-template #popupModal let-Modal>
     <div class="modal-header">
         <h3>Country Details</h3>
-
         <img src="images/close.png" alt="close" (click)="Modal.dismiss(); editid=null">
-
     </div>
     <div class="modal-body">
-        <app-country-form  [editid] = 'editid' (closeModal)="close($event)"></app-country-form>
+        <app-country-form [editid]='editid' (closeModal)="close($event)"></app-country-form>
     </div>
 </ng-template>

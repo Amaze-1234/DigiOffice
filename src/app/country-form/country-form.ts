@@ -34,16 +34,7 @@ export class CountryForm {
       countryDescription: new FormControl('', Validators.required),
     });
   }
-  async getByID() {
-    let response = await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
-    this.contactForm = new FormGroup({
-      id: new FormControl(this.editid),
-      countryName: new FormControl(response.data[0].countryName, Validators.required),
-      countryDescription: new FormControl(response.data[0].countryDescription, Validators.required),
-    })
-  }
-
-  async submit(type: any) {
+   async submit(type: any) {
     debugger
     if (this.contactForm.invalid) {
       Swal.fire({
@@ -75,5 +66,15 @@ export class CountryForm {
     }
   }
 
+  async getByID() {
+    let response = await this.api.getMethod(`Master/GetCountryTableByID?ID=${this.editid}`);
+    this.contactForm = new FormGroup({
+      id: new FormControl(this.editid),
+      countryName: new FormControl(response.data[0].countryName, Validators.required),
+      countryDescription: new FormControl(response.data[0].countryDescription, Validators.required),
+    })
+  }
+
+ 
 
 }

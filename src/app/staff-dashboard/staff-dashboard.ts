@@ -14,7 +14,7 @@ constructor(public router: Router){
 
 }
 navigateToEmployeeDetails(){
-  this.router.navigate(['/employee-details']);
+  this.router.navigate(['/staff-details']);
   console.log(1);
   
 }

@@ -1,1 +1,81 @@
-<p>position-details works!</p>
+
+    <div [formGroup]="positionDetails">
+        <div class="card">
+            <div class="card-body">
+                <h5 style="text-align: center;">Position Details</h5>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="Designation">Designation <span id="marked">*</span></label>
+                        <select class="form-control" formControlName="designationName">
+                            <option value="" >select</option>
+                            <option *ngFor="let designation of designationData" [value]="designation.id">
+                                {{designation.title}}</option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label for="Job-level">Job Level <span id="marked">*</span></label>
+                        <select class="form-control" formControlName="jobLevelName">
+                            <option value="">select</option>
+                            <option *ngFor="let joblevel of jobLevelData" [value]="joblevel.id">{{joblevel.levelType}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label for="loginType">Login Type <span id="marked">*</span></label>
+                        <select class="form-control" formControlName="loginTypeName">
+                            <option value="">select</option>
+                            <option *ngFor="let loginType of loginTypeData" [value]="loginType.id">{{loginType.type}}
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+           <div class="card">
+            <div class="card-body">
+                <h5 style="text-align: center;">Position Details</h5>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="Designation">Department  <span id="marked">*</span></label>
+                        <select class="form-control" formControlName="departmentName">
+                            <option value="">select</option>
+                            <option *ngFor="let department of departmentData" [value]="department.id">
+                                {{department.departmentName}}</option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label for="Job-level">Unit<span id="marked">*</span></label>
+                        <select class="form-control" formControlName="unitName">
+                            <option value="">select</option>
+                            <option *ngFor="let department of departmentData" [value]="department.id">{{department.unitName}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-lg-4">
+
+                        <label for="loginType">Manager <span id="marked">*</span></label>
+                        <select class="form-control" formControlName="loginTypeName">
+                            <option value="">select</option>
+                            <option *ngFor="let loginType of loginTypeData" [value]="loginType.id">{{loginType.type}}
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Designation <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="designationName">
+                    <select class="form-control" formControlName="DesignationID">
                         <option value="">Select DesignationList </option>
                         <option *ngFor="let designation of designationData" [value]="designation.id">
                             {{designation.title}}</option>
@@ -15,7 +15,7 @@
                 <div class="col-lg-4">
 
                     <label for="Job-level">Job Level <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="jobLevelName">
+                    <select class="form-control" formControlName="JobLevel">
                         <option value="">Select Job Level </option>
                         <option *ngFor="let joblevel of jobLevelData" [value]="joblevel.id">{{joblevel.levelType}}
                         </option>
@@ -25,7 +25,7 @@
                 <div class="col-lg-4">
 
                     <label for="loginType">Login Type <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="loginTypeName">
+                    <select class="form-control" formControlName="LoginType">
                         <option value="">Select Login Type</option>
                         <option *ngFor="let loginType of loginTypeData" [value]="loginType.id">{{loginType.type}}
                         </option>
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Department">Department <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="departmentName">
+                    <select class="form-control" formControlName="DepartmentID">
                         <option value="">Select Department</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.departmentName}}</option>
@@ -54,7 +54,7 @@
                 <div class="col-lg-4">
 
                     <label for="Unit">Unit<span id="marked">*</span></label>
-                    <select class="form-control" formControlName="unitName">
+                    <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.unitName}}
@@ -65,7 +65,7 @@
                 <div class="col-lg-4">
 
                     <label for="Manager">Manager <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="loginTypeName">
+                    <select class="form-control" formControlName="Manager">
                         <option value="">Select Manager</option>
                         <option value="Consultant">Supraja </option>
                         <option value="Project">Vinod Kumar</option>
@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Work Arrangement ">Work Arrangement <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="workType">
+                    <select class="form-control" formControlName="WorkArrangement">
                         <option value="">Select Work Arrangement </option>
                         <option value="Active">Office-Based</option>
                         <option value="Inactive">Site Based</option>
@@ -94,7 +94,7 @@
                 <div class="col-lg-4">
 
                     <label for="Job-level"> Worksite Country <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="countryName">
+                    <select class="form-control" formControlName="WorksiteCountry">
                         <option value="">Select Worksite Country </option>
                         <option *ngFor="let country of countryData" [value]="country.id">{{country.countryName}}
                         </option>
@@ -104,7 +104,7 @@
                 <div class="col-lg-4">
 
                     <label for="loginType"> Worksite Province <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="provinceName">
+                    <select class="form-control" formControlName="WorksiteProvince">
                         <option value="">Select Worksite Province</option>
                         <option *ngFor="let province of provinceData" [value]="province.id">{{province.provinceName}}
                         </option>
@@ -115,7 +115,7 @@
                 <div class="col-lg-4">
 
                     <label for="Job-level"> Worksite City<span id="marked">*</span></label>
-                    <select class="form-control" formControlName="cityName">
+                    <select class="form-control" formControlName="WorksiteCity">
                         <option value="">Select Worksite City</option>
                         <option *ngFor="let data of cityData" [value]="data.id">{{data.city}}
                         </option>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="loginType"> Working Location<span id="marked">*</span></label>
-                    <input type="text" class="form-control" formControlName="locationName">
+                    <input type="text" class="form-control" formControlName="WorkingLocation">
                 </div>
 
 
@@ -139,7 +139,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Employment Type <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="employmentType">
+                    <select class="form-control" formControlName="EmploymentType">
                         <option value="" selected>Select Employment Type</option>
                         <option value="Consultant">Consultant</option>
                         <option value="Project">Project Hire</option>
@@ -151,7 +151,7 @@
                 <div class="col-lg-4">
 
                     <label for="Job-level"> Employment Status <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="employmentType">
+                    <select class="form-control" formControlName="EmploymentStatus">
                         <option value="">select Employment Status </option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
@@ -163,33 +163,30 @@
                 <div class="col-lg-4">
 
                     <label for="loginType"> Hired Date <span id="marked">*</span></label>
-                    <input type="date" class="form-control" formControlName="hiredData">
+                    <input type="date" class="form-control" formControlName="HiredDate">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
 
                     <label for="Job-level">Confirmation Due Date <span id="marked">*</span></label>
-                    <input type="date" class="form-control" formControlName="actualDueDate">
+                    <input type="date" class="form-control" formControlName="ConfirmationDueDate">
 
                 </div>
                 <div class="col-lg-4">
                     <label for="loginType"> Actual Confirmation Due Date <span id="marked">*</span></label>
-                    <input type="date" class="form-control" formControlName="confirmDueDate">
+                    <input type="date" class="form-control" formControlName="ActualConfirmationDueDate">
                 </div>
                 <div class="col-lg-4">
                     <label for="loginType"> Separation Date <span id="marked">*</span></label>
-                    <input type="date" class="form-control" form-control="seperationDate">
+                    <input type="date" class="form-control" form-control="SeperationDate">
                 </div>
-
-
             </div>
-
             <div class="row">
                 <div class="col-lg-4">
 
                     <label for="Job-level"> Probation End Date <span id="marked">*</span></label>
-                    <input type="date" class="form-control" form-control="probationEndDate">
+                    <input type="date" class="form-control" form-control="ProbationEndDate">
 
                 </div>
                 <div class="col-lg-4">

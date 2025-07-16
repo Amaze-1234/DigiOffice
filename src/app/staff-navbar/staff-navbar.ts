@@ -12,10 +12,14 @@ import { Router } from '@angular/router';
 export class StaffNavbar {
 
     constructor(public router:Router){}
-  employee(){
-    this.router.navigate(['/employee-details']);   
-  }
-    position(){
-    this.router.navigate(['/position-details']);   
-  }
+employee(event: Event) {
+  event.preventDefault();
+  this.router.navigate(['/employee-details']);
+}
+
+position(event: Event) {
+  event.preventDefault();
+  this.router.navigate(['/position-details']);
+}
+
 }

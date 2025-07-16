@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-details',
@@ -13,31 +14,13 @@ export class EmployeeDetails {
   editid: any;
   countryList: any;
   contactForm: any;
-  constructor( public api:Api){}
-  titleList: any = [
-    {
-      id: 1,
-      value: "Mr"
-    },
-    {
-      id: 2,
-      value: "Mrs"
-    },
-    {
-      id: 3,
-      value: "Ms"
-    },
-    {
-      id: 4,
-      value: "Miss"
-    }
-  ]
-  
+  constructor( public api:Api, public router: Router, public activateRoute: ActivatedRoute){}
   ngOnInit(){
     if(this.editid){
       this.getByID();
     }
     this.buildForm();
+    this.getEmployeeDetails();
   }
 
   buildForm() {

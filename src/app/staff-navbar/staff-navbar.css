@@ -5,5 +5,6 @@
 }
 .highlight{
     color: blue;
-    text-decoration: underline;
+    padding-bottom: 10px;
+    border-bottom: 3px solid blue;
 }

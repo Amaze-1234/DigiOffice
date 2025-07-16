@@ -1,0 +1,11 @@
+.card, .card0-body
+{
+    padding:5px;
+    margin:5px;
+    margin-bottom: 5%;
+}
+#marked
+{
+    color:red;
+    font-weight: bold;
+}

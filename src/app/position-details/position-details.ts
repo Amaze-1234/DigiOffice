@@ -16,12 +16,18 @@ export class PositionDetails {
  jobLevelData:any
  loginTypeData:any;
  departmentData:any;
+ countryData:any;
+ provinceData:any;
+ cityData:any;
   constructor(public apiService:Api){}
   ngOnInit()
   {
     this.getDesignation();
     this.getJobLevel();
-    this.getDepartmentdetails()
+    this.getDepartmentdetails();
+    this.getCountry();
+    this.getProvince();
+    this.getCity();
   }
 
 async getDesignation()
@@ -44,4 +50,22 @@ async getLogin()
     this.departmentData = result.data;
 
  }
+  async getCountry() {
+    let result = await this.apiService.getMethod('Master/GetCountryTable');
+    this.countryData = result.data;
+
+  }
+    async getProvince() {
+    const result = await this.apiService.getMethod("Master/GetProvince");
+    this.provinceData = result.data;
+  
+  }
+   async getCity() {
+    let result = await this.apiService.getMethod('Master/GetCity');
+    this.cityData = result.data;
+  
+    
+
+  }
+
 }

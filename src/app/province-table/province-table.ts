@@ -34,17 +34,6 @@ export class ProvinceTable {
     //this.provinceLength = this.provinceData.length;
   }
 
-  get filteredProvinceData(): any[] {
-    if (!this.provinceData || !this.searchText) {
-      return this.provinceData;
-    }
-
-    const lowerSearch = this.searchText.toLowerCase();
-    return this.provinceData.filter((item: any) =>
-    Object.values(item).some(val =>
-      val?.toString().toLowerCase().includes(lowerSearch)
-    ));
-  }
 
   openModal(Modal: any,id:any =null ){
     if(id){

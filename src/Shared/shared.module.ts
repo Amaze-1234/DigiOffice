@@ -22,8 +22,10 @@ import { LengthPipePipe } from "./length-pipe-pipe";
         CommonModule,
         ReactiveFormsModule,
 
+
         SearchPipe,
         NgbPopover
+
         
     ]
 })

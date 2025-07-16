@@ -17,6 +17,8 @@ import { ProvinceTable } from './province-table/province-table';
 import { CityForm } from './city-form/city-form';
 import { CityTable } from './city-table/city-table';
 import { StaffDashboard } from './staff-dashboard/staff-dashboard';
+import { EmployeeDetails } from './employee-details/employee-details';
+import { PositionDetails } from './position-details/position-details';
 
 export const routes: Routes = [
   {path:"login",component:Login,pathMatch:"full"},
@@ -36,6 +38,8 @@ export const routes: Routes = [
   {path:"provincetable",component:ProvinceTable,pathMatch:"full"},
   {path:"cityform",component:CityForm,pathMatch:"full"},
   {path:"citytable",component:CityTable,pathMatch:"full"},
-   {path:"staffdashboard",component:StaffDashboard,pathMatch:"full"}
+   {path:"staffdashboard",component:StaffDashboard,pathMatch:"full"},
+     {path:"employee-details",component:EmployeeDetails,pathMatch:"full"},
+       {path:"position-details",component:PositionDetails,pathMatch:"full"},
 
 ];

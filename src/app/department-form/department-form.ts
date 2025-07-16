@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Api } from '../../Services/api';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { SearchPipe } from '../../Shared/search-pipe';
 @Component({
   selector: 'app-department-form',
   imports: [ReactiveFormsModule],
@@ -12,7 +13,9 @@ import Swal from 'sweetalert2';
   outputs: ['closeModal']
 })
 export class DepartmentForm {
-  deptID: any
+  deptID: any;
+
+  
   closeModal = new EventEmitter<any>();;
   departmentInfo: any;
   constructor(public api: Api, public route: Router) { }

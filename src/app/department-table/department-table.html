@@ -11,7 +11,7 @@
     </div>
   </div>
 </div>
-<p class="records">Showing {{deptLength}} Results</p>
+<p class="records">Showing {{(departmentData|search:searchItem).length}} Results</p>
 
 <table class="table ">
 
@@ -20,9 +20,10 @@
     <th>Department Description</th>
     <th>Actions</th>
   </tr>
-  <tr *ngFor="let data of departmentData|search:searchItem">
+  <tr *ngFor="let data of departmentData|search:searchItem  let i= index" >
     <td>{{data.departmentName}}</td>
     <td>{{data.departmentDescription}}</td>
+  
 
     <td>
       <img class="modify" src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupmodel1,data.id)">

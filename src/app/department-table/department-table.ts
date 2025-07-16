@@ -18,7 +18,8 @@ export class DepartmentTable {
   departmentData: any;
   deptID: any;
   deptLength: any;
-  searchItem:any
+  searchItem:any;
+  length:any;
   constructor(public api: Api, public modalService: NgbModal) { }
   ngOnInit() {
     this.getDepartmentdetails();

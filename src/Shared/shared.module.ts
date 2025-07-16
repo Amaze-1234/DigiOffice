@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterOutlet } from "@angular/router";
 import { SearchPipe } from "./search-pipe";
 import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
+import { LengthPipePipe } from "./length-pipe-pipe";
 
 @NgModule({
     imports : [
@@ -12,7 +13,7 @@ import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
         CommonModule,
         ReactiveFormsModule,
         SearchPipe,
-        NgbPopover
+        NgbPopover,
     ],
 
     exports : [
@@ -21,8 +22,12 @@ import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
         CommonModule,
         ReactiveFormsModule,
         SearchPipe,
+<<<<<<< HEAD
         NgbPopover
 
+=======
+        NgbPopover,
+>>>>>>> 7850361f9d704fc88b1be9c04e18512eda65c414
         
     ]
 })

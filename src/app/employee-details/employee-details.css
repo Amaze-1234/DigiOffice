@@ -12,7 +12,7 @@ input{
 }
 
 .card{
-    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 h6,h5{
@@ -30,7 +30,7 @@ img{
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer; 
-  margin: 50px;
+  margin: 20px;
   margin-left: 40%;
 }
 

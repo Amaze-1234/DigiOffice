@@ -21,6 +21,7 @@ export class ShiftTable implements OnInit {
   shiftForm: any;
   shiftLength: any;
   closemodal: any;
+  searchText:any='';
   constructor(public apiservice: Api, public router: Router, public modalService: NgbModal) { }
 
 

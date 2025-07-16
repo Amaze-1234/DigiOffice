@@ -17,6 +17,8 @@ export class ProvinceTable {
   data: any;
   provinceData: any;
   provinceLength: any;
+  searchText:any='';
+// filtertedList: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
 
@@ -30,6 +32,18 @@ export class ProvinceTable {
     console.log( result.data);
     this.provinceData = result.data;
     //this.provinceLength = this.provinceData.length;
+  }
+
+  get filteredProvinceData(): any[] {
+    if (!this.provinceData || !this.searchText) {
+      return this.provinceData;
+    }
+
+    const lowerSearch = this.searchText.toLowerCase();
+    return this.provinceData.filter((item: any) =>
+    Object.values(item).some(val =>
+      val?.toString().toLowerCase().includes(lowerSearch)
+    ));
   }
 
   openModal(Modal: any,id:any =null ){

@@ -22,6 +22,7 @@ import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
         ReactiveFormsModule,
         SearchPipe,
         NgbPopover
+
         
     ]
 })

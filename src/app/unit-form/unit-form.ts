@@ -41,13 +41,25 @@ export class UnitForm {
     if (type == 'save') {
 
       const result = await this.apiService.postMethod('DigiOffice/InsertUnit', this.unitDetails.value)
-      this.closeModal.emit('save');
-
-
+      if(result.data>0)
+      {
+        this.closeModal.emit('save');
+         Swal.fire({
+        text: 'Data is Saved Successfully'
+      });
+      }
+  
     }
     else {
       const result = await this.apiService.postMethod(`DigiOffice/UpdateUnit`, this.unitDetails.value)
-      this.closeModal.emit('save');
+    
+      if(result.data>0)
+      {
+         this.closeModal.emit('update');
+         Swal.fire({
+        text: 'Data is Updated Successfully'
+      });
+      }
 
     }
 

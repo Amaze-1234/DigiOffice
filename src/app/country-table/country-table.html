@@ -10,7 +10,7 @@
                 country</button>
         </div>
     </div>
-    <p class="result">Showing {{countryData.length}} Results</p>
+    <p class="result">Showing {{(countryData | search:searchText).length}} Results</p>
     <table>
         <tr>
             <th>Country</th>

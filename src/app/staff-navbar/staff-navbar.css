@@ -1,0 +1,13 @@
+.staff-nav{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.highlight{
+    color: blue;
+    padding-bottom: 10px;
+    border-bottom: 3px solid blue;
+}
+p{
+    cursor: pointer;
+}

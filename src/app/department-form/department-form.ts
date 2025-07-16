@@ -42,15 +42,19 @@ export class DepartmentForm {
     }
     if (type == 'save') {
       let result = await this.api.postMethod('DigiOffice/InsertDepartment', this.departmentInfo.value);
-      this.closeModal.emit("save");
+  
       if (result.data > 0) {
+        this.closeModal.emit("save");
         Swal.fire("Data saved Successfully");
       }
     }
     else {
       let result = await this.api.postMethod('DigiOffice/UpdateDepartment', this.departmentInfo.value);
-      this.closeModal.emit("update");
+   
+          if (result.data > 0) {
+          this.closeModal.emit("update");
       Swal.fire("Data Updated Successfully");
+      }
     }
   }
   async updateDepartmentForm() {

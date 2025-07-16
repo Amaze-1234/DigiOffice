@@ -15,7 +15,7 @@ export class CityTable {
 
   editid:any;
   CityData: any;
-
+  searchText:any='';
 
   constructor(public modelService:NgbModal,public apiService:Api){
 
@@ -70,6 +70,7 @@ export class CityTable {
     let result = await this.apiService.getMethod('Master/GetCity');
     this.CityData = result.data;
     console.log(result.status);
+    
 
   }
   

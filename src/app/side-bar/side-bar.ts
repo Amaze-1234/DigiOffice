@@ -11,7 +11,9 @@ import { Loader } from '../../Services/loader';
 })
 export class SideBar {
 
-      hide:any = true;
+
+      hide = true;
+      staff=true;
      downArrow = '\u2304';
   constructor(public router:Router,public loaderService:Loader){
 
@@ -27,6 +29,12 @@ export class SideBar {
   navigateEmployeeManager(){
     sessionStorage.setItem("isTitle","EmployeeManager Master")
     this.loaderService.isTitle = 'EmployeeManager Master';
+    this.staff = !this.staff;
+  }
+    navigateStaffDashboard(){
+    this.router.navigate(['/staffdashboard']);
+    sessionStorage.setItem("isTitle","StaffDashboard Master");
+    this.loaderService.isTitle = 'StaffDashboard Master';
   }
   navigateConfiguration(){
     sessionStorage.setItem("isTitle","Configuration Master")

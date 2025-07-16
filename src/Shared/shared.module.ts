@@ -23,12 +23,7 @@ import { LengthPipePipe } from "./length-pipe-pipe";
         ReactiveFormsModule,
 
         SearchPipe,
-<<<<<<< HEAD
         NgbPopover
-
-=======
-        NgbPopover,
->>>>>>> 7850361f9d704fc88b1be9c04e18512eda65c414
         
     ]
 })

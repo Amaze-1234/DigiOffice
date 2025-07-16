@@ -13,11 +13,14 @@ li {
     background-color: white;
     width: 110%;
     align-items: center;
-
     height: auto;
+<<<<<<< HEAD
 
     margin-left: -13%;
 
+=======
+    margin-left: -13%;
+>>>>>>> 7850361f9d704fc88b1be9c04e18512eda65c414
 }
 
 

@@ -19,6 +19,7 @@ export class PositionDetails {
  countryData:any;
  provinceData:any;
  cityData:any;
+ designationName:string='';
   constructor(public apiService:Api){}
   ngOnInit()
   {

@@ -8,3 +8,6 @@
     padding-bottom: 10px;
     border-bottom: 3px solid blue;
 }
+p{
+    cursor: pointer;
+}

@@ -1,36 +1,35 @@
-#mark
-{
-    color:red;
+#mark {
+    color: red;
 }
-#click-submit
-{
-     padding:5px 50px;
-    background-color:blue ;
-    color:white;
+
+#click-submit {
+    padding: 5px 50px;
+    background-color: blue;
+    color: white;
     border: none;
     border-radius: 5px;
-     margin-left:10px;
-     font-weight: bold;
+    margin-left: 10px;
+    font-weight: bold;
 }
-#click-cancel
-{
+
+#click-cancel {
 
     font-weight: bold;
-     padding:5px 50px;
-    background-color:white ;
-    color:blue;
+    padding: 5px 50px;
+    background-color: white;
+    color: blue;
     border: 1px solid blue;
     border-radius: 5px;
-     
+
 }
-#action-buttons
-{
+
+#action-buttons {
 
     display: flex;
-    gap:15px;
-    
+    gap: 15px;
+
 }
-#Description
-{
+
+#Description {
     margin-bottom: 3%;
 }

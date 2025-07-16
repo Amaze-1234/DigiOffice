@@ -9,10 +9,20 @@
             <img src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;"> DashBoard
         </li>
         <hr>
-        <li (click)="navigateEmployeeManager()"
-            [ngClass]="this.loaderService.isTitle == 'EmployeeManager Master' ?'highlight':'' "><img
-                src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee
+                 <div class="subnav">
+            <li (click)="navigateEmployeeManager()"
+                [ngClass]="this.loaderService.isTitle == 'EmployeeManager Master' ?'highlight':'' "><img
+                    src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee
             Management</li>
+            <span class="eye-icon">
+                {{ staff ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!staff">
+                <li (click)="navigateStaffDashboard()"
+                    [ngClass]="this.loaderService.isTitle == 'StaffDashboard Master' ?'highlight':'' "><img
+                        src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;">Staff Dashboard</li>
+                    </div>
+                    </div>
         <hr>
         <li (click)="navigateConfiguration()"
             [ngClass]="this.loaderService.isTitle == 'Configuration Master' ?'highlight':'' "><img
@@ -23,7 +33,7 @@
                 [ngClass]="this.loaderService.isTitle == 'EmployeeField Master' ?'highlight':'' "><img
                     src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee Field
                 Masters</li>
-            <span class="eye-icon">
+            <span class="eye-icon" >
                 {{ hide ? '>' : downArrow }}
             </span>
             <div class="subnav-content" *ngIf="!hide">

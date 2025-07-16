@@ -6,10 +6,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Api } from '../../Services/api';
 import { LoanTypeForm } from '../loan-type-form/loan-type-form';
+import { SharedModule } from '../../Shared/shared.module';
 
 @Component({
   selector: 'app-loan-type-table',
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, LoanTypeForm],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, LoanTypeForm,SharedModule],
   templateUrl: './loan-type-table.html',
   styleUrl: './loan-type-table.css'
 })
@@ -20,6 +21,7 @@ export class LoanTypeTable implements OnInit {
   loanForm: any;
   closemodal: any;
   loanLength: any;
+  searchText:any='';
   constructor(public apiservice: Api, public router: Router, public modalService: NgbModal) { }
 
 
@@ -34,6 +36,7 @@ export class LoanTypeTable implements OnInit {
 
 
   }
+
 
 
 

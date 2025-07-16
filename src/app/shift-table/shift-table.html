@@ -3,14 +3,15 @@
     <div class="d-inline-flex align-items-center mt-1">
       <img src="images/filter.png" alt="filter" class="img-fluid me-1" width="20px">
       <span class="fw-bold me-4" style="color:darkolivegreen">Filter by:</span>
-      <input type="search" class="" placeholder="Search..." class="">
+      <input type="search" class="" placeholder="Search..." class="" [(ngModel)]="searchText">
     </div>
     <button (click)="openModal(popupmodal)" class="shifting btn px-4 text-white me-2 mt-1 mb-1">
       <img src="images/plus.svg" alt="+logo" class="text-center me-1 mt-0">Add Shift
     </button>
   </div>
   <div>
-    <h5 class="text-start" style="color:blue;">Showing {{shiftLength}} Results</h5>
+    <h5 class="text-start" style="color:blue;">Showing {{(shiftData|search:searchText).length}} Results</h5>
+    
   </div>
   <div class="bg-white ps-1 pe-1 rounded">
     <table class="table w-100" style="table-layout: fixed;">
@@ -24,13 +25,15 @@
         <th class="text-center">Actions</th>
 
       </tr>
-      <tr *ngFor="let s of shiftData" class="border-bottom">
+      <tr *ngFor="let s of shiftData|search:searchText" class="border-bottom">
 
         <td>{{s.shiftType}}</td>
         <td>{{s.startTime}}</td>
         <td>{{s.endTime}}</td>
         <td>{{s.shiftCode}}</td>
         <td>{{s.gracePeriod}}</td>
+
+
 
         <td class="text-center"><button (click)="openModal(popupmodal,s.id)" class="btn  me-1 "> <img
               src="images/Edit 1.svg" class="img-fluid" style="width: 25px; height: auto;" alt="edited image"></button>

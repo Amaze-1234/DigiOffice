@@ -1,17 +1,20 @@
-.jobLevel{
+.jobLevel {
    margin: 0;
-   background-color: rgb(240, 238, 238);;
+   background-color: rgb(240, 238, 238);
+   ;
 }
+
 img {
    width: 25px;
    height: 25px;
    margin-right: 7px;
 }
-.filterImage{
-    width: 17px;
-    height: 17px;
-    margin-top: 2%;
-    margin-right: 0px;
+
+.filterImage {
+   width: 17px;
+   height: 17px;
+   margin-top: 2%;
+   margin-right: 0px;
 }
 
 button {
@@ -19,17 +22,20 @@ button {
    background-color: blue;
    color: white;
 }
-table{
-   margin-left:  10px;
+
+table {
+   margin-left: 10px;
    width: 98%;
 }
-#tableData{
+
+#tableData {
    background-color: white;
    border: 2px solid white;
    border-radius: 10px;
    border-collapse: none;
-   
+
 }
+
 tr {
    border: 1px solid lightblue;
 }
@@ -44,25 +50,28 @@ td {
    padding: 8px 8px;
 }
 
-.searchBar{
+.searchBar {
    width: 250px;
    height: 30px;
    border-radius: 5px;
-   
+
 }
-.addBtn{
+
+.addBtn {
    width: 250px;
    height: 38px;
    border-radius: 5px;
    border: none;
 }
-.para{
+
+.para {
    font-weight: bold;
    background-color: rgb(240, 238, 238);
    padding: 2px;
    color: rgb(48, 48, 244);
    font-size: 17px;
 }
+
 .header {
    display: flex;
    justify-content: space-between;

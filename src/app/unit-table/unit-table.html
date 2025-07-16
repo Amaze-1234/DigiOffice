@@ -1,50 +1,51 @@
-
-<div class="card"><div class="card-body">   
+<div class="card">
+  <div class="card-body">
 
     <div class="intial">
-        <img src="images/filter.png" alt="icon" width="18px" height="18px">
-        <p id="filter-text">Filter By:</p>
-        <input type="search" placeholder="Search.." style="padding:2px;" class="form-control">
+      <img src="images/filter.png" alt="icon" width="18px" height="18px">
+      <p id="filter-text">Filter By:</p>
+      <input type="search" placeholder="Search.." style="padding:2px;" class="form-control"[(ngModel)]="searchItem">
     </div>
     <div class="addDetails">
-        <button id="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="20px"> Add Unit</button>
+      <button id="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="20px"> Add
+        Unit</button>
     </div>
+  </div>
 </div>
-</div>
-
-    
-<p class="records">Showing {{deptLength}} Results</p>
- 
-  <table class="table ">
-             <tr>
-              <th>Department Name</th>
-              <th>Unit Name</th>
-              <th>Unit Description</th>
-              <th>Actions</th>
-            </tr>
-          <tr *ngFor="let data of DepartmentData">
-            <td>{{data.departmentName}}</td>
-            <td>{{data.unitName}}</td>
-            <td>{{data.unitDescription}}</td>
-          
-           <td>
-           <img  class="modify" src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupmodelunit,data.id)">
-        <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
-        
-           </td>
-
-         </tr>
-      </table>
 
 
+<p class="records">Showing {{(DepartmentData|search:searchItem).length}} Results</p>
 
-       <ng-template #popupmodelunit>
-      <div class="modal-header justify-content-between fw-bold">
-      <h3>Unit Master</h3>
-      <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
-      </div>
-      <div class="modal-body">
-        <app-unit-form [deptID]="deptID" (closeModal)="close($event)"></app-unit-form>
-      </div>
-     
-    </ng-template>
+<table class="table ">
+  <tr>
+    <th>Department Name</th>
+    <th>Unit Name</th>
+    <th>Unit Description</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let data of DepartmentData|search:searchItem">
+    <td>{{data.departmentName}}</td>
+    <td>{{data.unitName}}</td>
+    <td>{{data.unitDescription}}</td>
+
+    <td>
+      <img class="modify" src="images/Edit 1.svg" alt="Edit" (click)="openModal(popupmodelunit,data.id)">
+      <img class="modify" src="images/Delete.svg" alt="Delete" (click)="deleteDepartment(data.id)">
+
+    </td>
+
+  </tr>
+</table>
+
+
+
+<ng-template #popupmodelunit>
+  <div class="modal-header justify-content-between fw-bold">
+    <h3>Unit Master</h3>
+    <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
+  </div>
+  <div class="modal-body">
+    <app-unit-form [deptID]="deptID" (closeModal)="close($event)"></app-unit-form>
+  </div>
+
+</ng-template>

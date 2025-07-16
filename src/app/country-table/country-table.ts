@@ -17,6 +17,7 @@ export class CountryTable {
   countryData: any;
   data: any;
   countryLength: any;
+  searchText:any='';
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
   ngOnInit() {
     this.getData();

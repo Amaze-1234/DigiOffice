@@ -17,6 +17,8 @@ export class ProvinceTable {
   data: any;
   provinceData: any;
   provinceLength: any;
+  searchText:any='';
+// filtertedList: any;
   constructor(public api:Api, public router:Router,public modalservice:NgbModal){}
 
 
@@ -31,6 +33,7 @@ export class ProvinceTable {
     this.provinceData = result.data;
     //this.provinceLength = this.provinceData.length;
   }
+
 
   openModal(Modal: any,id:any =null ){
     if(id){

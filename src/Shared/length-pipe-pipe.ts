@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+import { SearchPipe } from './search-pipe';
 @Pipe({
   name: 'lengthPipe'
 })
-export class LengthPipePipe implements PipeTransform {
-
+export class LengthPipePipe implements PipeTransform{
   transform(items: any[], searchText: string): any[] {
     if (!items || !searchText) {
       return items;

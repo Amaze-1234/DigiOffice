@@ -14,7 +14,11 @@ li {
     width: 110%;
     align-items: center;
     height: auto;
+
+
     margin-left: -13%;
+
+
 }
 
 
@@ -27,7 +31,6 @@ li {
 }
 
 .subnav-content {
-
     left: 0;
     background-color: white;
     z-index: 1;
@@ -43,6 +46,6 @@ li {
     margin-top: -28%;
     float: right;
     width: 10%;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }

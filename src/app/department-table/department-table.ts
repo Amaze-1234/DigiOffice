@@ -17,9 +17,7 @@ export class DepartmentTable {
 
   departmentData: any;
   deptID: any;
-  deptLength: any;
   searchItem:any;
-  length:any;
   constructor(public api: Api, public modalService: NgbModal) { }
   ngOnInit() {
     this.getDepartmentdetails();
@@ -28,8 +26,6 @@ export class DepartmentTable {
   async getDepartmentdetails() {
     const resultDetails = await this.api.getMethod("DigiOffice/GetDepartment");
     this.departmentData = resultDetails.data;
-    this.deptLength = this.departmentData.length
-    console.log(this.departmentData)
   }
   async deleteDepartment(id: any) {
     Swal.fire({
@@ -78,4 +74,6 @@ export class DepartmentTable {
 
 
   }
+
+
 }

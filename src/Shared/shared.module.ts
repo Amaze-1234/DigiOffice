@@ -24,11 +24,7 @@ import { LengthPipePipe } from "./length-pipe-pipe";
 
 
         SearchPipe,
-        NgbPopover
-
-
-
-        
+        NgbPopover        
     ]
 })
 

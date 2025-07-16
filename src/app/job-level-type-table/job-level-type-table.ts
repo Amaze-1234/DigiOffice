@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class JobLevelTypeTable {
   jobLevelShift: any;
   editID: any;
-  jobLength: any;
+  searchData: any;
   constructor(public apiService: Api, public router: Router, public modalService: NgbModal) {
 
   }
@@ -25,7 +25,6 @@ export class JobLevelTypeTable {
   async jobLevelShiftdata() {
     let result = await this.apiService.getMethod('DigiOffice/GetJoblevelTypeJoinDesignation');
     console.log(result.data);
-    this.jobLength = result.data.length;
     console.log(1);
 
     this.jobLevelShift = result.data;

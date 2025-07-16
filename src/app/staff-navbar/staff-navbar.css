@@ -1,0 +1,9 @@
+.staff-nav{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.highlight{
+    color: blue;
+    text-decoration: underline;
+}

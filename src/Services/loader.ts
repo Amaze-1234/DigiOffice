@@ -11,9 +11,5 @@ export class Loader {
 
   isTitle:any=sessionStorage.getItem("Department Master")||'';
 
-  check(data:any){
-    
-
-  }
-
+  isDetail:any=sessionStorage.getItem("position")||'';
 }

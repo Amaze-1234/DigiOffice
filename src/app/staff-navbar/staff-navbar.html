@@ -1,15 +1,10 @@
-
-
-
-  <div class="row">
-    <div class="col-2">
-<a  (click)="employee($event)" target="_self">Employee Details</a>
-    </div >
-    <div class="col-2">
-    <a  (click)="position($event)" target="_self">Position Details</a>
-    </div>
-
-      <div class="row">
-        <router-outlet></router-outlet>
-      </div>
+<div class="staff-nav">
+  <div>
+    <p (click)="employee()" [ngClass]="this.loaderService.isDetail == 'employee' ?'highlight':'' ">Employee Details</p>
   </div>
+  <div>
+    <p (click)="position()" [ngClass]="this.loaderService.isDetail == 'position' ?'highlight':'' ">Position Details</p>
+  </div>
+
+
+</div>

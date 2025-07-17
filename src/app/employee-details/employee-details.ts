@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-employee-details',
@@ -15,9 +16,9 @@ export class EmployeeDetails {
   editid: any;
   countryList: any;
   contactForm: any;
-  constructor( public api:Api, public router: Router, public activateRoute: ActivatedRoute){}
-  ngOnInit(){
-    if(this.editid){
+  constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute,public loaderService:Loader) { }
+  ngOnInit() {
+    if (this.editid) {
       this.getByID();
     }
     this.buildForm();
@@ -26,7 +27,7 @@ export class EmployeeDetails {
 
   buildForm() {
     this.contactForm = new FormGroup({
-      ID: new FormControl('',Validators.required),
+      ID: new FormControl('', Validators.required),
       Title: new FormControl('', Validators.required),
       FirstName: new FormControl('', Validators.required),
       MiddleName: new FormControl('', Validators.required),
@@ -77,43 +78,51 @@ export class EmployeeDetails {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
- 
 
- async Submit(){
-  if(this.contactForm.invalid){
-    Swal.fire({
-      text: 'Please Fill All Details'
-    });
-    return;
-  }
-    let result = await this.api.postMethod('Master/InsertEmployeeDetails',this.contactForm.value);
-    if(result.data > 0){
+
+  async Submit() {
+    if (this.contactForm.invalid) {
       Swal.fire({
-        text: 'Employee Details Added Successfully'
+        text: 'Please Fill All Details'
       });
-      // this.router.navigate(['/position-details']);
+      return;
     }
-  // }else{
-  //   let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
-  //   if(result.data > 0){
-  //     Swal.fire({
-  //       text: 'Updated Successfully'
-  //     });
-  //     this.router.navigate(['/position-details']);
-  //   }
-  // }
- }
+    else {
+      if(this.editid){
+         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+         this.loaderService.isEmployee="Yes";
+      if (result.data > 0) {
+        Swal.fire({
+          text: 'Updated Successfully'
+        });
 
- goToNext(){
-  if(this.contactForm.invalid){
+      }
+      }
+      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+      this.loaderService.isEmployee="Yes";
+      if (result.data > 0) {
+        Swal.fire({
+          text: 'Employee Details Added Successfully'
+        });
+
+      }
+    }
+   
+  }
+
+
+
+goToNext(){
+  if (this.loaderService.isEmployee!="Yes") {
     Swal.fire({
-      icon:'error',
-      title:"You Not Allowed to Navigate",
-      text:'Please Fill Employee Details Tab'
+      icon: 'error',
+      title: "You Not Allowed to Navigate",
+      text: 'Please Fill Employee Details Tab'
     });
     return;
-  }
-  this.router.navigate(['/position-details']);
- }
+    }
+   this.loaderService.isDetail='position';
+
+}
 
 }

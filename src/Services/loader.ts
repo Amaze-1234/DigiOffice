@@ -13,5 +13,5 @@ export class Loader {
 
   isDetail:any=sessionStorage.getItem("position")||'';
 
-  isEmployee:any=sessionStorage.getItem("isEmployee")||'';
+  isEmployee:any='';
 }

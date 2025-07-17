@@ -98,7 +98,8 @@ export class EmployeeDetails {
 
       }
       }
-      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+      else{
+         let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
       this.loaderService.isEmployee="Yes";
       if (result.data > 0) {
         Swal.fire({
@@ -106,6 +107,8 @@ export class EmployeeDetails {
         });
 
       }
+      }
+     
     }
    
   }

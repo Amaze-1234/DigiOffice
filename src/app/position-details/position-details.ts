@@ -100,7 +100,4 @@ previousPage()
   this.route.navigate(['/employee-details']);
 }
 
-
-
-
 }

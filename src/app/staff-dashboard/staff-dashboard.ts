@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedModule } from '../../Shared/shared.module';
 import { Loader } from '../../Services/loader';
+import { Api } from '../../Services/api';
 
 @Component({
   selector: 'app-staff-dashboard',
@@ -11,8 +12,13 @@ import { Loader } from '../../Services/loader';
   styleUrl: './staff-dashboard.css'
 })
 export class StaffDashboard {
-constructor(public router: Router,public loaderService:Loader){
+  designationData:any
+constructor(public router: Router,public loaderService:Loader, public apiService:Api){
 
+}
+ngOnInit()
+{
+  this.getDesignationData();
 }
 navigateToEmployeeDetails(){
   this.router.navigate(['/staff-details']);
@@ -21,4 +27,12 @@ navigateToEmployeeDetails(){
   console.log(1);
   
 }
+ async getDesignationData()
+{
+  const result = await this.apiService.getMethod('DigiOffice/GetDesignation');
+    this.designationData = result.data;
+
+}
+
+
 }

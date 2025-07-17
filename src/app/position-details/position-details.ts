@@ -107,7 +107,7 @@ export class PositionDetails {
 
   const result = await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails.value);
   if(result.data >0){
-    Swal.fire("Data Saved successfully");
+    Swal.fire("Data Saved successfully")
   }
   
 }

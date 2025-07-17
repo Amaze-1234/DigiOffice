@@ -16,7 +16,7 @@ export class EmployeeDetails {
   editid: any;
   countryList: any;
   contactForm: any;
-  constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute,public loaderService:Loader) { }
+  constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader) { }
   ngOnInit() {
     if (this.editid) {
       this.getByID();
@@ -88,18 +88,18 @@ export class EmployeeDetails {
       return;
     }
     else {
-      if(this.editid){
-         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
-         this.loaderService.isEmployee="Yes";
-      if (result.data > 0) {
-        Swal.fire({
-          text: 'Updated Successfully'
-        });
+      if (this.editid) {
+        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+        this.loaderService.isEmployee = "Yes";
+        if (result.data > 0) {
+          Swal.fire({
+            text: 'Updated Successfully'
+          });
 
-      }
+        }
       }
       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
-      this.loaderService.isEmployee="Yes";
+      this.loaderService.isEmployee = "Yes";
       if (result.data > 0) {
         Swal.fire({
           text: 'Employee Details Added Successfully'
@@ -107,22 +107,22 @@ export class EmployeeDetails {
 
       }
     }
-   
+
   }
 
 
 
-goToNext(){
-  if (this.loaderService.isEmployee!="Yes") {
-    Swal.fire({
-      icon: 'error',
-      title: "You Not Allowed to Navigate",
-      text: 'Please Fill Employee Details Tab'
-    });
-    return;
+  goToNext() {
+    if (this.loaderService.isEmployee != "Yes") {
+      Swal.fire({
+        icon: 'error',
+        title: "You Not Allowed to Navigate",
+        text: 'Please Fill Employee Details Tab'
+      });
+      return;
     }
-   this.loaderService.isDetail='position';
+    this.loaderService.isDetail = 'position';
 
-}
+  }
 
 }

@@ -52,4 +52,6 @@ select.form-control {
 
 .upload{
     margin-left: 150px;
+    width: 20px;
+    height: 20px;
 }

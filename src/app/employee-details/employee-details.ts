@@ -26,7 +26,7 @@ export class EmployeeDetails {
 
   buildForm() {
     this.contactForm = new FormGroup({
-      ID: new FormControl(''),
+      ID: new FormControl('',Validators.required),
       Title: new FormControl('', Validators.required),
       FirstName: new FormControl('', Validators.required),
       MiddleName: new FormControl('', Validators.required),
@@ -38,10 +38,10 @@ export class EmployeeDetails {
       Gender: new FormControl('', Validators.required),
       MaritalStatus: new FormControl('', Validators.required),
       PersonalEmail: new FormControl('', Validators.required),
-      MotherName: new FormControl('', Validators.required),
-      FatherName: new FormControl('', Validators.required),
-      Religion: new FormControl('', Validators.required),
-      Citizenship: new FormControl('', Validators.required),
+      MotherName: new FormControl(''),
+      FatherName: new FormControl(''),
+      Religion: new FormControl(''),
+      Citizenship: new FormControl(''),
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
 
@@ -77,33 +77,31 @@ export class EmployeeDetails {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
-  nextPage()
-  {
-    this.router.navigate(['/position-details'])
-  }
+ 
 
- async Submit(type: any){
+ async Submit(){
   if(this.contactForm.invalid){
     Swal.fire({
       text: 'Please Fill All Details'
     });
     return;
   }
-  if(type=='save'){
     let result = await this.api.postMethod('Master/InsertEmployeeDetails',this.contactForm.value);
     if(result.data > 0){
       Swal.fire({
         text: 'Employee Details Added Successfully'
-      })
+      });
+      // this.router.navigate(['/position-details']);
     }
-  }else{
-    let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
-    if(result.data > 0){
-      Swal.fire({
-        text: 'Updated Successfully'
-      })
-    }
-  }
+  // }else{
+  //   let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+  //   if(result.data > 0){
+  //     Swal.fire({
+  //       text: 'Updated Successfully'
+  //     });
+  //     this.router.navigate(['/position-details']);
+  //   }
+  // }
  }
 
  goToNext(){

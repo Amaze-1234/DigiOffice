@@ -18,6 +18,11 @@ export class EmployeeDetails {
   contactForm: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute,public loaderService:Loader) { }
   ngOnInit() {
+    //  this.activateRoute.params.subscribe(parms => {
+    //   debugger
+    //   this.editid = parms['id'];
+
+    // })
     if (this.editid) {
       this.getByID();
     }

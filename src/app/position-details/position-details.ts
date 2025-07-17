@@ -22,6 +22,7 @@ export class PositionDetails {
   countryData: any;
   provinceData: any;
   cityData: any;
+  employeeDetails: any;
   constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
   ngOnInit() {
     this.getPositionDetailsData();
@@ -32,6 +33,7 @@ export class PositionDetails {
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
+    
   }
 
   async getDesignation() {
@@ -72,8 +74,9 @@ export class PositionDetails {
   }
 
   getPositionDetailsData() {
+    this.employeeDetails = this.loaderService.isEmployeeDetails;
     this.positionDetails = new FormGroup({
-      // ID: new FormControl(''),
+      // ID: new FormControl(15),
       DesignationID: new FormControl('', Validators.required),
       JobLevel: new FormControl('', Validators.required),
       LoginType: new FormControl('', Validators.required),
@@ -93,7 +96,7 @@ export class PositionDetails {
       SeperationDate: new FormControl('', Validators.required),
       ProbationEndDate: new FormControl('', Validators.required),
       ContractEndDate: new FormControl('', Validators.required),
-      // EmployeeDetailsID: new FormControl(10)
+      EmployeeDetailsID: new FormControl(Number(this.employeeDetails),Validators.required)
     })
   }
 
@@ -104,10 +107,14 @@ export class PositionDetails {
     Swal.fire("Please fill all the details");
     return;
   }
+console.log(this.loaderService.isEmployeeDetails);
+console.log("position data");
+
 
   const result = await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails.value);
   if(result.data >0){
     Swal.fire("Data Saved successfully")
+    sessionStorage.removeItem("isEmployeeDetails");
   }
   
 }

@@ -2,7 +2,7 @@
     <form [formGroup]="contactForm">
         <div class="card">
             <div class="card-body">
-                <h5>My Information</h5>
+                <h6>My Information</h6>
 
 
                 <div class="row ">
@@ -146,10 +146,10 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="submit-btn" (click)="Submit(editid? 'Update' : 'save')">Submit</button>
         </div>
         <div>
-            <button type="submit" class="next-btn">Next</button>
+            <button type="submit" class="next-btn" (click)="goToNext()">Next</button>
         </div>
     </form>
 </div>

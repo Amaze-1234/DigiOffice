@@ -3,6 +3,7 @@ import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-details',
@@ -76,5 +77,41 @@ export class EmployeeDetails {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
+
+ async Submit(type: any){
+  if(this.contactForm.invalid){
+    Swal.fire({
+      text: 'Please Fill All Details'
+    });
+    return;
+  }
+  if(type=='save'){
+    let result = await this.api.postMethod('Master/InsertEmployeeDetails',this.contactForm.value);
+    if(result.data > 0){
+      Swal.fire({
+        text: 'Employee Details Added Successfully'
+      })
+    }
+  }else{
+    let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+    if(result.data > 0){
+      Swal.fire({
+        text: 'Updated Successfully'
+      })
+    }
+  }
+ }
+
+ goToNext(){
+  if(this.contactForm.invalid){
+    Swal.fire({
+      icon:'error',
+      title:"You Not Allowed to Navigate",
+      text:'Please Fill Employee Details Tab'
+    });
+    return;
+  }
+  this.router.navigate(['/position-details']);
+ }
 
 }

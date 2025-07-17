@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-position-details',
@@ -19,7 +20,7 @@ export class PositionDetails {
   countryData: any;
   provinceData: any;
   cityData: any;
-  constructor(public apiService: Api) { }
+  constructor(public apiService: Api, public route :Router) { }
   ngOnInit() {
     this.getPositionDetailsData();
     this.getDesignation();
@@ -38,6 +39,7 @@ export class PositionDetails {
   async getJobLevel() {
     const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
     this.jobLevelData = result.data;
+    console.log(this.jobLevelData.levelType);
   }
   async getLogin() {
     const result = await this.apiService.getMethod('DigiOffice/GetLoginType');
@@ -91,9 +93,14 @@ export class PositionDetails {
       ProbationEndDate: new FormControl('', Validators.required),
       ContractEndDate: new FormControl('', Validators.required),
       EmployeeDetailsID: new FormControl('')
-
     })
-
   }
+previousPage()
+{
+  this.route.navigate(['/employee-details']);
+}
+
+
+
 
 }

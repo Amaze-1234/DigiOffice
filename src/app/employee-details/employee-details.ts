@@ -3,6 +3,8 @@ import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-employee-details',
@@ -14,9 +16,14 @@ export class EmployeeDetails {
   editid: any;
   countryList: any;
   contactForm: any;
-  constructor( public api:Api, public router: Router, public activateRoute: ActivatedRoute){}
-  ngOnInit(){
-    if(this.editid){
+  constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute,public loaderService:Loader) { }
+  ngOnInit() {
+    //  this.activateRoute.params.subscribe(parms => {
+    //   debugger
+    //   this.editid = parms['id'];
+
+    // })
+    if (this.editid) {
       this.getByID();
     }
     this.buildForm();
@@ -25,7 +32,7 @@ export class EmployeeDetails {
 
   buildForm() {
     this.contactForm = new FormGroup({
-      ID: new FormControl(''),
+      ID: new FormControl('', Validators.required),
       Title: new FormControl('', Validators.required),
       FirstName: new FormControl('', Validators.required),
       MiddleName: new FormControl('', Validators.required),
@@ -37,10 +44,10 @@ export class EmployeeDetails {
       Gender: new FormControl('', Validators.required),
       MaritalStatus: new FormControl('', Validators.required),
       PersonalEmail: new FormControl('', Validators.required),
-      MotherName: new FormControl('', Validators.required),
-      FatherName: new FormControl('', Validators.required),
-      Religion: new FormControl('', Validators.required),
-      Citizenship: new FormControl('', Validators.required),
+      MotherName: new FormControl(''),
+      FatherName: new FormControl(''),
+      Religion: new FormControl(''),
+      Citizenship: new FormControl(''),
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
 
@@ -76,5 +83,51 @@ export class EmployeeDetails {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
+
+
+  async Submit() {
+    if (this.contactForm.invalid) {
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
+      return;
+    }
+    else {
+      if(this.editid){
+         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+         this.loaderService.isEmployee="Yes";
+      if (result.data > 0) {
+        Swal.fire({
+          text: 'Updated Successfully'
+        });
+
+      }
+      }
+      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+      this.loaderService.isEmployee="Yes";
+      if (result.data > 0) {
+        Swal.fire({
+          text: 'Employee Details Added Successfully'
+        });
+
+      }
+    }
+   
+  }
+
+
+
+goToNext(){
+  if (this.loaderService.isEmployee!="Yes") {
+    Swal.fire({
+      icon: 'error',
+      title: "You Not Allowed to Navigate",
+      text: 'Please Fill Employee Details Tab'
+    });
+    return;
+    }
+   this.loaderService.isDetail='position';
+
+}
 
 }

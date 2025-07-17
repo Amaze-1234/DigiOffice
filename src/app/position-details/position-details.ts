@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-position-details',
@@ -19,7 +22,7 @@ export class PositionDetails {
   countryData: any;
   provinceData: any;
   cityData: any;
-  constructor(public apiService: Api) { }
+  constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
   ngOnInit() {
     this.getPositionDetailsData();
     this.getDesignation();
@@ -38,6 +41,7 @@ export class PositionDetails {
   async getJobLevel() {
     const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
     this.jobLevelData = result.data;
+    console.log(this.jobLevelData.levelType);
   }
   async getLogin() {
     const result = await this.apiService.getMethod('DigiOffice/GetLoginType');
@@ -51,7 +55,6 @@ export class PositionDetails {
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');
     this.countryData = result.data;
-
   }
   async getProvince() {
     const result = await this.apiService.getMethod("Master/GetProvince");
@@ -70,7 +73,7 @@ export class PositionDetails {
 
   getPositionDetailsData() {
     this.positionDetails = new FormGroup({
-      ID: new FormControl(''),
+      // ID: new FormControl(''),
       DesignationID: new FormControl('', Validators.required),
       JobLevel: new FormControl('', Validators.required),
       LoginType: new FormControl('', Validators.required),
@@ -90,10 +93,28 @@ export class PositionDetails {
       SeperationDate: new FormControl('', Validators.required),
       ProbationEndDate: new FormControl('', Validators.required),
       ContractEndDate: new FormControl('', Validators.required),
-      EmployeeDetailsID: new FormControl('')
-
+      // EmployeeDetailsID: new FormControl(10)
     })
-
   }
+
+ async submitDetails()
+{
+  console.log(this.positionDetails.value);
+  if(this.positionDetails.invalid){
+    Swal.fire("Please fill all the details");
+    return;
+  }
+
+  const result = await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails.value);
+  if(result.data >0){
+    Swal.fire("Data Saved successfully")
+  }
+  
+}
+
+previousPage()
+{
+  this.loaderService.isDetail = "employee";
+}
 
 }

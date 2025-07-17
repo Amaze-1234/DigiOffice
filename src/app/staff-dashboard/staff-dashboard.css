@@ -22,7 +22,7 @@
     height: 20px;
     
 }
-button{
+.b1{
     float: right;
     width: 180px;
     height: 34px;
@@ -31,3 +31,7 @@ button{
     border-radius: 5px;
     color: white;
 }
+th{
+    color:blue;
+}
+

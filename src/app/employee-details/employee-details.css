@@ -44,3 +44,14 @@ img{
   cursor: pointer; 
   margin-left: 85%;
 }
+
+select.form-control {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.upload{
+    margin-left: 150px;
+    width: 20px;
+    height: 20px;
+}

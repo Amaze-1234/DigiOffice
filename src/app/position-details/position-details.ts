@@ -53,7 +53,6 @@ export class PositionDetails {
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');
     this.countryData = result.data;
-
   }
   async getProvince() {
     const result = await this.apiService.getMethod("Master/GetProvince");
@@ -95,9 +94,17 @@ export class PositionDetails {
       EmployeeDetailsID: new FormControl('')
     })
   }
+
+ async submitDetails()
+{
+  const result =await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails);
+  console.log(1);
+  
+}
+
 previousPage()
 {
-  this.route.navigate(['/employee-details']);
+  this.route.navigate(['/employee-details']); 
 }
 
 }

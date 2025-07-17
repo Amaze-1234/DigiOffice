@@ -77,6 +77,10 @@ export class EmployeeDetails {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
+  nextPage()
+  {
+    this.router.navigate(['/position-details'])
+  }
 
  async Submit(type: any){
   if(this.contactForm.invalid){

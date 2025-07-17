@@ -71,7 +71,7 @@ export class PositionDetails {
 
   getPositionDetailsData() {
     this.positionDetails = new FormGroup({
-      ID: new FormControl(''),
+      ID: new FormControl(1),
       DesignationID: new FormControl('', Validators.required),
       JobLevel: new FormControl('', Validators.required),
       LoginType: new FormControl('', Validators.required),
@@ -91,13 +91,15 @@ export class PositionDetails {
       SeperationDate: new FormControl('', Validators.required),
       ProbationEndDate: new FormControl('', Validators.required),
       ContractEndDate: new FormControl('', Validators.required),
-      EmployeeDetailsID: new FormControl('')
+      EmployeeDetailsID: new FormControl(10)
     })
   }
 
  async submitDetails()
 {
-  const result =await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails);
+  console.log(this.positionDetails.value);
+
+  const result = await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails.value);
   console.log(1);
   
 }

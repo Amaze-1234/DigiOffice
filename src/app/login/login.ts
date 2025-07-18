@@ -16,10 +16,11 @@ export class Login {
   userName:any;
   password:any;
   staffLogin: any;
-
+  Logintype :any;
 
   constructor(public loaderService:Loader,public router:Router, public apiService: Api){
     this.getStaffDetails();
+    this.getLoginType();
   }
   async getStaffDetails(){
     let result = await this.apiService.getMethod('Master/GetStaffLogin');
@@ -27,6 +28,12 @@ export class Login {
     console.log(this.staffLogin);
     
   }
+
+  async getLoginType(){
+    let result = await this.apiService.getMethod('Master/GetLoginType');
+    this.Logintype = result.data;
+  }
+
     login(){
       if(this.userName == "Amaze-1234" && this.password == "Amaze-1234"){
          sessionStorage.setItem("isLogin",'Yes');

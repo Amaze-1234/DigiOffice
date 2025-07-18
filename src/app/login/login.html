@@ -8,6 +8,12 @@
                         style="width: 200px; height: auto;" alt="digioffice">
                 </div>
                 <div>
+                    <select class="form-control">
+                        <option value="" disabled selected>Select position</option>
+                        <option *ngFor="let data of Logintype" [value]="data.id">{{data.type}}</option>
+                    </select>
+                </div>
+                <div>
                     <label for="username" class="fw-bold">Username:</label>
                     <input type="text" class="form-control" placeholder="Enter Username" [(ngModel)]="userName" >
                 </div>

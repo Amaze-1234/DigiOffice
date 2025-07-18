@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 
 export class StaffDashboard {
+
   designationData: any
   staffData: any;
   searchText: any = '';
@@ -68,6 +69,8 @@ export class StaffDashboard {
       }
     }
   }
+
+
 
 
 }

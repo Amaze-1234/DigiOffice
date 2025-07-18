@@ -23,8 +23,12 @@ export class PositionDetails {
   provinceData: any;
   cityData: any;
   employeeDetails: any;
+  editid: any;
   constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
   ngOnInit() {
+    if (this.editid) {
+      this.getByID();
+    }
     this.getPositionDetailsData();
     this.getDesignation();
     this.getJobLevel();
@@ -100,11 +104,42 @@ export class PositionDetails {
     })
   }
 
+  async getByID() {
+    let response = await this.apiService.getMethod(`Master/GetPositionDetailsByID?ID=${this.editid}`);
+    console.log(response.data);
+    this.positionDetails = new FormGroup({
+      DesignationID: new FormControl(this.editid),
+      JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
+      LoginType: new FormControl(response.data[0].loginType, Validators.required),
+      DepartmentID: new FormControl(response.data[0].departmentID, Validators.required),
+      UnitID: new FormControl(response.data[0].unitID, Validators.required),
+      WorkArrangement: new FormControl(response.data[0].workArrangement, Validators.required),
+      WorksiteCountry: new FormControl(response.data[0].worksiteCountry, Validators.required),
+      WorksiteProvince: new FormControl(response.data[0].worksiteProvince, Validators.required),
+      WorksiteCity: new FormControl(response.data[0].worksiteCity, Validators.required),
+      WorkingLocation: new FormControl(response.data[0].workingLocation, Validators.required),
+      EmploymentType: new FormControl(response.data[0].employmentType, Validators.required),
+      EmploymentStatus: new FormControl(response.data[0].employmentStatus, Validators.required),
+      HiredDate: new FormControl(response.data[0].hiredDate, Validators.required),
+      ConfirmationDueDate: new FormControl(response.data[0].confirmationDueDate, Validators.required),
+      ActualConfirmationDueDate: new FormControl(response.data[0].actualConfirmationDueDate, Validators.required),
+      SeperationDate: new FormControl(response.data[0].seperationDate, Validators.required),
+      ProbationEndDate: new FormControl(response.data[0].probationEndDate, Validators.required),
+      ContractEndDate: new FormControl(response.data[0].contractEndDate, Validators.required),
+      EmployeeDetailsID: new FormControl(response.data[0].employeeDetailsID, Validators.required)
+
+    })
+  }
+
  async submitDetails()
 {
   console.log(this.positionDetails.value);
-  if(this.positionDetails.invalid){
+  if(this.positionDetails.invalid ){
     Swal.fire("Please fill all the details");
+    return;
+  }
+  if(this.employeeDetails == 'no'){
+    Swal.fire("Your data is not associated with your Employee ID");
     return;
   }
 console.log(this.loaderService.isEmployeeDetails);

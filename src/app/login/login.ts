@@ -18,10 +18,7 @@ export class Login {
   staffLogin: any;
   Logintype: any;
 
-  constructor(public loaderService: Loader, public router: Router, public apiService: Api) {
-
-  }
-
+  constructor(public loaderService: Loader, public router: Router, public apiService: Api) {}
   ngOnInit() {
     this.getStaffDetails();
     this.getLoginType();
@@ -32,15 +29,11 @@ export class Login {
     console.log(this.staffLogin.value.username);
     console.log(this.staffLogin.value.password);
   }
-
   async getLoginType() {
     let result = await this.apiService.getMethod('Master/GetLoginType');
     this.Logintype = result.data;
-
   }
-
   login() {
-
     for (let data of this.staffLogin) {
       var name = data.username;
       var pass = data.password;
@@ -52,10 +45,7 @@ export class Login {
         this.router.navigate(['/department-table']);
         return;
       }
-    
-
     }
-        Swal.fire("Enter valid data");
-    
+    Swal.fire("Enter valid data");
   }
 }

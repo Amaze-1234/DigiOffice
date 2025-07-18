@@ -56,11 +56,11 @@
                     <label for="Manager">Manager <span id="marked">*</span></label>
                     <select class="form-control" formControlName="Manager">
                         <option value="">Select Manager</option>
-                        <option value="Consultant">Supraja </option>
-                        <option value="Project">Vinod Kumar</option>
-                        <option value="Regular">Sathish</option>
-                        <option value="Consultant">Lakshmana</option>
-                        <option value="Project">Kumar</option>
+                        <option value="Supraja">Supraja </option>
+                        <option value="Vinod Kumar">Vinod Kumar</option>
+                        <option value="Sathish">Sathish</option>
+                        <option value="Lakshmana">Lakshmana</option>
+                        <option value="Kumar">Kumar</option>
                     </select>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="Job-level"> Worksite Country <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="WorksiteCountry">
+                    <select class="form-control" formControlName="WorksiteCountry" >
                         <option value="">Select Worksite Country </option>
                         <option *ngFor="let country of countryData" [value]="country.id">{{country.countryName}}
                         </option>

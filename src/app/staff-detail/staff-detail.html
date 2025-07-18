@@ -1,6 +1,6 @@
 <app-staff-navbar></app-staff-navbar>
 <div *ngIf="loaderService.isDetail == 'employee' ">
-    <app-employee-details></app-employee-details>
+    <app-employee-details [editid]="editid"></app-employee-details>
 </div>
 <div *ngIf="loaderService.isDetail == 'position' " >
     <app-position-details></app-position-details>

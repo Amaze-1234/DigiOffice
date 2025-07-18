@@ -105,7 +105,7 @@ export class PositionDetails {
   }
 
   async getByID() {
-    let response = await this.apiService.getMethod(`Master/GetEmployeeDetailsByID?ID=${this.editid}`);
+    let response = await this.apiService.getMethod(`Master/GetPositionDetailsByID?ID=${this.editid}`);
     console.log(response.data);
     this.positionDetails = new FormGroup({
       DesignationID: new FormControl(this.editid),

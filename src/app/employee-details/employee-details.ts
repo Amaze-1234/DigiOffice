@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
@@ -13,16 +13,12 @@ import { Loader } from '../../Services/loader';
   styleUrl: './employee-details.css'
 })
 export class EmployeeDetails {
-  editid: any;
+   @Input() editid: any;
   countryList: any;
   contactForm: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader) { }
   ngOnInit() {
-    //  this.activateRoute.params.subscribe(parms => {
-    //   debugger
-    //   this.editid = parms['id'];
-
-    // })
+    
     if (this.editid) {
       this.getByID();
     }
@@ -116,10 +112,12 @@ export class EmployeeDetails {
         });
 
       }
+      }
+     
     }
     }
 
-  }
+
 
 
 

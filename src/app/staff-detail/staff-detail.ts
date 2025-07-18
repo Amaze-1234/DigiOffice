@@ -13,10 +13,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './staff-detail.css'
 })
 export class StaffDetail {
-  editid: any;
- 
+  editid:any;
 
-  constructor(public loaderService:Loader,public activateRoute:ActivatedRoute){
+  constructor(public loaderService:Loader, public activateRoute:ActivatedRoute){
+     this.activateRoute.params.subscribe(parms => {
+      debugger
+      this.editid = parms['id'];
+
+    })
 
   }
   ngOnInit(){

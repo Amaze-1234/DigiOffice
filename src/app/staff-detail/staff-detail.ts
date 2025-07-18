@@ -16,14 +16,11 @@ export class StaffDetail {
   editid:any;
 
   constructor(public loaderService:Loader, public activateRoute:ActivatedRoute){
-     this.activateRoute.params.subscribe(parms => {
-      
-      this.editid = parms['id'];
-
-    })
+  
 
   }
   ngOnInit(){
+    this.loaderService.isDetail = 'employee';
   
     
     this.activateRoute.params.subscribe(parms=> {

@@ -25,6 +25,9 @@ export class PositionDetails {
   employeeDetails: any;
   editid: any;
   unitType: any;
+  department:any;
+  unitValue: any;
+  levelNameValue:any;
   constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
   ngOnInit() {
     if (this.editid) {
@@ -38,6 +41,7 @@ export class PositionDetails {
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
+    this.getDepartment()
     
   }
 
@@ -45,10 +49,21 @@ export class PositionDetails {
     const result = await this.apiService.getMethod('DigiOffice/GetDesignation');
     this.designationData = result.data;
   }
-  async getJobLevel() {
+   async getJobLevel() {
     const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
     this.jobLevelData = result.data;
-    console.log(this.jobLevelData.levelType);
+    console.log(this.jobLevelData.designation);
+  }
+        
+
+  getJobDetails()
+  {
+    console.log(this.positionDetails.value.DesignationID)
+   this.levelNameValue=this.jobLevelData
+   .filter((x: { designation: any; })=>x.designation==this.positionDetails.value.DesignationID)
+   .map((x: { designation: any; levelType: any; })=>({designationIndex:x.designation,jobName:x.levelType}))
+ 
+
   }
   async getLogin() {
     const result = await this.apiService.getMethod('DigiOffice/GetLoginType');
@@ -59,13 +74,23 @@ export class PositionDetails {
     this.departmentData = result.data;
 
   }
-//   getDetails()
-// {
-//   debugger;
-//   console.log(this.positionDetails.value.DesignationID)
-//   this.unitType=this.departmentData.filter((x: { departmentID: any; })=>x.departmentID==this.positionDetails.value.DepartmentID).map((x: { unitName: any; })=>x.unitName)
-//    console.log(this.unitType)  
-// }
+  async getDepartment() {
+    const result = await this.apiService.getMethod("DigiOffice/GetUnit");
+    this.department = result.data;
+
+  }
+
+  getDetails()
+   {
+
+   this.unitType = this.department
+  .filter((x: { id: any }) => x.id == this.positionDetails.value.DepartmentID)
+  .map((x: { unitName: any; id: any }) => ({
+    unitName: x.unitName,
+    departmentID: x.id
+  }));
+   console.log(this.unitType)  
+}
  
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');

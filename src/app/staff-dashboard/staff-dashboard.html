@@ -1,91 +1,79 @@
 <div class="r1">
-    <div class="c1 ">
-        <img src="images/filter.png" alt="filter">
-        <p>Filter&nbsp;by:</p>
-        <input type="search" class="form-control" placeholder="Search...">
-    </div>
-    <div class="c2">
-        <select class="form-control">
-            <option value="">Select Designation</option>
-            <option *ngFor="let data of designationData"   value="data.id">{{data.title}}</option>
-          
-        </select>
-    </div>
-    <div class="c3">
-        <select class="form-control">
-            <option value="">Select Level</option>
-        </select>
-    </div>
-    <div class="c4">
-        <button  class="b1" (click) = "navigateToEmployeeDetails()" ><img src="images/plus.svg" alt=""> Add Staff</button>
-    </div>
-</div>
-
- <div class="bg-white ps-1 mt-4 rounded">
-   <div class="table-responsive">
-  <table class="table align-start">
-    <thead >
-      <tr class="">
-        <th  >Employee<br>Id</th>
-        <th >Employee Name</th>
-        <th  >Department</th>
-        <th  >Level</th>
-        <th  > Gender</th>
-        <th  >Designation</th>
-        <th >Email</th>
-        <th  >Date Of Joining</th>
-        <th >Manager</th>
-        <th  >Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let s of staffData | search: searchText" class="border-bottom">
-  <td>{{ s.employeeID }}</td>
-  <td>{{ s.employeeName }}</td>
-  <td>{{ s.department }}</td>
-  <td>{{ s.level }}</td>
-  <td>{{ s.gender }}</td>
-  <td>{{ s.designation }}</td>
-  <td>{{ s.email }}</td>
-  <td>{{ s.dateOfJoining | date: 'mediumDate' }}</td>
-  <td>{{ s.manager }}</td>
-
-
-  <td >
-
-  <img src="images/edit.webp" placement="left" #imgPop="ngbPopover"
-  [ngbPopover]="popever"  class="img-fluid"
-      style="width: 35px;"
-      alt="edit">
-
-  </td>
-</tr>
-
-    </tbody>
-  </table>
-</div>
+  <div class="c1 ">
+    <img src="images/filter.png" alt="filter">
+    <p>Filter&nbsp;by:</p>
+    <input type="search" class="form-control" placeholder="Search...">
   </div>
+  <div class="c2">
+    <select class="form-control">
+      <option value="">Select Designation</option>
+      <option *ngFor="let data of designationData" value="data.id">{{data.title}}</option>
 
- <ng-template #popever class="" >
-<div style="width:150px;" class="text-center p-2">
-   <div class="pb-2">   
-        <img
-          src="images/Edit 1.svg"
-          (click) = "navigateToEmployeeDetails()"
-          class="img-fluid"
-          style="width: 25px; height: auto;"
-          alt="edit"
-        />
-   
-</div> 
-      <!-- (click)="deleted()" -->
-   <div>
-        <img
-          src="images/Delete.svg"
-          alt="delete"
-          class="img-fluid"
-          style="width: 25px; height: auto;"
-        />
- </div>  
+    </select>
+  </div>
+  <div class="c3">
+    <select class="form-control">
+      <option value="">Select Level</option>
+    </select>
+  </div>
+  <div class="c4">
+    <button class="b1" (click)="navigateToEmployeeDetails()"><img src="images/plus.svg" alt=""> Add Staff</button>
+  </div>
 </div>
- </ng-template>
+
+<div class="bg-white ps-1 mt-4 rounded">
+  <div class="table-responsive">
+    <table class="table align-start">
+      <thead>
+        <tr class="">
+          <th>Employee<br>Id</th>
+          <th>Employee Name</th>
+          <th>Department</th>
+          <th>Level</th>
+          <th> Gender</th>
+          <th>Designation</th>
+          <th>Email</th>
+          <th>Date Of Joining</th>
+          <th>Manager</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of staffData | search: searchText" class="border-bottom">
+          <td>{{ s.employeeID }}</td>
+          <td>{{ s.employeeName }}</td>
+          <td>{{ s.department }}</td>
+          <td>{{ s.level }}</td>
+          <td>{{ s.gender }}</td>
+          <td>{{ s.designation }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.dateOfJoining | date: 'mediumDate' }}</td>
+          <td>{{ s.manager }}</td>
+
+
+          <td>
+
+            <img src="images/edit.webp" placement="left" #imgPop="ngbPopover" [ngbPopover]="popever" class="img-fluid"
+              style="width: 35px;" alt="edit">
+
+          </td>
+
+          <ng-template #popever class="">
+            <div style="width:150px;" class="text-center p-2">
+              <div class="pb-2">
+                <img src="images/Edit 1.svg" (click)="navigateToEmployeeDetails()" class="img-fluid"
+                  style="width: 25px; height: auto;" alt="edit" />
+
+              </div>
+
+              <div>
+                <img (click)="deleted( s.employeeID )" src="images/Delete.svg" alt="delete" class="img-fluid"
+                  style="width: 25px; height: auto;" />
+              </div>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

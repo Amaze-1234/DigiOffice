@@ -41,7 +41,7 @@ export class PositionDetails {
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
-    this.getDepartment()
+    // this.getDepartment();
     
   }
 
@@ -74,21 +74,23 @@ export class PositionDetails {
     this.departmentData = result.data;
 
   }
-  async getDepartment() {
-    const result = await this.apiService.getMethod("DigiOffice/GetUnit");
-    this.department = result.data;
+  // async getDepartment() {
+  //   const result = await this.apiService.getMethod("DigiOffice/GetUnit");
+  //   this.department = result.data;
+    
 
-  }
+  // }
 
-  getDetails()
+  async getDetails()
    {
-
-   this.unitType = this.department
-  .filter((x: { id: any }) => x.id == this.positionDetails.value.DepartmentID)
-  .map((x: { unitName: any; id: any }) => ({
-    unitName: x.unitName,
-    departmentID: x.id
-  }));
+     const result = await this.apiService.getMethod(`Master/GetUnitByDepartment?ID=${this.positionDetails.value.DepartmentID}`);
+     this.department = result.data;
+  //  this.unitType = this.department
+  // .filter((x: { id: any }) => x.id == this.positionDetails.value.DepartmentID)
+  // .map((x: { unitName: any; id: any }) => ({
+  //   unitName: x.unitName,
+  //   departmentID: x.id
+  // }));
    console.log(this.unitType)  
 }
  
@@ -142,11 +144,12 @@ export class PositionDetails {
     let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
     console.log(response.data);
     this.positionDetails = new FormGroup({
-      DesignationID: new FormControl(response.data[0].jobLevel,Validators.required),
+      DesignationID: new FormControl(response.data[0].designationID,Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
       LoginType: new FormControl(response.data[0].loginType, Validators.required),
       DepartmentID: new FormControl(response.data[0].departmentID, Validators.required),
       UnitID: new FormControl(response.data[0].unitID, Validators.required),
+      Manager: new FormControl(response.data[0].manager,Validators.required),
       WorkArrangement: new FormControl(response.data[0].workArrangement, Validators.required),
       WorksiteCountry: new FormControl(response.data[0].worksiteCountry, Validators.required),
       WorksiteProvince: new FormControl(response.data[0].worksiteProvince, Validators.required),

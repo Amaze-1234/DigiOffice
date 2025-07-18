@@ -47,8 +47,8 @@
                     <label for="Unit">Unit<span id="marked">*</span></label>
                     <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
-                        <option *ngFor="let department1 of department" [value]="department1.departmentID">
-                            {{department1.unitName}}
+                        <option *ngFor="let department of unitType" [value]="department.departmentID">
+                            {{department.unitName}}
                         </option>
                     </select>
                 </div>

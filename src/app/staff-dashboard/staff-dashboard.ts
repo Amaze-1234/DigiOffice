@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class StaffDashboard {
+
   designationData:any
   staffData:any;
  searchText:any='';
@@ -46,6 +47,8 @@ navigateToEmployeeDetails(){
     this.designationData = result.data;
 
 }
+
+
 
 
 }

@@ -103,8 +103,12 @@ export class PositionDetails {
  async submitDetails()
 {
   console.log(this.positionDetails.value);
-  if(this.positionDetails.invalid){
+  if(this.positionDetails.invalid ){
     Swal.fire("Please fill all the details");
+    return;
+  }
+  if(this.employeeDetails == 'no'){
+    Swal.fire("Your data is not associated with your Employee ID");
     return;
   }
 console.log(this.loaderService.isEmployeeDetails);

@@ -46,7 +46,8 @@ export const routes: Routes = [
   // { path: "employee-details/:id", component: EmployeeDetails, pathMatch: "full" },
   // { path: "position-details/:id", component: PositionDetails, pathMatch: "full" },
   { path: "staff-navbar", component: StaffNavbar, pathMatch: "full" },
-  { path: "staff-details", component: StaffDetail, pathMatch: "full" }
+  { path: "staff-details", component: StaffDetail, pathMatch: "full" },
+  { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" }
 
 
 ];

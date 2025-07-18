@@ -3,6 +3,7 @@ import { SharedModule } from '../../Shared/shared.module';
 import { Loader } from '../../Services/loader';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Api } from '../../Services/api';
 
 
 @Component({
@@ -14,12 +15,18 @@ import { Router } from '@angular/router';
 export class Login {
   userName:any;
   password:any;
+  staffLogin: any;
 
 
-  constructor(public loaderService:Loader,public router:Router){
-
+  constructor(public loaderService:Loader,public router:Router, public apiService: Api){
+    this.getStaffDetails();
   }
-
+  async getStaffDetails(){
+    let result = await this.apiService.getMethod('Master/GetStaffLogin');
+    this.staffLogin = result.data;
+    console.log(this.staffLogin);
+    
+  }
     login(){
       if(this.userName == "Amaze-1234" && this.password == "Amaze-1234"){
          sessionStorage.setItem("isLogin",'Yes');

@@ -139,10 +139,10 @@ export class PositionDetails {
   }
 
   async getByID() {
-    let response = await this.apiService.getMethod(`Master/GetPositionDetailsByID?ID=${this.editid}`);
+    let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
     console.log(response.data);
     this.positionDetails = new FormGroup({
-      DesignationID: new FormControl(this.editid),
+      DesignationID: new FormControl(response.data[0].jobLevel,Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
       LoginType: new FormControl(response.data[0].loginType, Validators.required),
       DepartmentID: new FormControl(response.data[0].departmentID, Validators.required),
@@ -160,7 +160,7 @@ export class PositionDetails {
       SeperationDate: new FormControl(response.data[0].seperationDate, Validators.required),
       ProbationEndDate: new FormControl(response.data[0].probationEndDate, Validators.required),
       ContractEndDate: new FormControl(response.data[0].contractEndDate, Validators.required),
-      EmployeeDetailsID: new FormControl(response.data[0].employeeDetailsID, Validators.required)
+      EmployeeDetailsID: new FormControl( this.editid,Validators.required)
 
     })
   }

@@ -8,41 +8,54 @@ import { Api } from '../../Services/api';
 
 @Component({
   selector: 'app-login',
-  imports: [ SharedModule ],
+  imports: [SharedModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
-  userName:any;
-  password:any;
+  userName: any;
+  passWord: any;
   staffLogin: any;
-  Logintype :any;
+  Logintype: any;
 
-  constructor(public loaderService:Loader,public router:Router, public apiService: Api){
+  constructor(public loaderService: Loader, public router: Router, public apiService: Api) {
+
+  }
+
+  ngOnInit() {
     this.getStaffDetails();
     this.getLoginType();
   }
-  async getStaffDetails(){
+  async getStaffDetails() {
     let result = await this.apiService.getMethod('Master/GetStaffLogin');
     this.staffLogin = result.data;
-    console.log(this.staffLogin);
-    
+    console.log(this.staffLogin.value.username);
+    console.log(this.staffLogin.value.password);
   }
 
-  async getLoginType(){
+  async getLoginType() {
     let result = await this.apiService.getMethod('Master/GetLoginType');
     this.Logintype = result.data;
+
   }
 
-    login(){
-      if(this.userName == "Amaze-1234" && this.password == "Amaze-1234"){
-         sessionStorage.setItem("isLogin",'Yes');
-      this.loaderService.isLogin='Yes';
-      this.router.navigate(['/department-table']);
-         }
-       else{
-      Swal.fire("Enter Valid data");
+  login() {
+
+    for (let data of this.staffLogin) {
+      var name = data.username;
+      var pass = data.password;
+      console.log(name);
+      console.log(pass);
+      if (this.userName == name && this.passWord == pass) {
+        sessionStorage.setItem("isLogin", 'Yes');
+        this.loaderService.isLogin = 'Yes';
+        this.router.navigate(['/department-table']);
+        return;
+      }
+    
+
     }
-   
-}
+        Swal.fire("Enter valid data");
+    
+  }
 }

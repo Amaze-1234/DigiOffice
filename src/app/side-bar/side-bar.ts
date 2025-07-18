@@ -30,6 +30,7 @@ export class SideBar {
     sessionStorage.setItem("isTitle","EmployeeManager Master")
     this.loaderService.isTitle = 'EmployeeManager Master';
     this.staff = !this.staff;
+    this.router.navigate(['/staffdashboard']);
   }
     navigateStaffDashboard(){
     this.router.navigate(['/staffdashboard']);
@@ -43,6 +44,7 @@ export class SideBar {
   navigateEmoloyeeMaster(){
     sessionStorage.setItem("isTitle","EmployeeField Master")
     this.loaderService.isTitle = 'EmployeeField Master';
+    this.router.navigate(['/department-table']);
     this.hide = !this.hide;
   }
     navigateDepartment(){

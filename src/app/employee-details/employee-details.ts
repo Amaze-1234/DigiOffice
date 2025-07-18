@@ -112,10 +112,12 @@ export class EmployeeDetails {
         });
 
       }
+      }
+     
     }
     }
 
-  }
+
 
 
 

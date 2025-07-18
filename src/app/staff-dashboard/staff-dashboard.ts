@@ -19,6 +19,8 @@ export class StaffDashboard {
   designationData: any
   staffData: any;
   searchText: any = '';
+  jobLevelData: any;
+  title:any;
   constructor(public router: Router, public loaderService: Loader, public apiservice: Api, public modalService: NgbModal) {
 
   }
@@ -55,6 +57,14 @@ export class StaffDashboard {
     this.designationData = result.data;
 
   }
+
+  async onChange(even: any) {
+    debugger;
+    let result = await this.apiservice.getMethod(`Master/GetLevelByDesignation?ID=${even.target.value}`);
+    this.jobLevelData = result.data;
+  }
+
+
   async deleted(employeeID: any) {
     debugger
     const confirmation = await Swal.fire({

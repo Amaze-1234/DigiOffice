@@ -1,3 +1,8 @@
 .background{
     background-color:rgba(148, 183, 195, 0.849)
 }
+select{
+    appearance: auto;
+    cursor: pointer;
+    margin-bottom: 10px;
+}

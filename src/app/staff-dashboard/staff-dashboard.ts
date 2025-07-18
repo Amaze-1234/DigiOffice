@@ -32,6 +32,7 @@ export class StaffDashboard {
       this.router.navigate(['/staff-details',id]);
       sessionStorage.setItem('isDetail', 'employee');
       this.loaderService.isDetail = 'employee';
+      this.loaderService.isEmployee = "Yes"
        return;
     }
    

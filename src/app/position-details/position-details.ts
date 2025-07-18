@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
@@ -23,7 +23,7 @@ export class PositionDetails {
   provinceData: any;
   cityData: any;
   employeeDetails: any;
-  editid: any;
+    @Input() editid: any;
   unitType: any;
   department:any;
   unitValue: any;

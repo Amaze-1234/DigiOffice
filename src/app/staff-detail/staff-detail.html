@@ -3,5 +3,5 @@
     <app-employee-details [editid]="editid"></app-employee-details>
 </div>
 <div *ngIf="loaderService.isDetail == 'position' " >
-    <app-position-details></app-position-details>
+    <app-position-details [editid]="editid"></app-position-details>
 </div>

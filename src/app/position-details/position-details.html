@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Designation <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DesignationID">
+                    <select class="form-control" formControlName="DesignationID"(click)="getJobDetails()">
                         <option value="">Select DesignationList </option>
                         <option *ngFor="let designation of designationData" [value]="designation.id">
                             {{designation.title}}</option>
@@ -15,7 +15,8 @@
                     <label for="Job-level">Job Level <span id="marked">*</span></label>
                     <select class="form-control" formControlName="JobLevel">
                         <option value="">Select Job Level </option>
-                        <option *ngFor="let joblevel of jobLevelData" [value]="joblevel.id">{{joblevel.levelType}}
+                        <option *ngFor="let joblevel of levelNameValue" [value]="joblevel.designationIndex">
+                            {{joblevel.jobName}}
                         </option>
                     </select>
                 </div>
@@ -36,7 +37,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Department">Department <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DepartmentID">
+                    <select class="form-control" formControlName="DepartmentID"(click)="getDetails()">
                         <option value="">Select Department</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.departmentName}}</option>
@@ -46,7 +47,7 @@
                     <label for="Unit">Unit<span id="marked">*</span></label>
                     <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
-                        <option *ngFor="let department of departmentData" [value]="department.id">
+                        <option *ngFor="let department of unitType" [value]="department.departmentID">
                             {{department.unitName}}
                         </option>
                     </select>

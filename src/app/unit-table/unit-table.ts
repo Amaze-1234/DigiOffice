@@ -23,9 +23,12 @@ export class UnitTable {
   }
 
   async getDepartmentdetails() {
+    debugger;
     const result = await this.api.getMethod("DigiOffice/GetUnitJoinDepartment");
     this.DepartmentData = result.data;
-    this.deptLength = this.DepartmentData.length
+    // this.deptLength = this.DepartmentData.length;
+  
+    
 
   }
   async deleteDepartment(id: any) {

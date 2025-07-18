@@ -46,6 +46,7 @@ export class StaffDashboard {
   async getData() {
     const result = await this.apiservice.getMethod("Master/GetStaffDashboard");
     this.staffData = result.data;
+    
 
 
   }

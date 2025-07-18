@@ -24,6 +24,7 @@ export class PositionDetails {
   cityData: any;
   employeeDetails: any;
   editid: any;
+  unitType: any;
   constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
   ngOnInit() {
     if (this.editid) {
@@ -58,6 +59,14 @@ export class PositionDetails {
     this.departmentData = result.data;
 
   }
+//   getDetails()
+// {
+//   debugger;
+//   console.log(this.positionDetails.value.DesignationID)
+//   this.unitType=this.departmentData.filter((x: { departmentID: any; })=>x.departmentID==this.positionDetails.value.DepartmentID).map((x: { unitName: any; })=>x.unitName)
+//    console.log(this.unitType)  
+// }
+ 
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');
     this.countryData = result.data;

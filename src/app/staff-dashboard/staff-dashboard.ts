@@ -26,7 +26,15 @@ export class StaffDashboard {
     this.getData();
     this.getDesignationData();
   }
-  navigateToEmployeeDetails() {
+  navigateToEmployeeDetails(id: any = null) {
+  
+    if (id) {
+      this.router.navigate(['/staff-details',id]);
+      sessionStorage.setItem('isDetail', 'employee');
+      this.loaderService.isDetail = 'employee';
+       return;
+    }
+   
     this.router.navigate(['/staff-details']);
     sessionStorage.setItem('isDetail', 'employee');
     this.loaderService.isDetail = 'employee';

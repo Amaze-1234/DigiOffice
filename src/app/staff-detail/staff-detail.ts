@@ -17,16 +17,17 @@ export class StaffDetail {
 
   constructor(public loaderService:Loader, public activateRoute:ActivatedRoute){
      this.activateRoute.params.subscribe(parms => {
-      debugger
+      
       this.editid = parms['id'];
 
     })
 
   }
   ngOnInit(){
+  
     
     this.activateRoute.params.subscribe(parms=> {
-      debugger
+   
       this.editid = parms['id'];
     })
   }

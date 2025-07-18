@@ -90,7 +90,6 @@ export class EmployeeDetails {
       Swal.fire({
         text: 'Please Fill All Details'
       });
-      return;
     }
     else {
       if (this.editid) {
@@ -103,8 +102,14 @@ export class EmployeeDetails {
 
         }
       }
+      else{
       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
-      this.loaderService.isEmployee = "Yes";
+      this.loaderService.isEmployee="Yes";
+      console.log(result.data);
+      sessionStorage.setItem("isEmployeeDetails", String(result.data));
+      this.loaderService.isEmployeeDetails = String(result.data);
+      console.log(this.loaderService.isEmployeeDetails);
+      
       if (result.data > 0) {
         Swal.fire({
           text: 'Employee Details Added Successfully'
@@ -113,6 +118,7 @@ export class EmployeeDetails {
       }
       }
      
+    }
     }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
@@ -23,7 +23,7 @@ export class PositionDetails {
   provinceData: any;
   cityData: any;
   employeeDetails: any;
-  editid: any;
+    @Input() editid: any;
   unitType: any;
   department:any;
   unitValue: any;
@@ -41,7 +41,7 @@ export class PositionDetails {
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
-    this.getDepartment()
+    this.getDepartment();
     
   }
 
@@ -77,14 +77,15 @@ export class PositionDetails {
   async getDepartment() {
     const result = await this.apiService.getMethod("DigiOffice/GetUnit");
     this.department = result.data;
+    console.log(this.positionDetails.value.DepartmentID);
 
   }
 
-  getDetails()
+  getDetails(event:any)
    {
-
+  const selectedDepartmentId = event.target.value;
    this.unitType = this.department
-  .filter((x: { id: any }) => x.id == this.positionDetails.value.DepartmentID)
+  .filter((x: { id: any }) => x.id == selectedDepartmentId)
   .map((x: { unitName: any; id: any }) => ({
     unitName: x.unitName,
     departmentID: x.id

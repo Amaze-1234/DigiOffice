@@ -23,7 +23,9 @@ export class PositionDetails {
   provinceData: any;
   cityData: any;
   employeeDetails: any;
-    @Input() editid: any;
+
+  @Input() editid: any;
+
   unitType: any;
   department:any;
   unitValue: any;

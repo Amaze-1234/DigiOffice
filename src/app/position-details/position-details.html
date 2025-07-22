@@ -38,10 +38,12 @@
                 <div class="col-lg-4">
                     <label for="Department">Department <span id="marked">*</span></label>
                     <select class="form-control" formControlName="DepartmentID" (change)="getDetails($event)">
+        
                         <option value="">Select Department</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.departmentName}}</option>
                     </select>
+                    
                 </div>
                 <div class="col-lg-4">
                     <label for="Unit">Unit<span id="marked">*</span></label>

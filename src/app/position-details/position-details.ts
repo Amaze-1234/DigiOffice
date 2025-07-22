@@ -36,6 +36,7 @@ export class PositionDetails {
       this.getByID();
     }
     this.getPositionDetailsData();
+    
     this.getDesignation();
     this.getJobLevel();
     this.getDepartmentdetails();
@@ -44,7 +45,11 @@ export class PositionDetails {
     this.getCity();
     this.getLoginDetails();
     this.getDepartment();
+     this.getDetails(this.event)
     
+  }
+  event(event: any) {
+    throw new Error('Method not implemented.');
   }
 
   async getDesignation() {
@@ -120,6 +125,7 @@ export class PositionDetails {
     this.positionDetails = new FormGroup({
       // ID: new FormControl(15),
       DesignationID: new FormControl('', Validators.required),
+
       JobLevel: new FormControl('', Validators.required),
       LoginType: new FormControl('', Validators.required),
       DepartmentID: new FormControl('', Validators.required),
@@ -144,7 +150,7 @@ export class PositionDetails {
 
   async getByID() {
     let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
-    console.log(response.data);
+    console.log(response.data[0]);
     this.positionDetails = new FormGroup({
       DesignationID: new FormControl(response.data[0].designationID,Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
@@ -162,7 +168,7 @@ export class PositionDetails {
       HiredDate: new FormControl(response.data[0].hiredDate, Validators.required),
       ConfirmationDueDate: new FormControl(response.data[0].confirmationDueDate, Validators.required),
       ActualConfirmationDueDate: new FormControl(response.data[0].actualConfirmationDueDate, Validators.required),
-      SeperationDate: new FormControl(response.data[0].seperationDate, Validators.required),
+      SeperationDate: new FormControl(response.data[0].seperationDate.split('T')[0], Validators.required),
       ProbationEndDate: new FormControl(response.data[0].probationEndDate, Validators.required),
       ContractEndDate: new FormControl(response.data[0].contractEndDate, Validators.required),
       EmployeeDetailsID: new FormControl( this.editid,Validators.required)

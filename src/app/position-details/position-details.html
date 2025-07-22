@@ -44,15 +44,22 @@
                             {{department.departmentName}}</option>
                     </select>
                     
+                    
                 </div>
                 <div class="col-lg-4">
                     <label for="Unit">Unit<span id="marked">*</span></label>
                     <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
-                        <option *ngFor="let department of unitType" [value]="department.departmentID">
+                        <option *ngFor="let department of unitType" [value]="department.ID">
                             {{department.unitName}}
                         </option>
                     </select>
+                     <!-- <select class="form-control" formControlName="UnitID" *ngIf="this.editid" >
+                        <option value="">Select Unit</option>
+                        <option *ngFor="let depart of department" [value]="depart.UnitID">
+                            {{depart.unitName}}
+                        </option>
+                    </select> -->
                 </div>
                 <div class="col-lg-4">
                     <label for="Manager">Manager <span id="marked">*</span></label>

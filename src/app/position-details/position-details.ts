@@ -45,7 +45,7 @@ export class PositionDetails {
     this.getCity();
     this.getLoginDetails();
     this.getDepartment();
-     this.getDetails(this.event)
+     //this.getDetails(this.event)
     
 
   }
@@ -77,7 +77,7 @@ export class PositionDetails {
     this.loginTypeData = result.data;
   }
   async getDepartmentdetails() {
-    const result = await this.apiService.getMethod("DigiOffice/GetUnitJoinDepartment");
+    const result = await this.apiService.getMethod("DigiOffice/GetDepartment");
     this.departmentData = result.data;
 
   }
@@ -90,12 +90,12 @@ export class PositionDetails {
 
   getDetails(event: any) {
     const selectedDepartmentId = event.target.value;
-
+   console.log(selectedDepartmentId);
     this.unitType = this.department
-      .filter((x: { id: any }) => x.id == selectedDepartmentId)
+      .filter((x: { departmentID: any }) => x.departmentID == selectedDepartmentId)
       .map((x: { unitName: any; id: any }) => ({
         unitName: x.unitName,
-        departmentID: x.id
+        ID: x.id
       }));
     console.log(this.unitType)
   }
@@ -203,8 +203,16 @@ export class PositionDetails {
       }
     }
     else {
+      console.log(this.positionDetails.value);
+      
       const result = await this.apiService.postMethod('Master/UpdatePositionDetails', this.positionDetails.value);
+      console.log('after update');
+      console.log(result);
+      
+      
       if (result.data > 0) {
+        console.log(result.data);
+        
         Swal.fire("Data Updated successfully");
       }
 

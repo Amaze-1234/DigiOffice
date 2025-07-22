@@ -86,6 +86,7 @@ export class EmployeeDetails {
       Swal.fire({
         text: 'Please Fill All Details'
       });
+      return;
     }
     else {
       if (this.editid) {

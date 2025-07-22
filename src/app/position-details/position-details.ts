@@ -23,7 +23,7 @@ export class PositionDetails {
   provinceData: any;
   cityData: any;
   employeeDetails: any;
-    @Input() editid: any;
+  @Input() editid: any;
   unitType: any;
   department:any;
   unitValue: any;
@@ -80,11 +80,12 @@ export class PositionDetails {
 
   }
 
-  getDetails()
+  getDetails(event:any)
    {
-
+     const selectedDepartmentId = event.target.value;
+ 
    this.unitType = this.department
-  .filter((x: { id: any }) => x.id == this.positionDetails.value.DepartmentID)
+  .filter((x: { id: any }) => x.id == selectedDepartmentId)
   .map((x: { unitName: any; id: any }) => ({
     unitName: x.unitName,
     departmentID: x.id
@@ -142,11 +143,12 @@ export class PositionDetails {
     let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
     console.log(response.data);
     this.positionDetails = new FormGroup({
-      DesignationID: new FormControl(response.data[0].jobLevel,Validators.required),
+      DesignationID: new FormControl(response.data[0].designationID,Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
       LoginType: new FormControl(response.data[0].loginType, Validators.required),
       DepartmentID: new FormControl(response.data[0].departmentID, Validators.required),
       UnitID: new FormControl(response.data[0].unitID, Validators.required),
+      Manager: new FormControl(response.data[0].manager, Validators.required),
       WorkArrangement: new FormControl(response.data[0].workArrangement, Validators.required),
       WorksiteCountry: new FormControl(response.data[0].worksiteCountry, Validators.required),
       WorksiteProvince: new FormControl(response.data[0].worksiteProvince, Validators.required),

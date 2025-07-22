@@ -93,6 +93,10 @@ export class EmployeeDetails {
         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
         this.loaderService.isEmployee = "Yes";
         if (result.data > 0) {
+          console.log(result);
+          console.log(this.contactForm.value);
+          
+          
           Swal.fire({
             text: 'Updated Successfully'
           });

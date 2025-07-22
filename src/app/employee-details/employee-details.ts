@@ -60,7 +60,7 @@ export class EmployeeDetails {
       MiddleName: new FormControl(response.data[0].middleName, Validators.required),
       LastName: new FormControl(response.data[0].lastName, Validators.required),
       NickName: new FormControl(response.data[0].nickName, Validators.required),
-      DateOfBirth: new FormControl(response.data[0].dateOfBirth, Validators.required),
+      DateOfBirth: new FormControl(response.data[0].dateOfBirth.split('T')[0], Validators.required),
       PlaceOfBirth: new FormControl(response.data[0].placeOfBirth, Validators.required),
       CountryID: new FormControl(response.data[0].countryID, Validators.required),
       Gender: new FormControl(response.data[0].gender, Validators.required),
@@ -86,6 +86,7 @@ export class EmployeeDetails {
       Swal.fire({
         text: 'Please Fill All Details'
       });
+      return;
     }
     else {
       if (this.editid) {
@@ -95,7 +96,7 @@ export class EmployeeDetails {
           Swal.fire({
             text: 'Updated Successfully'
           });
-
+          this.goToNext();
         }
       }
       else{
@@ -110,7 +111,7 @@ export class EmployeeDetails {
         Swal.fire({
           text: 'Employee Details Added Successfully'
         });
-
+        this.goToNext();
       }
       }
      

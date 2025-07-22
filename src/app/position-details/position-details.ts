@@ -27,10 +27,10 @@ export class PositionDetails {
   @Input() editid: any;
 
   unitType: any;
-  department:any;
+  department: any;
   unitValue: any;
-  levelNameValue:any;
-  constructor(public apiService: Api, public route :Router, public loaderService:Loader) { }
+  levelNameValue: any;
+  constructor(public apiService: Api, public route: Router, public loaderService: Loader) { }
   ngOnInit() {
     if (this.editid) {
       this.getByID();
@@ -47,6 +47,7 @@ export class PositionDetails {
     this.getDepartment();
      this.getDetails(this.event)
     
+
   }
   event(event: any) {
     throw new Error('Method not implemented.');
@@ -56,20 +57,19 @@ export class PositionDetails {
     const result = await this.apiService.getMethod('DigiOffice/GetDesignation');
     this.designationData = result.data;
   }
-   async getJobLevel() {
+  async getJobLevel() {
     const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
     this.jobLevelData = result.data;
     console.log(this.jobLevelData.designation);
   }
-        
 
-  getJobDetails()
-  {
+
+  getJobDetails() {
     console.log(this.positionDetails.value.DesignationID)
-   this.levelNameValue=this.jobLevelData
-   .filter((x: { designation: any; })=>x.designation==this.positionDetails.value.DesignationID)
-   .map((x: { designation: any; levelType: any; })=>({designationIndex:x.designation,jobName:x.levelType}))
- 
+    this.levelNameValue = this.jobLevelData
+      .filter((x: { designation: any; }) => x.designation == this.positionDetails.value.DesignationID)
+      .map((x: { designation: any; levelType: any; }) => ({ designationIndex: x.designation, jobName: x.levelType }))
+
 
   }
   async getLogin() {
@@ -88,19 +88,18 @@ export class PositionDetails {
 
   }
 
-  getDetails(event:any)
-   {
-     const selectedDepartmentId = event.target.value;
- 
-   this.unitType = this.department
-  .filter((x: { id: any }) => x.id == selectedDepartmentId)
-  .map((x: { unitName: any; id: any }) => ({
-    unitName: x.unitName,
-    departmentID: x.id
-  }));
-   console.log(this.unitType)  
-}
- 
+  getDetails(event: any) {
+    const selectedDepartmentId = event.target.value;
+
+    this.unitType = this.department
+      .filter((x: { id: any }) => x.id == selectedDepartmentId)
+      .map((x: { unitName: any; id: any }) => ({
+        unitName: x.unitName,
+        departmentID: x.id
+      }));
+    console.log(this.unitType)
+  }
+
   async getCountry() {
     let result = await this.apiService.getMethod('Master/GetCountryTable');
     this.countryData = result.data;
@@ -115,7 +114,7 @@ export class PositionDetails {
     this.cityData = result.data;
   }
 
-   async getLoginDetails() {
+  async getLoginDetails() {
     let result = await this.apiService.getMethod('Master/GetLoginType');
     this.loginTypeData = result.data;
   }
@@ -144,7 +143,7 @@ export class PositionDetails {
       SeperationDate: new FormControl('', Validators.required),
       ProbationEndDate: new FormControl('', Validators.required),
       ContractEndDate: new FormControl('', Validators.required),
-      EmployeeDetailsID: new FormControl(Number(this.employeeDetails),Validators.required)
+      EmployeeDetailsID: new FormControl(Number(this.employeeDetails), Validators.required)
     })
   }
 
@@ -152,7 +151,7 @@ export class PositionDetails {
     let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
     console.log(response.data[0]);
     this.positionDetails = new FormGroup({
-      DesignationID: new FormControl(response.data[0].designationID,Validators.required),
+      DesignationID: new FormControl(response.data[0].designationID, Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
       LoginType: new FormControl(response.data[0].loginType, Validators.required),
       DepartmentID: new FormControl(response.data[0].departmentID, Validators.required),
@@ -165,43 +164,56 @@ export class PositionDetails {
       WorkingLocation: new FormControl(response.data[0].workingLocation, Validators.required),
       EmploymentType: new FormControl(response.data[0].employmentType, Validators.required),
       EmploymentStatus: new FormControl(response.data[0].employmentStatus, Validators.required),
-      HiredDate: new FormControl(response.data[0].hiredDate, Validators.required),
-      ConfirmationDueDate: new FormControl(response.data[0].confirmationDueDate, Validators.required),
-      ActualConfirmationDueDate: new FormControl(response.data[0].actualConfirmationDueDate, Validators.required),
+      HiredDate: new FormControl(response.data[0].hiredDate.split('T')[0], Validators.required),
+      ConfirmationDueDate: new FormControl(response.data[0].confirmationDueDate.split('T')[0], Validators.required),
+      ActualConfirmationDueDate: new FormControl(response.data[0].actualConfirmationDueDate.split('T')[0], Validators.required),
       SeperationDate: new FormControl(response.data[0].seperationDate.split('T')[0], Validators.required),
-      ProbationEndDate: new FormControl(response.data[0].probationEndDate, Validators.required),
-      ContractEndDate: new FormControl(response.data[0].contractEndDate, Validators.required),
-      EmployeeDetailsID: new FormControl( this.editid,Validators.required)
+      ProbationEndDate: new FormControl(response.data[0].probationEndDate.split('T')[0], Validators.required),
+      ContractEndDate: new FormControl(response.data[0].contractEndDate.split('T')[0], Validators.required),
+      EmployeeDetailsID: new FormControl(this.editid, Validators.required)
 
     })
   }
 
- async submitDetails()
-{
-  console.log(this.positionDetails.value);
-  if(this.positionDetails.invalid ){
-    Swal.fire("Please fill all the details");
-    return;
-  }
-  if(this.employeeDetails == 'no'){
-    Swal.fire("Your data is not associated with your Employee ID");
-    return;
-  }
-console.log(this.loaderService.isEmployeeDetails);
-console.log("position data");
+  async submitDetails(type: any) {
+    console.log(this.positionDetails.value);
+    // if(this.positionDetails.invalid ){
+    //   Swal.fire("Please fill all the details");
+    //   return;
+    // }
+    // if(this.employeeDetails == 'no'){
+    //   Swal.fire("Your data is not associated with your Employee ID");
+    //   return;
+    // }
+    console.log(this.loaderService.isEmployeeDetails);
+    console.log("position data");
+    if (type == 'submit') {
+      if (this.positionDetails.invalid) {
+        Swal.fire("Please fill all the details");
+        return;
+      }
+      if (this.employeeDetails == 'no') {
+        Swal.fire("Your data is not associated with your Employee ID");
+        return;
+      }
+      const result = await this.apiService.postMethod('Master/InsertPositionDetails', this.positionDetails.value);
+      if (result.data > 0) {
+        Swal.fire("Data Saved successfully")
+        sessionStorage.removeItem("isEmployeeDetails");
+      }
+    }
+    else {
+      const result = await this.apiService.postMethod('Master/UpdatePositionDetails', this.positionDetails.value);
+      if (result.data > 0) {
+        Swal.fire("Data Updated successfully");
+      }
 
+    }
 
-  const result = await this.apiService.postMethod('Master/InsertPositionDetails',this.positionDetails.value);
-  if(result.data >0){
-    Swal.fire("Data Saved successfully")
-    sessionStorage.removeItem("isEmployeeDetails");
   }
-  
-}
 
-previousPage()
-{
-  this.loaderService.isDetail = "employee";
-}
+  previousPage() {
+    this.loaderService.isDetail = "employee";
+  }
 
 }

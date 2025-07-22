@@ -166,7 +166,7 @@
         </div>
     </div>
        <div>
-            <button type="submit" class="submit-btn"(click)="submitDetails()">Submit</button>
+            <button type="submit" class="submit-btn"(click)="submitDetails(editid?'update' : 'submit')">{{editid? 'Update' : 'Submit'}}</button>
         </div>
         <div class="navigate-btn">
             <button type="submit" class="next-btn"(click)="previousPage()">Previous</button>

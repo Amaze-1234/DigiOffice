@@ -96,7 +96,7 @@ export class EmployeeDetails {
           Swal.fire({
             text: 'Updated Successfully'
           });
-
+          this.goToNext();
         }
       }
       else{
@@ -111,7 +111,7 @@ export class EmployeeDetails {
         Swal.fire({
           text: 'Employee Details Added Successfully'
         });
-
+        this.goToNext();
       }
       }
      

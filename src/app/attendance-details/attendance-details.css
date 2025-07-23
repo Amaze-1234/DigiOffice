@@ -1,0 +1,42 @@
+.attendance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+}
+
+.filter{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.form-control{
+    margin-left: 30px;
+    width: 290px;
+  
+}
+.btn{
+    width: 290px;
+    background-color: blue;
+    color: white;
+}
+#fil{
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+}
+th{
+    padding:  20px;
+    color: blue;
+    font-weight: bold;
+}
+
+table{
+   
+    background-color: white;
+  flex-grow: 1;
+  overflow-x: scroll;
+    width: 200vh;
+
+}

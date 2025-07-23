@@ -45,7 +45,7 @@ export class PositionDetails {
     this.getCity();
     this.getLoginDetails();
     this.getDepartment();
-     this.getDetails(this.event)
+     //this.getDetails(this.event)
     
 
   }
@@ -203,8 +203,16 @@ export class PositionDetails {
       }
     }
     else {
+      console.log(this.positionDetails.value);
+      
       const result = await this.apiService.postMethod('Master/UpdatePositionDetails', this.positionDetails.value);
+      console.log('after update');
+      console.log(result);
+      
+      
       if (result.data > 0) {
+        console.log(result.data);
+        
         Swal.fire("Data Updated successfully");
       }
 

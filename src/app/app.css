@@ -12,6 +12,7 @@
 .col-2 {
     overflow: auto;
     max-height: 700px;
+    scrollbar-gutter: stable;
 
 }
 

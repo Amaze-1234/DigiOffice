@@ -22,6 +22,8 @@ import { PositionDetails } from './position-details/position-details';
 import { StaffNavbar } from './staff-navbar/staff-navbar';
 import { StaffDetail } from './staff-detail/staff-detail';
 import { ResignationTab } from './resignation-tab/resignation-tab';
+import { AttendanceDetails } from './attendance-details/attendance-details';
+
 
 export const routes: Routes = [
   { path: "login", component: Login, pathMatch: "full" },
@@ -49,6 +51,7 @@ export const routes: Routes = [
   { path: "staff-navbar", component: StaffNavbar, pathMatch: "full" },
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
-  {path:"resignation-tab",component:ResignationTab,pathMatch:'full'}
+  {path:"resignation-tab",component:ResignationTab,pathMatch:'full'},
+  { path: "attendance-details", component: AttendanceDetails, pathMatch: "full" }
 
 ];

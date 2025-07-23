@@ -77,7 +77,7 @@ export class PositionDetails {
     this.loginTypeData = result.data;
   }
   async getDepartmentdetails() {
-    const result = await this.apiService.getMethod("DigiOffice/GetDepartment");
+    const result = await this.apiService.getMethod("DigiOffice/GetUnitJoinDepartment");
     this.departmentData = result.data;
 
   }

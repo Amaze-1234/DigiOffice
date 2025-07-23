@@ -1,1 +1,70 @@
 <p>resignation-tab works!</p>
+<div class="card">
+  <div class="card-body">
+    <div class="intial">
+      <img src="images/filter.png" alt="icon" width="18px" height="18px">
+      <p id="filter-text">Filter By:</p>
+      <input type="text" placeholder="Search.." style="padding:2px;" class="form-control">
+    </div>
+    <div class="addDetails">
+      <button class="addButton"> <img src="images/plus.svg" width="15px"> Apply
+      </button>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="navigation-buttons">
+    <button class="btn-1" (click)="pending()" [ngClass]="{'show': action=='pending'}">Pending</button>
+     <button class="btn-2" (click)="approved()" [ngClass]="action=='approved'?'show':''   ">Approved</button>
+      <button class="btn-3"(click)="rejected()" [ngClass]="action=='rejected'?'show':'' ">Rejected</button>
+  </div>
+  <p class="records">Showing 0 Results</p>
+<div class="pending-table" *ngIf="action=='pending'">
+<table class="table">
+    <tr>
+        <th>Separation Type</th>
+           <th>Resignation Date</th>
+              <th>Last Working Day</th>
+                 <th>Manager Clearance</th>
+                    <th>HR Clearance</th>
+                       <th>	Attachment</th>
+                       <th>
+                           Reasons
+                       </th>
+                <th>Comments</th>
+                <th>Actions</th>
+
+    </tr>
+</table>
+</div>
+
+<div class="pending-table" *ngIf="action=='approved'">
+<table class="table">
+    <tr>
+           <th>Resignation Date</th>
+              <th>Staff Name</th>
+              <th>Last Working Day</th>
+                    <th>HR Clearance</th>
+                 <th>Manager Clearance</th>
+                       <th>	Attachment</th>
+                <th>Actions</th>
+
+    </tr>
+</table>
+</div>
+<div class="pending-table" *ngIf="action=='rejected'">
+<table class="table">
+    <tr>
+          <th>Separation Type</th>
+           <th>Resignation Date</th>
+              <th>Staff Name</th>
+              <th>Last Working Day</th>
+                <th>Manager Clearance</th>
+                    <th>HR Clearance</th>
+               
+                       <th>	Attachment</th>
+
+    </tr>
+</table>
+</div>
+</div>

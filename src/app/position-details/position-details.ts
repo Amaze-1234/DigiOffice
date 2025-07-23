@@ -45,7 +45,8 @@ export class PositionDetails {
     this.getCity();
     this.getLoginDetails();
     this.getDepartment();
-     //this.getDetails(this.event)
+    
+     
     
 
   }
@@ -61,13 +62,19 @@ export class PositionDetails {
     const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
     this.jobLevelData = result.data;
     console.log(this.jobLevelData.designation);
+    if(this.editid&&this.positionDetails.value.DesignationID)
+    {
+      this.getJobDetails({target:{value:this.positionDetails.value.DesignationID}})
+    }
   }
 
 
-  getJobDetails() {
+  getJobDetails(event:any) {
+   const selectedDesignation=event.target.value;
+
     console.log(this.positionDetails.value.DesignationID)
     this.levelNameValue = this.jobLevelData
-      .filter((x: { designation: any; }) => x.designation == this.positionDetails.value.DesignationID)
+      .filter((x: { designation: any; }) => x.designation == selectedDesignation)
       .map((x: { designation: any; levelType: any; }) => ({ designationIndex: x.designation, jobName: x.levelType }))
 
 
@@ -85,12 +92,14 @@ export class PositionDetails {
     const result = await this.apiService.getMethod("DigiOffice/GetUnit");
     this.department = result.data;
     console.log(this.positionDetails.value.DepartmentID);
+        if (this.editid && this.positionDetails?.value?.DepartmentID) {
+      this.getDetails({ target: { value: this.positionDetails.value.DepartmentID } });
+    }
 
   }
 
   getDetails(event: any) {
     const selectedDepartmentId = event.target.value;
-   console.log(selectedDepartmentId);
     this.unitType = this.department
       .filter((x: { departmentID: any }) => x.departmentID == selectedDepartmentId)
       .map((x: { unitName: any; id: any }) => ({
@@ -145,11 +154,14 @@ export class PositionDetails {
       ContractEndDate: new FormControl('', Validators.required),
       EmployeeDetailsID: new FormControl(Number(this.employeeDetails), Validators.required)
     })
+    
   }
 
   async getByID() {
     let response = await this.apiService.getMethod(`Master/GetPositionDetailsByEmployeeDetails?ID=${this.editid}`);
     console.log(response.data[0]);
+      const departmentID = response.data[0].departmentID;
+      console.log("hi" +departmentID)
     this.positionDetails = new FormGroup({
       DesignationID: new FormControl(response.data[0].designationID, Validators.required),
       JobLevel: new FormControl(response.data[0].jobLevel, Validators.required),
@@ -173,6 +185,8 @@ export class PositionDetails {
       EmployeeDetailsID: new FormControl(this.editid, Validators.required)
 
     })
+      // this.getDetails({ target: { value: departmentID } });
+
   }
 
   async submitDetails(type: any) {

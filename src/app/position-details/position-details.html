@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Designation <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DesignationID"(click)="getJobDetails()">
+                    <select class="form-control" formControlName="DesignationID"(change)="getJobDetails($event)">
                         <option value="">Select DesignationList </option>
                         <option *ngFor="let designation of designationData" [value]="designation.id">
                             {{designation.title}}</option>
@@ -54,12 +54,7 @@
                             {{department.unitName}}
                         </option>
                     </select>
-                     <!-- <select class="form-control" formControlName="UnitID" *ngIf="this.editid" >
-                        <option value="">Select Unit</option>
-                        <option *ngFor="let depart of department" [value]="depart.UnitID">
-                            {{depart.unitName}}
-                        </option>
-                    </select> -->
+                  
                 </div>
                 <div class="col-lg-4">
                     <label for="Manager">Manager <span id="marked">*</span></label>

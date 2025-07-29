@@ -16,36 +16,62 @@ export class Login {
   userName: any;
   passWord: any;
   staffLogin: any;
-  Logintype: any;
+  loginType: any;
 
-  constructor(public loaderService: Loader, public router: Router, public apiService: Api) {}
+  constructor(public loaderService: Loader, public router: Router, public apiService: Api) { }
   ngOnInit() {
-    this.getStaffDetails();
-    this.getLoginType();
+    this.getStaffLoginDetails();
+    // this.getLoginType();
   }
-  async getStaffDetails() {
-    let result = await this.apiService.getMethod('Master/GetStaffLogin');
+  async getStaffLoginDetails() {
+    let result = await this.apiService.getMethod('Master/GetStaffLoginByLoginType');
     this.staffLogin = result.data;
-    console.log(this.staffLogin.value.username);
-    console.log(this.staffLogin.value.password);
+
   }
-  async getLoginType() {
-    let result = await this.apiService.getMethod('Master/GetLoginType');
-    this.Logintype = result.data;
-  }
+  // async getLoginType() {
+  //   let result = await this.apiService.getMethod('Master/GetLoginType');
+  //   this.Logintype = result.data;
+  // }
+  // getLoginType(){
+  //   for(let data of this.staffLogin){
+  //     var login = data.loginType;
+  //     if(login!=3){
+  //       sessionStorage.setItem("loginType",'HR');
+  //     }
+  //   }
+  // }
   login() {
     for (let data of this.staffLogin) {
       var name = data.username;
       var pass = data.password;
+      var login = data.loginType;
       console.log(name);
       console.log(pass);
-      if (this.userName == name && this.passWord == pass) {
+      console.log(login, typeof login);
+
+
+
+      if (this.userName == name && this.passWord == pass && login !=null) {
         sessionStorage.setItem("isLogin", 'Yes');
         this.loaderService.isLogin = 'Yes';
-        this.router.navigate(['/department-table']);
+
+        if (login == 3 ) {
+          sessionStorage.setItem("loginType", 'HR');
+          this.loaderService.loginType = 'HR';
+        }
+
+         if (this.loaderService.loginType == 'HR') {
+            this.router.navigate(['/staff-details']);
+            console.log("staff");
+          }
+         else {
+          this.router.navigate(['/department-table']);
+          console.log("department");
+
+        }
         return;
       }
     }
-    Swal.fire("Enter valid data");
+    Swal.fire("Please enter valid data");
   }
 }

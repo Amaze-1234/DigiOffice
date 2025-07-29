@@ -16,4 +16,6 @@ export class Loader {
   isEmployee:any=sessionStorage.getItem("isEmployee")||'';
 
   isEmployeeDetails: any = sessionStorage.getItem("isEmployeeDetails") || 'no';
+
+  loginType: any = sessionStorage.getItem("loginType") || '';
 }

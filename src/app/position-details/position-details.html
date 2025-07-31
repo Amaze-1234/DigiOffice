@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Designation <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DesignationID"(click)="getJobDetails()">
+                    <select class="form-control" formControlName="DesignationID"(change)="getJobDetails($event)">
                         <option value="">Select DesignationList </option>
                         <option *ngFor="let designation of designationData" [value]="designation.id">
                             {{designation.title}}</option>
@@ -37,20 +37,24 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Department">Department <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DepartmentID"(click)="getDetails()">
+                    <select class="form-control" formControlName="DepartmentID" (change)="getDetails($event)">
+        
                         <option value="">Select Department</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.departmentName}}</option>
                     </select>
+                    
+                    
                 </div>
                 <div class="col-lg-4">
                     <label for="Unit">Unit<span id="marked">*</span></label>
                     <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
-                        <option *ngFor="let department of unitType" [value]="department.departmentID">
+                        <option *ngFor="let department of unitType" [value]="department.ID">
                             {{department.unitName}}
                         </option>
                     </select>
+                  
                 </div>
                 <div class="col-lg-4">
                     <label for="Manager">Manager <span id="marked">*</span></label>
@@ -164,7 +168,7 @@
         </div>
     </div>
        <div>
-            <button type="submit" class="submit-btn"(click)="submitDetails()">Submit</button>
+            <button type="submit" class="submit-btn"(click)="submitDetails(editid?'update' : 'submit')">{{editid? 'Update' : 'Submit'}}</button>
         </div>
         <div class="navigate-btn">
             <button type="submit" class="next-btn"(click)="previousPage()">Previous</button>

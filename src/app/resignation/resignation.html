@@ -1,1 +1,19 @@
-<p>resignation works!</p>
+<div class="header">
+ <div class="resigantion-tab">
+    <p class="text"(click)="resignationTab()">My Resignation</p>
+    <span class="downbar"  [ngClass]="{'show': action=='myResignation'}"></span>
+ </div>
+ <div class="team-resignation">
+    <p class="text" (click)="resignationTeam()">My Team Resignation</p>
+       <span class="downbar" [ngClass]="{'show': action=='teamResignation'}"></span>
+ </div>
+
+</div>
+
+<div *ngIf="action=='myResignation'">
+ <app-resignation-tab></app-resignation-tab>
+</div>
+
+<div *ngIf="">
+    <app-resignation-tab></app-resignation-tab>
+</div>

@@ -12,7 +12,8 @@ import Swal from 'sweetalert2';
 export class DashBoard {
 worktype: any;
   selectedWorkType: any;
-  punchInTime: any;
+  punchInTime:any;
+  punch:boolean=false;
 
   constructor(public api: Api) {}
 
@@ -40,6 +41,9 @@ worktype: any;
     if (result.isConfirmed) {
       const now = new Date();
       this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      this.punch = true;
+      console.log(this.punch);
+      
 
       await Swal.fire({
         icon: 'success',

@@ -1,7 +1,7 @@
 <div class="main1">
   <div>
     <p>{{this.loderService.isTitle}}<br>
-      Welcome back, <span style="font-weight: bold;"> Company</span>
+      Welcome back, <span style="font-weight: bold;" >{{this.loderService.isLogin=='Manager'?'Manager':'Company'}}</span>
       <img src="images/wave.png">
     </p>
   </div>

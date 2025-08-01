@@ -1,0 +1,140 @@
+
+<div class="row">
+    <div class="col-3">
+        <h2 class="heading" (click)="myLoanDetails(true)" [ngClass]="isMyLoanDetails?'active':'' ">My Loan Details</h2>
+    </div>
+    <div class="col-3">
+        <h2 class="heading" (click)="myLoanDetails(false)" [ngClass]=" !isMyLoanDetails?'active':'' ">
+            My Team Loan Details</h2>
+    </div>
+</div>
+
+ 
+
+<div class="loan-request" *ngIf="isMyLoanDetails">
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+            <p style="margin-top: 15px; color: rgb(6, 71, 6); font-weight: bold;">Filter By:</p>
+            <input type="text" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
+            <select class="form-control searchbar1">
+                <option value="" disabled selected>Select Loan Type</option>
+                <option *ngFor="let data of loanData" [value]="data.id">{{data.loanType}}</option>
+            </select>
+        </div>
+        <div style="margin-top: 8px;">
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
+        </div>
+    </div>
+    <div class="tabs">
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
+        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+    </div>
+
+    <div *ngIf="selectedTab == 'pending'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'approved'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Approved Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'rejected'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="!isMyLoanDetails">
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+            <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+            <input type="text" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
+            <select class="form-control searchbar1">
+                <option value="" disabled selected>Select Loan Type</option>
+                <option *ngFor="let data of loanData" [value]="data.id">{{data.loanType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="tabs">
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
+        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+    </div>
+
+    <div *ngIf="selectedTab == 'pending'">
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <th>Loan Type</th>
+                <th>Tenure</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'approved'">
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <th>Loan Type</th>
+                <th>Tenure</th>
+                <th>Loan Amount</th>
+                <th>Approved Loan Amount</th>
+                <th>Monthly EMI Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'rejected'">
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <th>Loan Type</th>
+                <th>Tenure</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+                <th>Rejected Reason</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #popupModal let-Modal>
+    <div class="modal-header">
+        <h3>Loan Request</h3>
+        <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+    </div>
+    <div class="modal-body">
+        <app-loan-request-form></app-loan-request-form>
+    </div>
+</ng-template>

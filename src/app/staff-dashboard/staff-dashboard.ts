@@ -19,6 +19,7 @@ export class StaffDashboard {
   designationData: any
   staffData: any;
   searchText: any = '';
+// selectedDesignationId: any = '';
   jobLevelData: any;
   title:any;
   constructor(public router: Router, public loaderService: Loader, public apiservice: Api, public modalService: NgbModal) {

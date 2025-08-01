@@ -25,6 +25,8 @@ import { ResignationTab } from './resignation-tab/resignation-tab';
 import { AttendanceDetails } from './attendance-details/attendance-details';
 import { ShiftDetails } from './shift-details/shift-details';
 import { TeamShiftDetails } from './team-shift-details/team-shift-details';
+import { TeamleaveDetails } from './teamleave-details/teamleave-details';
+import { LeaveRequest } from './leave-request/leave-request';
 
 
 export const routes: Routes = [
@@ -56,6 +58,8 @@ export const routes: Routes = [
   { path: "resignation-tab", component: ResignationTab, pathMatch: 'full' },
   { path: "AttendanceDetails", component: AttendanceDetails, pathMatch: "full" },
   { path: "ShiftDetails", component: ShiftDetails, pathMatch: "full" },
-  { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" }
+  { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" },
+   { path: "teamleave-details", component:TeamleaveDetails, pathMatch: "full" },
+    { path: "leave-request", component: LeaveRequest, pathMatch: "full" }
 
 ];

@@ -21,18 +21,18 @@ import { EmployeeDetails } from './employee-details/employee-details';
 import { PositionDetails } from './position-details/position-details';
 import { StaffNavbar } from './staff-navbar/staff-navbar';
 import { StaffDetail } from './staff-detail/staff-detail';
-<<<<<<< HEAD
+
 import { LoanRequest } from './loan-request/loan-request';
 import { OvertimeDetails } from './overtime-details/overtime-details';
 import { LoanRequestForm } from './loan-request-form/loan-request-form';
 import { OvertimeDetailsForm } from './overtime-details-form/overtime-details-form';
-=======
+
 import { ResignationTab } from './resignation-tab/resignation-tab';
 import { AttendanceDetails } from './attendance-details/attendance-details';
 import { ShiftDetails } from './shift-details/shift-details';
 import { TeamShiftDetails } from './team-shift-details/team-shift-details';
 import { DashBoard } from './dash-board/dash-board';
->>>>>>> c0ff2fbb1c3a7426cf42dcd3974c8408d1e9cb9b
+
 
 
 export const routes: Routes = [
@@ -61,19 +61,19 @@ export const routes: Routes = [
   { path: "staff-navbar", component: StaffNavbar, pathMatch: "full" },
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
-<<<<<<< HEAD
+
   { path: "loan-request", component: LoanRequest, pathMatch: "full"},
   { path: "overtime-details", component: OvertimeDetails, pathMatch: "full"},
   { path: "loan-request-form", component: LoanRequestForm, pathMatch: "full"},
   { path: "overtime-details-form", component:OvertimeDetailsForm, pathMatch: "full"},
   
-=======
+
   { path: "resignation-tab", component: ResignationTab, pathMatch: 'full' },
   { path: "AttendanceDetails", component: AttendanceDetails, pathMatch: "full" },
   { path: "ShiftDetails", component: ShiftDetails, pathMatch: "full" },
   { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" },
   { path: "dashboard", component: DashBoard, pathMatch: "full" }
 
->>>>>>> c0ff2fbb1c3a7426cf42dcd3974c8408d1e9cb9b
+
 
 ];

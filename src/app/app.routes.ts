@@ -29,15 +29,12 @@ import { OvertimeDetailsForm } from './overtime-details-form/overtime-details-fo
 
 import { ResignationTab } from './resignation-tab/resignation-tab';
 import { AttendanceDetails } from './attendance-details/attendance-details';
-<<<<<<< HEAD
-import { Resignation } from './resignation/resignation';
-import { TeamResignation } from './team-resignation/team-resignation';
-=======
 import { ShiftDetails } from './shift-details/shift-details';
 import { TeamShiftDetails } from './team-shift-details/team-shift-details';
 import { DashBoard } from './dash-board/dash-board';
+import { Resignation } from './resignation/resignation';
+import { TeamResignation } from './team-resignation/team-resignation';
 
->>>>>>> d88012838bcd54c366e39e452996128133003f90
 
 
 export const routes: Routes = [
@@ -66,12 +63,10 @@ export const routes: Routes = [
   { path: "staff-navbar", component: StaffNavbar, pathMatch: "full" },
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
-<<<<<<< HEAD
   {path:"resignation-tab",component:ResignationTab,pathMatch:'full'},
   { path: "attendance-details", component: AttendanceDetails, pathMatch: "full" },
     {path:"resignation",component:Resignation,pathMatch:'full'},
-      {path:"team-resignation",component:TeamResignation,pathMatch:'full'}
-=======
+      {path:"team-resignation",component:TeamResignation,pathMatch:'full'},
 
   { path: "loan-request", component: LoanRequest, pathMatch: "full"},
   { path: "overtime-details", component: OvertimeDetails, pathMatch: "full"},
@@ -86,6 +81,6 @@ export const routes: Routes = [
   { path: "dashboard", component: DashBoard, pathMatch: "full" }
 
 
->>>>>>> d88012838bcd54c366e39e452996128133003f90
+
 
 ];

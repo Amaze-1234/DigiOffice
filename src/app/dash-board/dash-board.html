@@ -1,1 +1,27 @@
-<p>dash-board works!</p>
+<div class="attendance-card">
+    <h3 class="title">Attendance Tracker</h3>
+    <label class="label" for="workType">Work Type Details<span class="required">*</span></label>
+    <select id="workType" class="dropdown" [(ngModel)]="selectedWorkType">
+        <option value="" disabled selected>Select Type</option>
+        <option *ngFor="let data of worktype" [value]="data.id">{{data.workType}}</option>
+    </select>
+    <button class="action-btn" [disabled]="!selectedWorkType" [ngClass]="selectedWorkType ? 'active' : ''"
+        (click)="confirmPunchIn()">Punch In</button>
+
+    <div style="margin-top: 20px;">
+        <button class="action-btn" [disabled]="!punchInTime">
+            <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
+                {{ punchInTime ? 'Punch In at ' + punchInTime : 'No Punch In yet' }}
+            </span>
+        </button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button class="action-btn" [disabled]="!punchInTime" [ngClass]="!punchInTime ? 'punchout-active' : ''">Punch Out </button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button class="action-btn">No Punch Out yet</button>
+    </div>
+
+</div>

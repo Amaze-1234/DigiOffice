@@ -11,17 +11,20 @@
     <div style="margin-top: 20px;">
         <button class="punchIn-btn" [disabled]="!punchInTime">
             <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
-                {{ punchInTime ? 'Punch In at ' + punchInTime : 'No Punch In yet' }}
+                {{ punchInTime ? 'Punched In at ' + punchInTime : 'No Punch In yet' }}
             </span>
         </button>
     </div>
 
     <div style="margin-top: 20px;">
-        <button class="punchOut-btn" [disabled]="!punchInTime" [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'">Punch Out </button>
+        <button class="punchOut-btn" [disabled]="!punchInTime" [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'"
+        (click)="confirmPunchOut()">Punch Out </button>
     </div>
 
     <div style="margin-top: 20px;">
-        <button class="action-btn">No Punch Out yet</button>
+        <button class="action-btn" [disabled]="!punchOutTime">
+            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + punchOutTime : 'No Punch Out Yet'}}</span>
+        </button>
     </div>
 
 </div>

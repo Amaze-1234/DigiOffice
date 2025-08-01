@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router} from '@angular/router';
 import { ResignationTab } from "../resignation-tab/resignation-tab";
 
 @Component({
   selector: 'app-resignation',
-  imports: [SharedModule, RouterOutlet, ResignationTab],
+  imports: [SharedModule, ResignationTab],
   templateUrl: './resignation.html',
   styleUrl: './resignation.css'
 })

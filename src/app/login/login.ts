@@ -72,7 +72,8 @@ export class Login {
         if (login == 2 ) {
           sessionStorage.setItem("isLogin", 'Manager');
           this.loaderService.isLogin = 'Manager';
-          this.router.navigate(['/AttendanceDetails']);
+          this.loaderService.isTitle = 'Dashboard';
+          this.router.navigate(['/dashboard']);
           return;
         }
 

@@ -13,7 +13,7 @@ export class DashBoard {
   worktype: any;
   selectedWorkType: any;
   punchInTime: any;
-
+  punchOutTime: any;
   constructor(public api: Api) { }
 
   ngOnInit() {
@@ -40,6 +40,8 @@ export class DashBoard {
     if (result.isConfirmed) {
       const now = new Date();
       this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      
 
       await Swal.fire({
         icon: 'success',
@@ -49,6 +51,17 @@ export class DashBoard {
         showConfirmButton: true
       });
     }
+  }
+
+   async confirmPunchOut(){
+    const result = await Swal.fire({   
+      title: 'Punched Out Successfully'
+    });
+    if (result.isConfirmed) {
+      const now = new Date();
+      this.punchOutTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
   }
 
 

@@ -28,7 +28,7 @@ export class ManagerSideBar {
   navigateDashboard() {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
-    this.router.navigate(['/AttendanceDetails']);
+    this.router.navigate(['/dashboard']);
   }
   navigateEmployeeManager() {
     sessionStorage.setItem("isTitle", "EmployeeManagement")
@@ -49,6 +49,7 @@ export class ManagerSideBar {
   navigateAttendenceDetails() {
     sessionStorage.setItem("isTitle", "AttendenceDetails")
     this.loaderService.isTitle = 'AttendenceDetails';
+    this.router.navigate(['/AttendanceDetails']);
   }
   navigateShiftDetails() {
     sessionStorage.setItem("isTitle", "ShiftDetails")

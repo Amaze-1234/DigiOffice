@@ -17,6 +17,25 @@
     <app-footer></app-footer>
   </div>
 </div>
+<div class="container-fluid rounded" *ngIf="loderService.isLogin == 'Manager' ">
+  <div class="row m-0" id="contain">
+    <div class="col-2 "style="height:100vh">
+      <app-manager-side-bar></app-manager-side-bar>
+    </div>
+    <div class="col-10" style="background-color: #f1f1f1;">
+
+      <div class="navabar">
+        <app-nav-bar></app-nav-bar>
+      </div>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-footer></app-footer>
+  </div>
+</div>
 
 <div class="row" *ngIf="loderService.isLogin != 'Yes' ">
   <app-login></app-login>

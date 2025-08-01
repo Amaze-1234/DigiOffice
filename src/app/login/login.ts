@@ -15,23 +15,32 @@ import { Api } from '../../Services/api';
 export class Login {
   userName: any;
   passWord: any;
+  loginValue:any;
   staffLogin: any;
   loginType: any;
+  Logintype: any;
 
   constructor(public loaderService: Loader, public router: Router, public apiService: Api) { }
   ngOnInit() {
     this.getStaffLoginDetails();
-    // this.getLoginType();
+    this.getLoginType();
   }
   async getStaffLoginDetails() {
+    
     let result = await this.apiService.getMethod('Master/GetStaffLoginByLoginType');
     this.staffLogin = result.data;
 
   }
-  // async getLoginType() {
-  //   let result = await this.apiService.getMethod('Master/GetLoginType');
-  //   this.Logintype = result.data;
-  // }
+  async getLoginType() {
+    let result = await this.apiService.getMethod('Master/GetLoginType');
+    this.Logintype = result.data;
+  }
+   async onChange(even: any) {
+    debugger;
+    this.loginValue=even.target.value;
+    console.log(this.loginValue)
+    
+  }
   // getLoginType(){
   //   for(let data of this.staffLogin){
   //     var login = data.loginType;
@@ -51,19 +60,26 @@ export class Login {
 
 
 
-      if (this.userName == name && this.passWord == pass && login !=null) {
+      if (this.userName == name && this.passWord == pass && this.loginValue == login) {
         sessionStorage.setItem("isLogin", 'Yes');
         this.loaderService.isLogin = 'Yes';
 
-        if (login == 3 ) {
-          sessionStorage.setItem("loginType", 'HR');
-          this.loaderService.loginType = 'HR';
+        // if (login == 3 ) {
+        //   sessionStorage.setItem("loginType", 'HR');
+        //   this.loaderService.loginType = 'HR';
+        // }
+        
+        if (login == 2 ) {
+          sessionStorage.setItem("isLogin", 'Manager');
+          this.loaderService.isLogin = 'Manager';
+          this.router.navigate(['/AttendanceDetails']);
+          return;
         }
 
-         if (this.loaderService.loginType == 'HR') {
-            this.router.navigate(['/staff-details']);
-            console.log("staff");
-          }
+        //  if (this.loaderService.loginType == 'HR') {
+        //     this.router.navigate(['/staff-details']);
+        //     console.log("staff");
+        //   }
          else {
           this.router.navigate(['/department-table']);
           console.log("department");

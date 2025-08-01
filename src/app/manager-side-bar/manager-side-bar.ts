@@ -22,7 +22,7 @@ export class ManagerSideBar {
 
   }
   ngOnInit() {
-
+    
 
   }
   navigateDashboard() {
@@ -54,6 +54,8 @@ export class ManagerSideBar {
   navigateShiftDetails() {
     sessionStorage.setItem("isTitle", "ShiftDetails")
     this.loaderService.isTitle = 'ShiftDetails';
+    this.router.navigate(['/ShiftDetails']);
+    
   }
   navigateAttendenceCorrection() {
     sessionStorage.setItem("isTitle", "AttendenceCorrection")
@@ -69,10 +71,13 @@ export class ManagerSideBar {
   navigateLoanRequest() {
     sessionStorage.setItem("isTitle", "LoanRequest")
     this.loaderService.isTitle = 'LoanRequest';
+    this.router.navigate(['/loan-request']);
   }
   navigateOvertimeDetails() {
     sessionStorage.setItem("isTitle", "OvertimeDetails")
     this.loaderService.isTitle = 'OvertimeDetails';
+    this.router.navigate(['/overtime-details']);
+    
   }
   navigateLeaveRequest() {
     sessionStorage.setItem("isTitle", "LeaveRequest")
@@ -81,6 +86,7 @@ export class ManagerSideBar {
   navigateResignation() {
     sessionStorage.setItem("isTitle", "Resignation")
     this.loaderService.isTitle = 'Resignation';
+    this.router.navigate(['/resignation-tab']);
   }
 
   navigateSurvey() {

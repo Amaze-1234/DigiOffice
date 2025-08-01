@@ -1,0 +1,29 @@
+.header
+{
+    display:flex;
+    gap:150px;
+    align-items: center;
+}
+.resigantion-tab,.team-resignation
+{
+    position:relative;
+}
+.text
+{
+    color:blue;
+    font-size:20px;
+    font-weight: 600;
+}
+.downbar {
+   position:absolute;
+    width: 200px;
+    height: 7px;
+    background-color: blue;
+    border-radius: 2px;
+    bottom:3px;
+    display:none;
+}
+.show
+{
+    display:block;
+}

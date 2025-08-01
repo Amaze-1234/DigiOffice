@@ -44,3 +44,8 @@ th
   padding:4px 8px;
   font-weight:600;
 }
+
+::ng-deep .modal-dialog.modal-xl-custom {
+  /* max-width: 150%;  */
+  width: 150%;
+}

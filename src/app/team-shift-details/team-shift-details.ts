@@ -24,12 +24,12 @@ myShift()
   }
   openModal(id:any)
   {
-       this.modal.open(id, { centered: true, size: "lg", backdrop: "static", scrollable: true });
+       this.modal.open(id, { centered: true, size: "lg", backdrop: "static" });
   }
   close(id:any=null)
   {
    this.modal.dismissAll();
-   
+
   }
 
 }

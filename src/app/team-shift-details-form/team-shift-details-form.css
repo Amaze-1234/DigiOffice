@@ -3,21 +3,30 @@
     padding: 20px ;
     border-radius: 10px;
 }
+.action-btn
+{
+     float: right;
+     display: flex;
+     gap:10px;
+}
 button{
-    float: right;
-    width: 160px;
-    height: 35px;
+   
+    /* width: 160px;
+    height: 35px; */
     color: white;
     margin-right: 10px;
     border: none;
     border-radius: 10px;
+    padding:6px 40px;
 }
     
 .cancel-btn{
     color: blue;
     border: 1px solid blue;
     background-color: white;
-    margin-left: 800px;
+    /* margin-left: 800px; */
+        border-radius: 10px;
+    padding:6px 40px;
 }
 .submit-btn{
     background-color: blue;

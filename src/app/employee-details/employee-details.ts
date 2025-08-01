@@ -92,6 +92,7 @@ export class EmployeeDetails {
       if (this.editid) {
         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
         this.loaderService.isEmployee = "Yes";
+        this.loaderService.isEmployeeDetails = String(this.editid);
         if (result.data > 0) {
           console.log(result);
           console.log(this.contactForm.value);

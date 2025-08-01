@@ -182,7 +182,7 @@ export class PositionDetails {
       SeperationDate: new FormControl(response.data[0].seperationDate.split('T')[0], Validators.required),
       ProbationEndDate: new FormControl(response.data[0].probationEndDate.split('T')[0], Validators.required),
       ContractEndDate: new FormControl(response.data[0].contractEndDate.split('T')[0], Validators.required),
-      EmployeeDetailsID: new FormControl(this.editid, Validators.required)
+      EmployeeDetailsID: new FormControl(Number(this.employeeDetails), Validators.required)
 
     })
       // this.getDetails({ target: { value: departmentID } });

@@ -1,0 +1,29 @@
+.required{
+    color: red;
+}
+.button-grp{
+    margin-top: 30px;
+}
+
+.submit-btn{
+    background-color: rgb(11, 11, 174);
+    color: white;
+    border-radius: 8px;
+  padding: 5px 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.cancel-btn{
+    color:  rgb(11, 11, 174);
+    border-color: blue;
+    margin-left: 50%;
+  margin-right: 20px;
+  border-radius: 8px;
+  padding: 5px 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+

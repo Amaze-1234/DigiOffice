@@ -27,16 +27,17 @@
     font-weight: bold;
 }
 th{
-    padding:  20px;
+    padding:  10px;
     color: blue;
     font-weight: bold;
 }
 
 table{
-   
+    border-collapse: collapse;
     background-color: white;
     min-width: 1500px;
     width: 100%;
+     white-space: nowrap;
 
 }
 .table-wrapper{
@@ -52,4 +53,5 @@ table{
 }
 ::-webkit-scrollbar{
     width: 6px;
+    height: 10px;
 }

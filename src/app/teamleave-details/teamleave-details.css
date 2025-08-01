@@ -1,0 +1,39 @@
+.balancecolor{
+  color:rgb(23, 23, 163);   
+}
+.balancecolor th {
+  color: rgb(23, 23, 163);
+}
+.leavetype{
+    
+    background-color: rgb(23, 23, 163);
+    color:white;
+    font-weight: 500;
+     border: 1px solid rgb(23, 23, 163); 
+  border-radius: 4px; 
+    
+}
+
+
+ .calendar,
+.listview {
+  font-size: 16px;         
+  padding: 10px 16px;        
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+
+.calendar {
+  background-color: rgb(23, 23, 163);
+  color: white;
+  border: 1px solid rgb(23, 23, 163);
+}
+
+
+.listview {
+  background-color: white;
+  color: rgb(23, 23, 163);
+  border: 1px solid rgb(23, 23, 163);
+}

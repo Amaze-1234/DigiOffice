@@ -1,0 +1,166 @@
+<div *ngIf="!this.leaveDetails">
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h5 class=" rounded-start" (click)="this.calendarList=true"
+                            [ngClass]="this.calendarList?'calendar':'listview' ">
+                            Calendar</h5>
+                    </div>
+                    <div class="">
+                        <h5 class=" rounded-end " (click)="this.calendarList=false"
+                            [ngClass]=" !this.calendarList?'calendar':'listview' ">
+                            List View</h5>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="this.calendarList">
+
+    </div>
+
+    <div *ngIf="!this.calendarList">
+
+        <div class="d-flex align-items-center mt-4">
+            <div class="">
+                <h5 class=" rounded-start" (click)="approval='pending'"
+                    [ngClass]="approval === 'pending' ? 'calendar' : 'listview'">
+                    Pending</h5>
+            </div>
+            <div class="">
+                <h5 class="" (click)="approval='approved'"
+                    [ngClass]="approval === 'approved' ? 'calendar' : 'listview'">
+                    Approved</h5>
+            </div>
+            <div class="">
+                <h5 class=" " (click)="approval='rejected'"
+                    [ngClass]="approval === 'rejected' ? 'calendar' : 'listview'">
+                    Rejected</h5>
+            </div>
+            <div class="">
+                <h5 class=" rounded-end " (click)="approval='cancelled'"
+                    [ngClass]="approval === 'cancelled' ? 'calendar' : 'listview'">
+                    Cancelled</h5>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'pending'">
+            <div class=" mt-3">
+                <h5 class="balancecolor">Showing 1 Result</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+                            <th> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td>Rajaneesh</td>
+                            <td>	11-05-2024</td>
+                            <td> 	11-05-2024</td>
+                            <td> Vacation Leave</td>
+                            <td> 	Test</td>
+                            <td> 	0.5</td>
+                            <td><img src="images/pin.svg" alt="img-fluid" height="25px" width="25px"> </td>
+                            <td>Manager Pending</td>
+                            <td><img src="images/accept.svg" alt="img-fluid" height="25px" width="25px" class="me-1">
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'approved'">
+            <div class=" mt-3">
+                <h5 class="balancecolor">Showing 2 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+                            <th> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td>Rajaneesh Reddy</td>
+                            <td>		11-19-2024</td>
+                            <td> 	11-05-2024</td>
+                            <td>	H</td>
+                            <td> 	Test</td>
+                            <td> 	0.5</td>
+                            <td><img src="images/pin.svg" alt="img-fluid" height="25px" width="25px"> </td>
+                            <td>Manager approved</td>
+                            <td>
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                         <tr class="border-bottom">
+                            <td>Rajaneesh Reddy</td>
+                            <td>			12-02-2024</td>
+                            <td>	12-02-2024</td>
+                            <td> 	Sick Leave</td>
+                            <td> 	 	Sick</td>
+                            <td> 	1</td>
+                            <td>No image</td>
+                              <td>Manager approved</td>
+                            <td>
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf=" approval === 'rejected' || approval === 'cancelled'" class="mt-2">
+
+            <div class=" mt-3 ">
+                <h5 class="balancecolor">Showing 0 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

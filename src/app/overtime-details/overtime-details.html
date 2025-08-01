@@ -1,0 +1,105 @@
+<div>
+    <div class="row">
+        <div class="col-4">
+            <h4 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails ? 'active':''">My Overtime Details</h4>
+        </div>
+        <div class="col-4">
+            <h4 class="heading" (click)="overtimeDeatils(false)" [ngClass]="isMyOvertimeDetails ? 'active': ''">My Team Overtime Details</h4>
+        </div>
+    </div>
+</div>
+<div class="loan-request" *ngIf="isMyOvertimeDetails">
+    <div class="tabs">
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'" (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'" (click)="selectTab('actual OT')">Actual OT</button>
+    </div>
+
+
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+            <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+            <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
+        </div>
+        <div style="margin-top: 8px;">
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
+        </div>
+    </div>
+    <div class="tabs">
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
+        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+    </div>
+
+    <div *ngIf="selectedTab == 'pending'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'approved'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Approved Loan Amount</th>
+                <th>Comments</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'rejected'">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Loan Type</th>
+                <th>Loan Amount</th>
+                <th>Comments</th>
+            </tr>
+        </table>
+    </div>
+
+    
+    <div *ngIf="selectedTab == 'pre-approval OT'">
+        <table>
+            <tr>
+                <th>Date Request</th>
+                <th>Pre-Approval Start Time</th>
+                <th>Pre-Approval End Time</th>
+                <th>OT Details</th>
+                <th>Attachment</th>
+                <th>Purpose</th>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="selectedTab == 'actual OT'">
+        <table>
+            <tr>
+                <th>Date Request</th>
+                <th>Actual Start Time</th>
+                <th>Actual End Time</th>
+                <th>OT Details</th>
+                <th>Attachment</th>
+                <th>Purpose</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<ng-template #popupModal let-Modal>
+    <div class="modal-header">
+        <h3>Apply Pre-Approval OT</h3>
+        <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+    </div>
+    <div class="modal-body">
+        <app-overtime-details-form></app-overtime-details-form>
+    </div>
+</ng-template>

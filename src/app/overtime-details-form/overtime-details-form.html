@@ -1,0 +1,43 @@
+<div>
+    <form>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="">Date Request<span class="required">*</span></label>
+                <input type="date" class="form-control">
+            </div>
+            <div class="col-lg-4">
+                <label for="">Start time<span class="required">*</span></label>
+                <div class="time-box">
+                    <input type="text" id="hour" name="hour" class="form-control" placeholder="HH" >
+                    <span>:</span>
+                    <input type="text" id="minute" name="minute" placeholder="MM" class="form-control">
+                </div>
+                <span class="required" style="font-size: 14px;">Note:Please Enter Military Time</span>
+            </div>
+            <div class="col-lg-4">
+                <label for="">End time<span class="required">*</span></label>
+                <div class="time-box">
+                    <input type="text" id="hour" name="hour" class="form-control" placeholder="HH" >
+                    <span>:</span>
+                    <input type="text" id="minute" name="minute" placeholder="MM" class="form-control">
+                </div>
+                <span class="required" style="font-size: 14px;">Note:Please Enter Military Time</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-lg-4">
+                <label for="">Supporting Document</label>
+                <textarea style="border: 2px dashed;" class="form-control" cols="30" rows="6" placeholder="Drop Files Here"></textarea>
+            </div>
+            <div class="col-lg-4">
+                <label for="">Purpose<span class="required">*</span></label>
+                <textarea class="form-control" cols="30" rows="3" placeholder="Write Here"></textarea>
+            </div>
+        </div>
+        <div class="button-grp">
+            <button type="submit" class="cancel-btn">CANCEL</button>
+            <button type="submit" class="submit-btn">SUBMIT</button>
+            <button type="submit" class="submit-btn">OT Details</button>
+        </div>
+    </form>
+</div>

@@ -1,1 +1,19 @@
-<p>shift-details works!</p>
+<div class="header">
+ <div class="resigantion-tab">
+    <p class="text"(click)="myShift()">My Shift</p>
+    <span class="downbar"  [ngClass]="{'show': action=='myShift'}"></span>
+ </div>
+ <div class="team-resignation">
+    <p class="text" (click)="myTeamShift()">My Team Shift</p>
+       <span class="downbar" [ngClass]="{'show': action=='myTeamShift'}"></span>
+ </div>
+
+</div>
+
+<div *ngIf="action=='myShift'">
+
+</div>
+
+<div *ngIf="action=='myTeamShift'">
+ <app-team-shift-details></app-team-shift-details>
+</div>

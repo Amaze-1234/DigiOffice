@@ -34,6 +34,7 @@ import { TeamShiftDetails } from './team-shift-details/team-shift-details';
 import { DashBoard } from './dash-board/dash-board';
 import { Resignation } from './resignation/resignation';
 import { TeamResignation } from './team-resignation/team-resignation';
+import { TeamShiftDetailsForm } from './team-shift-details-form/team-shift-details-form';
 
 
 
@@ -63,22 +64,23 @@ export const routes: Routes = [
   { path: "staff-navbar", component: StaffNavbar, pathMatch: "full" },
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
-  {path:"resignation-tab",component:ResignationTab,pathMatch:'full'},
+  { path: "resignation-tab", component: ResignationTab, pathMatch: 'full' },
   { path: "attendance-details", component: AttendanceDetails, pathMatch: "full" },
-    {path:"resignation",component:Resignation,pathMatch:'full'},
-      {path:"team-resignation",component:TeamResignation,pathMatch:'full'},
+  { path: "resignation", component: Resignation, pathMatch: 'full' },
+  { path: "team-resignation", component: TeamResignation, pathMatch: 'full' },
 
-  { path: "loan-request", component: LoanRequest, pathMatch: "full"},
-  { path: "overtime-details", component: OvertimeDetails, pathMatch: "full"},
-  { path: "loan-request-form", component: LoanRequestForm, pathMatch: "full"},
-  { path: "overtime-details-form", component:OvertimeDetailsForm, pathMatch: "full"},
-  
+  { path: "loan-request", component: LoanRequest, pathMatch: "full" },
+  { path: "overtime-details", component: OvertimeDetails, pathMatch: "full" },
+  { path: "loan-request-form", component: LoanRequestForm, pathMatch: "full" },
+  { path: "overtime-details-form", component: OvertimeDetailsForm, pathMatch: "full" },
+
 
   { path: "resignation-tab", component: ResignationTab, pathMatch: 'full' },
   { path: "AttendanceDetails", component: AttendanceDetails, pathMatch: "full" },
   { path: "ShiftDetails", component: ShiftDetails, pathMatch: "full" },
   { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" },
-  { path: "dashboard", component: DashBoard, pathMatch: "full" }
+  { path: "dashboard", component: DashBoard, pathMatch: "full" },
+  { path: "TeamShiftDetailsForm", component: TeamShiftDetailsForm, pathMatch: "full" },
 
 
 

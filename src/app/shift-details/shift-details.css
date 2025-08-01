@@ -1,0 +1,55 @@
+.header
+{
+    display:flex;
+    gap:150px;
+    align-items: center;
+}
+.resigantion-tab,.team-resignation
+{
+    position:relative;
+}
+.text
+{
+    color:blue;
+    font-size:20px;
+    font-weight: 600;
+}
+.downbar {
+   position:absolute;
+    width: 200px;
+    height: 7px;
+    background-color: blue;
+    border-radius: 2px;
+    bottom:3px;
+    display:none;
+}
+.show
+{
+    display:block;
+}
+.card-body
+{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.intial
+{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+#filter-text
+{
+    margin-top:2%;
+    width:180px;
+}
+.addButton
+{
+    
+    background-color: blue;
+    padding:6px 70px;
+    border:none;
+    border-radius: 4px;
+    color:white;
+}

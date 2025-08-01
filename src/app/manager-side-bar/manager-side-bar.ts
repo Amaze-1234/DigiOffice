@@ -54,6 +54,7 @@ export class ManagerSideBar {
   navigateShiftDetails() {
     sessionStorage.setItem("isTitle", "ShiftDetails")
     this.loaderService.isTitle = 'ShiftDetails';
+    this.router.navigate(['/ShiftDetails']);
   }
   navigateAttendenceCorrection() {
     sessionStorage.setItem("isTitle", "AttendenceCorrection")

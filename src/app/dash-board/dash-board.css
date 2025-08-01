@@ -53,12 +53,7 @@
   font-size: 14px;
 }
 
-/* .action-btn:disabled {
-  background-color: #ccc;
-  color: #666;
-} */
-
-.action-btn {
+.action-btn, .punchIn-btn, .punchOut-btn {
   width: 50%;
   padding: 10px;
   border-radius: 8px;
@@ -67,7 +62,10 @@
   border: none;
   color: #fff;
   background-color: #ccc; 
-  cursor: not-allowed;
+}
+
+.action-btn{
+    cursor: no-drop;
 }
 
 .action-btn.active {
@@ -75,8 +73,10 @@
   cursor: pointer;
 }
 
-.punchout-active{
-    background-color: #007bff;
-    color: white;
+.punchout-active {
+  background-color: #007bff; 
+  cursor: pointer;
 }
+
+
 

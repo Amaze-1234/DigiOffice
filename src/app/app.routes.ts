@@ -23,6 +23,8 @@ import { StaffNavbar } from './staff-navbar/staff-navbar';
 import { StaffDetail } from './staff-detail/staff-detail';
 import { ResignationTab } from './resignation-tab/resignation-tab';
 import { AttendanceDetails } from './attendance-details/attendance-details';
+import { Resignation } from './resignation/resignation';
+import { TeamResignation } from './team-resignation/team-resignation';
 
 
 export const routes: Routes = [
@@ -52,6 +54,8 @@ export const routes: Routes = [
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
   {path:"resignation-tab",component:ResignationTab,pathMatch:'full'},
-  { path: "attendance-details", component: AttendanceDetails, pathMatch: "full" }
+  { path: "attendance-details", component: AttendanceDetails, pathMatch: "full" },
+    {path:"resignation",component:Resignation,pathMatch:'full'},
+      {path:"team-resignation",component:TeamResignation,pathMatch:'full'}
 
 ];

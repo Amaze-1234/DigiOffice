@@ -31,7 +31,7 @@ export class ShiftTable implements OnInit {
 
 
   async getData() {
-    const result = await this.apiservice.getMethod("Master/GetShift");
+    const result = await this.apiservice.getMethod('Master/GetShiftByShiftType');
     this.shiftData = result.data;
     this.shiftLength = this.shiftData.length;
 console.log(this.shiftData)

@@ -6,10 +6,7 @@
         <label>Shift Type<span class="text-danger fw-bold ">*</span></label>
         <select class="form-control mt-1" formControlName="shiftType">
           <option value="" disabled selected>Select Shift</option>
-          <option value="Morning Shift">Morning Shift</option>
-          <option value="Afternoon Shift">Afternoon Shift</option>
-          <option value="Evening Shift">Evening Shift</option>
-          <option value="Midnight Shift">Midnight Shift</option>
+    <option *ngFor="let s of shiftDetails" [value]="s.shiftID">{{s.shiftType}}</option>
         </select>
       </div>
       <div class="col-4">

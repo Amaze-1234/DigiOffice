@@ -32,6 +32,7 @@ import { AttendanceDetails } from './attendance-details/attendance-details';
 import { ShiftDetails } from './shift-details/shift-details';
 import { TeamShiftDetails } from './team-shift-details/team-shift-details';
 import { DashBoard } from './dash-board/dash-board';
+import { LeaveRequest } from './leave-request/leave-request';
 
 
 
@@ -72,8 +73,8 @@ export const routes: Routes = [
   { path: "AttendanceDetails", component: AttendanceDetails, pathMatch: "full" },
   { path: "ShiftDetails", component: ShiftDetails, pathMatch: "full" },
   { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" },
-  { path: "dashboard", component: DashBoard, pathMatch: "full" }
+  { path: "dashboard", component: DashBoard, pathMatch: "full" },
 
-
+{ path: "leave-request", component: LeaveRequest, pathMatch: "full" }
 
 ];

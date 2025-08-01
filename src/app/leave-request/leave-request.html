@@ -1,0 +1,430 @@
+<div class="row">
+    <div class="col-6">
+        <h2 class="heading" (click)="this.leaveDetails=true" [ngClass]="this.leaveDetails?'active':'inactive' ">My
+            Leave Details</h2>
+    </div>
+    <div class="col-6">
+        <h2 class="heading" (click)="this.leaveDetails=false"  [ngClass]=" !this.leaveDetails?'active':'inactive' " >
+            My Team Leave Details</h2>
+    </div>
+</div>
+
+<div *ngIf="this.leaveDetails">
+
+    <div class="row p-2 bg-white mt-4 align-items-center mb-4">
+        <div class="col-auto d-flex align-items-center">
+            <img src="images/filter.png" alt="filter-image" class="img-fluid me-2" width="20" height="20">
+            <span class="bgcolor fw-bold">Filter by:</span>
+        </div>
+        <div class="col-3 ps-0">
+            <input type="search" placeholder="Search..." class="form-control">
+        </div>
+        <div class="col-3">
+            <select class="form-select">
+                <option value="" disabled selected>Select Leave Type</option>
+                <option *ngFor="let leave of leaves">{{ leave }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="p-4 bg-white  align-items-center">
+        <h5 class="balancecolor">Leave Balance</h5>
+        <div class="row">
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/maternity.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Maternity Leave</h6>
+                        <h6 class="card-title">10</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/Paternity.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Paternity Leave</h6>
+                        <h6 class="card-title">37</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/Emergency.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Emergency Leave</h6>
+                        <h6 class="card-title">38</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/vacation.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Vacation Leave</h6>
+                        <h6 class="card-title">18</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/Sick.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Sick Leave</h6>
+                        <h6 class="card-title">17</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="pt-3">
+                        <img src="images/Lop.png" alt="Centered Image" class="img-fluid mx-auto "
+                            style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Loss Of Pay</h6>
+                        <h6 class="card-title">2</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h5 class=" rounded-start" (click)="this.calendarList=true"
+                            [ngClass]="this.calendarList?'calendar':'listview' ">
+                            Calendar</h5>
+                    </div>
+                    <div class="">
+                        <h5 class=" rounded-end " (click)="this.calendarList=false"
+                            [ngClass]=" !this.calendarList?'calendar':'listview' ">
+                            List View</h5>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="leavetype d-flex align-items-center px-3 py-2 " >
+                        <img src="images/plus.svg" alt="+logo" class="me-2" style="width: 16px; height: 16px;">
+                        Apply Leave
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="this.calendarList">
+
+    </div>
+
+    <div *ngIf="!this.calendarList">
+
+        <div class="d-flex align-items-center mt-4">
+            <div class="">
+                <h5 class=" rounded-start" (click)="approval='pending'"
+                    [ngClass]="approval === 'pending' ? 'calendar' : 'listview'">
+                    Pending</h5>
+            </div>
+            <div class="">
+                <h5 class="" (click)="approval='approved'"
+                    [ngClass]="approval === 'approved' ? 'calendar' : 'listview'">
+                    Approved</h5>
+            </div>
+            <div class="">
+                <h5 class=" " (click)="approval='rejected'"
+                    [ngClass]="approval === 'rejected' ? 'calendar' : 'listview'">
+                    Rejected</h5>
+            </div>
+            <div class="">
+                <h5 class=" rounded-end " (click)="approval='cancelled'"
+                    [ngClass]="approval === 'cancelled' ? 'calendar' : 'listview'">
+                    Cancelled</h5>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'pending'">
+            <div class=" mt-3">
+                <h5 class="balancecolor">Showing 4 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+                            <th> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td>12-12-2024</td>
+                            <td> 12-13-2024</td>
+                            <td> Vacation Leave</td>
+                            <td> Family matters</td>
+                            <td> 2</td>
+                            <td> No Image</td>
+                            <td>Manager Pending</td>
+                            <td><img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                        <tr>
+                            <td>11-26-2024</td>
+                            <td>11-26-2024</td>
+                            <td> Sick Leave</td>
+                            <td> Flu</td>
+                            <td> 1</td>
+                            <td>No Image</td>
+                            <td> Manager Pending</td>
+                            <td><img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                        <tr>
+                            <td>12-02-2024</td>
+                            <td>12-03-2024</td>
+                            <td>Vacation Leave</td>
+                            <td> Family matters</td>
+                            <td>2</td>
+                            <td> No Image</td>
+                            <td> Manager Pending</td>
+                            <td><img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                        <tr>
+                            <td>11-28-2024</td>
+                            <td> 11-28-2024</td>
+                            <td> Vacation Leave</td>
+                            <td> Family matters</td>
+                            <td>1</td>
+                            <td> No Image</td>
+                            <td> Manager Pending</td>
+                            <td><img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'approved' || approval === 'rejected' || approval === 'cancelled'" class="mt-2">
+
+            <div class=" mt-3 ">
+                <h5 class="balancecolor">Showing 0 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!this.leaveDetails">
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h5 class=" rounded-start" (click)="this.calendarList=true"
+                            [ngClass]="this.calendarList?'calendar':'listview' ">
+                            Calendar</h5>
+                    </div>
+                    <div class="">
+                        <h5 class=" rounded-end " (click)="this.calendarList=false"
+                            [ngClass]=" !this.calendarList?'calendar':'listview' ">
+                            List View</h5>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="this.calendarList">
+
+    </div>
+
+    <div *ngIf="!this.calendarList">
+
+        <div class="d-flex align-items-center mt-4">
+            <div class="">
+                <h5 class=" rounded-start" (click)="approval='pending'"
+                    [ngClass]="approval === 'pending' ? 'calendar' : 'listview'">
+                    Pending</h5>
+            </div>
+            <div class="">
+                <h5 class="" (click)="approval='approved'"
+                    [ngClass]="approval === 'approved' ? 'calendar' : 'listview'">
+                    Approved</h5>
+            </div>
+            <div class="">
+                <h5 class=" " (click)="approval='rejected'"
+                    [ngClass]="approval === 'rejected' ? 'calendar' : 'listview'">
+                    Rejected</h5>
+            </div>
+            <div class="">
+                <h5 class=" rounded-end " (click)="approval='cancelled'"
+                    [ngClass]="approval === 'cancelled' ? 'calendar' : 'listview'">
+                    Cancelled</h5>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'pending'">
+            <div class=" mt-3">
+                <h5 class="balancecolor">Showing 1 Result</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+                            <th> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td>Rajaneesh</td>
+                            <td>	11-05-2024</td>
+                            <td> 	11-05-2024</td>
+                            <td> Vacation Leave</td>
+                            <td> 	Test</td>
+                            <td> 	0.5</td>
+                            <td><img src="images/pin.svg" alt="img-fluid" height="25px" width="25px"> </td>
+                            <td>Manager Pending</td>
+                            <td><img src="images/accept.svg" alt="img-fluid" height="25px" width="25px" class="me-1">
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="approval === 'approved'">
+            <div class=" mt-3">
+                <h5 class="balancecolor">Showing 2 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+                            <th> Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td>Rajaneesh Reddy</td>
+                            <td>		11-19-2024</td>
+                            <td> 	11-05-2024</td>
+                            <td>	H</td>
+                            <td> 	Test</td>
+                            <td> 	0.5</td>
+                            <td><img src="images/pin.svg" alt="img-fluid" height="25px" width="25px"> </td>
+                            <td>Manager approved</td>
+                            <td>
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                         <tr class="border-bottom">
+                            <td>Rajaneesh Reddy</td>
+                            <td>			12-02-2024</td>
+                            <td>	12-02-2024</td>
+                            <td> 	Sick Leave</td>
+                            <td> 	 	Sick</td>
+                            <td> 	1</td>
+                            <td>No image</td>
+                              <td>Manager approved</td>
+                            <td>
+                                <img src="images/cancel-02.svg" alt="img-fluid" height="25px" width="25px"></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf=" approval === 'rejected' || approval === 'cancelled'" class="mt-2">
+
+            <div class=" mt-3 ">
+                <h5 class="balancecolor">Showing 0 Results</h5>
+            </div>
+            <div class="ps-1 bg-white mt-3 rounded ">
+                <table class="table-responsive table align-start p-4">
+                    <thead>
+                        <tr class="balancecolor">
+                            <th>Staff Name</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>Leave Type</th>
+                            <th> Leave Reason</th>
+                            <th>Leave Days Count</th>
+                            <th>Attachment</th>
+                            <th> Stage & Status</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

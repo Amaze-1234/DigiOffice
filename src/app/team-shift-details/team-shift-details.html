@@ -1,1 +1,53 @@
-<p>team-shift-details works!</p>
+
+
+  <div class="main">
+    <div class="intial">
+      <img src="images/filter.png" alt="icon" width="18px" height="18px">
+      <p id="filter-text">Filter By:</p>
+      <input type="date" placeholder="Start Date" style="padding:6px;" class="form-control">
+      <input type="date" placeholder="End Date" style="padding:6px;" class="form-control">
+    </div>
+    <div class="addDetails">
+      <button class="addButton" (click)="openModal(popupmodelunit)"> <img src="images/plus.svg" width="15px"> Add Shift Details
+      </button>
+    </div>
+  </div>
+
+<div class="main1">
+<table class="table">
+    <tr>
+        <th>Staff Name</th>
+           <th>Start Date</th>
+              <th>End Date</th>
+                 <th>Shift Type Name</th>
+                    <th>Shift Code</th>
+                       <th>Start Time</th>
+                       <th>
+                           End Time
+                       </th>
+                <th>Rest Days</th>
+                <th>Actions</th>
+
+    </tr>
+   <tr>
+    <td>
+
+    </td>
+   </tr>
+
+
+</table>
+</div>
+
+
+
+<ng-template #popupmodelunit>
+  <div class="modal-header justify-content-between fw-bold">
+    <h3>Team Shift Details</h3>
+    <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
+  </div>
+  <div class="modal-body">
+    <app-team-shift-details-form></app-team-shift-details-form>
+  </div>
+
+</ng-template>

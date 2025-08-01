@@ -2,14 +2,13 @@
   <div class="c1 ">
     <img src="images/filter.png" alt="filter">
     <p>Filter&nbsp;by:</p>
-    <input type="search" class="form-control" placeholder="Search..." [(ngModel)]="searchText">
+<input type="search" class="form-control" placeholder="Search..." [(ngModel)]="searchText">
   </div>
   <div class="c2">
-    <select class="form-control"  (change)="onChange($event)">
-      <option value="">Select Designation</option>
-      <option *ngFor="let data of designationData" value={{data.id}}>{{data.title}}</option>
-
-    </select>
+  <select class="form-control" (change)="onChange($event)" >
+  <option value="">Select Designation</option>
+  <option *ngFor="let data of designationData" [value]="data.id">{{ data.title }}</option>
+</select>
   </div>
   <div class="c3">
     <select class="form-control">
@@ -22,7 +21,7 @@
   </div>
 </div>
     <h5 class="text-start mt-3" style="color:blue;">Showing {{( staffData |search:searchText).length}} Results</h5>
-
+<!-- <h5>Showing {{ (staffData | search:searchText:selectedDesignationId).length }} Results</h5> -->
 <div class="bg-white ps-1 mt-3 rounded">
   <div class="table-responsive">
     <table class="table align-start">
@@ -42,6 +41,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let s of staffData | search: searchText" class="border-bottom">
+          <!-- <tr *ngFor="let s of staffData | search: searchText : selectedDesignationId" class="border-bottom"> -->
           <td>{{ s.employeeID }}</td>
           <td>{{ s.employeeName }}</td>
           <td>{{ s.department }}</td>

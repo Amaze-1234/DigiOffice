@@ -40,8 +40,7 @@ export class DashBoard {
     if (result.isConfirmed) {
       const now = new Date();
       this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      this.punch = true;
-      console.log(this.punch);
+      
       
 
       await Swal.fire({

@@ -72,7 +72,7 @@ export class Login {
         if (login == 2 ) {
           sessionStorage.setItem("isLogin", 'Manager');
           this.loaderService.isLogin = 'Manager';
-          this.router.navigate(['/AttendanceDetails']);
+          this.router.navigate(['/dashboard']);
           return;
         }
 

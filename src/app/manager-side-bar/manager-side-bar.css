@@ -1,0 +1,49 @@
+li {
+    list-style: none;
+    cursor: pointer;
+    padding: 2% 10%;
+}
+
+* {
+    font-size: medium;
+    color: blue;
+}
+
+#sidebar {
+    background-color: white;
+    width: 110%;
+    align-items: center;
+    height: auto;
+
+
+    margin-left: -13%;
+
+
+}
+
+.highlight {
+    background-color: blue;
+    color: white;
+    padding: 2% 10%;
+
+}
+
+.subnav-content {
+    left: 0;
+    background-color: white;
+    z-index: 1;
+    padding-left: 10%;
+    background-color: rgb(229, 239, 243);
+}
+
+.subnav-content li {
+    padding: 5% 10%;
+}
+
+.eye-icon {
+    margin-top: -28%;
+    float: right;
+    width: 10%;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}

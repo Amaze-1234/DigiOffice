@@ -1,0 +1,101 @@
+<div id="sidebar">
+    <div class="icon" style="padding: 10px 30px;">
+        <img src="images/digi_office_logo2.svg" alt="">
+    </div>
+
+    <div>
+
+        <li (click)="navigateDashboard()" [ngClass]="this.loaderService.isTitle == 'Dashboard' ?'highlight':'' ">
+            <img src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;"> DashBoard
+        </li>
+        <hr>
+        <div class="subnav">
+            <li (click)="navigateEmployeeManager()"
+                [ngClass]="this.loaderService.isTitle == 'EmployeeManagement' ?'highlight':'' "><img
+                    src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee
+                Management</li>
+            <span class="eye-icon">
+                {{ hide ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!hide">
+                <li (click)="navigateExitChecklist()"
+                    [ngClass]="this.loaderService.isTitle == 'ExitChecklist' ?'highlight':'' "><img
+                        src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;">Exit Checklist Clearance</li>
+            </div>
+        </div>
+        <hr>
+         <div class="subnav">
+            <li (click)="navigateAttendence()"
+                [ngClass]="this.loaderService.isTitle == 'Attendence' ?'highlight':'' "><img
+                    src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Attendence</li>
+            <span class="eye-icon">
+                {{ hide2 ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!hide2">
+                <li (click)="navigateAttendenceDetails()"
+                    [ngClass]="this.loaderService.isTitle == 'AttendenceDetails' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Attendence Details</li>
+                <li (click)="navigateShiftDetails()" [ngClass]="this.loaderService.isTitle == 'ShiftDetails' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Shift Details
+                </li>
+                <li (click)="navigateAttendenceCorrection()"
+                    [ngClass]="this.loaderService.isTitle == 'AttendenceCorrection' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Attendence Correction
+                </li>
+            </div>
+        </div>
+        <hr>
+        <div class="subnav">
+            <li (click)="navigateRequest()"
+                [ngClass]="this.loaderService.isTitle == 'Request' ?'highlight':'' "><img
+                    src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Request</li>
+            <span class="eye-icon">
+                {{ hide3 ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!hide3">
+                <li (click)="navigateLoanRequest()"
+                    [ngClass]="this.loaderService.isTitle == 'LoanRequest' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Loan Request</li>
+                <li (click)="navigateOvertimeDetails()" [ngClass]="this.loaderService.isTitle == 'OvertimeDetails' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Overtime Details
+                </li>
+                <li (click)="navigateLeaveRequest()"
+                    [ngClass]="this.loaderService.isTitle == 'LeaveRequest' ?'highlight':'' "><img
+                        src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Leave Request
+                </li>
+                <li (click)="navigateResignation()" [ngClass]="this.loaderService.isTitle == 'Resignation' ?'highlight':'' ">
+                    <img src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;">Resignation
+                </li>
+            </div>
+        </div>
+        <hr>
+        <div class="subnav">
+            <li (click)="navigateSurvey()"
+                [ngClass]="this.loaderService.isTitle == 'Survey' ?'highlight':'' "><img
+                    src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;">Survey</li>
+            <span class="eye-icon">
+                {{ hide4 ? '>' : downArrow }}
+            </span>
+            <div class="subnav-content" *ngIf="!hide4">
+                <li (click)="navigateTakeSurvey()"
+                    [ngClass]="this.loaderService.isTitle == 'TakeSurvey' ?'highlight':'' "><img
+                        src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;">Take Survey</li>
+            </div>
+        </div>
+        <hr>
+        
+        <li (click)="navigateHoliday()"
+            [ngClass]="this.loaderService.isTitle == 'Holiday' ?'highlight':'' "><img
+                src="images/auditTrailgrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Holiday</li>
+
+        <hr>
+        
+        <li (click)="navigateAnnouncement()"
+            [ngClass]="this.loaderService.isTitle == 'Announcement' ?'highlight':'' "><img
+                src="images/auditTrailgrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Announcement</li>
+                
+        <hr>
+
+    </div>
+
+</div>

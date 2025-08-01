@@ -10,12 +10,12 @@ import Swal from 'sweetalert2';
   styleUrl: './dash-board.css'
 })
 export class DashBoard {
-worktype: any;
+  worktype: any;
   selectedWorkType: any;
   punchInTime:any;
   punch:boolean=false;
 
-  constructor(public api: Api) {}
+  constructor(public api: Api) { }
 
   ngOnInit() {
     this.getWorkType();
@@ -50,7 +50,7 @@ worktype: any;
         title: 'Punched in Successfully!',
         text: 'Your Shift has been added.',
         timer: 2000,
-        showConfirmButton:true
+        showConfirmButton: true
       });
     }
   }

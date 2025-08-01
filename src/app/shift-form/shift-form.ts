@@ -17,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 })
 export class ShiftForm implements OnInit {
+
   shiftForm: any;
   shiftType: any;
   startTime: any;
@@ -24,8 +25,7 @@ export class ShiftForm implements OnInit {
   shiftCode: any;
   gracePeriod: any;
   editid: any;
-
-
+shiftDetails:any = [];
   constructor(public router: Router, public apiservice: Api, public modalservice: NgbModal) { }
 
   closemodal = new EventEmitter<any>();
@@ -34,11 +34,19 @@ export class ShiftForm implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+     this.getData();
     if (this.editid) {
       this.getByID();
+     
     }
   }
 
+  async getData() {
+    const result = await this.apiservice.getMethod('Master/GetShiftType');
+    this.shiftDetails = result.data;
+
+  }
+ 
 
 
   buildForm() {

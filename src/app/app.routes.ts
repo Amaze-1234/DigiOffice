@@ -23,6 +23,9 @@ import { StaffNavbar } from './staff-navbar/staff-navbar';
 import { StaffDetail } from './staff-detail/staff-detail';
 import { LoanRequest } from './loan-request/loan-request';
 import { OvertimeDetails } from './overtime-details/overtime-details';
+import { LoanRequestForm } from './loan-request-form/loan-request-form';
+import { OvertimeDetailsForm } from './overtime-details-form/overtime-details-form';
+
 
 export const routes: Routes = [
   { path: "login", component: Login, pathMatch: "full" },
@@ -51,7 +54,9 @@ export const routes: Routes = [
   { path: "staff-details", component: StaffDetail, pathMatch: "full" },
   { path: "staff-details/:id", component: StaffDetail, pathMatch: "full" },
   { path: "loan-request", component: LoanRequest, pathMatch: "full"},
-  { path: "overtime-details", component: OvertimeDetails, pathMatch: "full"}
-
+  { path: "overtime-details", component: OvertimeDetails, pathMatch: "full"},
+  { path: "loan-request-form", component: LoanRequestForm, pathMatch: "full"},
+  { path: "overtime-details-form", component:OvertimeDetailsForm, pathMatch: "full"},
+  
 
 ];

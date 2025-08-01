@@ -1,4 +1,14 @@
-<div class="loan-request">
+<div>
+    <div class="row">
+        <div class="col-4">
+            <h4 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails ? 'active':''">My Overtime Details</h4>
+        </div>
+        <div class="col-4">
+            <h4 class="heading" (click)="overtimeDeatils(false)" [ngClass]="isMyOvertimeDetails ? 'active': ''">My Team Overtime Details</h4>
+        </div>
+    </div>
+</div>
+<div class="loan-request" *ngIf="isMyOvertimeDetails">
     <div class="tabs">
         <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'" (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
         <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'" (click)="selectTab('actual OT')">Actual OT</button>
@@ -12,7 +22,7 @@
             <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
         </div>
         <div style="margin-top: 8px;">
-            <button class="add-btn"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
         </div>
     </div>
     <div class="tabs">
@@ -83,3 +93,13 @@
         </table>
     </div>
 </div>
+
+<ng-template #popupModal let-Modal>
+    <div class="modal-header">
+        <h3>Apply Pre-Approval OT</h3>
+        <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+    </div>
+    <div class="modal-body">
+        <app-overtime-details-form></app-overtime-details-form>
+    </div>
+</ng-template>

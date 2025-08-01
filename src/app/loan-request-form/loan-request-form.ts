@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-loan-request-form',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './loan-request-form.css'
 })
 export class LoanRequestForm {
+  
 
 }

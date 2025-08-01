@@ -15,7 +15,7 @@
     <div class="header">
         <div class="content">
             <img src="images/filter.png" alt="icon" class="filterImage">
-            <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+            <p style="margin-top: 15px; color: rgb(6, 71, 6); font-weight: bold;">Filter By:</p>
             <input type="text" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
             <select class="form-control searchbar1">
                 <option value="" disabled selected>Select Loan Type</option>
@@ -23,7 +23,7 @@
             </select>
         </div>
         <div style="margin-top: 8px;">
-            <button class="add-btn"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Add Loan</button>
         </div>
     </div>
     <div class="tabs">
@@ -128,3 +128,13 @@
         </table>
     </div>
 </div>
+
+<ng-template #popupModal let-Modal>
+    <div class="modal-header">
+        <h3>Loan Request</h3>
+        <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+    </div>
+    <div class="modal-body">
+        <app-loan-request-form></app-loan-request-form>
+    </div>
+</ng-template>

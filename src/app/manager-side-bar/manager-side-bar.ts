@@ -86,7 +86,7 @@ export class ManagerSideBar {
   navigateResignation() {
     sessionStorage.setItem("isTitle", "Resignation")
     this.loaderService.isTitle = 'Resignation';
-    this.router.navigate(['/resignation-tab']);
+    this.router.navigate(['/resignation']);
   }
 
   navigateSurvey() {

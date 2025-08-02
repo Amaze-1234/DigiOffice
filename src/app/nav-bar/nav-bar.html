@@ -6,6 +6,9 @@
     </p>
   </div>
   <div class="button-grp">
+    <img *ngIf="this.loderService.isLogin === 'Manager'" src="images/bell-icon-bg.png" placement="bottom" #imgPop="ngbPopover"
+  ngbPopover="Notification" style="margin-right: 10px;">
+
     <img src="images/profile.svg" placement="bottom" #imgPop="ngbPopover"
   [ngbPopover]="popever" style="margin-right: 10px;">
 

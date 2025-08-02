@@ -73,10 +73,15 @@ export class Login {
           
           sessionStorage.setItem("isLogin", 'Manager');
           this.loaderService.isLogin = 'Manager';
+<<<<<<< HEAD
           sessionStorage.setItem('staffID',String(data.staffID))
           this.loaderService.staffID=String(data.staffID)
           this.router.navigate(['/AttendanceDetails']);
 
+=======
+          this.loaderService.isTitle = 'Dashboard';
+          this.router.navigate(['/dashboard']);
+>>>>>>> 7488024725256c508315fd65460378d9a87c1b3b
           return;
         }
 

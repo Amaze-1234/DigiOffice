@@ -25,9 +25,9 @@ export class DashBoard {
 
     this.getWorkType();
     this.getDateTime();
-     setInterval(() => {
-      this.currentTime
-    }, 1000);
+   setInterval(() => {
+  this.currentTime = new Date(this.currentTime.getTime() + 1000);
+}, 1000);
   }
 
   async getWorkType() {
@@ -57,8 +57,8 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
-      const now = new Date();
-      this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timeResult = await this.api.getMethod("Master/GetDateTime");
+  this.punchInTime = new Date(timeResult.data[0].currentTime);
       
       
 
@@ -77,8 +77,8 @@ export class DashBoard {
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
-      const now = new Date();
-      this.punchOutTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timeResult = await this.api.getMethod("Master/GetDateTime");
+  this.punchOutTime = new Date(timeResult.data[0].currentTime);
     }
 
   }

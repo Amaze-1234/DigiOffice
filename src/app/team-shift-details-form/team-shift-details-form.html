@@ -1,10 +1,11 @@
-
+<form [formGroup]="shiftDetails">
 <div class="shiftForm">
         <div class="row">
             <div class="col-lg-2">
                 <label>Staff</label>
                 <select class="form-control">
                     <option value="">Select Staff</option>
+                    <option *ngFor="let data of shiftDetails" [value]="data.id" >{{data.staffName}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
@@ -50,3 +51,4 @@
             <button type="submit" class="submit-btn">Submit</button>
             </div>
 </div>
+</form>

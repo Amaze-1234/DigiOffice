@@ -104,6 +104,7 @@ export class EmployeeDetails {
         }
       }
       else{
+      console.log( this.contactForm.value)
       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
       this.loaderService.isEmployee="Yes";
       console.log(result.data);

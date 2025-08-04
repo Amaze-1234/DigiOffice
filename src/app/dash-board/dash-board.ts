@@ -14,15 +14,30 @@ export class DashBoard {
   selectedWorkType: any;
   punchInTime: any;
   punchOutTime: any;
+  currentDateTime: any;
+  currentTime:any;
+
+  
   constructor(public api: Api) { }
 
   ngOnInit() {
+ 
     this.getWorkType();
+    this.getDateTime();
   }
 
   async getWorkType() {
     const result = await this.api.getMethod("Master/GetWorkType");
     this.worktype = result.data;
+  }
+  async getDateTime() {
+    const result = await this.api.getMethod("Master/GetDateTime");
+    this.currentDateTime = result.data[0];
+
+    console.log(this.currentDateTime);
+    this.currentTime=new Date(this.currentDateTime.currentTime);
+    console.log(this.currentTime);
+    
   }
 
   async confirmPunchIn() {
@@ -40,6 +55,8 @@ export class DashBoard {
     if (result.isConfirmed) {
       const now = new Date();
       this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      
 
       await Swal.fire({
         icon: 'success',

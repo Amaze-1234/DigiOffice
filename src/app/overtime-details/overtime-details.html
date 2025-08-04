@@ -1,13 +1,14 @@
-<div>
-    <div class="row">
-        <div class="col-4">
-            <h4 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails ? 'active':''">My Overtime Details</h4>
-        </div>
-        <div class="col-4">
-            <h4 class="heading" (click)="overtimeDeatils(false)" [ngClass]="isMyOvertimeDetails ? 'active': ''">My Team Overtime Details</h4>
-        </div>
+
+<div class="row">
+    <div class="col-3">
+        <h2 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails?'active':'' ">My Loan Details</h2>
+    </div>
+    <div class="col-3">
+        <h2 class="heading" (click)="overtimeDeatils(false)" [ngClass]=" !isMyOvertimeDetails?'active':'' ">
+            My Team Loan Details</h2>
     </div>
 </div>
+
 <div class="loan-request" *ngIf="isMyOvertimeDetails">
     <div class="tabs">
         <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'" (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>

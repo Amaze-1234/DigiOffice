@@ -16,7 +16,7 @@ export class DashBoard {
   punchOutTime: any;
   currentDateTime: any;
 
-  currentTime: Date = new Date();
+  currentTime:any;
   
   constructor(public api: Api) { }
 
@@ -26,7 +26,7 @@ export class DashBoard {
     this.getWorkType();
     this.getDateTime();
      setInterval(() => {
-      this.currentTime = new Date();
+      this.currentTime;
     }, 1000);
   }
 

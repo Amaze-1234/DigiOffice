@@ -25,9 +25,9 @@ export class DashBoard {
 
     this.getWorkType();
     this.getDateTime();
-     setInterval(() => {
-      this.currentTime;
-    }, 1000);
+   setInterval(() => {
+  this.currentTime = new Date(this.currentTime.getTime() + 1000);
+}, 1000);
   }
 
   async getWorkType() {

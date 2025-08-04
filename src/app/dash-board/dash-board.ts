@@ -15,8 +15,8 @@ export class DashBoard {
   punchInTime: any;
   punchOutTime: any;
   currentDateTime: any;
-  currentTime: any;
 
+  currentTime: Date = new Date();
   
   constructor(public api: Api) { }
 

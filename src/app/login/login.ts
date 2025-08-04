@@ -74,6 +74,7 @@ export class Login {
           this.loaderService.isLogin = 'Manager';
           this.loaderService.isTitle = 'Dashboard';
           this.router.navigate(['/dashboard']);
+         
           return;
         }
 

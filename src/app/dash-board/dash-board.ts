@@ -21,6 +21,7 @@ export class DashBoard {
   constructor(public api: Api) { }
 
   ngOnInit() {
+
  
     this.getWorkType();
     this.getDateTime();

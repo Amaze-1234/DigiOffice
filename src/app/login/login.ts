@@ -59,7 +59,7 @@ export class Login {
       console.log(login, typeof login);
 
 
-
+     
       if (this.userName == name && this.passWord == pass && this.loginValue == login) {
         sessionStorage.setItem("isLogin", 'Yes');
         this.loaderService.isLogin = 'Yes';
@@ -70,11 +70,16 @@ export class Login {
         // }
         
         if (login == 2 ) {
+          
           sessionStorage.setItem("isLogin", 'Manager');
           this.loaderService.isLogin = 'Manager';
+          sessionStorage.setItem('staffID',String(data.staffID))
+          this.loaderService.staffID=String(data.staffID)
+      
           this.loaderService.isTitle = 'Dashboard';
           this.router.navigate(['/dashboard']);
-          return;
+
+          return
         }
 
         //  if (this.loaderService.loginType == 'HR') {

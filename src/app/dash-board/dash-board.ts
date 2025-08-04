@@ -26,7 +26,7 @@ export class DashBoard {
     this.getWorkType();
     this.getDateTime();
      setInterval(() => {
-      this.currentTime;
+      this.currentTime
     }, 1000);
   }
 

@@ -15,16 +15,19 @@ export class DashBoard {
   punchInTime: any;
   punchOutTime: any;
   currentDateTime: any;
-  currentTime:any;
+  currentTime: any;
 
   
   constructor(public api: Api) { }
 
   ngOnInit() {
 
- 
+
     this.getWorkType();
     this.getDateTime();
+     setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
   }
 
   async getWorkType() {

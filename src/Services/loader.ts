@@ -18,4 +18,6 @@ export class Loader {
   isEmployeeDetails: any = sessionStorage.getItem("isEmployeeDetails") || 'no';
 
   loginType: any = sessionStorage.getItem("loginType") || '';
+
+  staffID:any=sessionStorage.getItem('staffID')||'';
 }

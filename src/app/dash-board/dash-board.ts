@@ -16,8 +16,8 @@ export class DashBoard {
   punchOutTime: any;
   currentDateTime: any;
 
-  currentTime:any;
-  
+  currentTime: any;
+
   constructor(public api: Api) { }
 
   ngOnInit() {
@@ -25,10 +25,12 @@ export class DashBoard {
 
     this.getWorkType();
     this.getDateTime();
-   setInterval(() => {
-  this.currentTime = new Date(this.currentTime.getTime() + 1000);
-}, 1000);
+          setInterval(() => {
+        this.currentTime = new Date(this.currentTime.getTime() + 1000); 
+      }, 1000);
+
   }
+  
 
   async getWorkType() {
     const result = await this.api.getMethod("Master/GetWorkType");
@@ -39,9 +41,9 @@ export class DashBoard {
     this.currentDateTime = result.data[0];
 
     console.log(this.currentDateTime);
-    this.currentTime=new Date(this.currentDateTime.currentTime);
+    this.currentTime = new Date(this.currentDateTime.currentTime);
     console.log(this.currentTime);
-    
+
   }
 
   async confirmPunchIn() {
@@ -57,10 +59,12 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
-      const now = new Date();
-      this.punchInTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       
-      
+      this.punchInTime = new Date(this.currentDateTime[0].currentTime);
+
+
+
+
 
       await Swal.fire({
         icon: 'success',
@@ -72,13 +76,14 @@ export class DashBoard {
     }
   }
 
-   async confirmPunchOut(){
-    const result = await Swal.fire({   
+  async confirmPunchOut() {
+    const result = await Swal.fire({
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
-      const now = new Date();
-      this.punchOutTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+   
+      this.punchOutTime = new Date(this.currentDateTime[0].currentTime);
+
     }
 
   }

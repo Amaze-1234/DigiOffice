@@ -13,7 +13,7 @@
     <div style="margin-top: 20px;">
         <button class="punchIn-btn" [disabled]="!punchInTime">
             <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
-                {{ punchInTime ? 'Punched In at ' + punchInTime : 'No Punch In yet' }}
+                {{ punchInTime ? 'Punched In at ' + (currentTime | date:'HH:mm')  : 'No Punch In yet' }}
             </span>
         </button>
     </div>
@@ -25,7 +25,7 @@
 
     <div style="margin-top: 20px;">
         <button class="action-btn" [disabled]="!punchOutTime">
-            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + punchOutTime :
+            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + (currentTime | date:'HH:mm') :
                 'No Punch Out Yet'}}</span>
         </button>
     </div>

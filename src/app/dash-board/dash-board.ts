@@ -25,9 +25,9 @@ export class DashBoard {
 
     this.getWorkType();
     this.getDateTime();
-          setInterval(() => {
-        this.currentTime = new Date(this.currentTime.getTime() + 1000); 
-      }, 1000);
+      //     setInterval(() => {
+      //   this.currentTime = new Date(this.currentTime.getTime() + 1000); 
+      // }, 1000);
 
   }
   
@@ -59,12 +59,10 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
+      const timeResult = await this.api.getMethod("Master/GetDateTime");
+  this.punchInTime = new Date(timeResult.data[0].currentTime);
       
-      this.punchInTime = new Date(this.currentDateTime[0].currentTime);
-
-
-
-
+      
 
       await Swal.fire({
         icon: 'success',
@@ -81,9 +79,8 @@ export class DashBoard {
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
-   
-      this.punchOutTime = new Date(this.currentDateTime[0].currentTime);
-
+      const timeResult = await this.api.getMethod("Master/GetDateTime");
+  this.punchOutTime = new Date(timeResult.data[0].currentTime);
     }
 
   }

@@ -36,6 +36,8 @@ import { Resignation } from './resignation/resignation';
 import { TeamResignation } from './team-resignation/team-resignation';
 import { TeamShiftDetailsForm } from './team-shift-details-form/team-shift-details-form';
 import { LeaveRequest } from './leave-request/leave-request';
+import { Exitchecklistclearance } from './exitchecklistclearance/exitchecklistclearance';
+import { Survey } from './survey/survey';
 
 
 
@@ -82,7 +84,10 @@ export const routes: Routes = [
   { path: "TeamShiftDetails", component: TeamShiftDetails, pathMatch: "full" },
   { path: "dashboard", component: DashBoard, pathMatch: "full" },
   { path: "TeamShiftDetailsForm", component: TeamShiftDetailsForm, pathMatch: "full" },
-   { path: "leave-request", component:LeaveRequest, pathMatch: "full" }
+  { path: "leave-request", component: LeaveRequest, pathMatch: "full" },
+  { path: "exit-chceklist", component: Exitchecklistclearance, pathMatch: "full" },
+  { path: "survey", component: Survey, pathMatch: "full" }
+
 
 
 

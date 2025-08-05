@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <label>Staff</label>
-                <select class="form-control" formControlName="Staff">
+                <select class="form-control" formControlName="StaffID">
                     <option value="">Select Staff</option>
                     <option *ngFor="let data of shiftDetails" [value]="data.id">{{data.staffName}}</option>
                 </select>
@@ -32,17 +32,13 @@
             </div>
             <div class="col-lg-2">
                 <label>Start Time</label>
-                <input type="time" class="form-control" 
-                    [value]="defaultStartTime && defaultStartTime.length > 0 ? defaultStartTime[0].startTime : null">
-
-                <input type="hidden" 
-                    [value]="defaultStartTime && defaultStartTime.length > 0 ? defaultStartTime[0].id : null"  formControlName="StartTime">
+                <input type="time"  class="form-control"  formControlName = "StartTime" readonly >
             </div>
         </div><br><br>
         <div class="row">
             <div class="col-lg-2">
                 <label>End Time</label>
-                <input type="time" class="form-control" formControlName="EndTime">
+                <input type="time" class="form-control" formControlName="EndTime" readonly>
             </div>
             <div class="col-lg-2">
                 <label>Rest Days</label>

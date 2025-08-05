@@ -13,13 +13,13 @@ import { SharedModule } from '../../Shared/shared.module';
 export class AttendenceCorrectionForm {
   editid: any;
   closemodal = new EventEmitter<any>();
-  contactForm:any;
+  contactForm: any;
 
-  constructor(public modelService:NgbModal){
+  constructor(public modelService: NgbModal) {
 
   }
 
-   buildForm() {
+  buildForm() {
 
     this.contactForm = new FormGroup({
       ID: new FormControl(''),
@@ -32,7 +32,7 @@ export class AttendenceCorrectionForm {
     });
 
   }
-  submit(){
+  submit() {
 
   }
 }

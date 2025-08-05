@@ -1,5 +1,7 @@
 <div class="attendance-card">
     <h3 class="title">Attendance Tracker</h3>
+    <p>{{ currentTime | date:'shortTime' }}</p>
+    <p>{{ currentTime | date:'MM-dd-yyyy' }}</p>
     <label class="label" for="workType">Work Type Details<span class="required">*</span></label>
     <select id="workType" class="dropdown" [(ngModel)]="selectedWorkType">
         <option value="" disabled selected>Select Type</option>
@@ -11,19 +13,20 @@
     <div style="margin-top: 20px;">
         <button class="punchIn-btn" [disabled]="!punchInTime">
             <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
-                {{ punchInTime ? 'Punched In at ' + punchInTime : 'No Punch In yet' }}
+                {{ punchInTime ? 'Punched In at ' + (punchInTime | date:'HH:mm')  : 'No Punch In yet' }}
             </span>
         </button>
     </div>
 
     <div style="margin-top: 20px;">
-        <button class="punchOut-btn" [disabled]="!punchInTime" [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'"
-        (click)="confirmPunchOut()">Punch Out </button>
+        <button class="punchOut-btn" [disabled]="!punchInTime"
+            [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'" (click)="confirmPunchOut()">Punch Out </button>
     </div>
 
     <div style="margin-top: 20px;">
         <button class="action-btn" [disabled]="!punchOutTime">
-            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + punchOutTime : 'No Punch Out Yet'}}</span>
+            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + (punchOutTime | date:'HH:mm') :
+                'No Punch Out Yet'}}</span>
         </button>
     </div>
 

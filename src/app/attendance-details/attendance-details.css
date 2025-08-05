@@ -18,7 +18,7 @@
 }
 .btn{
     width: 290px;
-    background-color: blue;
+    background-color: #3f51b5;
     color: white;
 }
 #fil{
@@ -28,7 +28,7 @@
 }
 th{
     padding:  10px;
-    color: blue;
+    color: #3f51b5;
     font-weight: bold;
 }
 
@@ -48,10 +48,10 @@ table{
     background-color: white;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: blue;
+    background-color: #3f51b5;
 
 }
 ::-webkit-scrollbar{
-    width: 6px;
-    height: 10px;
+    width: 4px;
+    height: 8px;
 }

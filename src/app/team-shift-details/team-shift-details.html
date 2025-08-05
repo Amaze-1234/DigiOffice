@@ -21,16 +21,23 @@
             <th>Shift Type Name</th>
             <th>Shift Code</th>
             <th>Start Time</th>
-            <th>
-                End Time
-            </th>
+            <th>End Time</th>
             <th>Rest Days</th>
             <th>Actions</th>
 
         </tr>
-        <tr>
+        <tr *ngFor = "let data of StaffShiftDetails">
+            <td>{{data.staffName }}</td>
+            <td>{{data.startDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{data.endDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{data.shiftType}}</td>
+            <td>{{data.shiftCode}}</td>
+            <td>{{data.startTime}}</td>
+            <td>{{data.endTime}}</td>
+            <td>{{data.restDaysValue}}</td>
             <td>
-
+                <img src="images/Edit 1.svg" alt="Edit"  width="38px" (click) = "openModal(popupmodelunit, data.id)">
+                <img src="images/Delete.svg" alt="Delete"  width="38px">
             </td>
         </tr>
 
@@ -46,7 +53,7 @@
         <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
     </div>
     <div class="modal-body">
-        <app-team-shift-details-form></app-team-shift-details-form>
+        <app-team-shift-details-form [editID] ="editID"></app-team-shift-details-form>
     </div>
 
 </ng-template>

@@ -41,3 +41,9 @@ th {
     padding: 4px 8px;
     font-weight: 600;
 }
+td{
+    padding: 5px;
+}
+.table{
+    background-color: white;
+}

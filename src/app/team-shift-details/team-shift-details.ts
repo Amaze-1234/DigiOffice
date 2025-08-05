@@ -13,9 +13,12 @@ import { Api } from '../../Services/api';
 export class TeamShiftDetails {
   action: any;
   staffID: any;
+  StaffShiftDetails: any;
+  editID: any;
   constructor(public modal: NgbModal, public apiService: Api) { }
   ngOnInit(){
     this.getStaffShiftDetails();
+    this.getStaffShiftDetailsByShiftEmployeeShiftType();
   }
   myShift() {
     this.action = 'myShift';
@@ -24,10 +27,16 @@ export class TeamShiftDetails {
   myTeamShift() {
     this.action = 'myTeamShift';
   }
-  openModal(id: any) {
-    this.modal.open(id, { centered: true, size: "lg", backdrop: "static" });
+  openModal(modal:any,id: any=null) {
+     if (id) {
+      this.editID = id;
+    }
+    console.log(this.editID);
+    
+    this.modal.open(modal, { centered: true, size: "lg", backdrop: "static" });
   }
-  close(id: any = null) {
+  close(data: any = null) {
+    this.editID = null;
     this.modal.dismissAll();
 
   }
@@ -36,4 +45,11 @@ async getStaffShiftDetails(){
   console.log(result.data);
   
 }
+async getStaffShiftDetailsByShiftEmployeeShiftType(){
+  let result = await this.apiService.getMethod('Master/GetStaffShiftDetailsByShiftEmployeeShiftType');
+  console.log(result.data);
+  this.StaffShiftDetails = result.data;
+  
+}
+
 }

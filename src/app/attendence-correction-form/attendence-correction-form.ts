@@ -1,7 +1,8 @@
 import { Component, EventEmitter } from '@angular/core';
-import { SharedModule } from '../../Shared/shared.module';
+
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../../Shared/shared.module';
 
 @Component({
   selector: 'app-attendence-correction-form',

@@ -110,10 +110,12 @@ export class ManagerSideBar {
 
     sessionStorage.setItem("isTitle", "Holiday");
     this.loaderService.isTitle = 'Holiday';
+    this.router.navigate(['/Holiday']);
   }
   navigateAnnouncement() {
     sessionStorage.setItem("isTitle", "Announcement");
     this.loaderService.isTitle = 'Announcement';
+    this.router.navigate(['/Announcement']);
   }
 
 }

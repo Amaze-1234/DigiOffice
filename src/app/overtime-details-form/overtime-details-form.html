@@ -1,5 +1,5 @@
 <div>
-    <form>
+    <form #otDetailsForm="ngForm">
         <div class="row">
             <div class="col-lg-4">
                 <label for="">Date Request<span class="required">*</span></label>
@@ -34,10 +34,13 @@
                 <textarea class="form-control" cols="30" rows="3" placeholder="Write Here"></textarea>
             </div>
         </div>
-        <div class="button-grp">
-            <button type="submit" class="cancel-btn">CANCEL</button>
+        <!-- <div class="button-grp">
+            <button type="submit" class="cancel-btn" >CANCEL</button>
             <button type="submit" class="submit-btn">SUBMIT</button>
-            <button type="submit" class="submit-btn">OT Details</button>
-        </div>
+            <button type="submit" class="submit-btn" (click)="openOTDetailsModal()">OT Details</button>
+        </div> -->
     </form>
 </div>
+
+
+

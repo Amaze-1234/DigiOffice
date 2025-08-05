@@ -40,6 +40,7 @@ import { Exitchecklistclearance } from './exitchecklistclearance/exitchecklistcl
 import { Survey } from './survey/survey';
 import { AttendenceCorrection } from './attendence-correction/attendence-correction';
 import { Holiday } from './holiday/holiday';
+import { Announcement } from './announcement/announcement';
 
 
 
@@ -92,6 +93,7 @@ export const routes: Routes = [
   { path: "survey", component: Survey, pathMatch: "full" },
   { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" },
   { path: "Holiday", component: Holiday, pathMatch: "full" },
+  { path: "Announcement", component: Announcement, pathMatch: "full" }
   
 
 

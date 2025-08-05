@@ -1,6 +1,9 @@
 .required{
     color: red;
 }
+label{
+  margin-bottom: 4px;
+}
 .button-grp{
     margin-top: 30px;
 }
@@ -23,6 +26,7 @@
   cursor: pointer;
   font-weight: bold;
 }
+
 
 
 

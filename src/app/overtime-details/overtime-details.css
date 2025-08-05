@@ -119,3 +119,45 @@ td {
    justify-content: space-between;
 }
 
+.button-grp{
+    margin: 30px;
+}
+
+.submit-btn{
+    background-color: rgb(11, 11, 174);
+    color: white;
+    border-radius: 8px;
+  padding: 5px 50px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.cancel-btn{
+    color:  rgb(11, 11, 174);
+    border-color: blue;
+    margin-left: 28%;
+  margin-right: 20px;
+  border-radius: 8px;
+  padding: 5px 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-header1{
+   display: flex;
+   justify-content: space-between;
+   margin-left: 10px;
+}
+
+.modal-body2{
+   display: flex;
+   justify-content: space-around;
+   border-bottom: 1px solid #dfdee4;
+   margin: 20px;
+   font-size: 600;
+   font-weight: bold;
+   color: rgb(11, 11, 174);
+   margin-bottom: 100px;
+}
+
+

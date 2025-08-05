@@ -1,0 +1,169 @@
+<div id="main">
+    <div class="row">
+        <div class="col-3">
+            <h2 class="heading" (click)="AttendenceType(true)"  [ngClass]="isMyAttendenceType?'active':'' ">My Attendence
+                Correction</h2>
+        </div>
+        <div class="col-4">
+            <h2 class="heading" (click)="AttendenceType(false)" [ngClass]=" !isMyAttendenceType?'active':'' ">
+                My Team Attendence Correction</h2>
+        </div>
+    </div>
+    <div *ngIf="isMyAttendenceType">
+        <div class="attendance">
+            <div class="filter">
+                <img src="images/filter.png" alt="filter" width="18px">
+                <p id="fil">Filter&nbsp;by:</p>
+
+                <input type="search" placeholder="Search..." class="form-control">
+
+                <input type="date" class="form-control" style="  border: 1px solid black;">
+            </div>
+            <div class="buttonelement">
+                <button class="btn btn-primary" (click)="openModel(popup)"><img src="images/plus.svg" alt="+logo">  Add Attendance
+                    Correction</button>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+                (click)="selectTab('pending')">Pending</button>
+            <button class="tablink" [class.active]="selectedTab == 'approved'"
+                (click)="selectTab('approved')">Approved</button>
+            <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+                (click)="selectTab('rejected')">Rejected</button>
+        </div>
+        <div *ngIf="selectedTab == 'pending'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="selectedTab == 'approved'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="selectedTab == 'rejected'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isMyAttendenceType">
+        <div class="header">
+            <div class="content">
+                <img src="images/filter.png" alt="icon" class="filterImage">
+                <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+                <input type="date" id="date" placeholder="dd-mm-yyyy" class=" form-control searchbar">
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tablink rounded-start" [ngClass]=" teamSelectedTab == 'pending' ?'highlight':'' "
+                (click)="teamselectTab('pending')">Pending</button>
+            <button class="tablink"[ngClass]=" teamSelectedTab == 'approved' ?'highlight':'' "
+                (click)="teamselectTab('approved')">Approved</button>
+            <button class="tablink rounded-end" [ngClass]=" teamSelectedTab == 'rejected' ?'highlight':'' "
+                (click)="teamselectTab('rejected')">Rejected</button>
+        </div>
+        <div *ngIf="teamSelectedTab == 'pending'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="teamSelectedTab == 'approved'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="teamSelectedTab == 'rejected'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #popup let-Model>
+    <div class="modal-header d-flex justify-content-between ">
+        <h3>Attendence Correction Form </h3> 
+        <span (click)="Model.dismiss();editid=null" ><img src="images/close.png" alt="close.png"></span>
+    
+    </div>
+    <div class="modal-body">
+       <app-attendence-correction-form  (closemodal)="close($event)"> </app-attendence-correction-form>
+    </div>
+</ng-template>

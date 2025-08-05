@@ -38,6 +38,7 @@ import { TeamShiftDetailsForm } from './team-shift-details-form/team-shift-detai
 import { LeaveRequest } from './leave-request/leave-request';
 import { Exitchecklistclearance } from './exitchecklistclearance/exitchecklistclearance';
 import { Survey } from './survey/survey';
+import { AttendenceCorrection } from './attendence-correction/attendence-correction';
 
 
 
@@ -86,7 +87,8 @@ export const routes: Routes = [
   { path: "TeamShiftDetailsForm", component: TeamShiftDetailsForm, pathMatch: "full" },
   { path: "leave-request", component: LeaveRequest, pathMatch: "full" },
   { path: "exit-chceklist", component: Exitchecklistclearance, pathMatch: "full" },
-  { path: "survey", component: Survey, pathMatch: "full" }
+  { path: "survey", component: Survey, pathMatch: "full" },
+  { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" }
 
 
 

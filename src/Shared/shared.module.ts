@@ -15,7 +15,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         ReactiveFormsModule,
         SearchPipe,
         NgbPopover,
-         NgMultiSelectDropDownModule
+        NgMultiSelectDropDownModule
     ],
 
     exports : [

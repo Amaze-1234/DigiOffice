@@ -11,8 +11,8 @@
         (click)="confirmPunchIn()">Punch In</button>
 
     <div style="margin-top: 20px;">
-        <button class="punchIn-btn" [disabled]="!punchInTime">
-            <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
+        <button class="punchIn-btn" [disabled]="!punchInTime"  >
+            <span [ngStyle]="{ color: punchInTime ? 'black' : '' }" [(ngModel)]="punchInTime">
                 {{ punchInTime ? 'Punched In at ' + (punchInTime | date:'HH:mm')  : 'No Punch In yet' }}
             </span>
         </button>
@@ -24,7 +24,7 @@
     </div>
 
     <div style="margin-top: 20px;">
-        <button class="action-btn" [disabled]="!punchOutTime">
+        <button class="action-btn" [disabled]="!punchOutTime" >
             <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + (punchOutTime | date:'HH:mm') :
                 'No Punch Out Yet'}}</span>
         </button>

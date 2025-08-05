@@ -10,6 +10,7 @@ import { Api } from '../../Services/api';
 })
 export class AttendanceDetails implements OnInit {
 attendanceDetails:any;
+ searchText:any='';
   constructor(public apiservice: Api) { }
   ngOnInit() {
     this.getData();

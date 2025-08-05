@@ -1,30 +1,37 @@
-<div class="attendance-card">
+<div class="attendance-card" [formGroup]="dashboardData">
     <h3 class="title">Attendance Tracker</h3>
     <p>{{ currentTime | date:'shortTime' }}</p>
     <p>{{ currentTime | date:'MM-dd-yyyy' }}</p>
-    <label class="label" for="workType">Work Type Details<span class="required">*</span></label>
-    <select id="workType" class="dropdown" [(ngModel)]="selectedWorkType">
-        <option value="" disabled selected>Select Type</option>
-        <option *ngFor="let data of worktype" [value]="data.id">{{data.workType}}</option>
-    </select>
-    <button class="action-btn" [disabled]="!selectedWorkType" [ngClass]="selectedWorkType ? 'active' : ''"
-        (click)="confirmPunchIn()">Punch In</button>
+    <div>
+        <label class="label" for="workType">Work Type Details</label>
+        <select formControlName="workingType" class="form-select" [(ngModel)]="selectedWorkType">
+           <option value="" disabled selected>Select Type</option>
+            <option>Office</option>
+        </select>
+    </div>
+
+    <div>
+        <button class="action-btn" [disabled]="!selectedWorkType" [ngClass]="selectedWorkType ? 'active' : ''"
+            (click)="confirmPunchIn()" formControlName="signInTime">Punch In</button>
+    </div>
+
 
     <div style="margin-top: 20px;">
-        <button class="punchIn-btn" [disabled]="!punchInTime"  >
+        <button class="punchIn-btn" [disabled]="!punchInTime">
             <span [ngStyle]="{ color: punchInTime ? 'black' : '' }" [(ngModel)]="punchInTime">
-                {{ punchInTime ? 'Punched In at ' + (punchInTime | date:'HH:mm')  : 'No Punch In yet' }}
+                {{ punchInTime ? 'Punched In at ' + (punchInTime | date:'HH:mm') : 'No Punch In yet' }}
             </span>
         </button>
     </div>
 
     <div style="margin-top: 20px;">
         <button class="punchOut-btn" [disabled]="!punchInTime"
-            [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'" (click)="confirmPunchOut()">Punch Out </button>
+            [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'" (click)="confirmPunchOut()"
+            formControlName="signOutTime">Punch Out </button>
     </div>
 
     <div style="margin-top: 20px;">
-        <button class="action-btn" [disabled]="!punchOutTime" >
+         <button class="action-btn" [disabled]="!punchOutTime" >
             <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">{{ punchOutTime ? 'Punched Out at ' + (punchOutTime | date:'HH:mm') :
                 'No Punch Out Yet'}}</span>
         </button>

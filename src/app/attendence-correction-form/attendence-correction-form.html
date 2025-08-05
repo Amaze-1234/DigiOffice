@@ -5,43 +5,34 @@
                 <label for="">Select Date<span class="required">*</span></label>
                 <input type="date" class="form-control" formControlName="Date" />
             </div>
-
             <div class="col-lg-4">
                 <label for="">Start Time<span class="required">*</span></label>
-                <input type="time" class="form-control"  formControlName="StartTime" />
+                <input type="time" class="form-control" formControlName="StartTime" />
             </div>
-
             <div class="col-lg-4">
                 <label for="">End Time<span class="required">*</span></label>
-
-                <input type="time" class="form-control"  formControlName="EndTime" />
+                <input type="time" class="form-control" formControlName="EndTime" />
             </div>
         </div>
         <br>
         <div class="row">
-             <div class="col-lg-4">
+            <div class="col-lg-4">
                 <label for="">Work Type<span class="required">*</span></label>
-
                 <select name="" id="" class="form-control " formControlName="WorkType">
                     <option value="" selected disabled>Select Type</option>
-                    <option value="" >Work From Home</option>
-                    <option value="" >Work From Office</option>
-
+                    <option value="">Work From Home</option>
+                    <option value="">Work From Office</option>
                 </select>
             </div>
             <div class="col-lg-4">
                 <label for="">Comments<span class="required">*</span></label>
-
-                <textarea name="" id="" class="form-control" 
-                    formControlName="Comments"></textarea>
+                <textarea name="" id="" class="form-control" formControlName="Comments"></textarea>
             </div>
         </div>
         <div class="row c1 ">
-
             <div>
                 <button type="submit" class="btn" (click)="this.modelService.dismissAll()">Cancel</button>
-                <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid"
-                    (click)="submit()">
+                <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid" (click)="submit()">
                     Submit
                 </button>
             </div>

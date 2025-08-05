@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Api } from '../../Services/api';
 import { Loader } from '../../Services/loader';
 import { SharedModule } from '../../Shared/shared.module';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-team-shift-details-form',
@@ -12,8 +13,8 @@ import { SharedModule } from '../../Shared/shared.module';
 })
 export class TeamShiftDetailsForm {
   shiftDetails: any;
-  staffID: any;
-  Staff: any;
+  staffId: any;
+  StaffID: any;
   StartDate: any;
   EndDate: any;
   ShiftTypeID: any;
@@ -32,9 +33,14 @@ export class TeamShiftDetailsForm {
   changedShiftType: any;
   filteredCode: any;
   defaultStartTime: any;
-  defaultEndTime: any;
+   @Input() editID: any;
+  @Output() closemodal = new EventEmitter<any>();
+
   constructor(public api: Api, public loader: Loader) { }
   ngOnInit() {
+    if(this.editID){
+      this.getTeamShiftDetailsByID();
+    }
     this.getStaffDetails();
     this.getShiftType();
     this.getShiftDetailsByShiftTable();
@@ -58,9 +64,9 @@ export class TeamShiftDetailsForm {
     };
   }
   async getStaffDetails() {
-    this.staffID = parseInt(this.loader.staffID);
-    console.log(typeof (this.staffID), this.staffID)
-    const result = await this.api.getMethod(`Master/GetStaffDetailsJoinShift?ID=${this.staffID}`)
+    this.staffId = parseInt(this.loader.staffID);
+    console.log(typeof (this.staffId), this.staffId)
+    const result = await this.api.getMethod(`Master/GetStaffDetailsJoinShift?ID=${this.staffId}`)
     this.shiftDetails = result.data;
     console.log(this.shiftDetails);
   }
@@ -73,6 +79,11 @@ export class TeamShiftDetailsForm {
   async getShiftDetailsByShiftTable(){
     let result = await this.api.getMethod('Master/GetShiftDetailsByShiftTable');
     this.shiftCodeDetails = result.data;
+    if(this.editID){
+      this.ChangedValueOfShiftType({target:{value:this.teamShiftDetailsForm.value.ShiftTypeID}});
+       this.changedValueOfCode({target:{value:this.teamShiftDetailsForm.value.ShiftCode}});
+       
+    }
   }
 
   ChangedValueOfShiftType(event: any){
@@ -94,31 +105,50 @@ export class TeamShiftDetailsForm {
    
     this.defaultStartTime = this.shiftCodeDetails.filter((code: { id: any; }) =>
       code.id == changedCode
-    ).map((x: { id: any; startTime: any; }) => ({id: x.id, startTime: x.startTime}))
+    ).map((x: { id: any; startTime: any; endTime: any}) => ({id: x.id, startTime: x.startTime, endTime: x.endTime}))
     console.log(this.defaultStartTime[0].startTime, typeof(this.defaultStartTime[0].id));
     console.log(this.defaultStartTime[0].id);
       
+           this.teamShiftDetailsForm.patchValue({
+            StartTime : this.defaultStartTime[0].startTime,
+            EndTime: this.defaultStartTime[0].endTime
+           })
   }
 
   getTeamShiftDetails() {
     this.teamShiftDetailsForm = new FormGroup({
       ID: new FormControl(''),
-      Staff: new FormControl('',),
-      StartDate: new FormControl('',),
-      EndDate: new FormControl('',),
-      ShiftTypeID: new FormControl('',),
-      ShiftCode: new FormControl(''),
-      StartTime: new FormControl('',),
-      EndTime: new FormControl('',),
-      selectedItems: new FormControl('',)
-
-
+      StaffID: new FormControl('',Validators.required),
+      StartDate: new FormControl('',Validators.required),
+      EndDate: new FormControl('',Validators.required),
+      ShiftTypeID: new FormControl('',Validators.required),
+      ShiftCode: new FormControl('',Validators.required),
+      StartTime: new FormControl('',Validators.required),
+      EndTime: new FormControl('',Validators.required),
+      selectedItems: new FormControl('',Validators.required)
     })
-
-
   }
 
-  submit() {
+  async getTeamShiftDetailsByID() {
+    debugger;
+     let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
+     console.log(result.data);
+     console.log(this.editID);
+     
+    this.teamShiftDetailsForm = new FormGroup({
+      ID: new FormControl(this.editID),
+      StaffID: new FormControl(result.data[0].staffID,Validators.required),
+      StartDate: new FormControl(result.data[0].startDate.split('T')[0],Validators.required),
+      EndDate: new FormControl(result.data[0].endDate.split('T')[0],Validators.required),
+      ShiftTypeID: new FormControl(result.data[0].shiftTypeID,Validators.required),
+      ShiftCode: new FormControl(result.data[0].shiftCode,Validators.required),
+      StartTime: new FormControl(result.data[0].startTime,Validators.required),
+      EndTime: new FormControl(result.data[0].endTime,Validators.required),
+      selectedItems: new FormControl(result.data[0].restDaysValue,Validators.required)
+    })
+  }
+
+  async submit() {
     debugger;
     console.log(this.teamShiftDetailsForm.value);
     let restID = '';
@@ -134,18 +164,24 @@ export class TeamShiftDetailsForm {
 
 
     this.entity = {
-      ID: this.teamShiftDetailsForm.value.ID,
-      StaffID: this.teamShiftDetailsForm.value.Staff,
+      StaffID: this.teamShiftDetailsForm.value.StaffID,
       StartDate: this.teamShiftDetailsForm.value.StartDate,
       EndDate: this.teamShiftDetailsForm.value.EndDate,
-      ShiftTypeID: 1,
-      ShiftCode: 'MR3',
-      StartTime: this.teamShiftDetailsForm.value.StartTime,
-      EndTime: this.teamShiftDetailsForm.value.EndTime,
+      ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
+      ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
+      StartTime: this.defaultStartTime[0].id,
+      EndTime: this.defaultStartTime[0].id,
       RestDaysID: restID,
       RestDaysValue: restValue
     }
     console.log(this.entity);
-
+     if(this.teamShiftDetailsForm.invalid){
+          Swal.fire("Please fill all the details");
+          return;
+         }
+         let result = await this.api.postMethod('Master/InsertStaffShiftDetails',this.entity);
+         if(result.data > 0){
+          Swal.fire("Data Submitted Successfully");
+         }
   }
 }

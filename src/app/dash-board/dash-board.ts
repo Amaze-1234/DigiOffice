@@ -16,8 +16,8 @@ export class DashBoard {
   punchOutTime: any;
   currentDateTime: any;
 
-  currentTime:any;
-  
+  currentTime: any;
+
   constructor(public api: Api) { }
 
   ngOnInit() {
@@ -29,6 +29,7 @@ export class DashBoard {
   this.currentTime ;
 }, 1000);
   }
+  
 
   async getWorkType() {
     const result = await this.api.getMethod("Master/GetWorkType");
@@ -39,9 +40,9 @@ export class DashBoard {
     this.currentDateTime = result.data[0];
 
     console.log(this.currentDateTime);
-    this.currentTime=new Date(this.currentDateTime.currentTime);
+    this.currentTime = new Date(this.currentDateTime.currentTime);
     console.log(this.currentTime);
-    
+
   }
 
   async confirmPunchIn() {
@@ -72,8 +73,8 @@ export class DashBoard {
     }
   }
 
-   async confirmPunchOut(){
-    const result = await Swal.fire({   
+  async confirmPunchOut() {
+    const result = await Swal.fire({
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {

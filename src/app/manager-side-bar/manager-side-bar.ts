@@ -40,6 +40,8 @@ export class ManagerSideBar {
 
     sessionStorage.setItem("isTitle", "ExitChecklist");
     this.loaderService.isTitle = 'ExitChecklist';
+    this.router.navigate(['/exit-chceklist']);
+
   }
   navigateAttendence() {
     sessionStorage.setItem("isTitle", "Attendence")
@@ -93,22 +95,23 @@ export class ManagerSideBar {
 
   navigateSurvey() {
 
-    sessionStorage.setItem("isTitle", "Survey")
+    sessionStorage.setItem("isTitle", "Survey");
     this.loaderService.isTitle = 'Survey';
     this.hide4 = !this.hide4;
   }
   navigateTakeSurvey() {
 
-    sessionStorage.setItem("isTitle", "TakeSurvey")
+    sessionStorage.setItem("isTitle", "TakeSurvey");
     this.loaderService.isTitle = 'TakeSurvey';
+    this.router.navigate(['/survey']);
   }
   navigateHoliday() {
 
-    sessionStorage.setItem("isTitle", "Holiday")
+    sessionStorage.setItem("isTitle", "Holiday");
     this.loaderService.isTitle = 'Holiday';
   }
   navigateAnnouncement() {
-    sessionStorage.setItem("isTitle", "Announcement")
+    sessionStorage.setItem("isTitle", "Announcement");
     this.loaderService.isTitle = 'Announcement';
   }
 

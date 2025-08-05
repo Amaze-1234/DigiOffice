@@ -5,6 +5,7 @@ import { RouterOutlet } from "@angular/router";
 import { SearchPipe } from "./search-pipe";
 import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
 import { LengthPipePipe } from "./length-pipe-pipe";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
     imports : [
@@ -14,6 +15,7 @@ import { LengthPipePipe } from "./length-pipe-pipe";
         ReactiveFormsModule,
         SearchPipe,
         NgbPopover,
+         NgMultiSelectDropDownModule
     ],
 
     exports : [
@@ -22,7 +24,8 @@ import { LengthPipePipe } from "./length-pipe-pipe";
         CommonModule,
         ReactiveFormsModule,
         SearchPipe,
-        NgbPopover        
+        NgbPopover,
+         NgMultiSelectDropDownModule        
     ]
 })
 

@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './announcement.css'
 })
 export class Announcement {
+  selectedTab: any;
+    selectTab(tab: any){
+    this.selectedTab = tab;
+  }
 
 }

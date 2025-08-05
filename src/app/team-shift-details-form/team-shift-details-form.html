@@ -1,54 +1,60 @@
-<form [formGroup]="shiftDetails">
-<div class="shiftForm">
+<form [formGroup]="teamShiftDetailsForm">
+    <div class="shiftForm">
         <div class="row">
             <div class="col-lg-2">
                 <label>Staff</label>
-                <select class="form-control">
+                <select class="form-control" formControlName="Staff">
                     <option value="">Select Staff</option>
-                    <option *ngFor="let data of shiftDetails" [value]="data.id" >{{data.staffName}}</option>
+                    <option *ngFor="let data of shiftDetails" [value]="data.id">{{data.staffName}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
                 <label>Start Date</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" formControlName="StartDate">
             </div>
             <div class="col-lg-2">
                 <label>End Date</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" formControlName="EndDate">
             </div>
             <div class="col-lg-2">
                 <label>Shift Type</label>
-                <select class="form-control">
+                <select class="form-control" (change)="ChangedValueOfShiftType($event)" formControlName="ShiftTypeID">
                     <option value="">Select Shift</option>
+                    <option *ngFor="let data of shiftTypeData" [value]="data.shiftID">{{data.shiftType}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
                 <label>Shift Code</label>
-                <select class="form-control">
+                <select class="form-control" (change)="changedValueOfCode($event)" formControlName="ShiftCode">
                     <option value="">Select Shift Code</option>
+                    <option *ngFor="let data of changedShiftType" [value]="data.id">{{data.shiftCode}}</option>
                 </select>
             </div>
             <div class="col-lg-2">
                 <label>Start Time</label>
-                <input type="time" class="form-control">
+                <input type="time" class="form-control" 
+                    [value]="defaultStartTime && defaultStartTime.length > 0 ? defaultStartTime[0].startTime : null">
+
+                <input type="hidden" 
+                    [value]="defaultStartTime && defaultStartTime.length > 0 ? defaultStartTime[0].id : null"  formControlName="StartTime">
             </div>
         </div><br><br>
         <div class="row">
             <div class="col-lg-2">
                 <label>End Time</label>
-                <input type="time" class="form-control">
+                <input type="time" class="form-control" formControlName="EndTime">
             </div>
             <div class="col-lg-2">
                 <label>Rest Days</label>
-                <select class="form-control">
-                    <option value="">Select Days</option>
-                </select>
+                <ng-multiselect-dropdown [placeholder]="'Select Days'" [settings]="dropdownSettings"
+                    [data]="dropdownList" formControlName="selectedItems">
+                </ng-multiselect-dropdown>
             </div>
         </div><br>
         <div class="action-btn">
             <button type="submit" class="cancel-btn">Cancel</button>
 
-            <button type="submit" class="submit-btn">Submit</button>
-            </div>
-</div>
+            <button type="submit" (click)="submit()" class="submit-btn">Submit</button>
+        </div>
+    </div>
 </form>

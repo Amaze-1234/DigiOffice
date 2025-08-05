@@ -39,6 +39,8 @@ import { LeaveRequest } from './leave-request/leave-request';
 import { Exitchecklistclearance } from './exitchecklistclearance/exitchecklistclearance';
 import { Survey } from './survey/survey';
 import { AttendenceCorrection } from './attendence-correction/attendence-correction';
+import { Holiday } from './holiday/holiday';
+
 
 
 
@@ -88,7 +90,9 @@ export const routes: Routes = [
   { path: "leave-request", component: LeaveRequest, pathMatch: "full" },
   { path: "exit-chceklist", component: Exitchecklistclearance, pathMatch: "full" },
   { path: "survey", component: Survey, pathMatch: "full" },
-  { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" }
+  { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" },
+  { path: "Holiday", component: Holiday, pathMatch: "full" },
+  
 
 
 

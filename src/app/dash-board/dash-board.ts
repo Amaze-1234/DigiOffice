@@ -26,7 +26,7 @@ export class DashBoard {
     this.getWorkType();
     this.getDateTime();
    setInterval(() => {
-  this.currentTime = new Date(this.currentTime.getTime() + 1000);
+  this.currentTime ;
 }, 1000);
   }
 
@@ -57,8 +57,8 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
-      const timeResult = await this.api.getMethod("Master/GetDateTime");
-  this.punchInTime = new Date(timeResult.data[0].currentTime);
+      const timeResult = await this.api.getMethod("Master/GetWorkType");
+  this.punchInTime = new Date(timeResult.data[0].punchInTime);
       
       
 
@@ -77,8 +77,8 @@ export class DashBoard {
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
-      const timeResult = await this.api.getMethod("Master/GetDateTime");
-  this.punchOutTime = new Date(timeResult.data[0].currentTime);
+      const timeResult = await this.api.getMethod("Master/GetWorkType");
+  this.punchOutTime = new Date(timeResult.data[0].punchOutTime);
     }
 
   }

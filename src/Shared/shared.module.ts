@@ -16,7 +16,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         SearchPipe,
         NgbPopover,
         NgMultiSelectDropDownModule
-    ],
+    ]
 
     exports : [
         RouterOutlet,

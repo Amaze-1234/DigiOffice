@@ -38,13 +38,13 @@ export class TeamShiftDetailsForm {
 
   constructor(public api: Api, public loader: Loader) { }
   ngOnInit() {
-    if (this.editID) {
-      this.getTeamShiftDetailsByID();
-    }
     this.getStaffDetails();
     this.getShiftType();
     this.getShiftDetailsByShiftTable();
     this.getTeamShiftDetails();
+    if (this.editID) {
+      this.getTeamShiftDetailsByID();
+    }
     this.dropdownList = [
       { id: 1, text: 'Monday' },
       { id: 2, text: 'Tuesday' },
@@ -63,12 +63,13 @@ export class TeamShiftDetailsForm {
       allowSearchFilter: true
     };
   }
+
   async getStaffDetails() {
     this.staffId = parseInt(this.loader.staffID);
     console.log(typeof (this.staffId), this.staffId)
     const result = await this.api.getMethod(`Master/GetStaffDetailsJoinShift?ID=${this.staffId}`)
     this.shiftDetails = result.data;
-    console.log(this.shiftDetails);
+    // console.log(this.shiftDetails);
   }
 
   async getShiftType() {
@@ -88,26 +89,25 @@ export class TeamShiftDetailsForm {
 
   ChangedValueOfShiftType(event: any) {
     const changedShiftType = event.target.value;
-    console.log(changedShiftType);
-    console.log(this.shiftCodeDetails);
+    // console.log(changedShiftType);
+    // console.log(this.shiftCodeDetails);
 
 
     this.changedShiftType = this.shiftCodeDetails.filter((code: { shiftID: any; }) =>
       code.shiftID == changedShiftType
     ).map((x: { id: any; shiftCode: any; }) => ({ id: x.id, shiftCode: x.shiftCode }))
-    console.log(this.changedShiftType);
+    // console.log(this.changedShiftType);
 
   }
 
   changedValueOfCode(event: any) {
     let changedCode = event.target.value;
-    console.log(changedCode);
+    // console.log(changedCode);
 
     this.defaultStartTime = this.shiftCodeDetails.filter((code: { id: any; }) =>
       code.id == changedCode
     ).map((x: { id: any; startTime: any; endTime: any }) => ({ id: x.id, startTime: x.startTime, endTime: x.endTime }))
-    console.log(this.defaultStartTime[0].startTime, typeof (this.defaultStartTime[0].id));
-    console.log(this.defaultStartTime[0].id);
+   
 
     this.teamShiftDetailsForm.patchValue({
       StartTime: this.defaultStartTime[0].startTime,
@@ -132,26 +132,19 @@ export class TeamShiftDetailsForm {
   async getTeamShiftDetailsByID() {
     debugger;
     let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
-    console.log(result.data);
-    console.log(this.editID);
+    // console.log(result.data);
+    // console.log(this.editID);
     let restDaysID = result.data[0].restDaysID.split(',');
     let restDaysValue = result.data[0].restDaysValue.split(',');
-    console.log(restDaysValue, typeof (restDaysValue[0]));
-    console.log(restDaysID, typeof (restDaysID[0]));
+    // console.log(restDaysValue, typeof (restDaysValue[0]));
+    // console.log(restDaysID, typeof (restDaysID[0]));
 
-    interface MyItem {
-      id: number;
-      text: string;
-    }
-    let myItems: MyItem[] = []; 
+    
+    let myItems = []; 
     for(let i=0;i<restDaysID.length;i++){
-      myItems.push({ id: restDaysID[i], text: restDaysValue[i] });
+      myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
     }
-    console.log(myItems);
-    //  const selectedFromDropdown = this.dropdownList.filter(item =>
-    //   SelectedID.includes(item.id.toString())
-    // );
-
+    console.log(myItems, typeof(myItems));
     this.teamShiftDetailsForm = new FormGroup({
       ID: new FormControl(this.editID),
       StaffID: new FormControl(result.data[0].staffID, Validators.required),
@@ -165,22 +158,29 @@ export class TeamShiftDetailsForm {
     })
   }
 
-  async submit() {
+
+   onItemSelect(event: any){
+    console.log(event);
+    
+  }
+
+
+  async submit(type: any) {
     debugger;
     console.log(this.teamShiftDetailsForm.value);
     let restID = '';
     let restValue = '';
     for (let i = 0; i < this.teamShiftDetailsForm.value.selectedItems.length; i++) {
-      console.log(i);
 
       restID = restID ? restID + ',' + this.teamShiftDetailsForm.value.selectedItems[i].id : this.teamShiftDetailsForm.value.selectedItems[i].id;
       restValue = restValue ? restValue + ',' + this.teamShiftDetailsForm.value.selectedItems[i].text : this.teamShiftDetailsForm.value.selectedItems[i].text;
-      console.log(this.teamShiftDetailsForm.value.selectedItems[i].id);
+      // console.log(this.teamShiftDetailsForm.value.selectedItems[i].id);
 
     }
 
 
-    this.entity = {
+    if(type == 'save'){
+      this.entity = {
       StaffID: this.teamShiftDetailsForm.value.StaffID,
       StartDate: this.teamShiftDetailsForm.value.StartDate,
       EndDate: this.teamShiftDetailsForm.value.EndDate,
@@ -199,6 +199,26 @@ export class TeamShiftDetailsForm {
     let result = await this.api.postMethod('Master/InsertStaffShiftDetails', this.entity);
     if (result.data > 0) {
       Swal.fire("Data Submitted Successfully");
+    }
+    }
+    else{
+     this.entity = {
+      ID : this.teamShiftDetailsForm.value.ID,
+      StaffID: this.teamShiftDetailsForm.value.StaffID,
+      StartDate: this.teamShiftDetailsForm.value.StartDate,
+      EndDate: this.teamShiftDetailsForm.value.EndDate,
+      ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
+      ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
+      StartTime: this.defaultStartTime[0].id,
+      EndTime: this.defaultStartTime[0].id,
+      RestDaysID: restID,
+      RestDaysValue: restValue
+    }
+    console.log(this.entity);
+    let result = await this.api.postMethod('Master/UpdateStaffShiftDetails', this.entity);
+    if (result.data > 0) {
+      Swal.fire("Data Updated Successfully");
+    }
     }
   }
 }

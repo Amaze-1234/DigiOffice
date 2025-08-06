@@ -5,13 +5,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class Loader {
-    attendanceUpdated = new Subject<void>();
+
 
   constructor() { }
   
-  notifyUpdate() {
-    this.attendanceUpdated.next();
-  }
+ 
 
   isLogin:any=sessionStorage.getItem("isLogin")||'no';
 

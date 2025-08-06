@@ -194,7 +194,7 @@
         <app-overtime-details-form></app-overtime-details-form>
     </div>
     <div class="button-grp">
-            <button type="submit" class="cancel-btn" >CANCEL</button>
+            <button type="submit" class="cancel-btn" (click)="Modal.dismiss()" >CANCEL</button>
             <button type="submit" class="submit-btn" (click)="submitForm(otDetailsForm)">SUBMIT</button>
             <button type="submit" class="submit-btn" (click)="openOTDetailsModal(OtDetailsModal)">OT Details</button>
         </div>

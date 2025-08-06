@@ -12,6 +12,7 @@ import { Loader } from '../../Services/loader';
   styleUrl: './dash-board.css'
 })
 export class DashBoard {
+  staff: any;
   dashboardData:any;
   worktype: any;
  selectedWorkType: string = '';
@@ -25,6 +26,7 @@ export class DashBoard {
   closemodal: any;
   signInTime:any;
     signOutTime:any;
+    entity: any;
 
 
 
@@ -45,7 +47,7 @@ export class DashBoard {
   buildForm() {
     this. dashboardData = new FormGroup({
       id: new FormControl(''),
-    staffID: new FormControl(''),
+    staffID: new FormControl('',Validators.required),
       signInTime: new FormControl(''),
       signOutTime: new FormControl('')
 
@@ -69,7 +71,16 @@ export class DashBoard {
 
     if (result.isConfirmed) {
       this.punchInTime = new Date();
+      this.staff = this.loader.staffID;
+      console.log(this.staff);
+      // this.signInTime = new Date(timeResult.data[0].punchInTime);
+ 
       const timeResult = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.dashboardData.value);
+      this.entity={
+        staffID: this.staff,
+        // signInTime: new Date(timeResult.data[0].punchInTime),
+
+      }
   this.signInTime = new Date(timeResult.data[0].punchInTime);
  
 
@@ -89,6 +100,8 @@ export class DashBoard {
     });
     if (result.isConfirmed) {
         this.punchOutTime = new Date();
+             this.staff = this.loader.staffID;
+      console.log(this.staff);
       const timeResult = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff",this.dashboardData.value);
   this.signOutTime= new Date(timeResult.data[0].punchOutTime);
     }

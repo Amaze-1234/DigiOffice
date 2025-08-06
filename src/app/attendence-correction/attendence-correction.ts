@@ -39,7 +39,7 @@ export class AttendenceCorrection {
      if (id) {
       this.editid = id;
     }
-      this.modelService.open(Modal,{centered: true, size:"lg", backdrop:'static'});
+      this.modelService.open(Modal,{centered: true, size:"lg", backdrop:'static',scrollable:true});
 
   }
 

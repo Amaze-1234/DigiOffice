@@ -47,13 +47,13 @@
 
 .searchbar{
     height: 30px;
-    width: 350px;
+    width: 300px;
     margin-right: 20px;
 }
 
 .searchbar1{
     height: 30px;
-    width: 300px;
+    width: 280px;
     font-size: 15px;
 }
 
@@ -81,6 +81,7 @@ i {
 .tabs{
   margin: 10px 0;
   margin-top: 20px;
+  padding: 6px;
 }
 
 .tablink{
@@ -91,6 +92,7 @@ i {
   color: #3f51b5;
   cursor: pointer;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .tablink.active {

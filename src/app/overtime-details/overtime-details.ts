@@ -34,20 +34,8 @@ export class OvertimeDetails {
     this.modalservice.open(Modal, { centered: true, size: "lg", backdrop: "static" })
   }
 
-  submitForm(form: any) {
-    if (!form.valid) {
-      Swal.fire({
-        text: 'Please Fill All Details'
-      });
-      return;
-    } else {
-      Swal.fire({
-        text: 'Data Successfully Added'
-      });
-    }
-  }
-  openOTDetailsModal(Modal: any, id: any = null) {
-    this.modalservice.open(Modal, { centered: true, size: "lg", backdrop: "static" });
-  }
+  // openOTDetailsModal(Modal: any, id: any = null) {
+  //   this.modalservice.open(Modal, { centered: true, size: "lg", backdrop: "static" });
+  // }
 
 }

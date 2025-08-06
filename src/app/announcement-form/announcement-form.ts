@@ -20,14 +20,28 @@ export class AnnouncementForm {
   }
   buildForm() {
     this.contactForm = new FormGroup({
-      ID: new FormControl(''),
-      Date: new FormControl('', Validators.required),
-      Time: new FormControl('', Validators.required),
-      Text: new FormControl('', Validators.required),
+      AnnouncementDate: new FormControl('', Validators.required),
+      AnnouncementTime: new FormControl('', Validators.required),
+      AnnouncementText: new FormControl('', Validators.required),
       Images: new FormControl('', Validators.required),
       Textfield: new FormControl('', Validators.required)
     });
   }
+
+
+  submitForm() {
+    if (this.contactForm.invalid) {
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
+      return;
+    } else {
+      Swal.fire({
+        text: 'Data Successfully Added'
+      });
+    }
+  }
+
 
 
 }

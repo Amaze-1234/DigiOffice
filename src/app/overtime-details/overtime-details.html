@@ -193,4 +193,20 @@
     <div class="modal-body">
         <app-overtime-details-form></app-overtime-details-form>
     </div>
+    <div class="button-grp">
+            <button type="submit" class="cancel-btn" (click)="Modal.dismiss()" >CANCEL</button>
+            <button type="submit" class="submit-btn" (click)="submitForm(otDetailsForm)">SUBMIT</button>
+            <button type="submit" class="submit-btn" (click)="openOTDetailsModal(OtDetailsModal)">OT Details</button>
+        </div>
+</ng-template>
+
+<ng-template #OtDetailsModal let-Modal>
+  <div class="modal-header">
+    <h3>OT Details</h3>
+    <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+  </div>
+  <div class="modal-body2">
+    <p>OT Type<p>
+    <p>No Of Hours<p>
+  </div>
 </ng-template>

@@ -16,42 +16,62 @@
     width: 290px;
   
 }
-.btn{
+.download{
     width: 290px;
-    background-color: #3f51b5;
+    background-color: blue;
     color: white;
+    border: 2px solid blue; 
+     border-radius: 4px; 
 }
 #fil{
     margin-top: 10px;
     color: green;
     font-weight: bold;
 }
-th{
-    padding:  10px;
-    color: #3f51b5;
-    font-weight: bold;
+.table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;  
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
 }
-
-table{
+.showing{
+      color:blue;
+}
+table {
     border-collapse: collapse;
     background-color: white;
-    min-width: 1500px;
+    min-width: 1800px;
     width: 100%;
-     white-space: nowrap;
+    white-space: nowrap;
+    margin: 0;  
+}
+th{
+    color:blue;
+    font-size:15px;
+}
+td{
+    color:black;
+    font-size:14px;
+}
 
+td, th {
+    padding: 15px;
+    white-space: nowrap;
 }
-.table-wrapper{
-     overflow-x: scroll;
-     width: 100%;
-}
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
     background-color: white;
 }
-::-webkit-scrollbar-thumb{
-    background-color: #3f51b5;
 
+::-webkit-scrollbar-thumb {
+    background-color:blue;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 4px;
-    height: 8px;
+    height: 8px; 
 }

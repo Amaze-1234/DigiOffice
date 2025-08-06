@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrl: './dash-board.css'
 })
 export class DashBoard {
+  dashboardData:any;
   worktype: any;
   selectedWorkType: any;
   punchInTime: any;
@@ -17,34 +18,28 @@ export class DashBoard {
   currentDateTime: any;
 
   currentTime: any;
+  apiservice: any;
+  shiftForm: any;
+  closemodal: any;
 
   constructor(public api: Api) { }
 
   ngOnInit() {
 
 
-    this.getWorkType();
-    this.getDateTime();
-   setInterval(() => {
-  this.currentTime ;
-}, 1000);
+
+ 
+//    setInterval(() => {
+//   this.currentTime ;
+// }, 1000);
   }
   
 
-  async getWorkType() {
-    const result = await this.api.getMethod("Master/GetWorkType");
-    this.worktype = result.data;
-  }
-  async getDateTime() {
-    const result = await this.api.getMethod("Master/GetDateTime");
-    this.currentDateTime = result.data[0];
+  
 
-    console.log(this.currentDateTime);
-    this.currentTime = new Date(this.currentDateTime.currentTime);
-    console.log(this.currentTime);
 
-  }
-
+    
+ 
   async confirmPunchIn() {
     const result = await Swal.fire({
       title: 'Are you sure?',
@@ -58,7 +53,7 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
-      const timeResult = await this.api.getMethod("Master/GetWorkType");
+      const timeResult = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.dashboardData.value);
   this.punchInTime = new Date(timeResult.data[0].punchInTime);
       
       
@@ -78,12 +73,13 @@ export class DashBoard {
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
-      const timeResult = await this.api.getMethod("Master/GetWorkType");
+      const timeResult = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff",this.dashboardData.value);
   this.punchOutTime = new Date(timeResult.data[0].punchOutTime);
     }
 
   }
 
+ 
 
 
 }

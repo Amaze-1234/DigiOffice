@@ -7,7 +7,7 @@
             <input type="date" class="form-control" style="  border: 1px solid black;" >
         </div>
         <div class="buttonelement">
-            <button class="btn btn-primary" style="width: 300px;"><img src="images/plus.svg" alt="+logo"> Add Holiday</button>
+            <button class="btn btn-primary" style="width: 300px;" (click)="openModel(popup)"><img src="images/plus.svg" alt="+logo"> Add Holiday</button>
         </div>
     </div>
     <div class="tabs" >
@@ -66,3 +66,14 @@
         </div>
     </div>
 </div>
+
+<ng-template #popup let-Model>
+    <div class="modal-header d-flex justify-content-between ">
+        <h3>Attendence Correction Form </h3> 
+        <span (click)="Model.dismiss();editid=null" ><img src="images/close.png" alt="close.png"></span>
+    
+    </div>
+    <div class="modal-body">
+       <app-holiday-form  (closemodal)="close($event)"> </app-holiday-form>
+    </div>
+</ng-template>

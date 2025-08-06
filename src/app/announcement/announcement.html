@@ -1,17 +1,56 @@
-<div class="header">
-    <div class="content">
-        <img src="images/filter.png" alt="icon" class="filterImage">
-        <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
-        <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
-    </div>
-    <div style="margin-top: 8px;">
-        <button class="add-btn"><i class="fa-solid fa-circle-plus"></i>
-            Add Announcement</button>
+<div>
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+            <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+            <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">           
+            <input type="text" class="form-control searchbar1" placeholder="search....">
+        </div>
+        <div style="margin-top: 8px;">
+            <button class="add-btn"><i class="fa-solid fa-circle-plus"></i>
+                Add Announcements</button>
+        </div>
     </div>
     <div class="tabs">
-        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
-        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
-        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'upcoming'" (click)="selectTab('upcoming')">Upcoming</button>
+        <button class="tablink" [class.active]="selectedTab == 'ongoing'" (click)="selectTab('ongoing')">Ongoing</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'completed'" (click)="selectTab('completed')">Completed</button>
     </div>
 
+    <div *ngIf="selectedTab == 'upcoming'">
+        <table>
+            <tr>
+                <th>Announcement Date</th>
+                <th>Announcement Time</th>	
+                <th>Announcement</th>	 	
+                <th>Attachment	Announcement</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+    </div> 
+    
+    <div *ngIf="selectedTab == 'ongoing'">
+        <table>
+            <tr>
+                <th>Announcement Date</th>
+                <th>Announcement Time</th>	
+                <th>Announcement</th>	 	
+                <th>Attachment	Announcement</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="selectedTab == 'completed'">
+        <table>
+            <tr>
+                <th>Announcement Date</th>
+                <th>Announcement Time</th>	
+                <th>Announcement</th>	 	
+                <th>Attachment	Announcement</th>
+                <th>Attachment Description</th>
+            </tr>
+        </table>
+    </div>
 </div>

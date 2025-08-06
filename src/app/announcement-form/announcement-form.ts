@@ -26,16 +26,8 @@ export class AnnouncementForm {
       Text: new FormControl('', Validators.required),
       Images: new FormControl('', Validators.required),
       Textfield: new FormControl('', Validators.required)
-    })
+    });
   }
 
-  submit() {
-    if (this.contactForm.invalid) {
-      Swal.fire({
-        text: 'Please fill all the details'
-      });
-      return;
-    }
-  }
 
 }

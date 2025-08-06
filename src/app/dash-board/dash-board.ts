@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-dash-board',
@@ -12,31 +14,44 @@ import Swal from 'sweetalert2';
 export class DashBoard {
   dashboardData:any;
   worktype: any;
-  selectedWorkType: any;
-  punchInTime: any;
-  punchOutTime: any;
+ selectedWorkType: string = '';
+  punchInTime: Date | null = null;
+  punchOutTime: Date | null = null;
   currentDateTime: any;
 
-  currentTime: any;
+ currentTime: Date = new Date();
   apiservice: any;
   shiftForm: any;
   closemodal: any;
-
-  constructor(public api: Api) { }
-
-  ngOnInit() {
+  signInTime:any;
+    signOutTime:any;
 
 
 
- 
-//    setInterval(() => {
-//   this.currentTime ;
-// }, 1000);
+  constructor(public api: Api,public loader:Loader) {
+    
   }
-  
+ 
 
-  
 
+  ngOnInit(){
+    this.buildForm();
+    setInterval(() => {
+      this.currentTime= new Date();
+    }, 1000);
+  }
+
+
+  buildForm() {
+    this. dashboardData = new FormGroup({
+      id: new FormControl(''),
+    staffID: new FormControl(''),
+      signInTime: new FormControl(''),
+      signOutTime: new FormControl('')
+
+
+    })
+  }
 
     
  
@@ -53,10 +68,10 @@ export class DashBoard {
     });
 
     if (result.isConfirmed) {
+      this.punchInTime = new Date();
       const timeResult = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.dashboardData.value);
-  this.punchInTime = new Date(timeResult.data[0].punchInTime);
-      
-      
+  this.signInTime = new Date(timeResult.data[0].punchInTime);
+ 
 
       await Swal.fire({
         icon: 'success',
@@ -73,8 +88,9 @@ export class DashBoard {
       title: 'Punched Out Successfully'
     });
     if (result.isConfirmed) {
+        this.punchOutTime = new Date();
       const timeResult = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff",this.dashboardData.value);
-  this.punchOutTime = new Date(timeResult.data[0].punchOutTime);
+  this.signOutTime= new Date(timeResult.data[0].punchOutTime);
     }
 
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-attendance-details',
@@ -11,7 +12,7 @@ import { Api } from '../../Services/api';
 export class AttendanceDetails implements OnInit {
 attendanceDetails:any;
  searchText:any='';
-  constructor(public apiservice: Api) { }
+  constructor(public apiservice: Api,public loader:Loader) { }
   ngOnInit() {
     this.getData();
 

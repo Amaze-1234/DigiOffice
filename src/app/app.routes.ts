@@ -41,6 +41,7 @@ import { Survey } from './survey/survey';
 import { AttendenceCorrection } from './attendence-correction/attendence-correction';
 import { Holiday } from './holiday/holiday';
 import { Announcement } from './announcement/announcement';
+import { AnnouncementForm } from './announcement-form/announcement-form';
 
 
 
@@ -93,7 +94,8 @@ export const routes: Routes = [
   { path: "survey", component: Survey, pathMatch: "full" },
   { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" },
   { path: "Holiday", component: Holiday, pathMatch: "full" },
-  { path: "Announcement", component: Announcement, pathMatch: "full" }
+  { path: "Announcement", component: Announcement, pathMatch: "full" },
+  { path: "announcement-form", component: AnnouncementForm, pathMatch: "full"}
   
 
 

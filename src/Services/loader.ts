@@ -11,7 +11,7 @@ export class Loader {
   
  
 
-  isLogin:any=sessionStorage.getItem("isLogin")||'no';
+  isLogin:any=sessionStorage.getItem("isLogin")||'No';
 
   isTitle:any=sessionStorage.getItem("Department Master")||'';
 

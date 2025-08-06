@@ -64,10 +64,6 @@ export class Login {
         sessionStorage.setItem("isLogin", 'Yes');
         this.loaderService.isLogin = 'Yes';
 
-        // if (login == 3 ) {
-        //   sessionStorage.setItem("loginType", 'HR');
-        //   this.loaderService.loginType = 'HR';
-        // }
         
         if (login == 2 ) {
           
@@ -79,13 +75,17 @@ export class Login {
           this.loaderService.isTitle = 'Dashboard';
           this.router.navigate(['/dashboard']);
 
-          return
+          return;
+        }
+        
+        if (login == 3 ) {
+          sessionStorage.setItem("isLogin", 'HR');
+          this.loaderService.isLogin = 'HR';
+          this.router.navigate(['/dashboard']);
+          return;
         }
 
-        //  if (this.loaderService.loginType == 'HR') {
-        //     this.router.navigate(['/staff-details']);
-        //     console.log("staff");
-        //   }
+       
          else {
           this.router.navigate(['/department-table']);
           console.log("department");

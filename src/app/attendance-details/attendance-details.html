@@ -9,28 +9,44 @@
             <input type="date" class="form-control" style="  border: 1px solid black;">
         </div>
         <div class="buttonelement">
-            <button class="btn">Download Attendance</button>
+            <button class="download  fs-5 text-white py-2 ">Download Attendance</button>
         </div>
     </div>
     <div class="para">
-        <p>Showing results</p>
+        <p class="showing fw-bold fs-4 py-2">Showing {{(attendanceDetails|search:searchText).length}} Results</p>
     </div>
-      <div class="table-wrapper">
-    <table >
-        <tr>
-            <th>Date</th>
-            <th>Sign In Type</th>
-            <th>Expected In Time</th>
-            <th>Punch In Time</th>
-            <th>Punch In Location</th>
-            <th>Expected Out Time</th>
-            <th>Punch Out Time</th>
-            <th>Sign Out Type</th>
-            <th>Punch Out Location</th>
-            <th>Work Hours(HH:MM)</th>
-            <th>Undertime</th>
-            <th>Late</th>
-     </tr>
-    </table>
+    <div class="table-wrapper" >
+        <table  class="table w-100" style="table-layout: fixed;">
+            <tr class="border-bottom">
+                <th>Sign In Date</th>
+                <th>Sign Out Date</th>
+                <th>Sign In Location</th>
+                <th>Sign Out Location</th>
+                <th>Sign In Type</th>
+                <th>Sign Out Type</th>
+                <th>Sign In IPAddress</th>
+                <th>Sign Out IPAddress</th>
+                <th>Sign In Time</th>
+                <th>Sign Out Time</th>
+                <th>Late</th>
+                <th>Undertime</th>
+
+            </tr>
+            <tr *ngFor="let data of attendanceDetails" class="border-bottom ">
+              <td>{{data.signInDate | date:'dd-MM-yyyy'}}</td>
+              <td>{{data.signOutDate| date:'dd-MM-yyyy'}}</td>
+              <td>{{data.signInLocation}}</td>
+              <td>{{data.signOutLocation}}</td>
+              <td>{{data.signInType}}</td>
+              <td>{{data.signOutType}}</td>
+              <td>{{data.signInIPAddress}}</td>
+              <td>{{data.signOutIPAddress}}</td>
+              <td>{{data.signInTime}}</td>
+              <td>{{data.signOutTime}}</td>
+              <td>{{data.late}}</td>
+              <td>{{data.underTime}}</td>  
+
+            </tr>
+        </table>
     </div>
 </div>

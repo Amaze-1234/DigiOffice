@@ -9,7 +9,7 @@ import { SharedModule } from '../../Shared/shared.module';
 })
 export class Holiday {
 
-  selectedTab:any;
+  selectedTab:any='Upcoming';
 
   selectTab(tab: any) {
     this.selectedTab = tab;

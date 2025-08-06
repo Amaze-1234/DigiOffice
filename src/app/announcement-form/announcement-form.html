@@ -1,17 +1,17 @@
 <div class="announcement-form">
-    <form [formGroup]="contactForm">
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
         <div class="row">
             <div class="col-lg-4">
                 <label for="">Announcement Date<span class="required">*</span></label>
-                <input type="date" formControlName="Date" placeholder="dd-mm-yyyy" class="form-control">
+                <input type="date" formControlName="AnnouncementDate" placeholder="dd-mm-yyyy" class="form-control">
             </div>
             <div class="col-lg-4">
                 <label for="">Announcement time<span class="required">*</span></label>
-                <input type="time" formControlName="Time" class="form-control">
+                <input type="time" formControlName="AnnouncementTime" class="form-control">
             </div>
             <div class="col-lg-4">
                 <label for="">Announcement<span class="required">*</span></label>
-                <input type="text" formControlName="Text" class="form-control">
+                <input type="text" formControlName="AnnouncementText" class="form-control">
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
@@ -26,7 +26,7 @@
         </div>
         <div class="button-grp">
             <button type="submit" class="cancel-btn" (click)="modalservice.dismissAll()">Cancel</button>
-            <button type="submit" class="submit-btn" [disabled]="contactForm.invalid" (click)="submit()">Submit</button>
+            <button type="submit" class="submit-btn" >Submit</button>
         </div>
     </form>
 </div>

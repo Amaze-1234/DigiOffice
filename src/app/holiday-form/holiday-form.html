@@ -1,0 +1,32 @@
+<div>
+    <form action="" [formGroup]="contactForm">
+        <div class="row">
+            <div class="col-4">
+                <label for="" >Holiday Type<span class="required">*</span></label>
+                <select name="" id="" class="form-control" formControlName="HolidayType">
+                    <option value=""   selected disabled>select type</option>
+                    <option value="">Legal Holiday</option>
+                    <option value="">Special Holiday</option>
+                    <option value="">Company Holiday</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="" >Holiday<span class="required">*</span></label>
+                <input type="text"  class="form-control" placeholder="Holiday" formControlName="Holiday">
+            </div>
+            <div class="col-4">
+                <label for=" " >Holiday Date<span class="required">*</span></label>
+                <input type="date"  class="form-control" placeholder="dd-mm-yyyy" formControlName="HolidayDate">
+            </div>
+        </div>
+        <div class="row c1 ">
+            <div>
+                <button type="submit" class="btn" (click)="this.modelService.dismissAll()">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid" (click)="submit()">
+                    Submit
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>

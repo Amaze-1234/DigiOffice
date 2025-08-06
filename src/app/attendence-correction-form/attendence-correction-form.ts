@@ -18,6 +18,9 @@ export class AttendenceCorrectionForm {
   constructor(public modelService: NgbModal) {
 
   }
+  ngOnInit(){
+    this.buildForm();
+  }
 
   buildForm() {
 

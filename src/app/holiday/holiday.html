@@ -1,71 +1,79 @@
-<div class="attendance">
-    <div class="filter">
-        <img src="images/filter.png" alt="filter" width="18px">
-        <p id="fil">Filter&nbsp;by:</p>
+<div id="main">
+    <div class="attendance">
+        <div class="filter" style="width: 400px;">
+            <img src="images/filter.png" alt="filter" width="18px">
+            <p id="fil" style="color: darkgreen;">Filter&nbsp;by:</p>
 
-        <input type="date" class="form-control" style="  border: 1px solid black;">
+            <input type="date" class="form-control" style="  border: 1px solid black;" >
+        </div>
+        <div class="buttonelement">
+            <button class="btn btn-primary" style="width: 300px;" (click)="openModel(popup)"><img src="images/plus.svg" alt="+logo"> Add Holiday</button>
+        </div>
     </div>
-    <div class="buttonelement">
-        <button class="btn btn-primary"><img src="images/plus.svg" alt="+logo"> Add Holiday</button>
+    <div class="tabs" >
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'Upcoming'"
+            (click)="selectTab('Upcoming')">Upcoming</button>
+        <button class="tablink" [class.active]="selectedTab == 'Ongoing'"
+            (click)="selectTab('Ongoing')">Ongoing</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'Completed'"
+            (click)="selectTab('Completed')">Completed</button>
+    </div>
+    <div *ngIf="selectedTab == 'Upcoming'">
+        <br>
+        <h5>Showing 0 Results</h5>
+        <br>
+        <div class="row" style="background-color: white;padding: 3px;">
+            <table>
+                <tr>
+                    <th>Holiday</th>
+                    <th>Holiday Description</th>
+                    <th>Holiday Date</th>
+                    <th>Attachment</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="selectedTab == 'Ongoing'">
+        <br>
+        <h5>Showing 0 Results</h5>
+        <br>
+        <div class="row" style="background-color: white;padding: 3px;">
+            <table>
+                <tr>
+                    <th>Holiday</th>
+                    <th>Holiday Description</th>
+                    <th>Holiday Date</th>
+                    <th>Attachment</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="selectedTab == 'Completed'">
+        <br>
+        <h5>Showing 0 Results</h5>
+        <br>
+        <div class="row" style="background-color: white;padding: 3px;">
+            <table>
+                <tr>
+                    <th>Holiday</th>
+                    <th>Holiday Description</th>
+                    <th>Holiday Date</th>
+                    <th>Attachment</th>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
-<div class="tabs">
-            <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
-                (click)="selectTab('pending')">Pending</button>
-            <button class="tablink" [class.active]="selectedTab == 'approved'"
-                (click)="selectTab('approved')">Approved</button>
-            <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
-                (click)="selectTab('rejected')">Rejected</button>
-        </div>
-        <div *ngIf="selectedTab == 'pending'">
-            <br>
-            <h5>Showing 0 Results</h5>
-            <br>
-            <div class="row" style="background-color: white;padding: 3px;">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Status</th>
-                        <th>Comments</th>
-                        <th>Reason</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div *ngIf="selectedTab == 'approved'">
-            <br>
-            <h5>Showing 0 Results</h5>
-            <br>
-            <div class="row" style="background-color: white;padding: 3px;">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Status</th>
-                        <th>Comments</th>
 
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div *ngIf="selectedTab == 'rejected'">
-            <br>
-            <h5>Showing 0 Results</h5>
-            <br>
-            <div class="row" style="background-color: white;padding: 3px;">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Status</th>
-                        <th>Comments</th>
-                        <th>Reason</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
- 
+<ng-template #popup let-Model>
+    <div class="modal-header d-flex justify-content-between ">
+        <h3>Attendence Correction Form </h3> 
+        <span (click)="Model.dismiss();editid=null" ><img src="images/close.png" alt="close.png"></span>
+    
+    </div>
+    <div class="modal-body">
+       <app-holiday-form  (closemodal)="close($event)"> </app-holiday-form>
+    </div>
+</ng-template>

@@ -41,9 +41,9 @@ export class DashBoard {
     this.currentTime = new Date();
   }, 1000);
 
-  const storedPunchIn = sessionStorage.getItem('punchInTime');
-  const storedPunchOut = sessionStorage.getItem('punchOutTime');
-  const storedWorkType = sessionStorage.getItem('selectedWorkType');
+  const storedPunchIn = localStorage.getItem('punchInTime');
+  const storedPunchOut = localStorage.getItem('punchOutTime');
+  const storedWorkType = localStorage.getItem('selectedWorkType');
 
   if (storedPunchIn) {
     this.punchInTime = storedPunchIn;
@@ -79,8 +79,8 @@ export class DashBoard {
     let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
     console.log(response.data);
 this.punchInTime = response.data[0].signInTime;
-sessionStorage.setItem('selectedWorkType', this.selectedWorkType);
-sessionStorage.setItem('punchInTime', this.punchInTime);
+localStorage.setItem('selectedWorkType', this.selectedWorkType);
+localStorage.setItem('punchInTime', this.punchInTime);
     console.log(this.punchInTime);
 
     if (result.data > 0) {
@@ -108,7 +108,7 @@ sessionStorage.setItem('punchInTime', this.punchInTime);
     console.log(response.data);
 
 this.punchOutTime = response.data[0].signOutTime;
-sessionStorage.setItem('punchOutTime', this.punchOutTime);
+localStorage.setItem('punchOutTime', this.punchOutTime);
     console.log(this.punchInTime);
     
     if (result.data > 0) {

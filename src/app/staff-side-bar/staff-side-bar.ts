@@ -36,7 +36,7 @@ export class StaffSideBar {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
     this.router.navigate(['/dashboard']);
-
+    this.activeSection='';
   }
  
   navigateAttendence() {

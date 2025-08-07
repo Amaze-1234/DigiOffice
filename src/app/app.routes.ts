@@ -43,6 +43,9 @@ import { Holiday } from './holiday/holiday';
 import { Announcement } from './announcement/announcement';
 import { AnnouncementForm } from './announcement-form/announcement-form';
 import { MyShift } from './my-shift/my-shift';
+import { StaffDashboardDetails } from './staff-dashboard-details/staff-dashboard-details';
+import { StaffShiftDetails } from './staff-shift-details/staff-shift-details';
+import { StaffAttendenceCorrection } from './staff-attendence-correction/staff-attendence-correction';
 
 
 
@@ -97,7 +100,10 @@ export const routes: Routes = [
   { path: "Attendence-Correction", component: AttendenceCorrection, pathMatch: "full" },
   { path: "Holiday", component: Holiday, pathMatch: "full" },
   { path: "Announcement", component: Announcement, pathMatch: "full" },
-  { path: "announcement-form", component: AnnouncementForm, pathMatch: "full"}
+  { path: "announcement-form", component: AnnouncementForm, pathMatch: "full"},
+  { path: "Staffdashboard-details", component: StaffDashboardDetails, pathMatch: "full"},
+  { path: "Staff-shift-details", component: StaffShiftDetails, pathMatch: "full"},
+  { path: "Staff-attendence-correction", component:StaffAttendenceCorrection, pathMatch: "full"}
   
 
 

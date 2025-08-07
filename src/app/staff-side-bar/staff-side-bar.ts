@@ -35,7 +35,7 @@ export class StaffSideBar {
   navigateDashboard() {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/Staffdashboard-details']);
     this.activeSection='';
   }
  
@@ -54,13 +54,13 @@ export class StaffSideBar {
   navigateShiftDetails() {
     sessionStorage.setItem("isTitle", "ShiftDetails")
     this.loaderService.isTitle = 'ShiftDetails';
-    this.router.navigate(['/ShiftDetails']);
+    this.router.navigate(['/Staff-shift-details']);
 
   }
   navigateAttendenceCorrection() {
     sessionStorage.setItem("isTitle", "AttendenceCorrection")
     this.loaderService.isTitle = 'AttendenceCorrection';
-    this.router.navigate(['/Attendence-Correction']);
+    this.router.navigate(['/Staff-attendence-correction']);
   }
 
   navigateRequest() {

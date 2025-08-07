@@ -15,9 +15,9 @@
                     src="images/EmpManagementGrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee
             Management</li>
             <span class="eye-icon">
-                {{ staff ? '>' : downArrow }}
+                {{ activeSection === 'employeeManager' ? downArrow : '' }}
             </span>
-            <div class="subnav-content" *ngIf="!staff">
+            <div class="subnav-content" *ngIf="activeSection == 'employeeManager'">
                 <li (click)="navigateStaffDashboard()"
                     [ngClass]="this.loaderService.isTitle == 'StaffDashboard Master' ?'highlight':'' "><img
                         src="images/dashboard-black.svg" alt="" class="icon" style="width:25px;height:25px;">Staff Dashboard</li>
@@ -34,9 +34,9 @@
                     src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Employee Field
                 Masters</li>
             <span class="eye-icon" >
-                {{ hide ? '>' : downArrow }}
+                {{ activeSection === 'employeeField' ? downArrow : '' }}
             </span>
-            <div class="subnav-content" *ngIf="!hide">
+            <div class="subnav-content" *ngIf="activeSection == 'employeeField'">
                 <li (click)="navigateDepartment()"
                     [ngClass]="this.loaderService.isTitle == 'Department Master' ?'highlight':'' "><img
                         src="images/mastergrey.svg" alt="" class="icon" style="width:25px;height:25px;"> Department</li>

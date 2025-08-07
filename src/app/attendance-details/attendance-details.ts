@@ -12,6 +12,8 @@ import { Loader } from '../../Services/loader';
 export class AttendanceDetails implements OnInit {
 attendanceDetails:any;
  searchText:any='';
+  staffID: any;
+  myAttendanceDetails: any;
   constructor(public apiservice: Api,public loader:Loader) { }
   ngOnInit() {
     this.getData();
@@ -21,5 +23,11 @@ attendanceDetails:any;
     const result=await this.apiservice.getMethod("Master/GetAttendanceDetailsStaff");
     this.attendanceDetails=result.data;
     console.log(this.attendanceDetails);
+  }
+
+  async getAttendanceDetailsStaff(){
+    this.staffID = this.loader.staffID;
+    let result = await this.apiservice.getMethod('Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.StaffID}')
+    this.myAttendanceDetails = result.data;
   }
 }

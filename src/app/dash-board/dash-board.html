@@ -3,24 +3,32 @@
     <div class="col-md-4">
       <div class="attendance-card">
           <h3 class="title">Attendance Tracker</h3>
-    <p>{{ currentTime | date:'shortTime' }}</p>
-    <p>{{ currentTime | date:'MM-dd-yyyy' }}</p>
+    <p style="font-size: 24px; color:#1f7059;">{{ currentTime | date:'shortTime' }}</p>
+    <p style="font-size: 16px;">{{ currentTime | date:'MM-dd-yyyy' }}</p>
  
     <div>
         <label class="label">Work Type Details</label>
-<select class="form-control" [(ngModel)]="selectedWorkType" [disabled]="punchInTime">
+<select class="form-select" [(ngModel)]="selectedWorkType" [disabled]="punchInTime">
             <option value="" disabled>Select Type</option>
             <option value="Office">Office</option>
         </select>
     </div>
  
     <div class="mt-4">
-       <button class="action-btn"
+        <button 
+        class="action-btn"
         [disabled]="!(selectedWorkType || punchInTime)"
-        [ngClass]="(selectedWorkType || punchInTime) ? 'punchin-active' : 'punchIn-btn'"
-        (click)="confirmPunchIn()" >
-  Punch In
-</button>
+        [ngClass]="{
+            'punchin-active': (selectedWorkType && !punchInTime),
+            'punchin-complete': punchInTime
+        }"
+        (click)="confirmPunchIn()"
+        >
+        <img *ngIf="punchInTime" src="images/status-icon.png" alt="Check" class="button-icon">
+        {{ punchInTime ? 'Punched In' : 'Punch In' }}
+        
+        </button>
+
  
     </div>
  
@@ -34,8 +42,14 @@
  
     <div style="margin-top: 20px;">
         <button class="punchOut-btn" [disabled]="!punchInTime"
-            [ngClass]="punchInTime ? 'punchout-active' : 'punchOut-btn'" (click)="confirmPunchOut()" >
-            Punch Out
+            [ngClass]="{
+                'punchout-active': punchInTime && !punchOutTime,
+                'punchout-complete': punchOutTime
+            }"
+            (click)="confirmPunchOut()" >
+            <img *ngIf="punchOutTime" src="images/status-icon.png" alt="Check" class="button-icon">
+            {{ punchOutTime ? 'Punched Out' : 'Punch Out' }}
+
         </button>
     </div>
  

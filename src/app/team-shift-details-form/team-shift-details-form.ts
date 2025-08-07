@@ -33,6 +33,7 @@ export class TeamShiftDetailsForm {
   changedShiftType: any;
   filteredCode: any;
   defaultStartTime: any;
+  assignedStaffID: any;
   @Input() editID: any;
   @Output() closemodal = new EventEmitter<any>();
 
@@ -75,6 +76,10 @@ export class TeamShiftDetailsForm {
   async getShiftType() {
     let result = await this.api.getMethod('Master/GetShiftType');
     this.shiftTypeData = result.data;
+  }
+
+  changedStaffID(event:any){
+    this.assignedStaffID = event.target.value;
   }
 
   async getShiftDetailsByShiftTable() {
@@ -132,13 +137,8 @@ export class TeamShiftDetailsForm {
   async getTeamShiftDetailsByID() {
     debugger;
     let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
-    // console.log(result.data);
-    // console.log(this.editID);
     let restDaysID = result.data[0].restDaysID.split(',');
     let restDaysValue = result.data[0].restDaysValue.split(',');
-    // console.log(restDaysValue, typeof (restDaysValue[0]));
-    // console.log(restDaysID, typeof (restDaysID[0]));
-
     
     let myItems = []; 
     for(let i=0;i<restDaysID.length;i++){
@@ -196,9 +196,19 @@ export class TeamShiftDetailsForm {
       Swal.fire("Please fill all the details");
       return;
     }
+
+     let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.assignedStaffID}`)
+    console.log(response.data);
+    
+    if(response.data){
+      Swal.fire("Shifted is already assigned between the dates");
+      return;
+    }
+
     let result = await this.api.postMethod('Master/InsertStaffShiftDetails', this.entity);
     if (result.data > 0) {
       Swal.fire("Data Submitted Successfully");
+      this.closemodal.emit('save');
     }
     }
     else{
@@ -215,9 +225,20 @@ export class TeamShiftDetailsForm {
       RestDaysValue: restValue
     }
     console.log(this.entity);
+
+     let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.teamShiftDetailsForm.value.StaffID}`)
+    console.log(response.data);
+    
+    if(response.data){
+      Swal.fire("Shifted is already assigned between the dates");
+      return;
+    }
+
+
     let result = await this.api.postMethod('Master/UpdateStaffShiftDetails', this.entity);
     if (result.data > 0) {
       Swal.fire("Data Updated Successfully");
+      this.closemodal.emit('update');
     }
     }
   }

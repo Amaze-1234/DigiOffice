@@ -1,1 +1,50 @@
-<p>my-shift works!</p>
+<div class="main">
+    <div class="intial">
+        <img src="images/filter.png" alt="icon" width="18px" height="18px">
+        <p id="filter-text">Filter By:</p>
+        <input type="date" placeholder="Start Date" style="padding:6px;" class="form-control">
+        <input type="date" placeholder="End Date" style="padding:6px;" class="form-control">
+    </div>
+    <div class="addDetails">
+        <!-- <button class="addButton"> <img src="images/plus.svg" width="15px"> Add Shift Details
+      </button> -->
+    </div>
+</div>
+
+
+<div class="main1">
+    <table class="table">
+        <tr>
+            <th>Staff Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Shift Type Name</th>
+            <th>Shift Code</th>
+            <th>Start Time</th>
+            <th>
+                End Time
+            </th>
+            <th>Rest Days</th>
+
+
+        </tr>
+        <tr *ngFor="let data of StaffShiftDetails">
+            <td>{{data.staffName}}
+
+            </td>
+            <td>{{data.startDate.split('T')[0]}}
+
+            </td>
+            <td>{{data.endDate.split('T')[0]}}</td>
+            <td>{{data.shiftType}}</td>
+            <td>{{data.shiftCode}}</td>
+            <td>{{data.startTime}}</td>
+            <td>{{data.endTime}}</td>
+            <td>{{data.restDaysValue}}</td>
+
+
+        </tr>
+
+
+    </table>
+</div>

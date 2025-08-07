@@ -1,27 +1,16 @@
-.container{
- width: 100%;
- border-radius: 3px;
- 
-}
-.container{
-    justify-items: center;
-    align-items: center;
-}
 
-.required{
-    color: red;
-}
+
 
 .attendance-card {
   background-color: #fff;
   border-radius: 12px;
   padding: 24px;
   width: 100%;
-  max-width: 400px;
-  margin: auto;
+  max-width: 100%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
+
 
 .title {
   font-size: 22px;
@@ -40,18 +29,6 @@
   color: #1f7059;
 }
 
-.required {
-  color: red;
-}
-
-.dropdown {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  font-size: 14px;
-}
 
 .action-btn, .punchIn-btn, .punchOut-btn {
   width: 50%;

@@ -15,9 +15,9 @@
                     style="width:25px;height:25px;">Attendence
             </li>
             <span class="eye-icon">
-                {{ hide2 ? '>' : downArrow }}
+               {{ activeSection === 'attendence' ? downArrow : '' }}
             </span>
-            <div class="subnav-content" *ngIf="!hide2">
+            <div class="subnav-content" *ngIf="activeSection == 'attendence'">
                 <li (click)="navigateAttendenceDetails()"
                     [ngClass]="this.loaderService.isTitle == 'AttendenceDetails' ?'highlight':'' "><img
                         src="images/AttendanceDetailBlack.svg" alt="" class="icon"
@@ -39,9 +39,9 @@
             <li (click)="navigateRequest()" [ngClass]="this.loaderService.isTitle == 'Request' ?'highlight':'' "><img
                     src="images/Requestgrey.svg" alt="" class="icon" style="width:25px;height:25px;">Request</li>
             <span class="eye-icon">
-                {{ hide3 ? '>' : downArrow }}
+                {{ activeSection === 'request' ? downArrow : '' }}
             </span>
-            <div class="subnav-content" *ngIf="!hide3">
+            <div class="subnav-content" *ngIf="activeSection == 'request'">
 
                 <li (click)="navigateOvertimeDetails()"
                     [ngClass]="this.loaderService.isTitle == 'OvertimeDetails' ?'highlight':'' ">
@@ -69,9 +69,9 @@
             <li (click)="navigateSurvey()" [ngClass]="this.loaderService.isTitle == 'Survey' ?'highlight':'' "><img
                     src="images/manpowerReq-black.svg" alt="" class="icon" style="width:25px;height:25px;">Survey</li>
             <span class="eye-icon">
-                {{ hide4 ? '>' : downArrow }}
+                {{ activeSection === 'survey' ? downArrow : '' }}
             </span>
-            <div class="subnav-content" *ngIf="!hide4">
+            <div class="subnav-content" *ngIf="activeSection == 'survey'">
                 <li (click)="navigateTakeSurvey()"
                     [ngClass]="this.loaderService.isTitle == 'TakeSurvey' ?'highlight':'' "><img
                         src="images/EmployeeResignation.svg" alt="" class="icon" style="width:25px;height:25px;">Take

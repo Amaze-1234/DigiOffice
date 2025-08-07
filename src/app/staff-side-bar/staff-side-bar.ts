@@ -13,9 +13,16 @@ export class StaffSideBar {
 
   
   
-  hide2 = true;
-  hide3 = true;
-  hide4 = true;
+  // hide2 = true;
+  // hide3 = true;
+  // hide4 = true;
+
+  activeSection: string = ''; 
+
+//   toggleSection(section: string) {
+//   this.activeSection = this.activeSection === section ? '' : section;
+// }
+
 
   downArrow = '\u2304';
   constructor(public router: Router, public loaderService: Loader) {
@@ -29,12 +36,15 @@ export class StaffSideBar {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
     this.router.navigate(['/dashboard']);
+
   }
  
   navigateAttendence() {
     sessionStorage.setItem("isTitle", "Attendence")
     this.loaderService.isTitle = 'Attendence';
-    this.hide2 = !this.hide2;
+    // this.toggleSection('attendence');
+    this.activeSection = this.activeSection === 'attendence' ? '' : 'attendence';
+
   }
   navigateAttendenceDetails() {
     sessionStorage.setItem("isTitle", "AttendenceDetails")
@@ -57,7 +67,9 @@ export class StaffSideBar {
 
     sessionStorage.setItem("isTitle", "Request");
     this.loaderService.isTitle = 'Request';
-    this.hide3 = !this.hide3;
+  //  this.toggleSection('request');
+   this.activeSection = this.activeSection === 'request' ? '' : 'request';
+
   }
   navigateLoanRequest() {
     sessionStorage.setItem("isTitle", "LoanRequest")
@@ -86,7 +98,8 @@ export class StaffSideBar {
 
     sessionStorage.setItem("isTitle", "Survey");
     this.loaderService.isTitle = 'Survey';
-    this.hide4 = !this.hide4;
+    // this.toggleSection('survey');
+    this.activeSection = this.activeSection === 'survey' ? '' : 'survey';
   }
   navigateTakeSurvey() {
 

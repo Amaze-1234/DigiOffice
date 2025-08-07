@@ -103,6 +103,7 @@ export class DashBoard {
              this.staff = this.loader.staffID;
       console.log(this.staff);
       const timeResult = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff",this.dashboardData.value);
+      
   this.signOutTime= new Date(timeResult.data[0].punchOutTime);
     }
 

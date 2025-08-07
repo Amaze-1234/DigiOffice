@@ -25,9 +25,9 @@ attendanceDetails:any;
     console.log(this.attendanceDetails);
   }
 
-  async getAttendanceDetailsStaff(){
-    this.staffID = this.loader.staffID;
-    let result = await this.apiservice.getMethod('Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.StaffID}')
-    this.myAttendanceDetails = result.data;
-  }
+  // async getAttendanceDetailsStaff(){
+  //   this.staffID = this.loader.staffID;
+  //   let result = await this.apiservice.getMethod('Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.StaffID}')
+  //   this.myAttendanceDetails = result.data;
+  // }
 }

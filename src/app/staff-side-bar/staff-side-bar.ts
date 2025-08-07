@@ -74,7 +74,7 @@ export class StaffSideBar {
   navigateLoanRequest() {
     sessionStorage.setItem("isTitle", "LoanRequest")
     this.loaderService.isTitle = 'LoanRequest';
-    this.router.navigate(['/loan-request']);
+    this.router.navigate(['/Staff-loan-request']);
   }
   navigateOvertimeDetails() {
     sessionStorage.setItem("isTitle", "OvertimeDetails")
@@ -85,13 +85,13 @@ export class StaffSideBar {
   navigateLeaveRequest() {
     sessionStorage.setItem("isTitle", "LeaveRequest")
     this.loaderService.isTitle = 'LeaveRequest';
-    this.router.navigate(['/leave-request']);
+    this.router.navigate(['/Staff-leave-request']);
 
   }
   navigateResignation() {
     sessionStorage.setItem("isTitle", "Resignation")
     this.loaderService.isTitle = 'Resignation';
-    this.router.navigate(['/resignation']);
+    this.router.navigate(['/Staff-resignation']);
   }
 
   navigateSurvey() {

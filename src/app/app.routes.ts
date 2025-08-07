@@ -46,6 +46,9 @@ import { MyShift } from './my-shift/my-shift';
 import { StaffDashboardDetails } from './staff-dashboard-details/staff-dashboard-details';
 import { StaffShiftDetails } from './staff-shift-details/staff-shift-details';
 import { StaffAttendenceCorrection } from './staff-attendence-correction/staff-attendence-correction';
+import { StaffLeaveRequest } from './staff-leave-request/staff-leave-request';
+import { StaffLoanRequest } from './staff-loan-request/staff-loan-request';
+import { StaffResignation } from './staff-resignation/staff-resignation';
 
 
 
@@ -103,7 +106,10 @@ export const routes: Routes = [
   { path: "announcement-form", component: AnnouncementForm, pathMatch: "full"},
   { path: "Staffdashboard-details", component: StaffDashboardDetails, pathMatch: "full"},
   { path: "Staff-shift-details", component: StaffShiftDetails, pathMatch: "full"},
-  { path: "Staff-attendence-correction", component:StaffAttendenceCorrection, pathMatch: "full"}
+  { path: "Staff-attendence-correction", component:StaffAttendenceCorrection, pathMatch: "full"},
+  { path: "Staff-leave-request", component:StaffLeaveRequest, pathMatch: "full"},
+  { path: "Staff-loan-request", component:StaffLoanRequest, pathMatch: "full"},
+  { path: "Staff-resignation", component:StaffResignation, pathMatch: "full"}
   
 
 

@@ -30,6 +30,7 @@ export class ManagerSideBar {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
     this.router.navigate(['/dashboard']);
+    this.activeSection='';
   }
   navigateEmployeeManager() {
     sessionStorage.setItem("isTitle", "EmployeeManagement")
@@ -112,13 +113,13 @@ export class ManagerSideBar {
     sessionStorage.setItem("isTitle", "Holiday");
     this.loaderService.isTitle = 'Holiday';
     this.router.navigate(['/Holiday']);
-
+    this.activeSection='';
   }
   navigateAnnouncement() {
     sessionStorage.setItem("isTitle", "Announcement");
     this.loaderService.isTitle = 'Announcement';
     this.router.navigate(['/Announcement']);
-
+    this.activeSection='';
   }
 
 }

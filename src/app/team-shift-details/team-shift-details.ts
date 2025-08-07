@@ -17,7 +17,7 @@ export class TeamShiftDetails {
   editID: any;
   constructor(public modal: NgbModal, public apiService: Api) { }
   ngOnInit(){
-    this.getStaffShiftDetails();
+    // this.getStaffShiftDetails();
     this.getStaffShiftDetailsByShiftEmployeeShiftType();
   }
   myShift() {
@@ -38,13 +38,16 @@ export class TeamShiftDetails {
   close(data: any = null) {
     this.editID = null;
     this.modal.dismissAll();
+    if (data == 'save' || data == 'update') {
+      this.getStaffShiftDetailsByShiftEmployeeShiftType();
+    }
 
   }
-async getStaffShiftDetails(){
-  let result = await this.apiService.getMethod('Master/GetStaffShiftDetails')
-  console.log(result.data);
+// async getStaffShiftDetails(){
+//   let result = await this.apiService.getMethod('Master/GetStaffShiftDetails')
+//   console.log(result.data);
   
-}
+// }
 async getStaffShiftDetailsByShiftEmployeeShiftType(){
   let result = await this.apiService.getMethod('Master/GetStaffShiftDetailsByShiftEmployeeShiftType');
   console.log(result.data);

@@ -1,3 +1,6 @@
+form{
+  margin: 8px;
+}
 .required{
     color: red;
 }
@@ -37,4 +40,21 @@
   padding: 5px 50px;
   cursor: pointer;
   font-weight: bold;
+}
+
+
+.modal-body2{
+   display: flex;
+   justify-content: space-around;
+   border-bottom: 1px solid #dfdee4;
+   margin: 20px;
+   font-size: 600;
+   font-weight: bold;
+   color: rgb(11, 11, 174);
+   margin-bottom: 100px;
+}
+
+.modal-header{
+   display: flex;
+   justify-content: space-between;
 }

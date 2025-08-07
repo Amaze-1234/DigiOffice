@@ -7,11 +7,12 @@ import { SharedModule } from '../Shared/shared.module';
 import { Loader } from '../Services/loader';
 import { Login } from "./login/login";
 import { ManagerSideBar } from "./manager-side-bar/manager-side-bar";
+import { StaffSideBar } from "./staff-side-bar/staff-side-bar";
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SideBar, Footer, NavBar, SharedModule, Login, ManagerSideBar],
+  imports: [RouterOutlet, SideBar, Footer, NavBar, SharedModule, Login, ManagerSideBar, StaffSideBar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

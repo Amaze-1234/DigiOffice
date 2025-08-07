@@ -15,7 +15,7 @@ export class DashBoard {
   staffID: any;
   dashboardData: any;
   worktype: any;
-  selectedWorkType: string = '';
+  selectedWorkType: any;
   punchInTime: any;
   punchOutTime:any;
   currentDateTime: any;
@@ -37,27 +37,33 @@ export class DashBoard {
 
 
   ngOnInit() {
-    setInterval(() => {
-      this.currentTime = new Date();
-    }, 1000);
+  setInterval(() => {
+    this.currentTime = new Date();
+  }, 1000);
+
+  const storedPunchIn = localStorage.getItem('punchInTime');
+  const storedPunchOut = localStorage.getItem('punchOutTime');
+  const storedWorkType = localStorage.getItem('selectedWorkType');
+
+  if (storedPunchIn) {
+    this.punchInTime = storedPunchIn;
   }
+
+  if (storedPunchOut) {
+    this.punchOutTime = storedPunchOut;
+  }
+
+  if (storedWorkType) {
+    this.selectedWorkType = storedWorkType;
+  }
+}
+
 
 
 
 
   async confirmPunchIn() {
-    // const result = await Swal.fire({
-    //   title: 'Are you sure?',
-    //   text: 'There Is No Shift For You On 08-01-2025\nWould You Like TO Continue with the Default Shift From 10:00 to 19:00',
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#007bff',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, Continue',
-    //   cancelButtonText: 'Cancel'
-    // });
-
-    // if (result.isConfirmed) {
+  
     this.staffID = Number(this.loader.staffID);
     console.log(this.staffID);
 
@@ -72,8 +78,9 @@ export class DashBoard {
 
     let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
     console.log(response.data);
-
-    this.punchInTime = response.data[0].signInTime;
+this.punchInTime = response.data[0].signInTime;
+localStorage.setItem('selectedWorkType', this.selectedWorkType);
+localStorage.setItem('punchInTime', this.punchInTime);
     console.log(this.punchInTime);
 
     if (result.data > 0) {
@@ -85,7 +92,6 @@ export class DashBoard {
         showConfirmButton: true
       });
     }
-    //}
   }
 
   async confirmPunchOut() {
@@ -101,7 +107,8 @@ export class DashBoard {
        let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
     console.log(response.data);
 
-    this.punchOutTime = response.data[0].signOutTime;
+this.punchOutTime = response.data[0].signOutTime;
+localStorage.setItem('punchOutTime', this.punchOutTime);
     console.log(this.punchInTime);
     
     if (result.data > 0) {

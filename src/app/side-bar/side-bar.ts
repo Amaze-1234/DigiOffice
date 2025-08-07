@@ -27,6 +27,7 @@ export class SideBar {
   navigateDashboard(){
     sessionStorage.setItem("isTitle","Dashboard Master")
     this.loaderService.isTitle = 'Dashboard Master';
+    this.activeSection='';
   }
   navigateEmployeeManager(){
     sessionStorage.setItem("isTitle","EmployeeManager Master")
@@ -43,6 +44,7 @@ export class SideBar {
   navigateConfiguration(){
     sessionStorage.setItem("isTitle","Configuration Master")
     this.loaderService.isTitle = 'Configuration Master';
+    this.activeSection='';
   }
   navigateEmoloyeeMaster(){
     sessionStorage.setItem("isTitle","EmployeeField Master")
@@ -99,5 +101,6 @@ export class SideBar {
   navigateAuditTrail(){
     sessionStorage.setItem("isTitle","AuditTrail Master")
     this.loaderService.isTitle = 'AuditTrail Master';
+    this.activeSection='';
   }
 }

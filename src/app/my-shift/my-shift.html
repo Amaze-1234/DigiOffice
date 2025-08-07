@@ -21,30 +21,20 @@
             <th>Shift Type Name</th>
             <th>Shift Code</th>
             <th>Start Time</th>
-            <th>
-                End Time
-            </th>
+            <th>End Time</th>
             <th>Rest Days</th>
 
 
         </tr>
-        <tr *ngFor="let data of StaffShiftDetails">
-            <td>{{data.staffName}}
-
-            </td>
-            <td>{{data.startDate.split('T')[0]}}
-
-            </td>
+        <tr *ngFor="let data of myShiftDetails">
+            <td>{{data.staffName}}</td>
+            <td>{{data.startDate.split('T')[0]}}</td>
             <td>{{data.endDate.split('T')[0]}}</td>
             <td>{{data.shiftType}}</td>
             <td>{{data.shiftCode}}</td>
             <td>{{data.startTime}}</td>
             <td>{{data.endTime}}</td>
             <td>{{data.restDaysValue}}</td>
-
-
         </tr>
-
-
     </table>
 </div>

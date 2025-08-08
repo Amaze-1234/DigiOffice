@@ -49,6 +49,7 @@ import { StaffAttendenceCorrection } from './staff-attendence-correction/staff-a
 import { StaffLeaveRequest } from './staff-leave-request/staff-leave-request';
 import { StaffLoanRequest } from './staff-loan-request/staff-loan-request';
 import { StaffResignation } from './staff-resignation/staff-resignation';
+import { StaffOvertimeRequest } from './staff-overtime-request/staff-overtime-request';
 
 
 
@@ -109,7 +110,8 @@ export const routes: Routes = [
   { path: "Staff-attendence-correction", component:StaffAttendenceCorrection, pathMatch: "full"},
   { path: "Staff-leave-request", component:StaffLeaveRequest, pathMatch: "full"},
   { path: "Staff-loan-request", component:StaffLoanRequest, pathMatch: "full"},
-  { path: "Staff-resignation", component:StaffResignation, pathMatch: "full"}
+  { path: "Staff-resignation", component:StaffResignation, pathMatch: "full"},
+  { path: "Staff-overtime", component:StaffOvertimeRequest, pathMatch: "full"}
   
 
 

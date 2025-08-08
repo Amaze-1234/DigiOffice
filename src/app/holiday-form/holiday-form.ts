@@ -14,6 +14,7 @@ export class HolidayForm {
   editid: any;
   closemodal = new EventEmitter<any>();
   contactForm:any;
+    files: File[] = [];
 
   constructor(public modelService:NgbModal){
 
@@ -24,6 +25,17 @@ export class HolidayForm {
   }
 
 
+  
+
+onSelect(event:any) {
+  console.log(event);
+  this.files.push(...event.addedFiles);
+}
+
+onRemove(event:any) {
+  console.log(event);
+  this.files.splice(this.files.indexOf(event), 1);
+}
    buildForm() {
 
     this.contactForm = new FormGroup({

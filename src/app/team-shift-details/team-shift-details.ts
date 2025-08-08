@@ -16,7 +16,7 @@ export class TeamShiftDetails {
   StaffShiftDetails: any;
   editID: any;
   constructor(public modal: NgbModal, public apiService: Api) { }
-  ngOnInit(){
+  ngOnInit() {
     // this.getStaffShiftDetails();
     this.getStaffShiftDetailsByShiftEmployeeShiftType();
   }
@@ -27,12 +27,12 @@ export class TeamShiftDetails {
   myTeamShift() {
     this.action = 'myTeamShift';
   }
-  openModal(modal:any,id: any=null) {
-     if (id) {
+  openModal(modal: any, id: any = null) {
+    if (id) {
       this.editID = id;
     }
     console.log(this.editID);
-    
+
     this.modal.open(modal, { centered: true, size: "lg", backdrop: "static" });
   }
   close(data: any = null) {
@@ -43,16 +43,16 @@ export class TeamShiftDetails {
     }
 
   }
-// async getStaffShiftDetails(){
-//   let result = await this.apiService.getMethod('Master/GetStaffShiftDetails')
-//   console.log(result.data);
-  
-// }
-async getStaffShiftDetailsByShiftEmployeeShiftType(){
-  let result = await this.apiService.getMethod('Master/GetStaffShiftDetailsByShiftEmployeeShiftType');
-  console.log(result.data);
-  this.StaffShiftDetails = result.data;
-  
-}
+  // async getStaffShiftDetails(){
+  //   let result = await this.apiService.getMethod('Master/GetStaffShiftDetails')
+  //   console.log(result.data);
+
+  // }
+  async getStaffShiftDetailsByShiftEmployeeShiftType() {
+    let result = await this.apiService.getMethod('Master/GetStaffShiftDetailsByShiftEmployeeShiftType');
+    console.log(result.data);
+    this.StaffShiftDetails = result.data;
+
+  }
 
 }

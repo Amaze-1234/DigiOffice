@@ -27,7 +27,14 @@ export class TeamShiftDetailsForm {
   entity: any;
   shiftTypeData: any;
   selectedItems: any = [];
-  dropdownSettings: any = {};
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'text',
+    itemsShowLimit: 2,
+    limitSelection: 2,
+    allowSearchFilter: true
+  };
   teamShiftDetailsForm: any;
   shiftCodeDetails: any;
   changedShiftType: any;
@@ -55,14 +62,7 @@ export class TeamShiftDetailsForm {
       { id: 6, text: 'Saturday' },
       { id: 7, text: 'Sunday' }
     ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'text',
-      itemsShowLimit: 2,
-      limitSelection: 2,
-      allowSearchFilter: true
-    };
+
   }
 
   async getStaffDetails() {
@@ -78,7 +78,7 @@ export class TeamShiftDetailsForm {
     this.shiftTypeData = result.data;
   }
 
-  changedStaffID(event:any){
+  changedStaffID(event: any) {
     this.assignedStaffID = event.target.value;
   }
 
@@ -112,7 +112,7 @@ export class TeamShiftDetailsForm {
     this.defaultStartTime = this.shiftCodeDetails.filter((code: { id: any; }) =>
       code.id == changedCode
     ).map((x: { id: any; startTime: any; endTime: any }) => ({ id: x.id, startTime: x.startTime, endTime: x.endTime }))
-   
+
 
     this.teamShiftDetailsForm.patchValue({
       StartTime: this.defaultStartTime[0].startTime,
@@ -139,12 +139,14 @@ export class TeamShiftDetailsForm {
     let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
     let restDaysID = result.data[0].restDaysID.split(',');
     let restDaysValue = result.data[0].restDaysValue.split(',');
-    
-    let myItems = []; 
-    for(let i=0;i<restDaysID.length;i++){
+    console.log(result.data);
+
+
+    let myItems = [];
+    for (let i = 0; i < restDaysID.length; i++) {
       myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
     }
-    console.log(myItems, typeof(myItems));
+    console.log(myItems, typeof (myItems));
     this.teamShiftDetailsForm = new FormGroup({
       ID: new FormControl(this.editID),
       StaffID: new FormControl(result.data[0].staffID, Validators.required),
@@ -159,9 +161,9 @@ export class TeamShiftDetailsForm {
   }
 
 
-   onItemSelect(event: any){
+  onItemSelect(event: any) {
     console.log(event);
-    
+
   }
 
 
@@ -179,67 +181,70 @@ export class TeamShiftDetailsForm {
     }
 
 
-    if(type == 'save'){
+    if (type == 'save') {
       this.entity = {
-      StaffID: this.teamShiftDetailsForm.value.StaffID,
-      StartDate: this.teamShiftDetailsForm.value.StartDate,
-      EndDate: this.teamShiftDetailsForm.value.EndDate,
-      ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
-      ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
-      StartTime: this.defaultStartTime[0].id,
-      EndTime: this.defaultStartTime[0].id,
-      RestDaysID: restID,
-      RestDaysValue: restValue
-    }
-    console.log(this.entity);
-    if (this.teamShiftDetailsForm.invalid) {
-      Swal.fire("Please fill all the details");
-      return;
-    }
+        StaffID: this.teamShiftDetailsForm.value.StaffID,
+        StartDate: this.teamShiftDetailsForm.value.StartDate,
+        EndDate: this.teamShiftDetailsForm.value.EndDate,
+        ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
+        ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
+        StartTime: this.defaultStartTime[0].id,
+        EndTime: this.defaultStartTime[0].id,
+        RestDaysID: restID,
+        RestDaysValue: restValue
+      }
+      console.log(this.entity);
+      if (this.teamShiftDetailsForm.invalid) {
+        Swal.fire("Please fill all the details");
+        return;
+      }
 
-     let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.assignedStaffID}`)
-    console.log(response.data);
-    
-    if(response.data){
-      Swal.fire("Shifted is already assigned between the dates");
-      return;
-    }
+      let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.assignedStaffID}&StartDate=${this.teamShiftDetailsForm.value.StartDate}&EndDate=${this.teamShiftDetailsForm.value.EndDate}`)
+      console.log(response.data?.[0]);
 
-    let result = await this.api.postMethod('Master/InsertStaffShiftDetails', this.entity);
-    if (result.data > 0) {
-      Swal.fire("Data Submitted Successfully");
-      this.closemodal.emit('save');
-    }
-    }
-    else{
-     this.entity = {
-      ID : this.teamShiftDetailsForm.value.ID,
-      StaffID: this.teamShiftDetailsForm.value.StaffID,
-      StartDate: this.teamShiftDetailsForm.value.StartDate,
-      EndDate: this.teamShiftDetailsForm.value.EndDate,
-      ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
-      ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
-      StartTime: this.defaultStartTime[0].id,
-      EndTime: this.defaultStartTime[0].id,
-      RestDaysID: restID,
-      RestDaysValue: restValue
-    }
-    console.log(this.entity);
+      if (response.data?.[0]?.startDate) {
+        Swal.fire("Shifted is already assigned between the dates");
+        return;
+      }
 
-     let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.teamShiftDetailsForm.value.StaffID}`)
-    console.log(response.data);
-    
-    if(response.data){
-      Swal.fire("Shifted is already assigned between the dates");
-      return;
+      let result = await this.api.postMethod('Master/InsertStaffShiftDetails', this.entity);
+      if (result.data > 0) {
+        Swal.fire("Data Submitted Successfully");
+        this.closemodal.emit('save');
+      }
     }
+    else {
+      this.entity = {
+        ID: this.teamShiftDetailsForm.value.ID,
+        StaffID: this.teamShiftDetailsForm.value.StaffID,
+        StartDate: this.teamShiftDetailsForm.value.StartDate,
+        EndDate: this.teamShiftDetailsForm.value.EndDate,
+        ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
+        ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
+
+        StartTime: this.defaultStartTime[0].id,
+        EndTime: this.defaultStartTime[0].id,
+        RestDaysID: restID,
+        RestDaysValue: restValue
+      }
+      console.log(this.entity);
+
+      let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.teamShiftDetailsForm.value.StaffID}&StartDate=${this.teamShiftDetailsForm.value.StartDate}&EndDate=${this.teamShiftDetailsForm.value.EndDate}`)
+      console.log(response.data?.[0]);
+
+      if (response.data?.[0]?.startDate) {
+        Swal.fire("Shifted is already assigned between the dates");
+        return;
+      }
 
 
-    let result = await this.api.postMethod('Master/UpdateStaffShiftDetails', this.entity);
-    if (result.data > 0) {
-      Swal.fire("Data Updated Successfully");
-      this.closemodal.emit('update');
-    }
+      let result = await this.api.postMethod('Master/UpdateStaffShiftDetails', this.entity);
+      console.log(result.data);
+
+      if (result.data > 0) {
+        Swal.fire("Data Updated Successfully");
+        this.closemodal.emit('update');
+      }
     }
   }
 }

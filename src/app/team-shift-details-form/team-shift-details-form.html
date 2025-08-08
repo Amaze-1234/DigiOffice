@@ -42,8 +42,8 @@
             </div>
             <div class="col-lg-2">
                 <label>Rest Days</label>
-                <ng-multiselect-dropdown [placeholder]="'Select Days'" [settings]="dropdownSettings"
-                    [data]="dropdownList" (onSelect)="onItemSelect($event)" formControlName="selectedItems">
+                <ng-multiselect-dropdown [placeholder]="'Select Days'" formControlName="selectedItems" [settings]="dropdownSettings"
+                    [data]="dropdownList" (onSelect)="onItemSelect($event)" >
                 </ng-multiselect-dropdown>
             </div>
         </div><br>

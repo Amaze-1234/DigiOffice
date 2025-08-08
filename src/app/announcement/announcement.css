@@ -89,3 +89,8 @@ td {
    border-bottom: 1px solid #dfdee4;
 }
 
+.modal-header{
+   display: flex;
+   justify-content: space-between;
+}
+

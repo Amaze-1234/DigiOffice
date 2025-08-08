@@ -1,28 +1,32 @@
 <div class="announcement-form">
-    <form>
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
         <div class="row">
             <div class="col-lg-4">
                 <label for="">Announcement Date<span class="required">*</span></label>
-                <input type="date" id="date" placeholder="dd-mm-yyyy" class="form-control">
+                <input type="date" formControlName="AnnouncementDate" placeholder="dd-mm-yyyy" class="form-control">
             </div>
             <div class="col-lg-4">
                 <label for="">Announcement time<span class="required">*</span></label>
-                <input type="time" id="time" class="form-control">
+                <input type="time" formControlName="AnnouncementTime" class="form-control">
             </div>
             <div class="col-lg-4">
                 <label for="">Announcement<span class="required">*</span></label>
-                <input type="text" class="form-control">
+                <input type="text" formControlName="AnnouncementText" class="form-control">
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
              <div class="col-lg-4">
                 <label for="">Supporting Document</label>
-                <textarea style="border: 2px dashed;" class="form-control" cols="30" rows="6" placeholder="Drop Files Here"></textarea>
+                <textarea style="border: 2px dashed;" formControlName="Images" class="form-control" cols="30" rows="6" 
+                placeholder="Drop Files Here" ></textarea>
+            </div>
+            <div class="col-lg-5">
+                <textarea class="form-control" formControlName="Textfield" cols="25" rows="10" placeholder="Enter text here..."></textarea>
             </div>
         </div>
         <div class="button-grp">
-            <button type="submit" class="cancel-btn">Cancel</button>
-            <button type="submit" class="submit-btn">Submit</button>
+            <button type="submit" class="cancel-btn" (click)="modalservice.dismissAll()">Cancel</button>
+            <button type="submit" class="submit-btn" >Submit</button>
         </div>
     </form>
 </div>

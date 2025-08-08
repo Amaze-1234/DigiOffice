@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../Shared/shared.module';
 import { Api } from '../../Services/api';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-dash-board',
@@ -10,55 +12,87 @@ import Swal from 'sweetalert2';
   styleUrl: './dash-board.css'
 })
 export class DashBoard {
-  dashboardData:any;
+  staffID: any;
+  dashboardData: any;
   worktype: any;
   selectedWorkType: any;
   punchInTime: any;
   punchOutTime: any;
   currentDateTime: any;
 
-  currentTime: any;
+  currentTime: Date = new Date();
   apiservice: any;
   shiftForm: any;
   closemodal: any;
+  signInTime: any;
+  signOutTime: any;
+  entity: any;
+  ID: any;
 
-  constructor(public api: Api) { }
+
+  constructor(public api: Api, public loader: Loader) {
+
+  }
+
+
 
   ngOnInit() {
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
+
+    const storedPunchIn = localStorage.getItem('punchInTime');
+    const storedPunchOut = localStorage.getItem('punchOutTime');
+    const storedWorkType = localStorage.getItem('selectedWorkType');
+
+    // const storedPunchIn = sessionStorage.getItem('punchInTime');
+    // const storedPunchOut = sessionStorage.getItem('punchOutTime');
+    // const storedWorkType = sessionStorage.getItem('selectedWorkType');
 
 
+    if (storedPunchIn) {
+      this.punchInTime = storedPunchIn;
+    }
 
- 
-//    setInterval(() => {
-//   this.currentTime ;
-// }, 1000);
+    if (storedPunchOut) {
+      this.punchOutTime = storedPunchOut;
+    }
+
+    if (storedWorkType) {
+      this.selectedWorkType = storedWorkType;
+    }
   }
-  
-
-  
 
 
-    
- 
+
+
+
   async confirmPunchIn() {
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'There Is No Shift For You On 08-01-2025\nWould You Like TO Continue with the Default Shift From 10:00 to 19:00',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#007bff',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Continue',
-      cancelButtonText: 'Cancel'
-    });
 
-    if (result.isConfirmed) {
-      const timeResult = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.dashboardData.value);
-  this.punchInTime = new Date(timeResult.data[0].punchInTime);
-      
-      
+    this.staffID = Number(this.loader.staffID);
+    console.log(this.staffID);
 
-      await Swal.fire({
+    this.entity = {
+      StaffID: this.staffID
+    }
+    console.log(this.entity);
+
+    let result = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.entity);
+    console.log(result.data, typeof (result.data));
+    this.ID = result.data;
+
+    let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
+    console.log(response.data);
+    this.punchInTime = response.data[0].signInTime;
+    localStorage.setItem('selectedWorkType', this.selectedWorkType);
+    localStorage.setItem('punchInTime', this.punchInTime);
+
+    // sessionStorage.setItem('selectedWorkType', this.selectedWorkType);
+    // sessionStorage.setItem('punchInTime', this.punchInTime);
+    console.log(this.punchInTime);
+
+    if (result.data > 0) {
+      Swal.fire({
         icon: 'success',
         title: 'Punched in Successfully!',
         text: 'Your Shift has been added.',
@@ -69,17 +103,30 @@ export class DashBoard {
   }
 
   async confirmPunchOut() {
-    const result = await Swal.fire({
-      title: 'Punched Out Successfully'
-    });
-    if (result.isConfirmed) {
-      const timeResult = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff",this.dashboardData.value);
-  this.punchOutTime = new Date(timeResult.data[0].punchOutTime);
+
+    this.entity = {
+      ID: this.ID
     }
+    console.log(this.entity);
 
+    let result = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff", this.entity);
+    console.log(result.data, typeof (result.data));
+
+    let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
+    console.log(response.data);
+
+    this.punchOutTime = response.data[0].signOutTime;
+    localStorage.setItem('punchOutTime', this.punchOutTime);
+    console.log(this.punchInTime);
+
+    if (result.data > 0) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Punched out Successfully!',
+        timer: 2000,
+        showConfirmButton: true
+      });
+    }
   }
-
- 
-
 
 }

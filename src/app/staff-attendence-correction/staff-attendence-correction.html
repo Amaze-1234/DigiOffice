@@ -1,0 +1,96 @@
+
+<div id="main">
+    <div class="row">
+        <div class="col-3">
+            <h2 class="heading" >My Attendence Correction</h2>
+        </div>
+
+    </div>
+    <div>
+        <div class="attendance">
+            <div class="filter">
+                <img src="images/filter.png" alt="filter" width="18px">
+                <p id="fil">Filter&nbsp;by:</p>
+
+                <input type="search" placeholder="Search..." class="form-control">
+
+                <input type="date" class="form-control" style="  border: 1px solid black;">
+            </div>
+            <div class="buttonelement">
+                <button class="btn btn-primary" (click)="openModel(popup)"><img src="images/plus.svg" alt="+logo">  Add Attendance
+                    Correction</button>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+                (click)="selectTab('pending')">Pending</button>
+            <button class="tablink" [class.active]="selectedTab == 'approved'"
+                (click)="selectTab('approved')">Approved</button>
+            <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+                (click)="selectTab('rejected')">Rejected</button>
+        </div>
+        <div *ngIf="selectedTab == 'pending'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="selectedTab == 'approved'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="selectedTab == 'rejected'">
+            <br>
+            <h5>Showing 0 Results</h5>
+            <br>
+            <div class="row" style="background-color: white;padding: 3px;">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                        <th>Reason</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<ng-template #popup let-Model>
+    <div class="modal-header d-flex justify-content-between ">
+        <h3>Attendence Correction Form </h3> 
+        <span (click)="Model.dismiss();editid=null" ><img src="images/close.png" alt="close.png"></span>
+    
+    </div>
+    <div class="modal-body">
+       <app-attendence-correction-form  (closemodal)="close($event)"> </app-attendence-correction-form>
+    </div>
+</ng-template>

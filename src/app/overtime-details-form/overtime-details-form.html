@@ -1,25 +1,25 @@
 <div>
-    <form #otDetailsForm="ngForm">
+    <form (ngSubmit)="submitForm()"  [formGroup]="contactForm">
         <div class="row">
             <div class="col-lg-4">
                 <label for="">Date Request<span class="required">*</span></label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" formControlName="DateRequest">
             </div>
             <div class="col-lg-4">
                 <label for="">Start time<span class="required">*</span></label>
                 <div class="time-box">
-                    <input type="text" id="hour" name="hour" class="form-control" placeholder="HH" >
+                    <input type="text" id="hour" formControlName="StartHour" class="form-control" placeholder="HH" >
                     <span>:</span>
-                    <input type="text" id="minute" name="minute" placeholder="MM" class="form-control">
+                    <input type="text" id="minute" formControlName="StartMinute" placeholder="MM" class="form-control">
                 </div>
                 <span class="required" style="font-size: 14px;">Note:Please Enter Military Time</span>
             </div>
             <div class="col-lg-4">
                 <label for="">End time<span class="required">*</span></label>
                 <div class="time-box">
-                    <input type="text" id="hour" name="hour" class="form-control" placeholder="HH" >
+                    <input type="text" id="hour" formControlName="EndHour" class="form-control" placeholder="HH" >
                     <span>:</span>
-                    <input type="text" id="minute" name="minute" placeholder="MM" class="form-control">
+                    <input type="text" id="minute" formControlName="EndMinute" placeholder="MM" class="form-control">
                 </div>
                 <span class="required" style="font-size: 14px;">Note:Please Enter Military Time</span>
             </div>
@@ -27,20 +27,32 @@
         <div class="row" style="margin-top: 20px;">
             <div class="col-lg-4">
                 <label for="">Supporting Document</label>
-                <textarea style="border: 2px dashed;" class="form-control" cols="30" rows="6" placeholder="Drop Files Here"></textarea>
+                <textarea style="border: 2px dashed;" class="form-control" formControlName="Document" cols="30" rows="6" placeholder="Drop Files Here"></textarea>
             </div>
             <div class="col-lg-4">
                 <label for="">Purpose<span class="required">*</span></label>
-                <textarea class="form-control" cols="30" rows="3" placeholder="Write Here"></textarea>
+                <textarea class="form-control" formControlName="Purpose" cols="30" rows="3" placeholder="Write Here"></textarea>
             </div>
         </div>
-        <!-- <div class="button-grp">
-            <button type="submit" class="cancel-btn" >CANCEL</button>
+        <div class="button-grp">
+            <button type="button" class="cancel-btn" (click)="modalservice.dismissAll()">CANCEL</button>
             <button type="submit" class="submit-btn">SUBMIT</button>
-            <button type="submit" class="submit-btn" (click)="openOTDetailsModal()">OT Details</button>
-        </div> -->
+            <button type="button" class="submit-btn" (click)="openOTDetailsModal(OtDetailsModal)">OT Details</button>
+            
+        </div>
     </form>
 </div>
+
+<ng-template #OtDetailsModal let-Modal>
+  <div class="modal-header">
+    <h3>OT Details</h3>
+    <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+  </div>
+  <div class="modal-body2">
+    <p>OT Type<p>
+    <p>No Of Hours<p>
+  </div>
+</ng-template>
 
 
 

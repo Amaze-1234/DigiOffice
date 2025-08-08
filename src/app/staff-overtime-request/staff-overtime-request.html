@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-3">
+        <h2 class="heading">My Overtime
+            Details</h2>
+    </div>
+
+</div>
+
+<div class="loan-request">
+    <div class="tabs">
+        <button class="tablink rounded-start" [class.active]="selectedOT == 'preaprove'"
+            (click)="selectOT('preaprove')">Pre-Approval OT</button>
+        <button class="tablink rounded-end" [class.active]="selectedOT == 'actualOt'"
+            (click)="selectOT('actualOt')">Actual OT</button>
+    </div>
+
+
+    <div class="header">
+        <div class="content">
+            <img src="images/filter.png" alt="icon" class="filterImage">
+            <p style="margin-top: 14px; color: rgb(6, 71, 6);">Filter By:</p>
+            <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
+        </div>
+        <div style="margin-top: 8px;" *ngIf="selectedOT == 'preaprove'">
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i>
+                Pre-Approvaal</button>
+        </div>
+        <div style="margin-top: 8px;" *ngIf="selectedOT == 'actualOt'">
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i>
+                Actual OT</button>
+        </div>
+    </div>
+    <div *ngIf="selectedOT == 'preaprove'">
+        <div class="tabs">
+            <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+                (click)="selectTab('pending')">Pending</button>
+            <button class="tablink" [class.active]="selectedTab == 'approved'"
+                (click)="selectTab('approved')">Approved</button>
+            <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+                (click)="selectTab('rejected')">Rejected</button>
+        </div>
+
+        <div *ngIf="selectedTab == 'pending'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Start Time</th>
+                    <th>End Timet</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Comments</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="selectedTab == 'approved'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Pre-Approval Start Time</th>
+                    <th>Pre-Approval End Time</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Purpose</th>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="selectedTab == 'rejected'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Pre-Approval Start Time</th>
+                    <th>Pre-Approval End Time</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Purpose</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="selectedOT == 'actualOt'">
+        <div class="tabs">
+            <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+                (click)="selectTab('pending')">Pending</button>
+            <button class="tablink" [class.active]="selectedTab == 'approved'"
+                (click)="selectTab('approved')">Approved</button>
+            <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+                (click)="selectTab('rejected')">Rejected</button>
+        </div>
+
+        <div *ngIf="selectedTab == 'pending'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Start Time</th>
+                    <th>End Timet</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Comments</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="selectedTab == 'approved'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Approved Start Time</th>
+                    <th>Approved End Time</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Purpose</th>
+                </tr>
+            </table>
+        </div>
+        <div *ngIf="selectedTab == 'rejected'">
+            <table>
+                <tr>
+                    <th>Date Request</th>
+                    <th>Approved Start Time</th>
+                    <th>Approved End Time</th>
+                    <th>OT Details</th>
+                    <th>Attachment</th>
+                    <th>Purpose</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+    <ng-template #popupModal let-Modal>
+        <div class="modal-header">
+            <h3>Apply Pre-Approval OT</h3>
+            <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
+        </div>
+        <div class=" col modal-body">
+            <app-overtime-details-form></app-overtime-details-form>
+        </div>
+    </ng-template>

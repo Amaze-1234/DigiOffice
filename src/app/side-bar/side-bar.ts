@@ -12,8 +12,10 @@ import { Loader } from '../../Services/loader';
 export class SideBar {
 
 
-      hide = true;
-      staff=true;
+      // hide = true;
+      // staff=true;
+
+      activeSection:string ='';
      downArrow = '\u2304';
   constructor(public router:Router,public loaderService:Loader){
 
@@ -25,12 +27,14 @@ export class SideBar {
   navigateDashboard(){
     sessionStorage.setItem("isTitle","Dashboard Master")
     this.loaderService.isTitle = 'Dashboard Master';
+    this.activeSection='';
   }
   navigateEmployeeManager(){
     sessionStorage.setItem("isTitle","EmployeeManager Master")
     this.loaderService.isTitle = 'EmployeeManager Master';
-    this.staff = !this.staff;
+    // this.staff = !this.staff;
     this.router.navigate(['/staffdashboard']);
+    this.activeSection =this.activeSection == 'employeeManager' ? '' : 'employeeManager';
   }
     navigateStaffDashboard(){
     this.router.navigate(['/staffdashboard']);
@@ -40,12 +44,14 @@ export class SideBar {
   navigateConfiguration(){
     sessionStorage.setItem("isTitle","Configuration Master")
     this.loaderService.isTitle = 'Configuration Master';
+    this.activeSection='';
   }
   navigateEmoloyeeMaster(){
     sessionStorage.setItem("isTitle","EmployeeField Master")
     this.loaderService.isTitle = 'EmployeeField Master';
     this.router.navigate(['/department-table']);
-    this.hide = !this.hide;
+    // this.hide = !this.hide;
+    this.activeSection = this.activeSection == 'employeeField' ? '' : 'employeeField';
   }
     navigateDepartment(){
     this.router.navigate(['/department-table']);
@@ -95,5 +101,6 @@ export class SideBar {
   navigateAuditTrail(){
     sessionStorage.setItem("isTitle","AuditTrail Master")
     this.loaderService.isTitle = 'AuditTrail Master';
+    this.activeSection='';
   }
 }

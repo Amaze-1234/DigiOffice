@@ -53,7 +53,7 @@
         <span><img src="images/close.png" alt="close.png" (click)="close()"></span>
     </div>
     <div class="modal-body">
-        <app-team-shift-details-form [editID] ="editID"></app-team-shift-details-form>
+        <app-team-shift-details-form [editID] ="editID"  (closemodal)="close($event)"></app-team-shift-details-form>
     </div>
 
 </ng-template>

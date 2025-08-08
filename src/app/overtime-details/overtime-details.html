@@ -1,7 +1,7 @@
-
 <div class="row">
     <div class="col-3">
-        <h2 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails?'active':'' ">My Overtime Details</h2>
+        <h2 class="heading" (click)="overtimeDeatils(true)" [ngClass]="isMyOvertimeDetails?'active':'' ">My Overtime
+            Details</h2>
     </div>
     <div class="col-3">
         <h2 class="heading" (click)="overtimeDeatils(false)" [ngClass]=" !isMyOvertimeDetails?'active':'' ">
@@ -11,8 +11,10 @@
 
 <div class="loan-request" *ngIf="isMyOvertimeDetails">
     <div class="tabs">
-        <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'" (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
-        <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'" (click)="selectTab('actual OT')">Actual OT</button>
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'"
+            (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'"
+            (click)="selectTab('actual OT')">Actual OT</button>
     </div>
 
 
@@ -23,13 +25,17 @@
             <input type="date" id="date" placeholder="dd-mm-yyyy/dd-mm-yyyy" class=" form-control searchbar">
         </div>
         <div style="margin-top: 8px;">
-            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i> Pre-Approvaal</button>
+            <button class="add-btn" (click)="openModal(popupModal)"><i class="fa-solid fa-circle-plus"></i>
+                Pre-Approvaal</button>
         </div>
     </div>
     <div class="tabs">
-        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
-        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
-        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+            (click)="selectTab('pending')">Pending</button>
+        <button class="tablink" [class.active]="selectedTab == 'approved'"
+            (click)="selectTab('approved')">Approved</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+            (click)="selectTab('rejected')">Rejected</button>
     </div>
 
     <div *ngIf="selectedTab == 'pending'">
@@ -67,7 +73,7 @@
         </table>
     </div>
 
-    
+
     <div *ngIf="selectedTab == 'pre-approval OT'">
         <table>
             <tr>
@@ -97,8 +103,10 @@
 
 <div class="loan-request" *ngIf="!isMyOvertimeDetails">
     <div class="tabs">
-        <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'" (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
-        <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'" (click)="selectTab('actual OT')">Actual OT</button>
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pre-approval OT'"
+            (click)="selectTab('pre-approval OT')">Pre-Approval OT</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'actual OT'"
+            (click)="selectTab('actual OT')">Actual OT</button>
     </div>
 
 
@@ -110,9 +118,12 @@
         </div>
     </div>
     <div class="tabs">
-        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'" (click)="selectTab('pending')">Pending</button>
-        <button class="tablink" [class.active]="selectedTab == 'approved'" (click)="selectTab('approved')">Approved</button>
-        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'" (click)="selectTab('rejected')">Rejected</button>
+        <button class="tablink rounded-start" [class.active]="selectedTab == 'pending'"
+            (click)="selectTab('pending')">Pending</button>
+        <button class="tablink" [class.active]="selectedTab == 'approved'"
+            (click)="selectTab('approved')">Approved</button>
+        <button class="tablink rounded-end" [class.active]="selectedTab == 'rejected'"
+            (click)="selectTab('rejected')">Rejected</button>
     </div>
     <div *ngIf="selectedTab == 'pending'">
         <table>
@@ -155,7 +166,7 @@
         </table>
     </div>
 
-    
+
     <div *ngIf="selectedTab == 'pre-approval OT'">
         <table>
             <tr>
@@ -173,7 +184,7 @@
     <div *ngIf="selectedTab == 'actual OT'">
         <table>
             <tr>
-                 <th>Staff Name</th>
+                <th>Staff Name</th>
                 <th>Date Request</th>
                 <th>Approved Start Time</th>
                 <th>Approved End Time</th>
@@ -190,23 +201,7 @@
         <h3>Apply Pre-Approval OT</h3>
         <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
     </div>
-    <div class="modal-body">
+    <div class=" col modal-body">
         <app-overtime-details-form></app-overtime-details-form>
     </div>
-    <div class="button-grp">
-            <button type="submit" class="cancel-btn" (click)="Modal.dismiss()" >CANCEL</button>
-            <button type="submit" class="submit-btn" (click)="submitForm(otDetailsForm)">SUBMIT</button>
-            <button type="submit" class="submit-btn" (click)="openOTDetailsModal(OtDetailsModal)">OT Details</button>
-        </div>
-</ng-template>
-
-<ng-template #OtDetailsModal let-Modal>
-  <div class="modal-header">
-    <h3>OT Details</h3>
-    <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
-  </div>
-  <div class="modal-body2">
-    <p>OT Type<p>
-    <p>No Of Hours<p>
-  </div>
 </ng-template>

@@ -12,10 +12,11 @@ import { Loader } from '../../Services/loader';
 export class ManagerSideBar {
 
 
-  hide = true;
-  hide2 = true;
-  hide3 = true;
-  hide4 = true;
+  // hide = true;
+  // hide2 = true;
+  // hide3 = true;
+  // hide4 = true;
+  activeSection: string = ''; 
 
   downArrow = '\u2304';
   constructor(public router: Router, public loaderService: Loader) {
@@ -29,11 +30,12 @@ export class ManagerSideBar {
     sessionStorage.setItem("isTitle", "Dashboard")
     this.loaderService.isTitle = 'Dashboard';
     this.router.navigate(['/dashboard']);
+    this.activeSection='';
   }
   navigateEmployeeManager() {
     sessionStorage.setItem("isTitle", "EmployeeManagement")
     this.loaderService.isTitle = 'EmployeeManagement';
-    this.hide = !this.hide;
+    this.activeSection = this.activeSection === 'employeeManagement' ? '' : 'employeeManagement';
 
   }
   navigateExitChecklist() {
@@ -46,7 +48,7 @@ export class ManagerSideBar {
   navigateAttendence() {
     sessionStorage.setItem("isTitle", "Attendence")
     this.loaderService.isTitle = 'Attendence';
-    this.hide2 = !this.hide2;
+    this.activeSection = this.activeSection === 'attendence' ? '' : 'attendence';
   }
   navigateAttendenceDetails() {
     sessionStorage.setItem("isTitle", "AttendenceDetails")
@@ -69,7 +71,7 @@ export class ManagerSideBar {
 
     sessionStorage.setItem("isTitle", "Request");
     this.loaderService.isTitle = 'Request';
-    this.hide3 = !this.hide3;
+     this.activeSection = this.activeSection === 'request' ? '' : 'request';
   }
   navigateLoanRequest() {
     sessionStorage.setItem("isTitle", "LoanRequest")
@@ -98,7 +100,7 @@ export class ManagerSideBar {
 
     sessionStorage.setItem("isTitle", "Survey");
     this.loaderService.isTitle = 'Survey';
-    this.hide4 = !this.hide4;
+     this.activeSection = this.activeSection === 'survey' ? '' : 'survey';
   }
   navigateTakeSurvey() {
 
@@ -111,11 +113,13 @@ export class ManagerSideBar {
     sessionStorage.setItem("isTitle", "Holiday");
     this.loaderService.isTitle = 'Holiday';
     this.router.navigate(['/Holiday']);
+    this.activeSection='';
   }
   navigateAnnouncement() {
     sessionStorage.setItem("isTitle", "Announcement");
     this.loaderService.isTitle = 'Announcement';
     this.router.navigate(['/Announcement']);
+    this.activeSection='';
   }
 
 }

@@ -46,6 +46,7 @@ export class TeamShiftDetailsForm {
 
   constructor(public api: Api, public loader: Loader) { }
   ngOnInit() {
+    debugger
     this.getStaffDetails();
     this.getShiftType();
     this.getShiftDetailsByShiftTable();
@@ -137,6 +138,8 @@ export class TeamShiftDetailsForm {
   async getTeamShiftDetailsByID() {
     debugger;
     let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
+    console.log(this.editID);
+
     let restDaysID = result.data[0].restDaysID.split(',');
     let restDaysValue = result.data[0].restDaysValue.split(',');
     console.log(result.data);

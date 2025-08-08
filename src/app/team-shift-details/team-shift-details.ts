@@ -3,6 +3,7 @@ import { SharedModule } from '../../Shared/shared.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeamShiftDetailsForm } from "../team-shift-details-form/team-shift-details-form";
 import { Api } from '../../Services/api';
+import { Loader } from '../../Services/loader';
 
 @Component({
   selector: 'app-team-shift-details',
@@ -15,10 +16,10 @@ export class TeamShiftDetails {
   staffID: any;
   StaffShiftDetails: any;
   editID: any;
-  constructor(public modal: NgbModal, public apiService: Api) { }
+  constructor(public modal: NgbModal, public apiService: Api, public loaderService: Loader) { }
   ngOnInit() {
     // this.getStaffShiftDetails();
-    this.getStaffShiftDetailsByShiftEmployeeShiftType();
+    this.getTeamShiftDetailsUnderManager();
   }
   myShift() {
     this.action = 'myShift';
@@ -39,7 +40,7 @@ export class TeamShiftDetails {
     this.editID = null;
     this.modal.dismissAll();
     if (data == 'save' || data == 'update') {
-      this.getStaffShiftDetailsByShiftEmployeeShiftType();
+      this.getTeamShiftDetailsUnderManager();
     }
 
   }
@@ -48,8 +49,9 @@ export class TeamShiftDetails {
   //   console.log(result.data);
 
   // }
-  async getStaffShiftDetailsByShiftEmployeeShiftType() {
-    let result = await this.apiService.getMethod('Master/GetStaffShiftDetailsByShiftEmployeeShiftType');
+  async getTeamShiftDetailsUnderManager() {
+    this.staffID = this.loaderService.staffID;
+    let result = await this.apiService.getMethod(`Master/GetTeamShiftDetailsUnderManager?StaffID=${this.staffID}`);
     console.log(result.data);
     this.StaffShiftDetails = result.data;
 

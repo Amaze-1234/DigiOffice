@@ -79,7 +79,7 @@ export class StaffSideBar {
   navigateOvertimeDetails() {
     sessionStorage.setItem("isTitle", "OvertimeDetails")
     this.loaderService.isTitle = 'OvertimeDetails';
-    this.router.navigate(['/overtime-details']);
+    this.router.navigate(['/Staff-overtime']);
 
   }
   navigateLeaveRequest() {

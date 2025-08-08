@@ -6,6 +6,7 @@ import { SearchPipe } from "./search-pipe";
 import { NgbPopover } from "@ng-bootstrap/ng-bootstrap";
 import { LengthPipePipe } from "./length-pipe-pipe";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxDropzoneModule } from "ngx-dropzone";
 
 @NgModule({
     imports : [
@@ -15,7 +16,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         ReactiveFormsModule,
         SearchPipe,
         NgbPopover,
-        NgMultiSelectDropDownModule
+        NgMultiSelectDropDownModule,
+        NgxDropzoneModule
     ],
 
     exports : [
@@ -25,7 +27,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         ReactiveFormsModule,
         SearchPipe,
         NgbPopover,
-         NgMultiSelectDropDownModule        
+         NgMultiSelectDropDownModule,
+         NgxDropzoneModule        
     ]
 })
 

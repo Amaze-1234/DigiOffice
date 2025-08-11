@@ -48,6 +48,8 @@ export class StaffDashboard {
 
   async getData() {
     const result = await this.apiservice.getMethod("Master/GetStaffDashboard");
+    console.log(result.data);
+    
     this.staffData = result.data;
     
 
@@ -77,7 +79,7 @@ export class StaffDashboard {
       confirmButtonText: "Yes"
     });
     if (confirmation.isConfirmed) {
-      const result = await this.apiservice.getMethod(`Master/DeleteStaffDashboard?employeeID=${employeeID}`);
+      const result = await this.apiservice.getMethod(`Master/DeleteStaffDashboard?ID=${employeeID}`);
 
 
       if (result.data > 0) {

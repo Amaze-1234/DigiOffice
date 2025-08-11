@@ -55,3 +55,13 @@ select.form-control {
     width: 20px;
     height: 20px;
 }
+
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ngx-dropzone{
+  width: 100px;
+  height: 100px;
+} */

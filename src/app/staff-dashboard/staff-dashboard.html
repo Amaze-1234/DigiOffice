@@ -63,13 +63,13 @@
           <ng-template #popever class="">
             <div style="width:150px;" class="text-center p-2">
               <div class="pb-2">
-                <img src="images/Edit 1.svg" (click)="navigateToEmployeeDetails(s.employeeID)" class="img-fluid"
+                <img src="images/Edit 1.svg" (click)="navigateToEmployeeDetails(s.id)" class="img-fluid"
                   style="width: 25px; height: auto;" alt="edit" />
 
               </div>
 
               <div>
-                <img (click)="deleted( s.employeeID )" src="images/Delete.svg" alt="delete" class="img-fluid"
+                <img (click)="deleted( s.id )" src="images/Delete.svg" alt="delete" class="img-fluid"
                   style="width: 25px; height: auto;" />
               </div>
             </div>

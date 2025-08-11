@@ -15,10 +15,10 @@ export class DashBoard {
   staffID: any;
   dashboardData: any;
   worktype: any;
-  selectedWorkType: any;
+  selectedWorkType: any = null;
   punchInTime: any;
   punchOutTime: any;
-  currentDateTime: any;
+  currentDate: any;
 
   currentTime: Date = new Date();
   apiservice: any;
@@ -37,40 +37,57 @@ export class DashBoard {
 
 
   ngOnInit() {
-    setInterval(() => {
-      this.currentTime = new Date();
-    }, 1000);
+    this.getDateTime();
+    // setInterval(() => {
+    //   this.currentTime = new Date();
+    // }, 1000);
 
-    const storedPunchIn = localStorage.getItem('punchInTime');
-    const storedPunchOut = localStorage.getItem('punchOutTime');
-    const storedWorkType = localStorage.getItem('selectedWorkType');
+    // const storedPunchIn = localStorage.getItem('punchInTime');
+    // const storedPunchOut = localStorage.getItem('punchOutTime');
+    // const storedWorkType = localStorage.getItem('selectedWorkType');
 
     // const storedPunchIn = sessionStorage.getItem('punchInTime');
     // const storedPunchOut = sessionStorage.getItem('punchOutTime');
     // const storedWorkType = sessionStorage.getItem('selectedWorkType');
 
 
-    if (storedPunchIn) {
-      this.punchInTime = storedPunchIn;
-    }
+    // if (storedPunchIn) {
+    //   this.punchInTime = storedPunchIn;
+    // }
 
-    if (storedPunchOut) {
-      this.punchOutTime = storedPunchOut;
-    }
+    // if (storedPunchOut) {
+    //   this.punchOutTime = storedPunchOut;
+    // }
 
-    if (storedWorkType) {
-      this.selectedWorkType = storedWorkType;
-    }
+    // if (storedWorkType) {
+    //   this.selectedWorkType = storedWorkType;
+    // }
   }
 
-
-
+  async getDateTime(){
+    let currentDateTime = await this.api.getMethod('Master/GetDateTime');
+    
+    this.currentDate = currentDateTime.data[0].date;
+    this.currentTime = currentDateTime.data[0].formattedTime;
+    
+  }
 
 
   async confirmPunchIn() {
 
     this.staffID = Number(this.loader.staffID);
     console.log(this.staffID);
+
+    let attendanceData = await this.api.getMethod(`Master/GetStaffShiftDetailsForAttendance?StaffID=${this.staffID}`);
+    console.log(attendanceData.data?.[0]);
+    if (!(attendanceData.data?.[0]?.startDate)) {
+      Swal.fire({
+
+        text: "Shift is not assigned for you today",
+        icon: "warning"
+      })
+      return;
+    }
 
     this.entity = {
       StaffID: this.staffID
@@ -80,12 +97,9 @@ export class DashBoard {
     let result = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.entity);
     console.log(result.data, typeof (result.data));
     this.ID = result.data;
-
-    let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
-    console.log(response.data);
-    this.punchInTime = response.data[0].signInTime;
-    localStorage.setItem('selectedWorkType', this.selectedWorkType);
-    localStorage.setItem('punchInTime', this.punchInTime);
+    this.punchInTime =  this.currentTime;
+    // localStorage.setItem('selectedWorkType', this.selectedWorkType);
+    // localStorage.setItem('punchInTime', this.punchInTime);
 
     // sessionStorage.setItem('selectedWorkType', this.selectedWorkType);
     // sessionStorage.setItem('punchInTime', this.punchInTime);
@@ -105,18 +119,15 @@ export class DashBoard {
   async confirmPunchOut() {
 
     this.entity = {
-      ID: this.ID
+      StaffID: this.staffID
     }
     console.log(this.entity);
 
     let result = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff", this.entity);
     console.log(result.data, typeof (result.data));
 
-    let response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?ID=${result.data}`)
-    console.log(response.data);
-
-    this.punchOutTime = response.data[0].signOutTime;
-    localStorage.setItem('punchOutTime', this.punchOutTime);
+    this.punchOutTime = this.currentTime;
+    // localStorage.setItem('punchOutTime', this.punchOutTime);
     console.log(this.punchInTime);
 
     if (result.data > 0) {

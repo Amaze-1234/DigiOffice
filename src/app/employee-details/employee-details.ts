@@ -28,7 +28,7 @@ export class EmployeeDetails {
 
   buildForm() {
     this.contactForm = new FormGroup({
-      ID: new FormControl('', Validators.required),
+      EmployeeID: new FormControl('', Validators.required),
       Title: new FormControl('', Validators.required),
       FirstName: new FormControl('', Validators.required),
       MiddleName: new FormControl('', Validators.required),
@@ -55,6 +55,7 @@ export class EmployeeDetails {
     console.log(response.data);
     this.contactForm = new FormGroup({
       ID: new FormControl(this.editid),
+      EmployeeID : new FormControl(response.data[0].employeeID, Validators.required),
       Title: new FormControl(response.data[0].title, Validators.required),
       FirstName: new FormControl(response.data[0].firstName, Validators.required),
       MiddleName: new FormControl(response.data[0].middleName, Validators.required),
@@ -90,12 +91,13 @@ export class EmployeeDetails {
     }
     else {
       if (this.editid) {
+        console.log(this.contactForm.value);
         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
         this.loaderService.isEmployee = "Yes";
         this.loaderService.isEmployeeDetails = String(this.editid);
         if (result.data > 0) {
           console.log(result);
-          console.log(this.contactForm.value);
+          
           
           
           Swal.fire({

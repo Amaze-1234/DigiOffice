@@ -1,4 +1,4 @@
-<form [formGroup]="teamShiftDetailsForm">
+<form *ngIf="teamShiftDetailsForm" [formGroup]="teamShiftDetailsForm">
     <div class="shiftForm">
         <div class="row">
             <div class="col-lg-2">
@@ -42,7 +42,7 @@
             </div>
             <div class="col-lg-2">
                 <label>Rest Days</label>
-                <ng-multiselect-dropdown [placeholder]="'Select Days'" formControlName="selectedItems" [settings]="dropdownSettings"
+                <ng-multiselect-dropdown  *ngIf="dropdownList && dropdownSettings" [placeholder]="'Select Days'" formControlName="selectedItems" [settings]="dropdownSettings"
                     [data]="dropdownList" (onSelect)="onItemSelect($event)" >
                 </ng-multiselect-dropdown>
             </div>

@@ -96,4 +96,6 @@ export class Login {
     }
     Swal.fire("Please enter valid data");
   }
+
+  
 }

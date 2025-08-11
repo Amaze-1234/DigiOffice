@@ -2,21 +2,39 @@
     <form action="" [formGroup]="contactForm">
         <div class="row">
             <div class="col-4">
-                <label for="" >Holiday Type<span class="required">*</span></label>
+                <label for="">Holiday Type<span class="required">*</span></label>
                 <select name="" id="" class="form-control" formControlName="HolidayType">
-                    <option value=""   selected disabled>select type</option>
+                    <option value="" selected disabled>select type</option>
                     <option value="">Legal Holiday</option>
                     <option value="">Special Holiday</option>
                     <option value="">Company Holiday</option>
                 </select>
             </div>
             <div class="col-4">
-                <label for="" >Holiday<span class="required">*</span></label>
-                <input type="text"  class="form-control" placeholder="Holiday" formControlName="Holiday">
+                <label for="">Holiday<span class="required">*</span></label>
+                <input type="text" class="form-control" placeholder="Holiday" formControlName="Holiday">
             </div>
             <div class="col-4">
-                <label for=" " >Holiday Date<span class="required">*</span></label>
-                <input type="date"  class="form-control" placeholder="dd-mm-yyyy" formControlName="HolidayDate">
+                <label for=" ">Holiday Date<span class="required">*</span></label>
+                <input type="date" class="form-control" placeholder="dd-mm-yyyy" formControlName="HolidayDate">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <label for=" ">Attachments<span class="required">*</span></label>
+                <ngx-dropzone (change)="onSelect($event)" formControlName="Attachment">
+                    <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""
+                            style="width:18px;height:18px;margin-bottom: 3px;"> 
+                        <p style="color: blue;">Drop files here, only JPEG,PNG(max 5 mb)</p>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-4">
+                <textarea name="" id="" class="form-control" style="height: 200px;" placeholder="Enter text here .." formControlName="HolidayDescription"></textarea>
             </div>
         </div>
         <div class="row c1 ">

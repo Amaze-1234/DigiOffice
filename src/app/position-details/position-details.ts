@@ -211,6 +211,8 @@ export class PositionDetails {
         return;
       }
       const result = await this.apiService.postMethod('Master/InsertPositionDetails', this.positionDetails.value);
+      console.log(result.data);
+      
       if (result.data > 0) {
         Swal.fire("Data Saved successfully")
         sessionStorage.removeItem("isEmployeeDetails");

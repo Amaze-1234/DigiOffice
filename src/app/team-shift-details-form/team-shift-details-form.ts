@@ -46,6 +46,7 @@ export class TeamShiftDetailsForm {
 
   constructor(public api: Api, public loader: Loader) { }
   ngOnInit() {
+    debugger
     this.getStaffDetails();
     this.getShiftType();
     this.getShiftDetailsByShiftTable();
@@ -115,8 +116,8 @@ export class TeamShiftDetailsForm {
 
 
     this.teamShiftDetailsForm.patchValue({
-      StartTime: this.defaultStartTime[0].startTime,
-      EndTime: this.defaultStartTime[0].endTime
+      StartTime: this.defaultStartTime[0]?.startTime,
+      EndTime: this.defaultStartTime[0]?.endTime
     })
   }
 
@@ -134,31 +135,31 @@ export class TeamShiftDetailsForm {
     })
   }
 
-  async getTeamShiftDetailsByID() {
-    debugger;
-    let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
-    let restDaysID = result.data[0].restDaysID.split(',');
-    let restDaysValue = result.data[0].restDaysValue.split(',');
-    console.log(result.data);
+ async getTeamShiftDetailsByID() {
+  this.teamShiftDetailsForm = null; 
+  let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
+  
+  let restDaysID = result.data[0].restDaysID.split(',');
+  let restDaysValue = result.data[0].restDaysValue.split(',');
 
-
-    let myItems = [];
-    for (let i = 0; i < restDaysID.length; i++) {
-      myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
-    }
-    console.log(myItems, typeof (myItems));
-    this.teamShiftDetailsForm = new FormGroup({
-      ID: new FormControl(this.editID),
-      StaffID: new FormControl(result.data[0].staffID, Validators.required),
-      StartDate: new FormControl(result.data[0].startDate.split('T')[0], Validators.required),
-      EndDate: new FormControl(result.data[0].endDate.split('T')[0], Validators.required),
-      ShiftTypeID: new FormControl(result.data[0].shiftTypeID, Validators.required),
-      ShiftCode: new FormControl(result.data[0].shiftCode, Validators.required),
-      StartTime: new FormControl(result.data[0].startTime, Validators.required),
-      EndTime: new FormControl(result.data[0].endTime, Validators.required),
-      selectedItems: new FormControl(myItems, Validators.required)
-    })
+  let myItems = [];
+  for (let i = 0; i < restDaysID.length; i++) {
+    myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
   }
+
+  this.teamShiftDetailsForm = new FormGroup({
+    ID: new FormControl(this.editID),
+    StaffID: new FormControl(result.data[0].staffID, Validators.required),
+    StartDate: new FormControl(result.data[0].startDate.split('T')[0], Validators.required),
+    EndDate: new FormControl(result.data[0].endDate.split('T')[0], Validators.required),
+    ShiftTypeID: new FormControl(result.data[0].shiftTypeID, Validators.required),
+    ShiftCode: new FormControl(result.data[0].shiftCode, Validators.required),
+    StartTime: new FormControl(result.data[0].startTime, Validators.required),
+    EndTime: new FormControl(result.data[0].endTime, Validators.required),
+    selectedItems: new FormControl(myItems, Validators.required)
+  });
+}
+
 
 
   onItemSelect(event: any) {

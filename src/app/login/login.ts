@@ -50,59 +50,52 @@ export class Login {
   //   }
   // }
   login() {
-  //   for (let data of this.staffLogin) {
-  //     var name = data.username;
-  //     var pass = data.password;
-  //     var login = data.loginType;
-  //     console.log(name);
-  //     console.log(pass);
-  //     console.log(login, typeof login);
+    for (let data of this.staffLogin) {
+      var name = data.username;
+      var pass = data.password;
+      var login = data.loginType;
+      console.log(name);
+      console.log(pass);
+      console.log(login, typeof login);
 
 
      
-  //     if (this.userName == 'jahnavi@gmail.com' && this.passWord == 'welcome' && this.loginValue == login) {
-  //       sessionStorage.setItem("isLogin", 'Yes');
-  //       this.loaderService.isLogin = 'Yes';
+      if (this.userName == name && this.passWord == pass && this.loginValue == login) {
+        sessionStorage.setItem("isLogin", 'Yes');
+        this.loaderService.isLogin = 'Yes';
 
         
-  //       if (login == 2 ) {
+        if (login == 2 ) {
           
-  //         sessionStorage.setItem("isLogin", 'Manager');
-  //         this.loaderService.isLogin = 'Manager';
-  //         sessionStorage.setItem('staffID',String(data.staffID))
-  //         this.loaderService.staffID=String(data.staffID)
+          sessionStorage.setItem("isLogin", 'Manager');
+          this.loaderService.isLogin = 'Manager';
+          sessionStorage.setItem('staffID',String(data.staffID))
+          this.loaderService.staffID=String(data.staffID)
       
-  //         this.loaderService.isTitle = 'Dashboard';
-  //         this.router.navigate(['/dashboard']);
+          this.loaderService.isTitle = 'Dashboard';
+          this.router.navigate(['/dashboard']);
 
-  //         return;
-  //       }
+          return;
+        }
         
-  //       if (login == 3 ) {
-  //         sessionStorage.setItem("isLogin", 'HR');
-  //         this.loaderService.isLogin = 'HR';
-  //         this.router.navigate(['/dashboard']);
-  //         return;
-  //       }
+        if (login == 3 ) {
+          sessionStorage.setItem("isLogin", 'HR');
+          this.loaderService.isLogin = 'HR';
+          this.router.navigate(['/dashboard']);
+          return;
+        }
 
        
-  //        else {
-  //         this.router.navigate(['/department-table']);
-  //         console.log("department");
+         else {
+          this.router.navigate(['/department-table']);
+          console.log("department");
 
-  //       }
-  //       return;
-  //     }
-  //   }
-  //   Swal.fire("Please enter valid data");
-  // }
-
-  if (this.userName == 'sandhya' && this.passWord == 'sandhya01') {
-      sessionStorage.setItem('isLogin', 'Yes');
-      this.loaderService.isLogin = 'Yes';
-      Swal.fire('Success', 'Login successful', 'success');
-    } else {
-      Swal.fire('Invalid', 'Username or Password is incorrect', 'error');
+        }
+        return;
+      }
     }
+    Swal.fire("Please enter valid data");
   }
+
+  
 }

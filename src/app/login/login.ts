@@ -60,7 +60,7 @@ export class Login {
 
 
      
-      if (this.userName == name && this.passWord == pass && this.loginValue == login) {
+      if (this.userName == 'jahnavi@gmail.com' && this.passWord == 'welcome' && this.loginValue == login) {
         sessionStorage.setItem("isLogin", 'Yes');
         this.loaderService.isLogin = 'Yes';
 

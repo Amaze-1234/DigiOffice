@@ -91,10 +91,12 @@ export class EmployeeDetails {
 
   async Submit(type: any) {
 
+    debugger;
 
       if (type == 'update') {
         this.entity =
         {
+          ID:this.contactForm.value.ID,
           EmployeeID: this.contactForm.value.EmployeeID,
           Title: this.contactForm.value.Title,
           FirstName: this.contactForm.value.FirstName,
@@ -132,6 +134,7 @@ export class EmployeeDetails {
       else {
         this.entity =
         {
+          ID:this.contactForm.value.ID,
           EmployeeID: this.contactForm.value.EmployeeID,
           Title: this.contactForm.value.Title,
           FirstName: this.contactForm.value.FirstName,

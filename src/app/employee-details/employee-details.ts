@@ -79,7 +79,7 @@ export class EmployeeDetails {
       Citizenship: new FormControl(response.data[0].citizenship, Validators.required),
       Nationality: new FormControl(response.data[0].nationality, Validators.required),
       BloodType: new FormControl(response.data[0].bloodType, Validators.required),
-      Images: new FormControl(response.data[0].images, Validators.required)
+       Images: new FormControl(response.data[0].images,Validators.required)
     })
   }
 
@@ -120,6 +120,8 @@ export class EmployeeDetails {
         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
         this.loaderService.isEmployee = "Yes";
         this.loaderService.isEmployeeDetails = String(this.editid);
+        console.log(result.data);
+        
         if (result.data > 0) {
           console.log(result);
 

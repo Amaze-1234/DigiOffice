@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Loader } from '../../Services/loader';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+ 
 @Component({
   selector: 'app-employee-details',
   imports: [SharedModule],
@@ -21,14 +21,14 @@ export class EmployeeDetails {
   Images: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
-
+ 
     if (this.editid) {
       this.getByID();
     }
     this.buildForm();
     this.getEmployeeDetails();
   }
-
+ 
   buildForm() {
     this.contactForm = new FormGroup({
       EmployeeID: new FormControl('', Validators.required),
@@ -50,10 +50,10 @@ export class EmployeeDetails {
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
       Images: new FormControl(this.Images, Validators.required)
-
+ 
     })
   }
-
+ 
   async getByID() {
     let response = await this.api.getMethod(`Master/GetEmployeeDetailsByID?ID=${this.editid}`);
     console.log(response.data);
@@ -80,13 +80,13 @@ export class EmployeeDetails {
    Images: new FormControl(response.data[0].images, Validators.required)
     })
   }
-
+ 
   async getEmployeeDetails() {
     let result = await this.api.getMethod("Master/GetCountryTable");
     this.countryList = result.data;
   }
-
-
+ 
+ 
   async Submit() {
     if (this.contactForm.invalid) {
       Swal.fire({
@@ -102,9 +102,9 @@ export class EmployeeDetails {
         this.loaderService.isEmployeeDetails = String(this.editid);
         if (result.data > 0) {
           console.log(result);
-
-
-
+ 
+ 
+ 
           Swal.fire({
             text: 'Updated Successfully'
           });
@@ -119,7 +119,7 @@ export class EmployeeDetails {
         sessionStorage.setItem("isEmployeeDetails", String(result.data));
         this.loaderService.isEmployeeDetails = String(result.data);
         console.log(this.loaderService.isEmployeeDetails);
-
+ 
         if (result.data > 0) {
           Swal.fire({
             text: 'Employee Details Added Successfully'
@@ -127,14 +127,14 @@ export class EmployeeDetails {
           this.goToNext();
         }
       }
-
+ 
     }
   }
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
   goToNext() {
     if (this.loaderService.isEmployee != "Yes") {
       Swal.fire({
@@ -145,29 +145,29 @@ export class EmployeeDetails {
       return;
     }
     this.loaderService.isDetail = 'position';
-
+ 
   }
-
-
-
-  
-
+ 
+ 
+ 
+ 
+ 
 async onSelect(event: any) {
   console.log(event);
-
+ 
   this.files.push(...event.addedFiles);
-
-
+ 
+ 
   const selectedFile = event.addedFiles[0];
   let formData = new FormData();
   formData.append('file_upload', selectedFile, selectedFile.name);
-
+ 
   try {
     let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
     if (resURL && resURL.data) {
       this.Images = resURL.data;
       console.log(this.Images);
-      
+     
       Swal.fire('Uploaded Successfully.');
     } else {
       Swal.fire('Upload failed')
@@ -177,16 +177,16 @@ async onSelect(event: any) {
     console.error('Upload Error:', error);
     Swal.fire('Upload failed');
   }
-
+ 
 }
-
+ 
 onRemove(event: any) {
   console.log(event);
   this.files.splice(this.files.indexOf(event), 1);
 }
-
-
-
+ 
+ 
+ 
 openModal(Modal: any, id: any = null){
   this.modalService.open(Modal, { centered: true, size: "lg", backdrop: 'static' });
 }

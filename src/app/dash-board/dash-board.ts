@@ -29,6 +29,8 @@ export class DashBoard {
   entity: any;
   ID: any;
 
+  signInDate: any;
+
 
   constructor(public api: Api, public loader: Loader) {
 
@@ -72,6 +74,7 @@ export class DashBoard {
     
   }
 
+  
 
   async confirmPunchIn() {
 
@@ -97,7 +100,20 @@ export class DashBoard {
     let result = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.entity);
     console.log(result.data, typeof (result.data));
     this.ID = result.data;
-    this.punchInTime =  this.currentTime;
+
+    const resul=await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?StaffID=${this.staffID}`);
+    console.log(resul.data[resul.data.length-1]);
+    this.signInDate=resul.data[resul.data.length-1].signInDate;
+  
+    
+
+
+
+
+     this.punchInTime = resul.data[resul.data.length-1].signInTime;
+ 
+     console.log(this.punchInTime);
+    // this.punchInTime =  this.currentTime;
     // localStorage.setItem('selectedWorkType', this.selectedWorkType);
     // localStorage.setItem('punchInTime', this.punchInTime);
 

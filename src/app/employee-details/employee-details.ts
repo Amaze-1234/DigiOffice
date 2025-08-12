@@ -18,7 +18,7 @@ export class EmployeeDetails {
   countryList: any;
   contactForm: any;
   files: File[] = [];
-  Images: any;
+  Image: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
  
@@ -49,7 +49,7 @@ export class EmployeeDetails {
       Citizenship: new FormControl(''),
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
-      Images: new FormControl(this.Images, Validators.required)
+      Images: new FormControl(this.Image, Validators.required)
  
     })
   }
@@ -112,6 +112,7 @@ export class EmployeeDetails {
         }
       }
       else {
+        
         console.log(this.contactForm.value)
         let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
         this.loaderService.isEmployee = "Yes";
@@ -165,13 +166,13 @@ async onSelect(event: any) {
   try {
     let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
     if (resURL && resURL.data) {
-      this.Images = resURL.data;
-      console.log(this.Images);
+      this.Image = resURL.data;
+      console.log(this.Image);
      
       Swal.fire('Uploaded Successfully.');
     } else {
       Swal.fire('Upload failed')
-      this.Images = '';
+      this.Image = '';
     }
   } catch (error) {
     console.error('Upload Error:', error);

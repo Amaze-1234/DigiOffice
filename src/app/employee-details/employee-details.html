@@ -188,23 +188,18 @@
         <h3>Upload Photo</h3>
         <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
     </div>
-<div class="modal-body">
-  <form [formGroup]="entity">
-    <ngx-dropzone accept=".png,.jpg,.jpeg" 
-                  (change)="onSelect($event)" 
-                  formControlName="Images">
-        <ngx-dropzone-label>
-            <img src="images/MicrosoftTeams-image.png" alt=""
-                 style="width:18px;height:18px;margin-bottom: 3px;">
-            <p style="color: #3f51b5;">Drop files here, only JPEG, PNG (max 5 MB)</p>
-        </ngx-dropzone-label>
+    <div class="modal-body">
+        <form [formGroup]="contactForm">
+            <ngx-dropzone accept=".png,.jpg,.jpeg" (change)="onSelect($event)"  >
+                <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""
+                        style="width:18px;height:18px;margin-bottom: 3px;">
+                    <p style="color: #3f51b5;">Drop files here, only JPEG,PNG(max 5 mb)</p>
+                </ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
 
-        <ngx-dropzone-preview *ngFor="let f of files" 
-                              [removable]="true" 
-                              (removed)="onRemove(f)">
-            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-        </ngx-dropzone-preview>
-    </ngx-dropzone>
-  </form>
-</div>
+        </form>
+    </div>
 </ng-template>

@@ -18,7 +18,7 @@ export class EmployeeDetails {
   countryList: any;
   contactForm: any;
   files: File[] = [];
-  Images: any;
+  Image: any;
   entity: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
@@ -50,7 +50,7 @@ export class EmployeeDetails {
       Citizenship: new FormControl(''),
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
-      Images: new FormControl(this.Images, Validators.required)
+      Images: new FormControl(this.Image, Validators.required)
 
     })
   }
@@ -88,93 +88,68 @@ export class EmployeeDetails {
   }
 
 
-  // async Submit() {
-  //   if (this.contactForm.invalid) {
-  //     Swal.fire({
-  //       text: 'Please Fill All Details'
-  //     });
-  //     return;
-  //   }
-  //   else {
-  //     if (this.editid) {
-  //       console.log(this.contactForm.value);
-  //       let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
-  //       this.loaderService.isEmployee = "Yes";
-  //       this.loaderService.isEmployeeDetails = String(this.editid);
-  //       if (result.data > 0) {
-  //         console.log(result);
-
-
-
-  //         Swal.fire({
-  //           text: 'Updated Successfully'
-  //         });
-  //         this.goToNext();
-  //       }
-  //     }
-  //     else {
-  //       console.log(this.contactForm.value)
-  //       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
-  //       this.loaderService.isEmployee = "Yes";
-  //       console.log(result.data);
-  //       sessionStorage.setItem("isEmployeeDetails", String(result.data));
-  //       this.loaderService.isEmployeeDetails = String(result.data);
-  //       console.log(this.loaderService.isEmployeeDetails);
-
-  //       if (result.data > 0) {
-  //         Swal.fire({
-  //           text: 'Employee Details Added Successfully'
-  //         });
-  //         this.goToNext();
-  //       }
-  //     }
-
-  //   }
-  // }
-
   async Submit() {
     if (this.contactForm.invalid) {
-      Swal.fire({ text: 'Please Fill All Required Details' });
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
       return;
     }
+    else {
+      if (this.editid) {
+        console.log(this.contactForm.value);
+        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+        this.loaderService.isEmployee = "Yes";
+        this.loaderService.isEmployeeDetails = String(this.editid);
+        if (result.data > 0) {
+          console.log(result);
 
-    this.entity = {
-      EmployeeID: this.contactForm.value.EmployeeID,
-      Title: this.contactForm.value.Title,
-      FirstName: this.contactForm.value.FirstName,
-      MiddleName: this.contactForm.value.MiddleName,
-      LastName: this.contactForm.value.LastName,
-      NickName: this.contactForm.value.NickName,
-      DateOfBirth: this.contactForm.value.DateOfBirth,
-      PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
-      CountryID: this.contactForm.value.CountryID,
-      Gender: this.contactForm.value.Gender,
-      MaritalStatus: this.contactForm.value.MaritalStatus,
-      PersonalEmail: this.contactForm.value.PersonalEmail,
-      MotherName: this.contactForm.value.MotherName,
-      FatherName: this.contactForm.value.FatherName,
-      Religion: this.contactForm.value.Religion,
-      Citizenship: this.contactForm.value.Citizenship,
-      Nationality: this.contactForm.value.Nationality,
-      BloodType: this.contactForm.value.BloodType,
-      Images: this.Images || ''
-    };
+          Swal.fire({
+            text: 'Updated Successfully'
+          });
+          this.goToNext();
+        }
+      }
+      else {
+        this.entity =
+        {
+          EmployeeID: this.contactForm.value.EmployeeID,
+          Title: this.contactForm.value.Title,
+          FirstName: this.contactForm.value.FirstName,
+          MiddleName: this.contactForm.value.MiddleName,
+          LastName: this.contactForm.value.LastName,
+          NickName: this.contactForm.value.NickName,
+          DateOfBirth: this.contactForm.value.DateOfBirth,
+          PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
+          CountryID: this.contactForm.value.CountryID,
+          Gender: this.contactForm.value.Gender,
+          MaritalStatus: this.contactForm.value.MaritalStatus,
+          PersonalEmail: this.contactForm.value.PersonalEmail,
+          MotherName: this.contactForm.value.MotherName,
+          FatherName: this.contactForm.value.FatherName,
+          Religion: this.contactForm.value.Religion,
+          Citizenship: this.contactForm.value.Citizenship,
+          Nationality: this.contactForm.value.Nationality,
+          BloodType: this.contactForm.value.BloodType,
+          Images: this.Image
+        }
 
-    if (this.editid) {
-      this.entity.ID = this.editid;
-      let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
-      if (result.data > 0) {
-        Swal.fire({ text: 'Updated Successfully' });
+        console.log(this.contactForm.value)
+        let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+        this.loaderService.isEmployee = "Yes";
+        console.log(result.data);
+        sessionStorage.setItem("isEmployeeDetails", String(result.data));
+        this.loaderService.isEmployeeDetails = String(result.data);
+        console.log(this.loaderService.isEmployeeDetails);
+
+        if (result.data > 0) {
+          Swal.fire({
+            text: 'Employee Details Added Successfully'
+          });
+          this.goToNext();
+        }
       }
-    } else {
-      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
-      if (result.data > 0) {
-        sessionStorage.setItem('isEmployeeDetails', String(result.data));
-        Swal.fire({ text: 'Employee Details Added Successfully' });
-        this.contactForm.reset();
-        this.files = [];
-        this.Images = '';
-      }
+
     }
   }
 
@@ -200,29 +175,32 @@ export class EmployeeDetails {
 
 
   async onSelect(event: any) {
-  this.files.push(...event.addedFiles);
-  const file = event.addedFiles[0];
-  if (!file) return;
+    console.log(event);
 
-  const formData = new FormData();
-  formData.append('file_upload', file, file.name);
+    this.files.push(...event.addedFiles);
 
-  try {
-    const res: any = await this.api.postMethod('Master/UploadAttachments/', formData);
 
-    if (res?.data) {
-      this.Images = res.data; 
-      Swal.fire('Uploaded Successfully.');
-    } else {
-      Swal.fire('Upload Failed');
-      this.Images = '';
+    const selectedFile = event.addedFiles[0];
+    let formData = new FormData();
+    formData.append('file_upload', selectedFile, selectedFile.name);
+
+    try {
+      let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
+      if (resURL && resURL.data) {
+        this.Image = resURL.data;
+        console.log(this.Image);
+
+        Swal.fire('Uploaded Successfully.');
+      } else {
+        Swal.fire('Upload failed')
+        this.Image = '';
+      }
+    } catch (error) {
+      console.error('Upload Error:', error);
+      Swal.fire('Upload failed');
     }
-  } catch (error) {
-    Swal.fire('An error occurred while uploading.');
-    console.error(error);
-  }
-}
 
+  }
 
   onRemove(event: any) {
     console.log(event);

@@ -57,7 +57,7 @@ export class DashBoard {
 
   async getAttendanceDetails() {
     this.staffID = Number(this.loader.staffID);
-    const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?StaffID=${this.staffID}`);
+    const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`);
     console.log(response.data[response.data.length - 1]);
     let details = response.data[response.data.length - 1];
     console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));

@@ -20,6 +20,7 @@ export class EmployeeDetails {
   files: File[] = [];
   Image: any;
   entity: any;
+  selectedFile: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
 
@@ -50,7 +51,7 @@ export class EmployeeDetails {
       Citizenship: new FormControl(''),
       Nationality: new FormControl('', Validators.required),
       BloodType: new FormControl('', Validators.required),
-      Images: new FormControl(this.Image, Validators.required)
+      Images: new FormControl('', Validators.required)
 
     })
   }
@@ -88,17 +89,35 @@ export class EmployeeDetails {
   }
 
 
-  async Submit() {
-    if (this.contactForm.invalid) {
-      Swal.fire({
-        text: 'Please Fill All Details'
-      });
-      return;
-    }
-    else {
-      if (this.editid) {
-        console.log(this.contactForm.value);
-        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+  async Submit(type: any) {
+
+
+      if (type == 'update') {
+        this.entity =
+        {
+          EmployeeID: this.contactForm.value.EmployeeID,
+          Title: this.contactForm.value.Title,
+          FirstName: this.contactForm.value.FirstName,
+          MiddleName: this.contactForm.value.MiddleName,
+          LastName: this.contactForm.value.LastName,
+          NickName: this.contactForm.value.NickName,
+          DateOfBirth: this.contactForm.value.DateOfBirth,
+          PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
+          CountryID: this.contactForm.value.CountryID,
+          Gender: this.contactForm.value.Gender,
+          MaritalStatus: this.contactForm.value.MaritalStatus,
+          PersonalEmail: this.contactForm.value.PersonalEmail,
+          MotherName: this.contactForm.value.MotherName,
+          FatherName: this.contactForm.value.FatherName,
+          Religion: this.contactForm.value.Religion,
+          Citizenship: this.contactForm.value.Citizenship,
+          Nationality: this.contactForm.value.Nationality,
+          BloodType: this.contactForm.value.BloodType,
+          Images: this.Image
+        }
+
+        console.log(this.entity);
+        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
         this.loaderService.isEmployee = "Yes";
         this.loaderService.isEmployeeDetails = String(this.editid);
         if (result.data > 0) {
@@ -134,8 +153,19 @@ export class EmployeeDetails {
           Images: this.Image
         }
 
-        console.log(this.contactForm.value)
-        let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+        console.log(this.entity);
+        console.log(this.Image);
+        console.log(this.contactForm.invalid);
+        
+        
+         if (this.contactForm.invalid) {
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
+      return;
+    }
+
+        let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
         this.loaderService.isEmployee = "Yes";
         console.log(result.data);
         sessionStorage.setItem("isEmployeeDetails", String(result.data));
@@ -151,7 +181,6 @@ export class EmployeeDetails {
       }
 
     }
-  }
 
 
 
@@ -189,6 +218,7 @@ export class EmployeeDetails {
       if (resURL && resURL.data) {
         this.Image = resURL.data;
         console.log(this.Image);
+         this.contactForm.get('Images')?.setValue(this.Image);
 
         Swal.fire('Uploaded Successfully.');
       } else {

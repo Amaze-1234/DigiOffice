@@ -4,6 +4,7 @@ import { Api } from '../../Services/api';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Loader } from '../../Services/loader';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-dash-board',
@@ -20,7 +21,7 @@ export class DashBoard {
   punchOutTime: any;
   currentDate: any;
 
-  currentTime: Date = new Date();
+  currentTime:any;
   apiservice: any;
   shiftForm: any;
   closemodal: any;
@@ -40,45 +41,42 @@ export class DashBoard {
 
   ngOnInit() {
     this.getDateTime();
-    // setInterval(() => {
-    //   this.currentTime = new Date();
-    // }, 1000);
+   this.getAttendanceDetails();
 
-    // const storedPunchIn = localStorage.getItem('punchInTime');
-    // const storedPunchOut = localStorage.getItem('punchOutTime');
-    // const storedWorkType = localStorage.getItem('selectedWorkType');
-
-    // const storedPunchIn = sessionStorage.getItem('punchInTime');
-    // const storedPunchOut = sessionStorage.getItem('punchOutTime');
-    // const storedWorkType = sessionStorage.getItem('selectedWorkType');
-
-
-    // if (storedPunchIn) {
-    //   this.punchInTime = storedPunchIn;
-    // }
-
-    // if (storedPunchOut) {
-    //   this.punchOutTime = storedPunchOut;
-    // }
-
-    // if (storedWorkType) {
-    //   this.selectedWorkType = storedWorkType;
-    // }
   }
 
-  async getDateTime(){
+  async getDateTime() {
     let currentDateTime = await this.api.getMethod('Master/GetDateTime');
-    
+
     this.currentDate = currentDateTime.data[0].date;
-    this.currentTime = currentDateTime.data[0].formattedTime;
+    console.log(this.currentDate, typeof(this.currentDate));
     
+    this.currentTime = currentDateTime.data[0].formattedTime;
+
   }
 
-  
+  async getAttendanceDetails() {
+    this.staffID = Number(this.loader.staffID);
+    const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?StaffID=${this.staffID}`);
+    console.log(response.data[response.data.length - 1]);
+    let details = response.data[response.data.length - 1];
+    console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
+    //  console.log(formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US'),typeof (formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US')));
+    
+    if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
+    this.currentDate) {
+    this.punchInTime = response.data[response.data.length - 1].signInTime;
+    this.punchOutTime = response.data[response.data.length - 1].signOutTime;
+    }
+
+    console.log(this.punchInTime);
+   // localStorage.clear();
+    console.log(this.punchOutTime);
+
+  }
 
   async confirmPunchIn() {
 
-    this.staffID = Number(this.loader.staffID);
     console.log(this.staffID);
 
     let attendanceData = await this.api.getMethod(`Master/GetStaffShiftDetailsForAttendance?StaffID=${this.staffID}`);
@@ -99,27 +97,9 @@ export class DashBoard {
 
     let result = await this.api.postMethod("Master/InsertAttendanceDetailsStaff", this.entity);
     console.log(result.data, typeof (result.data));
-    this.ID = result.data;
+    //this.ID = result.data;
+    this.punchInTime = this.currentTime;
 
-    const resul=await this.api.getMethod(`Master/GetAttendanceDetailsStaffByID?StaffID=${this.staffID}`);
-    console.log(resul.data[resul.data.length-1]);
-    this.signInDate=resul.data[resul.data.length-1].signInDate;
-  
-    
-
-
-
-
-     this.punchInTime = resul.data[resul.data.length-1].signInTime;
- 
-     console.log(this.punchInTime);
-    // this.punchInTime =  this.currentTime;
-    // localStorage.setItem('selectedWorkType', this.selectedWorkType);
-    // localStorage.setItem('punchInTime', this.punchInTime);
-
-    // sessionStorage.setItem('selectedWorkType', this.selectedWorkType);
-    // sessionStorage.setItem('punchInTime', this.punchInTime);
-    console.log(this.punchInTime);
 
     if (result.data > 0) {
       Swal.fire({
@@ -141,10 +121,7 @@ export class DashBoard {
 
     let result = await this.api.postMethod("Master/UpdateAttendanceDetailsStaff", this.entity);
     console.log(result.data, typeof (result.data));
-
     this.punchOutTime = this.currentTime;
-    // localStorage.setItem('punchOutTime', this.punchOutTime);
-    console.log(this.punchInTime);
 
     if (result.data > 0) {
       Swal.fire({

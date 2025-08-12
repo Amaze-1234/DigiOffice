@@ -19,7 +19,6 @@ export class EmployeeDetails {
   contactForm: any;
   files: File[] = [];
   Images: any;
-  entity: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
 
@@ -78,7 +77,7 @@ export class EmployeeDetails {
       Citizenship: new FormControl(response.data[0].citizenship, Validators.required),
       Nationality: new FormControl(response.data[0].nationality, Validators.required),
       BloodType: new FormControl(response.data[0].bloodType, Validators.required),
-      Images: new FormControl(response.data[0].images, Validators.required)
+   Images: new FormControl(response.data[0].images, Validators.required)
     })
   }
 
@@ -88,93 +87,47 @@ export class EmployeeDetails {
   }
 
 
-  // async Submit() {
-  //   if (this.contactForm.invalid) {
-  //     Swal.fire({
-  //       text: 'Please Fill All Details'
-  //     });
-  //     return;
-  //   }
-  //   else {
-  //     if (this.editid) {
-  //       console.log(this.contactForm.value);
-  //       let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
-  //       this.loaderService.isEmployee = "Yes";
-  //       this.loaderService.isEmployeeDetails = String(this.editid);
-  //       if (result.data > 0) {
-  //         console.log(result);
-
-
-
-  //         Swal.fire({
-  //           text: 'Updated Successfully'
-  //         });
-  //         this.goToNext();
-  //       }
-  //     }
-  //     else {
-  //       console.log(this.contactForm.value)
-  //       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
-  //       this.loaderService.isEmployee = "Yes";
-  //       console.log(result.data);
-  //       sessionStorage.setItem("isEmployeeDetails", String(result.data));
-  //       this.loaderService.isEmployeeDetails = String(result.data);
-  //       console.log(this.loaderService.isEmployeeDetails);
-
-  //       if (result.data > 0) {
-  //         Swal.fire({
-  //           text: 'Employee Details Added Successfully'
-  //         });
-  //         this.goToNext();
-  //       }
-  //     }
-
-  //   }
-  // }
-
   async Submit() {
     if (this.contactForm.invalid) {
-      Swal.fire({ text: 'Please Fill All Required Details' });
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
       return;
     }
+    else {
+      if (this.editid) {
+        console.log(this.contactForm.value);
+        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.contactForm.value);
+        this.loaderService.isEmployee = "Yes";
+        this.loaderService.isEmployeeDetails = String(this.editid);
+        if (result.data > 0) {
+          console.log(result);
 
-    this.entity = {
-      EmployeeID: this.contactForm.value.EmployeeID,
-      Title: this.contactForm.value.Title,
-      FirstName: this.contactForm.value.FirstName,
-      MiddleName: this.contactForm.value.MiddleName,
-      LastName: this.contactForm.value.LastName,
-      NickName: this.contactForm.value.NickName,
-      DateOfBirth: this.contactForm.value.DateOfBirth,
-      PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
-      CountryID: this.contactForm.value.CountryID,
-      Gender: this.contactForm.value.Gender,
-      MaritalStatus: this.contactForm.value.MaritalStatus,
-      PersonalEmail: this.contactForm.value.PersonalEmail,
-      MotherName: this.contactForm.value.MotherName,
-      FatherName: this.contactForm.value.FatherName,
-      Religion: this.contactForm.value.Religion,
-      Citizenship: this.contactForm.value.Citizenship,
-      Nationality: this.contactForm.value.Nationality,
-      BloodType: this.contactForm.value.BloodType,
-      Images: this.Images || ''
-    };
 
-    if (this.editid) {
-      this.entity.ID = this.editid;
-      let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
-      if (result.data > 0) {
-        Swal.fire({ text: 'Updated Successfully' });
+
+          Swal.fire({
+            text: 'Updated Successfully'
+          });
+          this.goToNext();
+        }
       }
-    } else {
-      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
-      if (result.data > 0) {
-        sessionStorage.setItem('isEmployeeDetails', String(result.data));
-        Swal.fire({ text: 'Employee Details Added Successfully' });
-        this.contactForm.reset();
-        this.files = [];
-        this.Images = '';
+      else {
+        console.log(this.contactForm.value)
+        let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.contactForm.value);
+        this.loaderService.isEmployee = "Yes";
+        console.log(result.data);
+        sessionStorage.setItem("isEmployeeDetails", String(result.data));
+        this.loaderService.isEmployeeDetails = String(result.data);
+        console.log(this.loaderService.isEmployeeDetails);
+
+        if (result.data > 0) {
+          Swal.fire({
+            text: 'Employee Details Added Successfully'
+          });
+          this.goToNext();
+        }
       }
+
     }
   }
 
@@ -197,41 +150,44 @@ export class EmployeeDetails {
 
 
 
+  
 
+async onSelect(event: any) {
+  console.log(event);
 
-  async onSelect(event: any) {
   this.files.push(...event.addedFiles);
-  const file = event.addedFiles[0];
-  if (!file) return;
 
-  const formData = new FormData();
-  formData.append('file_upload', file, file.name);
+
+  const selectedFile = event.addedFiles[0];
+  let formData = new FormData();
+  formData.append('file_upload', selectedFile, selectedFile.name);
 
   try {
-    const res: any = await this.api.postMethod('Master/UploadAttachments/', formData);
-
-    if (res?.data) {
-      this.Images = res.data; 
+    let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
+    if (resURL && resURL.data) {
+      this.Images = resURL.data;
+      console.log(this.Images);
+      
       Swal.fire('Uploaded Successfully.');
     } else {
-      Swal.fire('Upload Failed');
+      Swal.fire('Upload failed')
       this.Images = '';
     }
   } catch (error) {
-    Swal.fire('An error occurred while uploading.');
-    console.error(error);
+    console.error('Upload Error:', error);
+    Swal.fire('Upload failed');
   }
+
+}
+
+onRemove(event: any) {
+  console.log(event);
+  this.files.splice(this.files.indexOf(event), 1);
 }
 
 
-  onRemove(event: any) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
-  }
 
-
-
-  openModal(Modal: any, id: any = null) {
-    this.modalService.open(Modal, { centered: true, size: "lg", backdrop: 'static' });
-  }
+openModal(Modal: any, id: any = null){
+  this.modalService.open(Modal, { centered: true, size: "lg", backdrop: 'static' });
+}
 }

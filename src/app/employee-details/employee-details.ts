@@ -218,6 +218,8 @@ export class EmployeeDetails {
 
     try {
       let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
+      console.log(resURL.data);
+      
       if (resURL && resURL.data) {
         this.Image = resURL.data;
         console.log(this.Image);

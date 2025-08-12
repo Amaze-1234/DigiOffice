@@ -12,14 +12,14 @@ export class Api {
   constructor() { }
 
   async postMethod(endpoint: any, data: any) {
-    const response = await axios.post(`https://103.12.1.103/digiOfficePracticeAPI/${endpoint}`, data);
+    const response = await axios.post(`https://103.12.1.103/DigiOfficeAPI/${endpoint}`, data);
     // const response = await axios.post(this.hosturl +  endpoint, data);
     return response
   }
   
   async getMethod(endpoint: any) {
     try{
-       const response = await axios.get(`https://103.12.1.103/digiOfficePracticeAPI/${endpoint}`);
+       const response = await axios.get(`https://103.12.1.103/DigiOfficeAPI/${endpoint}`);
     return response
     }
     catch(error){

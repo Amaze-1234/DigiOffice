@@ -45,15 +45,18 @@ export class TeamShiftDetailsForm {
   @Output() closemodal = new EventEmitter<any>();
 
   constructor(public api: Api, public loader: Loader) { }
-  ngOnInit() {
+  async ngOnInit() {
     debugger
     this.getStaffDetails();
     this.getShiftType();
-    this.getShiftDetailsByShiftTable();
+    //this.getShiftDetailsByShiftTable();
     this.getTeamShiftDetails();
+    await this.getShiftDetailsByShiftTable();
     if (this.editID) {
-      this.getTeamShiftDetailsByID();
+      //this.getTeamShiftDetailsByID();
+       await this.getTeamShiftDetailsByID();
     }
+    
     this.dropdownList = [
       { id: 1, text: 'Monday' },
       { id: 2, text: 'Tuesday' },
@@ -86,11 +89,11 @@ export class TeamShiftDetailsForm {
   async getShiftDetailsByShiftTable() {
     let result = await this.api.getMethod('Master/GetShiftDetailsByShiftTable');
     this.shiftCodeDetails = result.data;
-    if (this.editID) {
-      this.ChangedValueOfShiftType({ target: { value: this.teamShiftDetailsForm.value.ShiftTypeID } });
-      this.changedValueOfCode({ target: { value: this.teamShiftDetailsForm.value.ShiftCode } });
+    // if (this.editID) {
+    //   this.ChangedValueOfShiftType({ target: { value: this.teamShiftDetailsForm.value.ShiftTypeID } });
+    //   this.changedValueOfCode({ target: { value: this.teamShiftDetailsForm.value.ShiftCode } });
 
-    }
+    // }
   }
 
   ChangedValueOfShiftType(event: any) {
@@ -160,6 +163,9 @@ export class TeamShiftDetailsForm {
     EndTime: new FormControl(result.data[0].endTime, Validators.required),
     selectedItems: new FormControl(myItems, Validators.required)
   });
+
+  this.ChangedValueOfShiftType({ target: { value: result.data[0].shiftTypeID } });
+this.changedValueOfCode({ target: { value: result.data[0].shiftCode } });
 }
 
 
@@ -206,7 +212,7 @@ export class TeamShiftDetailsForm {
       console.log(response.data?.[0]);
 
       if (response.data?.[0]?.startDate) {
-        Swal.fire("Shifted is already assigned between the dates");
+        Swal.fire("Shift is already assigned between the dates");
         return;
       }
 

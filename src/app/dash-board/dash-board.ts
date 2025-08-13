@@ -29,7 +29,6 @@ export class DashBoard {
   signOutTime: any;
   entity: any;
   ID: any;
-
   signInDate: any;
 
 
@@ -57,8 +56,7 @@ export class DashBoard {
     let details = response.data[response.data.length - 1];
     console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'), typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
 
-    if (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
-      this.currentDate) {
+    if (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') == this.currentDate) {
       this.punchInTime = response.data[response.data.length - 1].signInTime;
       this.punchOutTime = response.data[response.data.length - 1].signOutTime;
     }
@@ -70,17 +68,16 @@ export class DashBoard {
 
 
   async confirmPunchIn() {
-
     console.log(this.staffID);
-
     let attendanceData = await this.api.getMethod(`Master/GetStaffShiftDetailsForAttendance?StaffID=${this.staffID}`);
     console.log(attendanceData.data?.[0]);
     const today = new Date();
     const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
-    console.log(dayName, typeof(dayName));
-    console.log(attendanceData.data?.[0]?.restDaysValue, typeof(attendanceData.data?.[0]?.restDaysValue));
-    
-    if (!(attendanceData.data?.[0]?.startDate) && (attendanceData.data?.[0]?.restDaysValue != dayName) ) {
+    console.log(dayName, typeof (dayName));
+    console.log(attendanceData.data?.[0]?.restDaysValue, typeof (attendanceData.data?.[0]?.restDaysValue));
+    let restDaysValue = attendanceData.data?.[0]?.restDaysValue.split(',');
+    let startDate = attendanceData.data?.[0]?.startDate;
+    if (!(startDate) || (restDaysValue.includes(dayName))) {
       Swal.fire({
 
         text: "Shift is not assigned for you today",
@@ -98,8 +95,6 @@ export class DashBoard {
     console.log(result.data, typeof (result.data));
     //this.ID = result.data;
     this.punchInTime = this.currentTime;
-
-
     if (result.data > 0) {
       Swal.fire({
         icon: 'success',
@@ -110,6 +105,8 @@ export class DashBoard {
       });
     }
   }
+
+
 
   async confirmPunchOut() {
 

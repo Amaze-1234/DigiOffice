@@ -21,7 +21,7 @@ export class DashBoard {
   punchOutTime: any;
   currentDate: any;
 
-  currentTime:any;
+  currentTime: any;
   apiservice: any;
   shiftForm: any;
   closemodal: any;
@@ -41,26 +41,26 @@ export class DashBoard {
 
   ngOnInit() {
     this.getDateTime();
-   //this.getAttendanceDetails();
+    //this.getAttendanceDetails();
 
   }
 
   async getDateTime() {
     let currentDateTime = await this.api.getMethod('Master/GetDateTime');
     this.currentDate = currentDateTime.data[0].date;
-    console.log(this.currentDate, typeof(this.currentDate));
+    console.log(this.currentDate, typeof (this.currentDate));
     this.currentTime = currentDateTime.data[0].formattedTime;
 
     this.staffID = Number(this.loader.staffID);
     const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`);
     console.log(response.data[response.data.length - 1]);
     let details = response.data[response.data.length - 1];
-    console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
-    
-    if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
-    this.currentDate) {
-    this.punchInTime = response.data[response.data.length - 1].signInTime;
-    this.punchOutTime = response.data[response.data.length - 1].signOutTime;
+    console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'), typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
+
+    if (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
+      this.currentDate) {
+      this.punchInTime = response.data[response.data.length - 1].signInTime;
+      this.punchOutTime = response.data[response.data.length - 1].signOutTime;
     }
 
     console.log(this.punchInTime);
@@ -74,7 +74,7 @@ export class DashBoard {
   //   console.log(response.data[response.data.length - 1]);
   //   let details = response.data[response.data.length - 1];
   //   console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
-    
+
   //   if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
   //   this.currentDate) {
   //   this.punchInTime = response.data[response.data.length - 1].signInTime;
@@ -92,7 +92,12 @@ export class DashBoard {
 
     let attendanceData = await this.api.getMethod(`Master/GetStaffShiftDetailsForAttendance?StaffID=${this.staffID}`);
     console.log(attendanceData.data?.[0]);
-    if (!(attendanceData.data?.[0]?.startDate)) {
+    const today = new Date();
+    const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
+    console.log(dayName, typeof(dayName));
+    console.log(attendanceData.data?.[0]?.restDaysValue, typeof(attendanceData.data?.[0]?.restDaysValue));
+    
+    if (!(attendanceData.data?.[0]?.startDate) && (attendanceData.data?.[0]?.restDaysValue != dayName) ) {
       Swal.fire({
 
         text: "Shift is not assigned for you today",

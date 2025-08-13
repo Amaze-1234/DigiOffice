@@ -25,6 +25,7 @@ export class EmployeeDetails {
   imgPath:any='';
   entity: any;
   selectedFile: any;
+  insertImage: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
   ngOnInit() {
 
@@ -238,12 +239,13 @@ export class EmployeeDetails {
       console.log(resURL.data);
 
       if (resURL && resURL.data) {
+        this.Image= resURL.data
         this.imgPath='insert'
-        this.Image = (resURL.data).slice(3);
+        this.insertImage = (resURL.data).slice(3);
         console.log(this.Image);
          this.contactForm.get('Images')?.setValue(this.Image);
 
-        this.imgSrc =`https://103.12.1.103/${this.Image}`;
+        this.imgSrc =`https://103.12.1.103/${this.insertImage}`;
         console.log(this.imgSrc);
 
 

@@ -19,6 +19,10 @@ export class EmployeeDetails {
   contactForm: any;
   files: File[] = [];
   Image: any;
+  imgSrc:any;
+  resImage:any;
+  imageUrl:any;
+  imgPath:any='';
   entity: any;
   selectedFile: any;
   constructor(public api: Api, public router: Router, public activateRoute: ActivatedRoute, public loaderService: Loader, public modalService: NgbModal) { }
@@ -26,6 +30,7 @@ export class EmployeeDetails {
 
     if (this.editid) {
       this.getByID();
+
     }
     this.buildForm();
     this.getEmployeeDetails();
@@ -54,6 +59,7 @@ export class EmployeeDetails {
       Images: new FormControl('', Validators.required)
 
     })
+   
   }
 
   async getByID() {
@@ -81,6 +87,13 @@ export class EmployeeDetails {
       BloodType: new FormControl(response.data[0].bloodType, Validators.required),
       Images: new FormControl(response.data[0].images, Validators.required)
     })
+    this.imgPath='update'
+    this.resImage = this.contactForm.value.Images.slice(3);
+    console.log(this.contactForm.value.Images);
+    console.log(this.resImage);
+    
+    this.imageUrl=`https://103.12.1.103/${this.resImage}`
+    console.log(this.imageUrl)
   }
 
   async getEmployeeDetails() {
@@ -115,8 +128,10 @@ export class EmployeeDetails {
           Citizenship: this.contactForm.value.Citizenship,
           Nationality: this.contactForm.value.Nationality,
           BloodType: this.contactForm.value.BloodType,
-          Images: this.Image
+          Images: this.contactForm.value.Images
         }
+        // console.log(this.entity);
+        
 
         console.log(this.entity);
         let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
@@ -157,7 +172,7 @@ export class EmployeeDetails {
         }
 
         console.log(this.entity);
-        console.log(this.Image);
+        
         console.log(this.contactForm.invalid);
         
         
@@ -221,9 +236,14 @@ export class EmployeeDetails {
       console.log(resURL.data);
       
       if (resURL && resURL.data) {
-        this.Image = resURL.data;
+        this.imgPath='insert'
+        this.Image = (resURL.data).slice(3);
         console.log(this.Image);
          this.contactForm.get('Images')?.setValue(this.Image);
+
+        this.imgSrc =`https://103.12.1.103/${this.Image}`;
+        console.log(this.imgSrc);
+
 
         Swal.fire('Uploaded Successfully.');
       } else {

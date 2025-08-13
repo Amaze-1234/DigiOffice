@@ -4,7 +4,7 @@
             <img src="images/filter.png" alt="filter" width="18px">
             <p id="fil">Filter&nbsp;by:</p>
 
-            <input type="search" placeholder="Search..." class="form-control">
+            <input type="search" placeholder="Search..." class="form-control" [(ngModel)] = "searchText">
 
             <input type="date" class="form-control" style="  border: 1px solid black;">
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="para">
-        <p class="showing fw-bold fs-4 py-2">Showing {{(attendanceDetails|search:searchText).length}} Results</p>
+        <p class="showing fw-bold fs-4 py-2">Showing {{(myAttendanceDetails|search:searchText).length}} Results</p>
     </div>
     <div class="table-wrapper" >
         <table  class="table w-100" style="table-layout: fixed;">
@@ -32,7 +32,7 @@
                 <th>Undertime</th>
 
             </tr>
-            <tr *ngFor="let data of attendanceDetails" class="border-bottom ">
+            <tr *ngFor="let data of myAttendanceDetails|search:searchText " class="border-bottom ">
               <td>{{data.signInDate | date:'dd-MM-yyyy'}}</td>
               <td>{{data.signOutDate| date:'dd-MM-yyyy'}}</td>
               <td>{{data.signInLocation}}</td>

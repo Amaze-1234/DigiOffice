@@ -49,14 +49,12 @@ export class TeamShiftDetailsForm {
     debugger
     this.getStaffDetails();
     this.getShiftType();
-    //this.getShiftDetailsByShiftTable();
     this.getTeamShiftDetails();
     await this.getShiftDetailsByShiftTable();
     if (this.editID) {
-      //this.getTeamShiftDetailsByID();
-       await this.getTeamShiftDetailsByID();
+      await this.getTeamShiftDetailsByID();
     }
-    
+
     this.dropdownList = [
       { id: 1, text: 'Monday' },
       { id: 2, text: 'Tuesday' },
@@ -138,35 +136,35 @@ export class TeamShiftDetailsForm {
     })
   }
 
- async getTeamShiftDetailsByID() {
-  this.teamShiftDetailsForm = null; 
-  let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
-  
-  let restDaysID = result.data[0].restDaysID.split(',');
-  console.log(result.data[0].restDaysID.split(',') , result.data[0].restDaysID.split(',').length, typeof(result.data[0].restDaysID.split(',') ));
-  
-  let restDaysValue = result.data[0].restDaysValue.split(',');
+  async getTeamShiftDetailsByID() {
+    this.teamShiftDetailsForm = null;
+    let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
 
-  let myItems = [];
-  for (let i = 0; i < restDaysID.length; i++) {
-    myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
+    let restDaysID = result.data[0].restDaysID.split(',');
+    console.log(result.data[0].restDaysID.split(','), result.data[0].restDaysID.split(',').length, typeof (result.data[0].restDaysID.split(',')));
+
+    let restDaysValue = result.data[0].restDaysValue.split(',');
+
+    let myItems = [];
+    for (let i = 0; i < restDaysID.length; i++) {
+      myItems.push({ id: Number(restDaysID[i]), text: restDaysValue[i] });
+    }
+
+    this.teamShiftDetailsForm = new FormGroup({
+      ID: new FormControl(this.editID),
+      StaffID: new FormControl(result.data[0].staffID, Validators.required),
+      StartDate: new FormControl(result.data[0].startDate.split('T')[0], Validators.required),
+      EndDate: new FormControl(result.data[0].endDate.split('T')[0], Validators.required),
+      ShiftTypeID: new FormControl(result.data[0].shiftTypeID, Validators.required),
+      ShiftCode: new FormControl(result.data[0].shiftCode, Validators.required),
+      StartTime: new FormControl(result.data[0].startTime, Validators.required),
+      EndTime: new FormControl(result.data[0].endTime, Validators.required),
+      selectedItems: new FormControl(myItems, Validators.required)
+    });
+
+    this.ChangedValueOfShiftType({ target: { value: result.data[0].shiftTypeID } });
+    this.changedValueOfCode({ target: { value: result.data[0].shiftCode } });
   }
-
-  this.teamShiftDetailsForm = new FormGroup({
-    ID: new FormControl(this.editID),
-    StaffID: new FormControl(result.data[0].staffID, Validators.required),
-    StartDate: new FormControl(result.data[0].startDate.split('T')[0], Validators.required),
-    EndDate: new FormControl(result.data[0].endDate.split('T')[0], Validators.required),
-    ShiftTypeID: new FormControl(result.data[0].shiftTypeID, Validators.required),
-    ShiftCode: new FormControl(result.data[0].shiftCode, Validators.required),
-    StartTime: new FormControl(result.data[0].startTime, Validators.required),
-    EndTime: new FormControl(result.data[0].endTime, Validators.required),
-    selectedItems: new FormControl(myItems, Validators.required)
-  });
-
-  this.ChangedValueOfShiftType({ target: { value: result.data[0].shiftTypeID } });
-this.changedValueOfCode({ target: { value: result.data[0].shiftCode } });
-}
 
 
 
@@ -230,7 +228,6 @@ this.changedValueOfCode({ target: { value: result.data[0].shiftCode } });
         EndDate: this.teamShiftDetailsForm.value.EndDate,
         ShiftTypeID: this.teamShiftDetailsForm.value.ShiftTypeID,
         ShiftCode: this.teamShiftDetailsForm.value.ShiftCode,
-
         StartTime: this.defaultStartTime[0].id,
         EndTime: this.defaultStartTime[0].id,
         RestDaysID: restID,

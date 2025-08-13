@@ -10,11 +10,11 @@ import { Loader } from '../../Services/loader';
   styleUrl: './attendance-details.css'
 })
 export class AttendanceDetails implements OnInit {
-attendanceDetails:any;
- searchText:any;
+  attendanceDetails: any;
+  searchText: any;
   staffID: any;
   myAttendanceDetails: any;
-  constructor(public apiservice: Api,public loader:Loader) { }
+  constructor(public apiservice: Api, public loader: Loader) { }
   ngOnInit() {
     //this.getData();
     this.getAttendanceDetailsStaff();
@@ -26,11 +26,11 @@ attendanceDetails:any;
   //   console.log(this.attendanceDetails);
   // }
 
-  async getAttendanceDetailsStaff(){
+  async getAttendanceDetailsStaff() {
     this.staffID = this.loader.staffID;
     let result = await this.apiservice.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`)
     this.myAttendanceDetails = result.data;
     console.log(this.myAttendanceDetails);
-    
+
   }
 }

@@ -140,6 +140,8 @@ export class TeamShiftDetailsForm {
   let result = await this.api.getMethod(`Master/GetStaffShiftDetailsByID?ID=${this.editID}`);
   
   let restDaysID = result.data[0].restDaysID.split(',');
+  console.log(result.data[0].restDaysID.split(',') , result.data[0].restDaysID.split(',').length, typeof(result.data[0].restDaysID.split(',') ));
+  
   let restDaysValue = result.data[0].restDaysValue.split(',');
 
   let myItems = [];

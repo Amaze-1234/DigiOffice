@@ -68,23 +68,6 @@ export class DashBoard {
 
   }
 
-  // async getAttendanceDetails() {
-  //   this.staffID = Number(this.loader.staffID);
-  //   const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`);
-  //   console.log(response.data[response.data.length - 1]);
-  //   let details = response.data[response.data.length - 1];
-  //   console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
-
-  //   if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
-  //   this.currentDate) {
-  //   this.punchInTime = response.data[response.data.length - 1].signInTime;
-  //   this.punchOutTime = response.data[response.data.length - 1].signOutTime;
-  //   }
-
-  //   console.log(this.punchInTime);
-  //   console.log(this.punchOutTime);
-
-  // }
 
   async confirmPunchIn() {
 

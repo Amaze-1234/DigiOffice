@@ -217,6 +217,7 @@ export class PositionDetails {
         Swal.fire("Data Saved successfully")
         sessionStorage.removeItem("isEmployeeDetails");
       }
+      this.route.navigate(['/staffdashboard']);
     }
     else {
       console.log(this.positionDetails.value);
@@ -231,6 +232,7 @@ export class PositionDetails {
         
         Swal.fire("Data Updated successfully");
       }
+      this.route.navigate(['/staffdashboard']);
 
     }
 

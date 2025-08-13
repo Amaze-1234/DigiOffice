@@ -133,43 +133,45 @@ export class EmployeeDetails {
         // console.log(this.entity);
         
 
-        console.log(this.entity);
-        let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
-        this.loaderService.isEmployee = "Yes";
-        this.loaderService.isEmployeeDetails = String(this.editid);
-        if (result.data > 0) {
-          console.log(result);
+      console.log(this.entity);
+      let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
+      this.loaderService.isEmployee = "Yes";
+      this.loaderService.isEmployeeDetails = String(this.editid);
+      console.log(result.data);
 
-          Swal.fire({
-            text: 'Updated Successfully'
-          });
-          this.goToNext();
-        }
+      if (result.data > 0) {
+        console.log(result);
+
+        Swal.fire({
+          text: 'Updated Successfully'
+        });
+        this.goToNext();
       }
-      else {
-        this.entity =
-        {
-          ID:this.contactForm.value.ID,
-          EmployeeID: this.contactForm.value.EmployeeID,
-          Title: this.contactForm.value.Title,
-          FirstName: this.contactForm.value.FirstName,
-          MiddleName: this.contactForm.value.MiddleName,
-          LastName: this.contactForm.value.LastName,
-          NickName: this.contactForm.value.NickName,
-          DateOfBirth: this.contactForm.value.DateOfBirth,
-          PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
-          CountryID: this.contactForm.value.CountryID,
-          Gender: this.contactForm.value.Gender,
-          MaritalStatus: this.contactForm.value.MaritalStatus,
-          PersonalEmail: this.contactForm.value.PersonalEmail,
-          MotherName: this.contactForm.value.MotherName,
-          FatherName: this.contactForm.value.FatherName,
-          Religion: this.contactForm.value.Religion,
-          Citizenship: this.contactForm.value.Citizenship,
-          Nationality: this.contactForm.value.Nationality,
-          BloodType: this.contactForm.value.BloodType,
-          Images: this.Image
-        }
+    }
+    else {
+      this.entity =
+      {
+        ID: this.contactForm.value.ID,
+        EmployeeID: this.contactForm.value.EmployeeID,
+        Title: this.contactForm.value.Title,
+        FirstName: this.contactForm.value.FirstName,
+        MiddleName: this.contactForm.value.MiddleName,
+        LastName: this.contactForm.value.LastName,
+        NickName: this.contactForm.value.NickName,
+        DateOfBirth: this.contactForm.value.DateOfBirth,
+        PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
+        CountryID: this.contactForm.value.CountryID,
+        Gender: this.contactForm.value.Gender,
+        MaritalStatus: this.contactForm.value.MaritalStatus,
+        PersonalEmail: this.contactForm.value.PersonalEmail,
+        MotherName: this.contactForm.value.MotherName,
+        FatherName: this.contactForm.value.FatherName,
+        Religion: this.contactForm.value.Religion,
+        Citizenship: this.contactForm.value.Citizenship,
+        Nationality: this.contactForm.value.Nationality,
+        BloodType: this.contactForm.value.BloodType,
+        Images: this.Image
+      }
 
         console.log(this.entity);
         
@@ -183,22 +185,22 @@ export class EmployeeDetails {
       return;
     }
 
-        let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
-        this.loaderService.isEmployee = "Yes";
-        console.log(result.data);
-        sessionStorage.setItem("isEmployeeDetails", String(result.data));
-        this.loaderService.isEmployeeDetails = String(result.data);
-        console.log(this.loaderService.isEmployeeDetails);
+      let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
+      this.loaderService.isEmployee = "Yes";
+      console.log(result.data);
+      sessionStorage.setItem("isEmployeeDetails", String(result.data));
+      this.loaderService.isEmployeeDetails = String(result.data);
+      console.log(this.loaderService.isEmployeeDetails);
 
-        if (result.data > 0) {
-          Swal.fire({
-            text: 'Employee Details Added Successfully'
-          });
-          this.goToNext();
-        }
+      if (result.data > 0) {
+        Swal.fire({
+          text: 'Employee Details Added Successfully'
+        });
+        this.goToNext();
       }
-
     }
+
+  }
 
 
 
@@ -234,7 +236,7 @@ export class EmployeeDetails {
     try {
       let resURL = await this.api.postMethod('Master/UploadAttachments/', formData);
       console.log(resURL.data);
-      
+
       if (resURL && resURL.data) {
         this.imgPath='insert'
         this.Image = (resURL.data).slice(3);

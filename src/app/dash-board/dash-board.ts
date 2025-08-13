@@ -41,27 +41,21 @@ export class DashBoard {
 
   ngOnInit() {
     this.getDateTime();
-   this.getAttendanceDetails();
+   //this.getAttendanceDetails();
 
   }
 
   async getDateTime() {
     let currentDateTime = await this.api.getMethod('Master/GetDateTime');
-
     this.currentDate = currentDateTime.data[0].date;
     console.log(this.currentDate, typeof(this.currentDate));
-    
     this.currentTime = currentDateTime.data[0].formattedTime;
 
-  }
-
-  async getAttendanceDetails() {
     this.staffID = Number(this.loader.staffID);
     const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`);
     console.log(response.data[response.data.length - 1]);
     let details = response.data[response.data.length - 1];
     console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
-    //  console.log(formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US'),typeof (formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US')));
     
     if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
     this.currentDate) {
@@ -70,10 +64,27 @@ export class DashBoard {
     }
 
     console.log(this.punchInTime);
-   // localStorage.clear();
     console.log(this.punchOutTime);
 
   }
+
+  // async getAttendanceDetails() {
+  //   this.staffID = Number(this.loader.staffID);
+  //   const response = await this.api.getMethod(`Master/GetAttendanceDetailsStaffByStaffID?StaffID=${this.staffID}`);
+  //   console.log(response.data[response.data.length - 1]);
+  //   let details = response.data[response.data.length - 1];
+  //   console.log(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US'),typeof (formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US')));
+    
+  //   if(formatDate(details.signInDate, 'dd-MM-yyyy', 'en-US') ==
+  //   this.currentDate) {
+  //   this.punchInTime = response.data[response.data.length - 1].signInTime;
+  //   this.punchOutTime = response.data[response.data.length - 1].signOutTime;
+  //   }
+
+  //   console.log(this.punchInTime);
+  //   console.log(this.punchOutTime);
+
+  // }
 
   async confirmPunchIn() {
 

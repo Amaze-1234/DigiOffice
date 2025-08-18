@@ -7,9 +7,19 @@
 
                 <div class="row ">
                     <div class="col-lg-3">
-                        <img src="images/user.png" alt="" width="180px" height="180px">
-                        <img src="images/MicrosoftTeams-image.png" alt="" class="upload" (click)="openModal(popupModal)">
-                         <!-- <ngx-dropzone (change)="onSelect($event)" formControlName="Attachment">
+                        <div *ngIf="imgPath == 'update' ">
+                             <img [src]="imageUrl" alt="Attachment" width="180px" height="180px" style="border-radius: 50%;">
+                        </div>
+                        <div *ngIf="imgPath == '' ">
+                            <img src="images/user.png" alt="" width="180px" height="180px" >
+                        </div>
+                        <div *ngIf="imgPath == 'insert' ">
+                            <img [src]="imgSrc" alt="Attachment" width="180px" height="180px" style="border-radius: 50%;">
+                        </div>
+                        
+                        <img src="images/MicrosoftTeams-image.png" alt="" class="upload"
+                            (click)="openModal(popupModal)" >
+                        <!-- <ngx-dropzone (change)="onSelect($event)" formControlName="Attachment">
                     <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""> 
                     </ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
@@ -21,7 +31,8 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Employee ID <span class="required">*</span></label>
-                                <input type="text" placeholder="Employee ID" class="form-control" formControlName="EmployeeID">
+                                <input type="text" placeholder="Employee ID" class="form-control"
+                                    formControlName="EmployeeID">
                             </div>
                             <div class="col-lg-4">
                                 <label>Title <span class="required">*</span></label>
@@ -35,31 +46,37 @@
                             </div>
                             <div class="col-lg-4">
                                 <label>First Name <span class="required">*</span></label>
-                                <input type="text" placeholder="First Name" class="form-control" formControlName="FirstName">
+                                <input type="text" placeholder="First Name" class="form-control"
+                                    formControlName="FirstName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Middle Name <span class="required">*</span></label>
-                                <input type="text" placeholder="Middle Name" class="form-control" formControlName="MiddleName">
+                                <input type="text" placeholder="Middle Name" class="form-control"
+                                    formControlName="MiddleName">
                             </div>
                             <div class="col-lg-4">
                                 <label>Last Name <span class="required">*</span></label>
-                                <input type="text" placeholder="Last Name " class="form-control" formControlName="LastName">
+                                <input type="text" placeholder="Last Name " class="form-control"
+                                    formControlName="LastName">
                             </div>
                             <div class="col-lg-4">
                                 <label>Nick Name <span class="required">*</span></label>
-                                <input type="text" placeholder="Nick Name" class="form-control" formControlName="NickName">
+                                <input type="text" placeholder="Nick Name" class="form-control"
+                                    formControlName="NickName">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Date of Birth <span class="required">*</span></label>
-                                <input type="date" placeholder="Date of Birth" class="form-control" formControlName="DateOfBirth">
+                                <input type="date" placeholder="Date of Birth" class="form-control"
+                                    formControlName="DateOfBirth">
                             </div>
                             <div class="col-lg-4">
                                 <label>Place of Birth<span class="required">*</span></label>
-                                <input type="text" placeholder="Place of Birth" class="form-control" formControlName="PlaceOfBirth">
+                                <input type="text" placeholder="Place of Birth" class="form-control"
+                                    formControlName="PlaceOfBirth">
                             </div>
                             <div class="col-lg-4">
                                 <label>Country of Birth <span class="required">*</span></label>
@@ -72,9 +89,10 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
-                                <label for="Gender" >Gender <span class="required">*</span></label><br>
+                                <label for="Gender">Gender <span class="required">*</span></label><br>
                                 <input type="radio" formControlName="Gender" id="Gender" name="Gender" value="Male">Male
-                                <input type="radio" formControlName="Gender" id="Gender" name="Gender" value="Female">Female
+                                <input type="radio" formControlName="Gender" id="Gender" name="Gender"
+                                    value="Female">Female
                             </div>
                             <div class="col-lg-4">
                                 <label>Marital Status <span class="required">*</span></label>
@@ -87,17 +105,20 @@
                             </div>
                             <div class="col-lg-4">
                                 <label>Personal Email <span class="required">*</span></label>
-                                <input type="text" placeholder="Personal Email" class="form-control" formControlName="PersonalEmail">
-                            </div>                        
+                                <input type="text" placeholder="Personal Email" class="form-control"
+                                    formControlName="PersonalEmail">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Mother Name</label>
-                                <input type="text" placeholder="Mother Name" class="form-control" formControlName="MotherName">
+                                <input type="text" placeholder="Mother Name" class="form-control"
+                                    formControlName="MotherName">
                             </div>
                             <div class="col-lg-4">
                                 <label>Father Name</label>
-                                <input type="text" placeholder="Father Name" class="form-control" formControlName="FatherName">
+                                <input type="text" placeholder="Father Name" class="form-control"
+                                    formControlName="FatherName">
                             </div>
                         </div>
 
@@ -151,19 +172,19 @@
                 <h6>Health Information</h6>
                 <div class="col-lg-3">
                     <label>Blood Type <span class="required">*</span></label>
-                        <select class="form-control" formControlName="BloodType">
-                            <option value="" disabled selected>Select Blood Type</option>
-                            <option value="O-">O-</option>
-                            <option value="O+">O+</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                        </select>
+                    <select class="form-control" formControlName="BloodType">
+                        <option value="" disabled selected>Select Blood Type</option>
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div>
-            <button type="submit" class="submit-btn" (click)="Submit()">{{editid ? 'Update' : 'Submit'}}</button>
+            <button type="submit" class="submit-btn" (click)="Submit(editid? 'update':'save')">{{editid ? 'Update' : 'Submit'}}</button>
         </div>
         <div>
             <button type="submit" class="next-btn" (click)="goToNext()">Next</button>
@@ -176,18 +197,18 @@
         <h3>Upload Photo</h3>
         <img src="images/close.png" alt="close" (click)="Modal.dismiss()">
     </div>
-<div class="modal-body">
-
-    <ngx-dropzone accept=".png,.jpg,.jpeg" (change)="onSelect($event)" formControlName="Images">
-                    <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""
+    <div class="modal-body">
+        <form [formGroup]="contactForm">
+            <ngx-dropzone accept=".png,.jpg,.jpeg"   [maxFileSize]="5242880"  (change)="onSelect($event)" [multiple]="false" formControlName = "Images"  >
+                <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""
                         style="width:18px;height:18px;margin-bottom: 3px;">
-                         <p style="color: #3f51b5;">Drop files here, only JPEG,PNG(max 5 mb)</p>
-                    </ngx-dropzone-label>
-                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                    </ngx-dropzone-preview>
-                </ngx-dropzone>
- 
+                    <p style="color: #3f51b5;">Drop files here, only JPEG,PNG(max 5 mb)</p>
+                </ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
 
-</div>
+        </form>
+    </div>
 </ng-template>

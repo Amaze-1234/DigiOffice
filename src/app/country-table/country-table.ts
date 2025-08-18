@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { Api } from '../../Services/api';
 import { SharedModule } from '../../Shared/shared.module';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-country-table',
-  imports: [CountryForm, SharedModule],
+  imports: [CountryForm, SharedModule,CommonModule],
   templateUrl: './country-table.html',
   styleUrl: './country-table.css'
 })

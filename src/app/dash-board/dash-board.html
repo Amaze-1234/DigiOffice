@@ -1,66 +1,59 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="attendance-card">
-          <h3 class="title">Attendance Tracker</h3>
-    <p style="font-size: 24px; color:#1f7059;">{{ currentTime }}</p>
-    <p style="font-size: 16px;">{{ currentDate }}</p>
- 
-    <div>
-        <label class="label">Work Type Details</label>
-<select class="form-select" [(ngModel)]="selectedWorkType" [disabled]="punchInTime">
-            <option value="" disabled>Select Type</option>
-            <option value="Office">Office</option>
-        </select>
-    </div>
- 
-    <div class="mt-4">
-        <button 
-        class="action-btn"
-        [disabled]="!(selectedWorkType || punchInTime)"
-        [ngClass]="{
+    <div class="row">
+        <div class="col-md-4">
+            <div class="attendance-card">
+                <h3 class="title">Attendance Tracker</h3>
+                <p style="font-size: 24px; color:#1f7059;">{{ currentTime }}</p>
+                <p style="font-size: 16px;">{{ currentDate }}</p>
+
+                <div>
+                    <label class="label">Work Type Details</label>
+                    <select class="form-select" [(ngModel)]="selectedWorkType" [disabled]="punchInTime">
+                        <option value="" disabled>Select Type</option>
+                        <option value="Office">Office</option>
+                    </select>
+                </div>
+
+                <div class="mt-4">
+                    <button class="action-btn" [disabled]="!(selectedWorkType || punchInTime)" [ngClass]="{
             'punchin-active': (selectedWorkType && !punchInTime),
             'punchin-complete': punchInTime
-        }"
-        (click)="confirmPunchIn()"
-        >
-        <img *ngIf="punchInTime" src="images/status-icon.png" alt="Check" class="button-icon">
-        {{ punchInTime ? 'Punched In' : 'Punch In' }}
-        
-        </button>
+        }" (click)="confirmPunchIn()">
+                        <img *ngIf="punchInTime" src="images/status-icon.png" alt="Check" class="button-icon">
+                        {{ punchInTime ? 'Punched In' : 'Punch In' }}
 
- 
-    </div>
- 
-    <div style="margin-top: 20px;">
-        <button class="punchIn-btn ">
-            <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
-                {{ punchInTime ? 'Punched In at ' + (punchInTime) : 'No Punch In yet' }}
-            </span>
-        </button>
-    </div>
- 
-    <div style="margin-top: 20px;">
-        <button class="punchOut-btn" [disabled]="!punchInTime"
-            [ngClass]="{
+                    </button>
+
+
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button class="punchIn-btn ">
+                        <span [ngStyle]="{ color: punchInTime ? 'black' : '' }">
+                            {{ punchInTime ? 'Punched In at ' + (punchInTime) : 'No Punch In yet' }}
+                        </span>
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button class="punchOut-btn" [disabled]="!punchInTime" [ngClass]="{
                 'punchout-active': punchInTime && !punchOutTime,
                 'punchout-complete': punchOutTime
-            }"
-            (click)="confirmPunchOut()" >
-            <img *ngIf="punchOutTime" src="images/status-icon.png" alt="Check" class="button-icon">
-            {{ punchOutTime ? 'Punched Out' : 'Punch Out' }}
+            }" (click)="confirmPunchOut()">
+                        <img *ngIf="punchOutTime" src="images/status-icon.png" alt="Check" class="button-icon">
+                        {{ punchOutTime ? 'Punched Out' : 'Punch Out' }}
 
-        </button>
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px; " class="mb-4">
+                    <button class="action-btn2">
+                        <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">
+                            {{ punchOutTime ? 'Punched Out at ' + (punchOutTime) : 'No Punch Out yet' }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
- 
-    <div style="margin-top: 20px; " class="mb-4">
-        <button class="action-btn2">
-            <span [ngStyle]="{ color: punchOutTime ? 'black' : ''}">
-                {{ punchOutTime ? 'Punched Out at ' + (punchOutTime) : 'No Punch Out yet' }}
-            </span>
-        </button>
-    </div>
-      </div>
-    </div>
-  </div>
 </div>

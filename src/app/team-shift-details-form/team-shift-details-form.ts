@@ -216,7 +216,7 @@ export class TeamShiftDetailsForm {
 
       let result = await this.api.postMethod('Master/InsertStaffShiftDetails', this.entity);
       if (result.data > 0) {
-        Swal.fire("Data Submitted Successfully");
+        Swal.fire("Shift added Successfully");
         this.closemodal.emit('save');
       }
     }
@@ -248,7 +248,7 @@ export class TeamShiftDetailsForm {
       console.log(result.data);
 
       if (result.data > 0) {
-        Swal.fire("Data Updated Successfully");
+        Swal.fire("Shift Updated Successfully");
         this.closemodal.emit('update');
       }
     }

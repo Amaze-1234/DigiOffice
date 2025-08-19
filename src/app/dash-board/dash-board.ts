@@ -77,6 +77,8 @@ export class DashBoard {
     console.log(attendanceData.data?.[0]?.restDaysValue, typeof (attendanceData.data?.[0]?.restDaysValue));
     let restDaysValue = attendanceData.data?.[0]?.restDaysValue.split(',');
     let startDate = attendanceData.data?.[0]?.startDate;
+    console.log(startDate);
+    
     if (!(startDate) || (restDaysValue.includes(dayName))) {
       Swal.fire({
 

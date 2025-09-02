@@ -185,8 +185,8 @@ export class PositionDetails {
       EmployeeDetailsID: new FormControl(Number(this.employeeDetails), Validators.required)
 
     })
-      // this.getDetails({ target: { value: departmentID } });
-
+      this.getJobDetails({ target: { value: response.data[0].designationID } });
+    this.getDetails({ target: { value: response.data[0].departmentID } });
   }
 
   async submitDetails(type: any) {

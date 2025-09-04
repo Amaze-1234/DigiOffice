@@ -38,13 +38,13 @@ export class PositionDetails {
     this.getPositionDetailsData();
     
     this.getDesignation();
-    this.getJobLevel();
+    // this.getJobLevel();
     this.getDepartmentdetails();
     this.getCountry();
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
-    this.getDepartment();
+    // this.getDepartment();
     
      
     
@@ -57,56 +57,81 @@ export class PositionDetails {
   async getDesignation() {
     const result = await this.apiService.getMethod('DigiOffice/GetDesignation');
     this.designationData = result.data;
+    console.log(this.designationData);
+    
   }
-  async getJobLevel() {
-    const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
-    this.jobLevelData = result.data;
-    console.log(this.jobLevelData.designation);
-    if(this.editid&&this.positionDetails.value.DesignationID)
-    {
-      this.getJobDetails({target:{value:this.positionDetails.value.DesignationID}})
-    }
-  }
+  // async getJobLevel() {
+  //   const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
+  //   this.jobLevelData = result.data;
+  //   console.log(this.jobLevelData.designation);
+  //   if(this.editid&&this.positionDetails.value.DesignationID)
+  //   {
+  //     this.getJobDetails({target:{value:this.positionDetails.value.DesignationID}})
+  //   }
+  // }
 
 
-  getJobDetails(event:any) {
+  async getJobDetails(event:any) {
    const selectedDesignation=event.target.value;
+   console.log(selectedDesignation);
+   
 
-    console.log(this.positionDetails.value.DesignationID)
-    this.levelNameValue = this.jobLevelData
-      .filter((x: { designation: any; }) => x.designation == selectedDesignation)
-      .map((x: { designation: any; levelType: any; }) => ({ designationIndex: x.designation, jobName: x.levelType }))
-
+    // console.log(this.positionDetails.value.DesignationID)
+    // this.levelNameValue = this.jobLevelData
+    //   .filter((x: { designation: any; }) => x.designation == selectedDesignation)
+    //   .map((x: { designation: any; levelType: any; }) => ({ designationIndex: x.designation, jobName: x.levelType }))
+    if(!selectedDesignation){
+      this.levelNameValue = null;
+    }
+    else{
+    let result = await this.apiService.getMethod(`Master/GetJobLevelTypeByDesignationID?DesignationID=${selectedDesignation}`);
+    this.levelNameValue = result.data;
+    }
+    console.log(this.levelNameValue);
+    
 
   }
   async getLogin() {
     const result = await this.apiService.getMethod('DigiOffice/GetLoginType');
     this.loginTypeData = result.data;
   }
+
   async getDepartmentdetails() {
     const result = await this.apiService.getMethod("DigiOffice/GetDepartment");
     this.departmentData = result.data;
+    console.log(this.departmentData);
 
   }
-  async getDepartment() {
-    const result = await this.apiService.getMethod("DigiOffice/GetUnit");
-    this.department = result.data;
-    console.log(this.positionDetails.value.DepartmentID);
-        if (this.editid && this.positionDetails?.value?.DepartmentID) {
-      this.getDetails({ target: { value: this.positionDetails.value.DepartmentID } });
-    }
+  // async getDepartment() {
+  //   const result = await this.apiService.getMethod("DigiOffice/GetUnit");
+  //   this.department = result.data;
+  //   console.log(this.positionDetails.value.DepartmentID);
+  //       if (this.editid && this.positionDetails?.value?.DepartmentID) {
+  //     this.getDetails({ target: { value: this.positionDetails.value.DepartmentID } });
+  //   }
 
-  }
+  // }
 
-  getDetails(event: any) {
+  async getDetails(event: any) {
     const selectedDepartmentId = event.target.value;
-    this.unitType = this.department
-      .filter((x: { departmentID: any }) => x.departmentID == selectedDepartmentId)
-      .map((x: { unitName: any; id: any }) => ({
-        unitName: x.unitName,
-        ID: x.id
-      }));
-    console.log(this.unitType)
+    console.log(selectedDepartmentId);
+    
+    // this.unitType = this.department
+    //   .filter((x: { departmentID: any }) => x.departmentID == selectedDepartmentId)
+    //   .map((x: { unitName: any; id: any }) => ({
+    //     unitName: x.unitName,
+    //     ID: x.id
+    //   }));
+    // console.log(this.unitType)
+    if(!selectedDepartmentId){
+      this.unitType = null;
+    }
+    else{
+    let result = await this.apiService.getMethod(`Master/GetUnitByDepartmentID?DepartmentID=${selectedDepartmentId}`)
+    this.unitType = result.data;
+    }
+    console.log(this.unitType);
+    
   }
 
   async getCountry() {
@@ -182,7 +207,7 @@ export class PositionDetails {
       SeperationDate: new FormControl(response.data[0].seperationDate.split('T')[0], Validators.required),
       ProbationEndDate: new FormControl(response.data[0].probationEndDate.split('T')[0], Validators.required),
       ContractEndDate: new FormControl(response.data[0].contractEndDate.split('T')[0], Validators.required),
-      EmployeeDetailsID: new FormControl(Number(this.employeeDetails), Validators.required)
+      EmployeeDetailsID: new FormControl(response.data[0].employeeDetailsID, Validators.required)
 
     })
       this.getJobDetails({ target: { value: response.data[0].designationID } });
@@ -216,8 +241,8 @@ export class PositionDetails {
       if (result.data > 0) {
         Swal.fire("Data Saved successfully")
         sessionStorage.removeItem("isEmployeeDetails");
+        this.route.navigate(['/staffdashboard']);
       }
-      this.route.navigate(['/staffdashboard']);
     }
     else {
       console.log(this.positionDetails.value);
@@ -231,9 +256,9 @@ export class PositionDetails {
         console.log(result.data);
         
         Swal.fire("Data Updated successfully");
-      }
-      this.route.navigate(['/staffdashboard']);
+         this.route.navigate(['/staffdashboard']);
 
+      }
     }
 
   }

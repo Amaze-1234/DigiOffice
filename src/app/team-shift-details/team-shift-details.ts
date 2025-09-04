@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeamShiftDetailsForm } from "../team-shift-details-form/team-shift-details-form";
 import { Api } from '../../Services/api';
 import { Loader } from '../../Services/loader';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-team-shift-details',
@@ -56,5 +57,25 @@ export class TeamShiftDetails {
     this.StaffShiftDetails = result.data;
 
   }
+
+  async deleteDetails(id:any)
+{
+  Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then(async (result) => {
+  if (result.isConfirmed) {
+     const result =await this.apiService.getMethod(`Master/DeleteStaffShiftDetails?ID=${id}`);
+  if(result.data>0)
+    Swal.fire("Shift deleted successfully");
+    this.getTeamShiftDetailsUnderManager();
+  }
+});
+}
 
 }

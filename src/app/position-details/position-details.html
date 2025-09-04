@@ -15,8 +15,8 @@
                     <label for="Job-level">Job Level <span id="marked">*</span></label>
                     <select class="form-control" formControlName="JobLevel">
                         <option value="">Select Job Level </option>
-                        <option *ngFor="let joblevel of levelNameValue" [value]="joblevel.designationIndex">
-                            {{joblevel.jobName}}
+                        <option *ngFor="let joblevel of levelNameValue" [value]="joblevel.id">
+                            {{joblevel.levelType}}
                         </option>
                     </select>
                 </div>
@@ -50,7 +50,7 @@
                     <label for="Unit">Unit<span id="marked">*</span></label>
                     <select class="form-control" formControlName="UnitID">
                         <option value="">Select Unit</option>
-                        <option *ngFor="let department of unitType" [value]="department.ID">
+                        <option *ngFor="let department of unitType" [value]="department.id">
                             {{department.unitName}}
                         </option>
                     </select>
@@ -78,8 +78,8 @@
                     <label for="Work Arrangement ">Work Arrangement <span id="marked">*</span></label>
                     <select class="form-control" formControlName="WorkArrangement">
                         <option value="">Select Work Arrangement </option>
-                        <option value="Active">Office-Based</option>
-                        <option value="Inactive">Site Based</option>
+                        <option value="Office-based">Office-based</option>
+                        <option value="Site-based">Site-based</option>
                     </select>
                 </div>
                 <div class="col-lg-4">
@@ -124,7 +124,7 @@
                     <select class="form-control" formControlName="EmploymentType">
                         <option value="" selected>Select Employment Type</option>
                         <option value="Consultant">Consultant</option>
-                        <option value="Project">Project Hire</option>
+                        <option value="Project Hire">Project Hire</option>
                         <option value="Regular">Regular</option>
                     </select>
                 </div>

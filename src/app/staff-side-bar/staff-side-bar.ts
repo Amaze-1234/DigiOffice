@@ -47,8 +47,8 @@ export class StaffSideBar {
 
   }
   navigateAttendenceDetails() {
-    sessionStorage.setItem("isTitle", "AttendenceDetails")
-    this.loaderService.isTitle = 'AttendenceDetails';
+    sessionStorage.setItem("isTitle", "staff-AttendenceDetails")
+    this.loaderService.isTitle = 'staff-AttendenceDetails';
     this.router.navigate(['/AttendanceDetails']);
   }
   navigateShiftDetails() {

@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label for="Designation">Designation <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="DesignationID"(change)="getJobDetails($event)">
+                    <select class="form-control" formControlName="DesignationID" (change)="getJobDetails($event)">
                         <option value="">Select DesignationList </option>
                         <option *ngFor="let designation of designationData" [value]="designation.id">
                             {{designation.title}}</option>
@@ -38,13 +38,13 @@
                 <div class="col-lg-4">
                     <label for="Department">Department <span id="marked">*</span></label>
                     <select class="form-control" formControlName="DepartmentID" (change)="getDetails($event)">
-        
+
                         <option value="">Select Department</option>
                         <option *ngFor="let department of departmentData" [value]="department.id">
                             {{department.departmentName}}</option>
                     </select>
-                    
-                    
+
+
                 </div>
                 <div class="col-lg-4">
                     <label for="Unit">Unit<span id="marked">*</span></label>
@@ -54,7 +54,7 @@
                             {{department.unitName}}
                         </option>
                     </select>
-                  
+
                 </div>
                 <div class="col-lg-4">
                     <label for="Manager">Manager <span id="marked">*</span></label>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="Job-level"> Worksite Country <span id="marked">*</span></label>
-                    <select class="form-control" formControlName="WorksiteCountry" >
+                    <select class="form-control" formControlName="WorksiteCountry">
                         <option value="">Select Worksite Country </option>
                         <option *ngFor="let country of countryData" [value]="country.id">{{country.countryName}}
                         </option>
@@ -129,7 +129,7 @@
                     </select>
                 </div>
                 <div class="col-lg-4">
-             <label for="Job-level"> Employment Status <span id="marked">*</span></label>
+                    <label for="Job-level"> Employment Status <span id="marked">*</span></label>
                     <select class="form-control" formControlName="EmploymentStatus">
                         <option value="">select Employment Status </option>
                         <option value="Active">Active</option>
@@ -167,11 +167,12 @@
             </div>
         </div>
     </div>
-       <div>
-            <button type="submit" class="submit-btn"(click)="submitDetails(editid?'update' : 'submit')">{{editid? 'Update' : 'Submit'}}</button>
-        </div>
-        <div class="navigate-btn">
-            <button type="submit" class="next-btn"(click)="previousPage()">Previous</button>
-             <button type="submit" class="next-btn">Next</button>
-        </div>
+    <div>
+        <button type="submit" *ngIf="!editid" class="submit-btn" (click)="submitDetails()">Submit</button>
+        <button type="submit" *ngIf="editid" class="submit-btn" (click)="submitDetails()">Update</button>
+    </div>
+    <div class="navigate-btn">
+        <button type="submit" class="next-btn" (click)="previousPage()">Previous</button>
+        <button type="submit" class="next-btn">Next</button>
+    </div>
 </div>

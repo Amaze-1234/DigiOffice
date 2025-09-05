@@ -8,17 +8,19 @@
                 <div class="row ">
                     <div class="col-lg-3">
                         <div *ngIf="imgPath == 'update' ">
-                             <img [src]="imageUrl" alt="Attachment" width="180px" height="180px" style="border-radius: 50%;">
+                            <img [src]="imageUrl" alt="Attachment" width="180px" height="180px"
+                                style="border-radius: 50%;">
                         </div>
                         <div *ngIf="imgPath == '' ">
-                            <img src="images/user.png" alt="" width="180px" height="180px" >
+                            <img src="images/user.png" alt="" width="180px" height="180px">
                         </div>
                         <div *ngIf="imgPath == 'insert' ">
-                            <img [src]="imgSrc" alt="Attachment" width="180px" height="180px" style="border-radius: 50%;">
+                            <img [src]="imgSrc" alt="Attachment" width="180px" height="180px"
+                                style="border-radius: 50%;">
                         </div>
-                        
+
                         <img src="images/MicrosoftTeams-image.png" alt="" class="upload"
-                            (click)="openModal(popupModal)" >
+                            (click)="openModal(popupModal)">
                         <!-- <ngx-dropzone (change)="onSelect($event)" formControlName="Attachment">
                     <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""> 
                     </ngx-dropzone-label>
@@ -184,7 +186,8 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="submit-btn" (click)="Submit(editid? 'update':'save')">{{editid ? 'Update' : 'Submit'}}</button>
+            <button type="submit" class="submit-btn" (click)="Submit(editid? 'update':'save')">{{editid ? 'Update' :
+                'Submit'}}</button>
         </div>
         <div>
             <button type="submit" class="next-btn" (click)="goToNext()">Next</button>
@@ -199,13 +202,14 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="contactForm">
-            <ngx-dropzone accept=".png,.jpg,.jpeg"   [maxFileSize]="5242880"  (change)="onSelect($event)" [multiple]="false" formControlName = "Images"  >
+            <ngx-dropzone (change)="onSelect($event)"  
+                [multiple]="false"> <!-- accept=".png,.jpg,.jpeg" [maxFileSize]="102400" -->
                 <ngx-dropzone-label><img src="images/MicrosoftTeams-image.png" alt=""
                         style="width:18px;height:18px;margin-bottom: 3px;">
-                    <p style="color: #3f51b5;">Drop files here, only JPEG,PNG(max 5 mb)</p>
+                    <p style="color: #3f51b5;">Drop files here, only JPEG,PNG(max 100 KB)</p>
                 </ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                    <ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
 

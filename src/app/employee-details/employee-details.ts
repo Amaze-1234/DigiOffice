@@ -19,10 +19,10 @@ export class EmployeeDetails {
   contactForm: any;
   files: File[] = [];
   Image: any;
-  imgSrc:any;
-  resImage:any;
-  imageUrl:any;
-  imgPath:any='';
+  imgSrc: any;
+  resImage: any;
+  imageUrl: any;
+  imgPath: any = '';
   entity: any;
   selectedFile: any;
   insertImage: any;
@@ -60,7 +60,7 @@ export class EmployeeDetails {
       Images: new FormControl('', Validators.required)
 
     })
-   
+
   }
 
   async getByID() {
@@ -88,12 +88,12 @@ export class EmployeeDetails {
       BloodType: new FormControl(response.data[0].bloodType, Validators.required),
       Images: new FormControl(response.data[0].images, Validators.required)
     })
-    this.imgPath='update'
+    this.imgPath = 'update'
     this.resImage = this.contactForm.value.Images.slice(3);
     console.log(this.contactForm.value.Images);
     console.log(this.resImage);
-    
-    this.imageUrl=`https://103.12.1.103/${this.resImage}`
+
+    this.imageUrl = `https://103.12.1.103/${this.resImage}`
     console.log(this.imageUrl)
   }
 
@@ -106,33 +106,39 @@ export class EmployeeDetails {
   async Submit(type: any) {
 
     debugger;
+    if (this.contactForm.invalid) {
+      Swal.fire({
+        text: 'Please Fill All Details'
+      });
+      return;
+    }
 
-      if (type == 'update') {
-        this.entity =
-        {
-          ID:this.contactForm.value.ID,
-          EmployeeID: this.contactForm.value.EmployeeID,
-          Title: this.contactForm.value.Title,
-          FirstName: this.contactForm.value.FirstName,
-          MiddleName: this.contactForm.value.MiddleName,
-          LastName: this.contactForm.value.LastName,
-          NickName: this.contactForm.value.NickName,
-          DateOfBirth: this.contactForm.value.DateOfBirth,
-          PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
-          CountryID: this.contactForm.value.CountryID,
-          Gender: this.contactForm.value.Gender,
-          MaritalStatus: this.contactForm.value.MaritalStatus,
-          PersonalEmail: this.contactForm.value.PersonalEmail,
-          MotherName: this.contactForm.value.MotherName,
-          FatherName: this.contactForm.value.FatherName,
-          Religion: this.contactForm.value.Religion,
-          Citizenship: this.contactForm.value.Citizenship,
-          Nationality: this.contactForm.value.Nationality,
-          BloodType: this.contactForm.value.BloodType,
-          Images: this.contactForm.value.Images
-        }
-        // console.log(this.entity);
-        
+    if (type == 'update') {
+      this.entity =
+      {
+        ID: this.contactForm.value.ID,
+        EmployeeID: this.contactForm.value.EmployeeID,
+        Title: this.contactForm.value.Title,
+        FirstName: this.contactForm.value.FirstName,
+        MiddleName: this.contactForm.value.MiddleName,
+        LastName: this.contactForm.value.LastName,
+        NickName: this.contactForm.value.NickName,
+        DateOfBirth: this.contactForm.value.DateOfBirth,
+        PlaceOfBirth: this.contactForm.value.PlaceOfBirth,
+        CountryID: this.contactForm.value.CountryID,
+        Gender: this.contactForm.value.Gender,
+        MaritalStatus: this.contactForm.value.MaritalStatus,
+        PersonalEmail: this.contactForm.value.PersonalEmail,
+        MotherName: this.contactForm.value.MotherName,
+        FatherName: this.contactForm.value.FatherName,
+        Religion: this.contactForm.value.Religion,
+        Citizenship: this.contactForm.value.Citizenship,
+        Nationality: this.contactForm.value.Nationality,
+        BloodType: this.contactForm.value.BloodType,
+        Images: this.contactForm.value.Images
+      }
+      // console.log(this.entity);
+
 
       console.log(this.entity);
       let result = await this.api.postMethod('Master/UpdateEmployeeDetails', this.entity);
@@ -174,18 +180,7 @@ export class EmployeeDetails {
         Images: this.Image
       }
 
-        console.log(this.entity);
-        
-        console.log(this.contactForm.invalid);
-        
-        
-         if (this.contactForm.invalid) {
-      Swal.fire({
-        text: 'Please Fill All Details'
-      });
-      return;
-    }
-
+      console.log(this.entity);
       let result = await this.api.postMethod('Master/InsertEmployeeDetails', this.entity);
       this.loaderService.isEmployee = "Yes";
       console.log(result.data);
@@ -204,9 +199,6 @@ export class EmployeeDetails {
   }
 
 
-
-
-
   goToNext() {
     if (this.loaderService.isEmployee != "Yes") {
       Swal.fire({
@@ -217,20 +209,28 @@ export class EmployeeDetails {
       return;
     }
     this.loaderService.isDetail = 'position';
-
   }
-
-
-
 
 
   async onSelect(event: any) {
     console.log(event);
 
-    this.files.push(...event.addedFiles);
-
+    // this.files.push(...event.addedFiles)    to allow multiple files and push them in an array
 
     const selectedFile = event.addedFiles[0];
+    this.files = [selectedFile];     // to accept and display only a single value
+
+    if (selectedFile.size > 102400) {
+      Swal.fire("Please upload an image less than 100kb");
+      this.files = []; //useful only wen handling with single file beacuse, this eliminates all the files whether it's valid or invalid incase of multiple files.
+      return;
+    }
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    if (!allowedTypes.includes(selectedFile.type)) {
+      Swal.fire("Only JPG, PNG are allowed");
+      this.files = this.files.filter(f => f !== selectedFile); //useful when handling with both single amd mutltiple files because, this eliminates only the files which are invalid.
+      return;
+    }
     let formData = new FormData();
     formData.append('file_upload', selectedFile, selectedFile.name);
 
@@ -239,13 +239,13 @@ export class EmployeeDetails {
       console.log(resURL.data);
 
       if (resURL && resURL.data) {
-        this.Image= resURL.data
-        this.imgPath='insert'
+        this.Image = resURL.data
+        this.imgPath = 'insert'
         this.insertImage = (resURL.data).slice(3);
         console.log(this.Image);
-         this.contactForm.get('Images')?.setValue(this.Image);
+        this.contactForm.get('Images')?.setValue(this.Image);
 
-        this.imgSrc =`https://103.12.1.103/${this.insertImage}`;
+        this.imgSrc = `https://103.12.1.103/${this.insertImage}`;
         console.log(this.imgSrc);
 
 
@@ -263,7 +263,16 @@ export class EmployeeDetails {
 
   onRemove(event: any) {
     console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+    this.files = [];
+
+    // Clear form field
+    this.contactForm.get('Images')?.setValue('');
+
+    // Clear preview variables
+    this.Image = '';
+    this.imgSrc = '';
+    this.insertImage = '';
+    // this.files.splice(this.files.indexOf(event), 1);   useful for removing images in an array
   }
 
 

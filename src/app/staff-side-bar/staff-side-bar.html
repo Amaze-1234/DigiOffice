@@ -15,11 +15,11 @@
                     style="width:25px;height:25px;">Attendence
             </li>
             <span class="eye-icon">
-               {{ activeSection === 'attendence' ? downArrow : '' }}
+                {{ activeSection === 'attendence' ? downArrow : '' }}
             </span>
             <div class="subnav-content" *ngIf="activeSection == 'attendence'">
                 <li (click)="navigateAttendenceDetails()"
-                    [ngClass]="this.loaderService.isTitle == 'AttendenceDetails' ?'highlight':'' "><img
+                    [ngClass]="this.loaderService.isTitle == 'staff-AttendenceDetails' ?'highlight':'' "><img
                         src="images/AttendanceDetailBlack.svg" alt="" class="icon"
                         style="width:25px;height:25px;">Attendence Details</li>
                 <li (click)="navigateShiftDetails()"

@@ -4,6 +4,7 @@ import { Api } from '../../Services/api';
 import { Loader } from '../../Services/loader';
 import { SharedModule } from '../../Shared/shared.module';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 @Component({
   selector: 'app-team-shift-details-form',
@@ -43,6 +44,7 @@ export class TeamShiftDetailsForm {
   assignedStaffID: any;
   @Input() editID: any;
   @Output() closemodal = new EventEmitter<any>();
+  updateShift: any = 0;
 
   constructor(public api: Api, public loader: Loader) { }
   async ngOnInit() {
@@ -134,6 +136,7 @@ export class TeamShiftDetailsForm {
       EndTime: new FormControl('', Validators.required),
       selectedItems: new FormControl('', Validators.required)
     })
+    
   }
 
   async getTeamShiftDetailsByID() {
@@ -164,6 +167,15 @@ export class TeamShiftDetailsForm {
 
     this.ChangedValueOfShiftType({ target: { value: result.data[0].shiftTypeID } });
     this.changedValueOfCode({ target: { value: result.data[0].shiftCode } });
+
+    let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${result.data[0].staffID}&StartDate=${result.data[0].startDate}&EndDate=${result.data[0].endDate}&ID=${this.editID}`);
+      console.log(response.data?.[0],typeof(response.data?.[0]));
+
+      if (response.data?.[0]?.count>=1) {
+        this.updateShift =1;
+      }
+      console.log(this.updateShift);
+      
   }
 
 
@@ -206,10 +218,10 @@ export class TeamShiftDetailsForm {
         return;
       }
 
-      let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.assignedStaffID}&StartDate=${this.teamShiftDetailsForm.value.StartDate}&EndDate=${this.teamShiftDetailsForm.value.EndDate}`)
+      let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.assignedStaffID}&StartDate=${this.teamShiftDetailsForm.value.StartDate}&EndDate=${this.teamShiftDetailsForm.value.EndDate}`);
       console.log(response.data?.[0]);
 
-      if (response.data?.[0]?.startDate) {
+      if (response.data?.[0]?.count>=1) {
         Swal.fire("Shift is already assigned between the dates");
         return;
       }
@@ -235,10 +247,7 @@ export class TeamShiftDetailsForm {
       }
       console.log(this.entity);
 
-      let response = await this.api.getMethod(`Master/GetTeamShiftDetailsBetweenDate?StaffID=${this.teamShiftDetailsForm.value.StaffID}&StartDate=${this.teamShiftDetailsForm.value.StartDate}&EndDate=${this.teamShiftDetailsForm.value.EndDate}`)
-      console.log(response.data?.[0]);
-
-      if (response.data?.[0]?.startDate) {
+      if (this.updateShift == 1) {
         Swal.fire("Shifted is already assigned between the dates");
         return;
       }

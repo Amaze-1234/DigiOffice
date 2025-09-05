@@ -89,7 +89,7 @@ export class EmployeeDetails {
       Images: new FormControl(response.data[0].images, Validators.required)
     })
     this.imgPath = 'update'
-    this.resImage = this.contactForm.value.Images.slice(3);
+    this.resImage = this.contactForm.value.Images?.slice(3);
     console.log(this.contactForm.value.Images);
     console.log(this.resImage);
 

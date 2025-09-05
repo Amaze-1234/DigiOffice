@@ -5,6 +5,7 @@ import { PositionDetails } from "../position-details/position-details";
 import { SharedModule } from '../../Shared/shared.module';
 import { Loader } from '../../Services/loader';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-staff-detail',
@@ -14,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StaffDetail {
   editid:any;
+    // private routeSub!: Subscription;
+
 
   constructor(public loaderService:Loader, public activateRoute:ActivatedRoute){
   
@@ -28,4 +31,11 @@ export class StaffDetail {
       this.editid = parms['id'];
     })
   }
+
+
+  //  ngOnDestroy() {
+  //   if (this.routeSub) {
+  //     this.routeSub.unsubscribe();
+  //   }                               optional for params
+  // }
 }

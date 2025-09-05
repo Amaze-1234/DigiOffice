@@ -37,50 +37,24 @@ export class PositionDetails {
       this.getByID();
     }
     this.getPositionDetailsData();
-
     this.getDesignation();
-    // this.getJobLevel();
     this.getDepartmentdetails();
     this.getCountry();
     this.getProvince();
     this.getCity();
     this.getLoginDetails();
-    // this.getDepartment();
-
-
-
 
   }
-  // event(event: any) {
-  //   throw new Error('Method not implemented.');
-  // }
-
   async getDesignation() {
     const result = await this.apiService.getMethod('DigiOffice/GetDesignation');
     this.designationData = result.data;
     console.log(this.designationData);
-
   }
-  // async getJobLevel() {
-  //   const result = await this.apiService.getMethod('DigiOffice/GetJoblevelType');
-  //   this.jobLevelData = result.data;
-  //   console.log(this.jobLevelData.designation);
-  //   if(this.editid&&this.positionDetails.value.DesignationID)
-  //   {
-  //     this.getJobDetails({target:{value:this.positionDetails.value.DesignationID}})
-  //   }
-  // }
 
 
   async getJobDetails(event: any) {
     const selectedDesignation = event.target.value;
     console.log(selectedDesignation);
-
-
-    // console.log(this.positionDetails.value.DesignationID)
-    // this.levelNameValue = this.jobLevelData
-    //   .filter((x: { designation: any; }) => x.designation == selectedDesignation)
-    //   .map((x: { designation: any; levelType: any; }) => ({ designationIndex: x.designation, jobName: x.levelType }))
     if (!selectedDesignation) {
       this.levelNameValue = null;
     }
@@ -89,9 +63,9 @@ export class PositionDetails {
       this.levelNameValue = result.data;
     }
     console.log(this.levelNameValue);
-
-
   }
+
+
   async getLogin() {
     const result = await this.apiService.getMethod('DigiOffice/GetLoginType');
     this.loginTypeData = result.data;
@@ -101,29 +75,11 @@ export class PositionDetails {
     const result = await this.apiService.getMethod("DigiOffice/GetDepartment");
     this.departmentData = result.data;
     console.log(this.departmentData);
-
   }
-  // async getDepartment() {
-  //   const result = await this.apiService.getMethod("DigiOffice/GetUnit");
-  //   this.department = result.data;
-  //   console.log(this.positionDetails.value.DepartmentID);
-  //       if (this.editid && this.positionDetails?.value?.DepartmentID) {
-  //     this.getDetails({ target: { value: this.positionDetails.value.DepartmentID } });
-  //   }
-
-  // }
 
   async getDetails(event: any) {
     const selectedDepartmentId = event.target.value;
     console.log(selectedDepartmentId);
-
-    // this.unitType = this.department
-    //   .filter((x: { departmentID: any }) => x.departmentID == selectedDepartmentId)
-    //   .map((x: { unitName: any; id: any }) => ({
-    //     unitName: x.unitName,
-    //     ID: x.id
-    //   }));
-    // console.log(this.unitType)
     if (!selectedDepartmentId) {
       this.unitType = null;
     }

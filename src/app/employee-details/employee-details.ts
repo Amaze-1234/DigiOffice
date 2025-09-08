@@ -278,6 +278,6 @@ export class EmployeeDetails {
 
 
   openModal(Modal: any, id: any = null) {
-    this.modalService.open(Modal, { centered: true, size: "lg", backdrop: 'static' });
+    this.modalService.open(Modal, {size: "md", backdrop: 'static' });
   }
 }
